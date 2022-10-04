@@ -1,0 +1,43 @@
+version: '3.9'
+services:
+  nado-react:
+    working_dir: /usr/src/app
+    depends_on:
+      - nado-nest
+      - nado-nginx
+    platform: linux/amd64
+    networks:
+      - front_end
+      - back_end
+  nado-nest:
+    working_dir: /usr/src/app
+    depends_on:
+      - nado-mysql
+      - nado-redis
+    platform: linux/amd64
+    networks:
+      - back_end
+  nado-mysql:
+    image: mysql:8.0.30
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${NADO_MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${NADO_MYSQL_USER}
+      - MYSQL_PASSWORD=${NADO_MYSQL_PASSWORD}
+    platform: linux/amd64
+    networks:
+      - back_end
+  nado-redis:
+    image: redis:7.0.5-alpine
+    networks:
+      - back_end
+  nado-nginx:
+    image: nginx:1.23.1 
+    networks:
+      - front_end
+
+networks:
+  front_end:
+    driver: bridge
+  back_end:
+    driver: bridge

@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  nado-react:
+    build: 
+      context: ./client
+      dockerfile: Dockerfile.prod
+      args:
+        - NODE_ENV=production 
+  nado-nest:
+    build: 
+      context: ./server
+      dockerfile: Dockerfile.prod
+      args:
+        - NODE_ENV=production 
+  

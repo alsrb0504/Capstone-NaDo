@@ -1,0 +1,22 @@
+##############################
+# build for local DEVELOPMENT#
+##############################
+
+FROM node:18-alpine3.15 
+
+ARG NODE_ENV
+
+ENV NODE_ENV=${NODE_ENV}
+
+WORKDIR /usr/src/app
+
+COPY --chown=node:node package*.json .
+
+RUN npm i --production
+
+COPY --chown=node:node . . 
+
+RUN npm install -g @nestjs/cli
+RUN npm run build
+
+CMD ["npm", "run", "start:prod"]

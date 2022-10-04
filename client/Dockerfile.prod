@@ -1,0 +1,23 @@
+##############################
+# build for local DEVELOPMENT#
+##############################
+
+
+FROM node:16-alpine3.16 As development
+
+ARG NODE_ENV
+
+ENV NODE_ENV=${NODE_ENV}
+
+WORKDIR /usr/src/app
+
+COPY --chown=node:node package*.json .
+
+RUN npm i --production
+RUN npm i -g react-scripts
+
+COPY --chown=node:node . . 
+
+RUN npm run build
+
+CMD ["npx", "serve", "-l", "5000", "-s", "build"]

@@ -1,0 +1,28 @@
+##############################
+# build for local DEVELOPMENT#
+##############################
+
+ARG NODE_ENV
+
+FROM node:18-alpine3.15 As development
+
+ENV NODE_ENV=${NODE_ENV}
+
+WORKDIR /usr/src/app
+
+COPY --chown=node:node package*.json .
+
+RUN npm i
+
+COPY --chown=node:node . . 
+
+CMD ["npm", "run", "start:dev"]
+
+
+
+
+
+
+
+
+
