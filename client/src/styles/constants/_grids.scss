@@ -1,0 +1,59 @@
+/*
+* MOBILE (<768px) -----------------------
+* name ---------------- sm
+* columns ------------- 4
+* gutter -------------- 16px
+* margin -------------- 20px  .. ? (끝 쪽 gutter 생각을 못했내..) 
+* container-size------- 100% - (0px * 2)
+* unit ---------------- 25% - 20px
+*
+* 모바일만 구현할 계획
+* TABLET (768px < * < 1024px )
+* name ---------------- md
+* columns ------------- 8
+* gutter -------------- 16px 
+* margin -------------- 20px ( 16 + 8(=gutter/2 )
+* container-size------- 100% - (16px * 2)
+* max-container-size---1024px - 16px * 2 = 992px
+*/
+
+$gutter: 16px; // sm, md 공동으로 사용.
+
+$sm-columns: 4;
+$sm-margin: 20px;
+
+// $md-columns: 8;
+// $md-margin: 16px;
+// $md-max-container-size: $lg-breakpoint - ($md-margin * 2);
+
+.container {
+  width: 100%;
+  padding: 0 $sm-margin; // 양옆 20px
+  margin: 0 auto;
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  [class^="col-"] {
+    padding: 0 $gutter / 2;
+  }
+
+  @for $i from 1 through $sm-columns {
+    .col-sm-#{$i} {
+      width: percentage($i / $sm-columns);
+    }
+  }
+
+  // @media screen and (min-width: $md-breakpoint) {
+  //   max-width: $md-max-container-size;
+  //   padding: 0 $md-margin;
+
+  //   @for $i from 1 through $md-columns {
+  //     .col-md-#{$i} {
+  //       width: percentage($i / $md-columns);
+  //     }
+  //   }
+  // }
+}

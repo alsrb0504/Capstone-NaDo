@@ -1,3 +1,20 @@
-// reset.scss
+// base
 @import "./base/reset";
-@import "./base/reset";
+@import "./base/base";
+
+// constants
+@import "./constants/breakpoints";
+@import "./constants/grids";
+@import "./constants/color";
+@import "./constants/typography";
+@import "./constants/z-index";
+
+// mixins
+@import "./mixins/flexbox";
+@import "./mixins/position";
+
+// components
+// 이번주 원자는 여기에 import 해서 스타일 적용
+@import "./components/atoms/testBtn.scss";
+
+// pages

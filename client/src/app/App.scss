@@ -1,0 +1,16 @@
+// @import "./styles/main.scss";
+@import "../styles/main.scss";
+
+.App {
+  background-color: pink;
+}
+
+.test {
+  // background-color: $background-gray;
+  background: $btn-gradation-1;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+}
