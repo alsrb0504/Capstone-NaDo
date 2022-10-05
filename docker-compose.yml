@@ -4,7 +4,6 @@ services:
     working_dir: /usr/src/app
     depends_on:
       - nado-nest
-      - nado-nginx
     platform: linux/amd64
     networks:
       - front_end
@@ -32,7 +31,13 @@ services:
     networks:
       - back_end
   nado-nginx:
-    image: nginx:1.23.1 
+    build:
+      context: ./config/nginx
+      dockerfile: Dockerfile.dev
+    ports:
+      - 3001:80
+    depends_on:
+      - nado-react
     networks:
       - front_end
 
