@@ -1,0 +1,29 @@
+.box-input {
+  @include column-flexbox(start, start);
+  width: 100%;
+
+  label {
+    margin-bottom: 8px;
+
+    color: $primary;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  input {
+    padding: 4px 8px;
+
+    height: 60px;
+    width: 100%;
+    border: 2px solid $primary;
+    background-color: $white;
+
+    font-size: 20px;
+    font-weight: 600;
+    color: $primary;
+
+    &::placeholder {
+      color: $placeholder;
+    }
+  }
+}
