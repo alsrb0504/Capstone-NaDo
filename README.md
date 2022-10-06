@@ -36,3 +36,4 @@
 |이성재|Major of Software|32173057@gmail.com|Design|
 
 ## 📚 __Technology Stack__
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"> 
