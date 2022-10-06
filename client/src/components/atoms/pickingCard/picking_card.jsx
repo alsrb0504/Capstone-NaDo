@@ -1,6 +1,6 @@
 import React from "react";
 
-const OrderingCard = ({ info, handleDesc, handleChat }) => {
+const PickingCard = ({ info, handleDesc, handleChat }) => {
   const { place, date, price, picker } = info;
 
   // 주문 상세 정보로 이동
@@ -32,4 +32,4 @@ const OrderingCard = ({ info, handleDesc, handleChat }) => {
     </div>
   );
 };
-export default OrderingCard;
+export default PickingCard;

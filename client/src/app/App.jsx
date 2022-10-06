@@ -5,7 +5,7 @@ import LineInput from "../components/atoms/lineInput/line_input";
 import RecordCard from "../components/atoms/recordCard/record_card";
 import OrderStoreCard from "../components/atoms/orderStoreCard/order_store_card";
 import PickupStoreCard from "../components/atoms/pickupStoreCard/pickup_store_card";
-import OrderingCard from "../components/atoms/orderingCard/ordering_card";
+import PickingCard from "../components/atoms/pickingCard/picking_card";
 
 const App = () => {
   const testFunc = () => {
@@ -56,7 +56,7 @@ const App = () => {
             handleClick={testFunc}
           />
 
-          <OrderingCard
+          <PickingCard
             info={{
               place: "소프트웨어관 303호",
               date: "21.09.08 13:35",
