@@ -1,5 +1,7 @@
 # "Capstone-NaDo" 
 
+<img src="https://user-images.githubusercontent.com/115008048/194298096-eb980d60-7fdc-4b91-b92d-a42a700c60e1.png" width="300" height="300"/>
+
 ## __1. 단국대학교 캡스톤디자인2 프로젝트__
 
 #### 단국대학교 커피배달 서비스 'NaDo'
