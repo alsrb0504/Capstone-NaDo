@@ -1,0 +1,64 @@
+.card-container {
+  width: 100%;
+  min-height: 100px;
+
+  border: 1px solid $primary;
+  border-radius: 24px;
+  background-color: white;
+}
+
+// OrderingCard
+// OrderCompleteCard 에서 공통으로 사용
+.order-card {
+  @include flexbox(start, center);
+  position: relative;
+
+  width: 100%;
+  height: 120px;
+
+  padding: 0 24px 0 32px;
+  cursor: pointer;
+
+  .info {
+    &::before {
+      content: "";
+      position: absolute;
+      top: 18px;
+      left: 20px;
+
+      width: 6px;
+      height: 60px;
+      background-color: $secondary;
+    }
+
+    h3 {
+      font-size: 24px;
+      margin-bottom: 4px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+
+    .options {
+      color: $placeholder;
+      margin-bottom: 4px;
+    }
+  }
+
+  .order-count {
+    @include flexbox;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+
+    .count-title {
+      margin-right: 4px;
+    }
+
+    .cnt {
+      text-align: center;
+      width: 30px;
+    }
+  }
+}
