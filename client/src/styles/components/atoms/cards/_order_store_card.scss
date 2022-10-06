@@ -1,0 +1,45 @@
+.order-store-card {
+  @include flexbox(between);
+  padding: 0 20px 0 16px;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    i {
+      transition: all 150ms ease-in;
+      transform: scale(1.05);
+    }
+  }
+
+  .info {
+    @include flexbox;
+
+    img {
+      width: 76px;
+      height: 76px;
+      margin-right: 20px;
+      border-radius: 24px;
+    }
+
+    .name-box {
+      @include column-flexbox;
+
+      h3 {
+        position: relative;
+        font-size: 20px;
+        margin-bottom: 8px;
+      }
+
+      .bar {
+        width: 60px;
+        height: 8px;
+        background-color: $secondary;
+      }
+    }
+  }
+
+  i {
+    font-size: 24px; // 1.5rem
+    color: $primary;
+  }
+}
