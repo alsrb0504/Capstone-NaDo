@@ -12,7 +12,8 @@ WORKDIR /usr/src/app
 
 COPY --chown=node:node package*.json .
 
-RUN npm i --production
+RUN npm install -g @nestjs/cli
+RUN npm install --production
 
 COPY --chown=node:node . . 
 

@@ -14,7 +14,6 @@ WORKDIR /usr/src/app
 COPY --chown=node:node package*.json .
 
 RUN npm i --production
-RUN npm i -g react-scripts
 
 COPY --chown=node:node . . 
 
