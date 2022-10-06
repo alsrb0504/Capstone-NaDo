@@ -11,7 +11,7 @@ const RecordCard = ({ info, handleClick }) => {
     <div className="card-container result-card" onClick={onClick}>
       <div className="info">
         <h3>{place}</h3>
-        <p className="date">배달 일시 : ${date}</p>
+        <p className="date">배달 일시 : {date}</p>
         <p>
           {isOrder && <span>주문 금액 : </span>}
           {!isOrder && <span className="deliver">배달료 : </span>}
