@@ -5,6 +5,7 @@ import LineInput from "../components/atoms/lineInput/line_input";
 import RecordCard from "../components/atoms/recordCard/record_card";
 import OrderStoreCard from "../components/atoms/orderStoreCard/order_store_card";
 import PickupStoreCard from "../components/atoms/pickupStoreCard/pickup_store_card";
+import OrderingCard from "../components/atoms/orderingCard/ordering_card";
 
 const App = () => {
   const testFunc = () => {
@@ -51,6 +52,16 @@ const App = () => {
               url: "https://cdn.pixabay.com/photo/2020/01/16/17/32/pokemon-4771238_960_720.jpg",
               orderCnt: 10,
               isOpen: true,
+            }}
+            handleClick={testFunc}
+          />
+
+          <OrderingCard
+            info={{
+              place: "소프트웨어관 303호",
+              date: "21.09.08 13:35",
+              price: "8900",
+              isOrder: true,
             }}
             handleClick={testFunc}
           />
