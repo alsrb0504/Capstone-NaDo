@@ -1,10 +1,10 @@
 # "Capstone-NaDo" 
 
-<img src="https://user-images.githubusercontent.com/115008048/194298096-eb980d60-7fdc-4b91-b92d-a42a700c60e1.png" width="300" height="300"/>
+<img src="https://user-images.githubusercontent.com/115008048/194301925-354e7c75-e67b-4995-bc12-d25e86ee19a0.png" width="300" height="300"/>
 
 ## __1. 단국대학교 캡스톤디자인2 프로젝트__
 
-#### 단국대학교 커피배달 서비스 'NaDo'
+#### [1번] 단국대학교 커피배달 서비스 'NaDo'
 - 학교의 지리적 특성상 매번 커피를 구매할 때마다 밑에 내려갔다 오는것은 쉬운 일이 아닙니다.
 - 교내의 커피숍이 지리하고 있지만 학생들이 그다지 선호하지 않죠.
 - 그래서 '배달의 민족', '쿠팡이츠'와 같은 전문 배달 업체들이 있는거죠
@@ -19,3 +19,20 @@
   - 커피를 가지고 올라와 주는 학생을 우리는 '피커(Picker)'로 정의했습니다.
   - 학교에 올라와야되는 '피커'는 어짜피 올라와야 되는 학교에 중간 리워드를 얻을 수 있는 기회가 되겠죠.
   - 학교 밑에까지 내려가기엔 여력이 안돼는 소비자들 또한 합리적인 수수료 지불을 통해서 원하는 가게의 커피를 맛볼 수 있는 기회가 되는 것 입니다.
+
+#### [2번] 단국대학교 커피배달 서비스 'NaDo'
+'나도(NADO)'는 근처 카페 상품을 캠퍼스내로 주문, 배달하는 서비스입니다.
+사용자는 앱을 통해 주문자로서 상품 주문을 할 수 있으며, 
+동시에 '피커'로서 배달수수료를 받고 직접 배달할 수 있습니다. 
+
+'나도(NADO)'는 사용자가 배달을 받을 수 있는 동시에, 학우들의 커피를 책임지는 '피커'의 역할 또한 수행할 수 있는 양방향 서비스 입니다.
+
+## __Team__
+|Name|Department|Contact|Role|
+|:---:|:---:|:---:|:---:|
+|태민규|Major of Software|alsrb8442@naver.com|Front_End|
+|한윤호|Major of Software|hanyounho@gmail.com|Front_End|
+|김민준|Major of Software|alswnssl0528@naver.com|Back_End|
+|이성재|Major of Software|32173057@gmail.com|Design|
+
+## 📚 __Technology Stack__
