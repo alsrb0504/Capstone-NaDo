@@ -1,14 +1,5 @@
 .ordering {
   .order-count {
-    @include flexbox;
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-
-    .count-title {
-      margin-right: 4px;
-    }
-
     button {
       width: 26px;
       height: 26px;
@@ -29,11 +20,6 @@
           transition: all 150ms ease-in;
         }
       }
-    }
-
-    .cnt {
-      text-align: center;
-      width: 30px;
     }
   }
 }

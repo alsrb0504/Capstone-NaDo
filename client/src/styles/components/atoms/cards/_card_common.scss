@@ -7,6 +7,8 @@
   background-color: white;
 }
 
+// OrderingCard
+// OrderCompleteCard 에서 공통으로 사용
 .order-card {
   @include flexbox(start, center);
   position: relative;
@@ -41,6 +43,22 @@
     .options {
       color: $placeholder;
       margin-bottom: 4px;
+    }
+  }
+
+  .order-count {
+    @include flexbox;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+
+    .count-title {
+      margin-right: 4px;
+    }
+
+    .cnt {
+      text-align: center;
+      width: 30px;
     }
   }
 }
