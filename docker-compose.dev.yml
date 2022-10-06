@@ -15,4 +15,4 @@ services:
       args:
         - NODE_ENV=development 
     volumes:
-      - ./server:/usr/src/app
+      - ./server/src:/usr/src/app/src

@@ -31,14 +31,18 @@ services:
     networks:
       - back_end
   nado-nginx:
+    restart: always
     build:
       context: ./config/nginx
       dockerfile: Dockerfile.dev
     ports:
-      - 3001:80
+      - 3001:8081
+      - 3002:8080
     depends_on:
       - nado-react
+      - nado-nest
     networks:
+      - back_end
       - front_end
 
 networks:

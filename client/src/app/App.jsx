@@ -10,13 +10,29 @@ import OrderingCard from "../components/atoms/orderingCard/ordering_card";
 import OrderCompleteCard from "../components/atoms/orderCompleteCard/order_complete_card";
 import PickupReadyCard from "../components/atoms/pickupReadCard/pickup_ready_card";
 
+import axios from 'axios';
+import {useState, useEffect} from 'react';
+
 const App = () => {
+
+  const [test, setTest] = useState("loading...")
+
+  useEffect(() => {
+      (async () =>{
+        const res = await axios.get("http://localhost:3001/", {
+        withCredentials: true
+      })
+
+      setTest(res.data)
+    })()
+  }, [])
   const testFunc = () => {
     console.log("test");
   };
 
   return (
     <div className="App">
+      {test}
       <div className="container">
         <div className="row">
           {/* 여기서 만든 버튼들 확인 */}
