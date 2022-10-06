@@ -3,12 +3,12 @@ import React from "react";
 const PickupStoreCard = ({ info, handleClick }) => {
   const { name, url, orderCnt, isOpen } = info;
 
-  const movePage = () => {
+  const MovePage = () => {
     handleClick();
   };
 
   return (
-    <div className="card-container pickup-store-card" onClick={movePage}>
+    <div className="card-container pickup-store-card" onClick={MovePage}>
       <div className="info">
         <img src={url} alt="가게 이미지" />
         <div className="detail">

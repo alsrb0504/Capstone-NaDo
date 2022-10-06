@@ -3,12 +3,12 @@ import React from "react";
 const RecordCard = ({ info, handleClick }) => {
   const { place, date, price, isOrder } = info;
 
-  const onClick = () => {
+  const OnClick = () => {
     handleClick();
   };
 
   return (
-    <div className="card-container result-card" onClick={onClick}>
+    <div className="card-container result-card" onClick={OnClick}>
       <div className="info">
         <h3>{place}</h3>
         <p className="date">배달 일시 : {date}</p>

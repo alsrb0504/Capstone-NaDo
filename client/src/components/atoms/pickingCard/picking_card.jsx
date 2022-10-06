@@ -4,19 +4,19 @@ const PickingCard = ({ info, handleDesc, handleChat }) => {
   const { place, date, price, picker } = info;
 
   // 주문 상세 정보로 이동
-  const onDesc = () => {
+  const GoDesc = () => {
     handleDesc();
   };
 
   // 채팅하기로 이동
-  const goChat = () => {
+  const GoChat = () => {
     // picker
     handleChat(picker);
   };
 
   return (
     <div className="card-container ordering-card">
-      <div className="order-info" onClick={onDesc}>
+      <div className="order-info" onClick={GoDesc}>
         <div className="info">
           <h3>{place}</h3>
           <p className="date">배달 일시 : {date}</p>
@@ -28,7 +28,7 @@ const PickingCard = ({ info, handleDesc, handleChat }) => {
         <i className="fa-solid fa-chevron-right"></i>
       </div>
 
-      <button onClick={goChat}>피커와 채팅하기</button>
+      <button onClick={GoChat}>피커와 채팅하기</button>
     </div>
   );
 };
