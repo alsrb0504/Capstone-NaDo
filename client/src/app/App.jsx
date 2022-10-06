@@ -8,6 +8,7 @@ import PickupStoreCard from "../components/atoms/pickupStoreCard/pickup_store_ca
 import PickingCard from "../components/atoms/pickingCard/picking_card";
 import OrderingCard from "../components/atoms/orderingCard/ordering_card";
 import OrderCompleteCard from "../components/atoms/orderCompleteCard/order_complete_card";
+import PickupReadyCard from "../components/atoms/pickupReadCard/pickup_ready_card";
 
 const App = () => {
   const testFunc = () => {
@@ -84,6 +85,14 @@ const App = () => {
               options: ["샷 추가(+500원)"],
               price: 5900,
               cnt: 3,
+            }}
+          />
+
+          <PickupReadyCard
+            info={{
+              place: "소프트웨어관 303호",
+              date: "13 : 35",
+              price: "8900",
             }}
           />
         </div>
