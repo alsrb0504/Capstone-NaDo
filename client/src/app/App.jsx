@@ -4,6 +4,7 @@ import Boxinput from "../components/atoms/boxInput/box_input";
 import LineInput from "../components/atoms/lineInput/line_input";
 import RecordCard from "../components/atoms/recordCard/record_card";
 import OrderStoreCard from "../components/atoms/orderStoreCard/order_store_card";
+import PickupStoreCard from "../components/atoms/pickupStoreCard/pickup_store_card";
 
 const App = () => {
   const testFunc = () => {
@@ -16,13 +17,9 @@ const App = () => {
         <div className="row">
           {/* 여기서 만든 버튼들 확인 */}
           {/* <TestBtn callback={() => alert("click")} /> */}
-
           <Boxinput desc={"닉네임"} />
-
           <LineInput desc="비밀번호 확인" name="password2" />
-
           <LineInput desc="비밀번호 확인" name="password2" val="value" />
-
           <RecordCard
             info={{
               place: "소프트웨어관 303호",
@@ -31,7 +28,6 @@ const App = () => {
               isOrder: true,
             }}
           />
-
           <RecordCard
             info={{
               place: "소프트웨어관 303호",
@@ -40,11 +36,20 @@ const App = () => {
               isOrder: false,
             }}
           />
-
           <OrderStoreCard
             info={{
               name: "스타벅스",
               url: "https://cdn.pixabay.com/photo/2020/01/16/17/32/pokemon-4771238_960_720.jpg",
+              isOpen: true,
+            }}
+            handleClick={testFunc}
+          />
+
+          <PickupStoreCard
+            info={{
+              name: "스타벅스",
+              url: "https://cdn.pixabay.com/photo/2020/01/16/17/32/pokemon-4771238_960_720.jpg",
+              orderCnt: 10,
               isOpen: true,
             }}
             handleClick={testFunc}
