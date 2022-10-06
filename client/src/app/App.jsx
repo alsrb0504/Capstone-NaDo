@@ -6,6 +6,7 @@ import RecordCard from "../components/atoms/recordCard/record_card";
 import OrderStoreCard from "../components/atoms/orderStoreCard/order_store_card";
 import PickupStoreCard from "../components/atoms/pickupStoreCard/pickup_store_card";
 import PickingCard from "../components/atoms/pickingCard/picking_card";
+import OrderingCard from "../components/atoms/orderingCard/ordering_card";
 
 const App = () => {
   const testFunc = () => {
@@ -64,6 +65,16 @@ const App = () => {
               isOrder: true,
             }}
             handleClick={testFunc}
+          />
+
+          <OrderingCard
+            info={{
+              name: "스타벅스",
+              options: ["샷 추가(+500원)"],
+              price: 5900,
+              cnt: 3,
+            }}
+            updateCount={testFunc}
           />
         </div>
       </div>

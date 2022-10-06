@@ -1,0 +1,39 @@
+.ordering {
+  .order-count {
+    @include flexbox;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+
+    .count-title {
+      margin-right: 4px;
+    }
+
+    button {
+      width: 26px;
+      height: 26px;
+
+      border: 2px solid $primary;
+      border-radius: 6px;
+
+      i {
+        @include flexbox;
+        width: 100%;
+        height: 100%;
+        color: $primary;
+        border-radius: 4px;
+
+        &:hover,
+        &:active {
+          background-color: $quaternary;
+          transition: all 150ms ease-in;
+        }
+      }
+    }
+
+    .cnt {
+      text-align: center;
+      width: 30px;
+    }
+  }
+}
