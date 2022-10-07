@@ -1,19 +1,19 @@
-version: '3.9'
+version: "3.9"
 services:
   nado-react:
-    build: 
+    build:
       context: ./client
       dockerfile: Dockerfile.dev
       args:
-        - NODE_ENV=development 
+        - NODE_ENV=development
     volumes:
       - ./client:/usr/src/app
   nado-nest:
-    build: 
+    build:
       context: ./server
       dockerfile: Dockerfile.dev
       args:
-        - NODE_ENV=development 
+        - NODE_ENV=development
     volumes:
-      - ${PWD}/server:/usr/src/app
-      - ${PWD}/.env.dev:/usr/src/app/.env.server
+      - ./server:/usr/src/app
+      - ./.env.dev:/usr/src/app/.env.server
