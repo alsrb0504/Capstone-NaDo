@@ -1,7 +1,7 @@
 // base
 @import "./base/reset";
-@import "./base/base";
 @import "./base/font";
+@import "./base/base";
 
 // constants
 @import "./constants/breakpoints";
@@ -28,3 +28,4 @@
 @import "./components/atoms/cards/pickup_ready_card";
 
 @import "./components/atoms/btns/btn";
+@import "./components/atoms/btns/btn_profile"

@@ -10,9 +10,11 @@ import OrderingCard from "../components/atoms/orderingCard/ordering_card";
 import OrderCompleteCard from "../components/atoms/orderCompleteCard/order_complete_card";
 import PickupReadyCard from "../components/atoms/pickupReadCard/pickup_ready_card";
 import Btn from "../components/atoms/btn/btn";
+import BtnProfile from "../components/atoms/btn/btn_profile";
 
 import axios from 'axios';
 import {useState, useEffect} from 'react';
+
 
 const App = () => {
 
@@ -114,17 +116,21 @@ const App = () => {
           />
 
           <Btn  
-            text="일반색상버튼"
+            text="피커와 채팅하기"
           />
 
           <Btn
             color="red"
-            text="red버튼"
+            text="신고하기"
           />
 
           <Btn
             color="blue"
-            text="blue버튼"
+            text="배달 완료 확인"
+          />
+
+          <BtnProfile
+            text="프로필 수정"
           />
         </div>
       </div>
