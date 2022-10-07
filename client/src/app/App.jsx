@@ -9,6 +9,7 @@ import PickingCard from "../components/atoms/pickingCard/picking_card";
 import OrderingCard from "../components/atoms/orderingCard/ordering_card";
 import OrderCompleteCard from "../components/atoms/orderCompleteCard/order_complete_card";
 import PickupReadyCard from "../components/atoms/pickupReadCard/pickup_ready_card";
+import Btn from "../components/atoms/btn/btn";
 
 import axios from 'axios';
 import {useState, useEffect} from 'react';
@@ -110,6 +111,20 @@ const App = () => {
               date: "13 : 35",
               price: "8900",
             }}
+          />
+
+          <Btn  
+            text="일반색상버튼"
+          />
+
+          <Btn
+            color="red"
+            text="red버튼"
+          />
+
+          <Btn
+            color="blue"
+            text="blue버튼"
           />
         </div>
       </div>

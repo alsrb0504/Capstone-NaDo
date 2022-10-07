@@ -1,0 +1,50 @@
+.btn {
+    cursor: pointer;
+    &:hover,
+    &:active {
+      i {
+        transition: all 150ms ease-in;
+        transform: scale(1.05);
+      }
+    }
+    background-color: $primary;
+    color: $white;
+    font-family: Jua;
+    font-size: 20px;
+    border-radius: 6px;
+    min-height: 60px;
+}
+
+.btn-red {
+    cursor: pointer;
+    &:hover,
+    &:active {
+      i {
+        transition: all 150ms ease-in;
+        transform: scale(1.05);
+      }
+    }
+    background-color: $red;
+    color: $white;
+    font-family: Jua;
+    font-size: 20px;
+    border-radius: 6px;
+    min-height: 60px;
+}
+
+.btn-blue {
+    cursor: pointer;
+    &:hover,
+    &:active {
+      i {
+        transition: all 150ms ease-in;
+        transform: scale(1.05);
+      }
+    }
+    background-color: $blue;
+    color: $white;
+    font-family: Jua;
+    font-size: 20px;
+    border-radius: 6px;
+    min-height: 60px;
+}
