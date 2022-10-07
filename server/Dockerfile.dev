@@ -10,10 +10,7 @@ ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /usr/src/app
 
-COPY --chown=node:node package*.json .
-
 RUN npm install -g @nestjs/cli
-RUN npm install
 
 COPY --chown=node:node . . 
 
