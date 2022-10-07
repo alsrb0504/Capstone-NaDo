@@ -23,6 +23,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${NADO_MYSQL_ROOT_PASSWORD}
       - MYSQL_USER=${NADO_MYSQL_USER}
       - MYSQL_PASSWORD=${NADO_MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${NADO_MYSQL_DATABASE}
     platform: linux/amd64
     networks:
       - back_end

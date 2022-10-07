@@ -10,6 +10,8 @@ ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /usr/src/app
 
+RUN touch .env.server
+
 RUN npm install -g @nestjs/cli
 
 COPY --chown=node:node . . 
