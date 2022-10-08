@@ -6,7 +6,11 @@
 ## Contents
 [1.Team](#team)
 
-[2.Technology Stack](#technology-stack)
+[2.Technology Stack](#technology-stack)  <- 링크가 안걸리는데...
+
+[3.Design](#design)
+
+[4.Demonstration](#demonstration)
 
 ## __1. 단국대학교 캡스톤디자인2 프로젝트__
 
@@ -43,3 +47,8 @@
 
 ## 📚 __Technology Stack__
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=NestJS&logoColor=white"> <img src="https://img.shields.io/badge/NGINX-009639?style=for-the-badge&logo=NGINX&logoColor=white"> <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=Amazon AWS&logoColor=white"> <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white"> <img src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=Jest&logoColor=white">
+
+## __Design__
+https://www.figma.com/file/9Kz1G5sZ9QJny0eph4y56j/%EC%BA%A1%EC%8A%A4%ED%86%A4-Nado-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8?node-id=0%3A1
+
+## __Demonstration__
