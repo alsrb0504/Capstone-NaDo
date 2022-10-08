@@ -4,7 +4,7 @@
 <img src="https://user-images.githubusercontent.com/115008048/194301925-354e7c75-e67b-4995-bc12-d25e86ee19a0.png" width="300" height="300"/>
 
 ## Contents
-[Team](#__Team)
+[Team](#__team)
 
 
 ## __1. 단국대학교 캡스톤디자인2 프로젝트__
