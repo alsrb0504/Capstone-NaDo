@@ -51,4 +51,7 @@
 ## __Design__
 https://www.figma.com/file/9Kz1G5sZ9QJny0eph4y56j/%EC%BA%A1%EC%8A%A4%ED%86%A4-Nado-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8?node-id=0%3A1
 
+<img src="https://user-images.githubusercontent.com/115008048/194719914-c44727e1-6858-42db-b250-49833995aeaf.PNG" width="800" height="400"/>
+
+
 ## __Demonstration__
