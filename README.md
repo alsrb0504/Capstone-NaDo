@@ -6,7 +6,7 @@
 ## Contents
 [1.Team](#team)
 
-[2.Technology Stack](#technology-stack)  <- 링크가 안걸리는데...
+[2.Technology Stack](#technology-stack)  
 
 [3.Design](#design)
 
