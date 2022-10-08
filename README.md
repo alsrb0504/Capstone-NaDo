@@ -6,11 +6,13 @@
 ## Contents
 [1.Team](#team)
 
-[2.Technology Stack](#technology-stack)  
+[2.Technology Stack](#technology-stack) 
 
 [3.Design](#design)
 
 [4.Demonstration](#demonstration)
+
+[5.Result](#result) 
 
 ## __1. 단국대학교 캡스톤디자인2 프로젝트__
 
@@ -55,3 +57,14 @@ https://www.figma.com/file/9Kz1G5sZ9QJny0eph4y56j/%EC%BA%A1%EC%8A%A4%ED%86%A4-Na
 
 
 ## __Demonstration__
+TBD
+
+## __Result__
+TBD
+
+## __WorkFlow__
+TBD
+## __Timetable__
+TBD
+## __Test document__
+TBD
