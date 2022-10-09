@@ -15,6 +15,7 @@ import BtnProfile from "../components/atoms/btnProfile/btn_profile";
 import axios from 'axios';
 import {useState, useEffect} from 'react';
 import BtnOrder from "../components/atoms/btnOrder/btn_order";
+import BtnPickup from "../components/atoms/btnPickup/btn_pickup";
 
 
 const App = () => {
@@ -135,6 +136,9 @@ const App = () => {
           />
 
           <BtnOrder
+          />
+
+          <BtnPickup
           />
         </div>
       </div>
