@@ -10,10 +10,11 @@ import OrderingCard from "../components/atoms/orderingCard/ordering_card";
 import OrderCompleteCard from "../components/atoms/orderCompleteCard/order_complete_card";
 import PickupReadyCard from "../components/atoms/pickupReadCard/pickup_ready_card";
 import Btn from "../components/atoms/btn/btn";
-import BtnProfile from "../components/atoms/btn/btn_profile";
+import BtnProfile from "../components/atoms/btnProfile/btn_profile";
 
 import axios from 'axios';
 import {useState, useEffect} from 'react';
+import BtnOrder from "../components/atoms/btnOrder/btn_order";
 
 
 const App = () => {
@@ -131,6 +132,9 @@ const App = () => {
 
           <BtnProfile
             text="프로필 수정"
+          />
+
+          <BtnOrder
           />
         </div>
       </div>
