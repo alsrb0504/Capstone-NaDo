@@ -49,3 +49,20 @@
     border-radius: 6px;
     min-height: 60px;
 }
+
+.btn-gradation {
+  cursor: pointer;
+  &:hover,
+  &:active {
+    i {
+      transition: all 150ms ease-in;
+      transform: scale(1.05);
+    }
+  }
+  background: $btn-gradation-2;
+  color: $white;
+  font-family: Jua;
+  font-size: 20px;
+  border-radius: 20px;
+  min-height: 56px;
+}

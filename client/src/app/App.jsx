@@ -131,6 +131,16 @@ const App = () => {
             text="배달 완료 확인"
           />
 
+          <Btn
+            color="gradation"
+            text="내가 기다리는 주문"
+          />
+
+          <Btn
+            color="gradation"
+            text="내가 픽업중인 주문"
+          />
+        
           <BtnProfile
             text="프로필 수정"
           />
