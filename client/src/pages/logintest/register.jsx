@@ -4,11 +4,11 @@ import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import LocalRegisterForm from "../components/organisms/localRegisterForm/local_register_form";
-import SocialRegisterForm from "../components/organisms/socialRegisterForm/social_register_form";
-import { LocalSignup } from "../store/features/user";
+import LocalRegisterForm from "../../components/organisms/localRegisterForm/local_register_form";
+import SocialRegisterForm from "../../components/organisms/socialRegisterForm/social_register_form";
+import { LocalSignup } from "../../store/features/user";
 
-const Register = (props) => {
+const TestRegister = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isFetching, isSuccess } = useSelector((state) => state.user);
@@ -96,4 +96,4 @@ const Register = (props) => {
   );
 };
 
-export default Register;
+export default TestRegister;

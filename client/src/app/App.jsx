@@ -1,14 +1,16 @@
 import "./App.scss";
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import Register from "../pages/register";
-import Login from "../pages/login";
-import Home from "../pages/home";
 import AxiosSetting from "../services/axios";
+import Home from "../pages/home/home";
+import LoginTest from "../pages/logintest/login_test";
+import Login from "../pages/login/login";
+import LocalRegister from "../pages/localRegister/local_register";
+import SocialRegister from "../pages/socialRegister/social_register";
 
 const App = () => {
   useEffect(() => {
-    // AxiosSetting();
+    AxiosSetting();
   }, []);
 
   return (
@@ -16,10 +18,14 @@ const App = () => {
       <div className="container">
         <div className="row">
           <Routes>
-            <Route path="/" element={<div>Home</div>} />
+            <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/register">
+              <Route path="local" element={<LocalRegister />} />
+              <Route path="social" element={<SocialRegister />} />
+            </Route>
+            {/* 구분선 : 테스트 페이지*/}
+            <Route path="/test/*" element={<LoginTest />} />
           </Routes>
         </div>
       </div>

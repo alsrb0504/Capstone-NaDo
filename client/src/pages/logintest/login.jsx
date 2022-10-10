@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { LocalLogin } from "../store/features/user";
+import { LocalLogin } from "../../store/features/user";
 
-const Login = (props) => {
+const TestLogin = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -80,4 +80,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default TestLogin;

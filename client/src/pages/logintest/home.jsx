@@ -1,13 +1,13 @@
 import React from "react";
 
-const Home = (props) => {
+const TestHome = (props) => {
   return (
     <>
-      <div>Home</div>
+      <div>TestHome</div>
       <br />
       <button>Logout</button>
     </>
   );
 };
 
-export default Home;
+export default TestHome;
