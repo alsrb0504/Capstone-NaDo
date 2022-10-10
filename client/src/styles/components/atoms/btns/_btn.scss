@@ -1,0 +1,85 @@
+.btn {
+    cursor: pointer;
+    &:hover,
+    &:active {
+      i {
+        transition: all 150ms ease-in;
+        transform: scale(1.05);
+      }
+    }
+    background-color: $primary;
+    color: $white;
+    font-size: 20px;
+    border-radius: 6px;
+    min-height: 60px;
+
+    width: 100%;
+}
+
+.btn-red {
+    cursor: pointer;
+    &:hover,
+    &:active {
+      i {
+        transition: all 150ms ease-in;
+        transform: scale(1.05);
+      }
+    }
+    background-color: $red;
+    color: $white;
+    font-family: Jua;
+    font-size: 20px;
+    border-radius: 6px;
+    min-height: 60px;
+}
+
+.btn-blue {
+    cursor: pointer;
+    &:hover,
+    &:active {
+      i {
+        transition: all 150ms ease-in;
+        transform: scale(1.05);
+      }
+    }
+    background-color: $blue;
+    color: $white;
+    font-family: Jua;
+    font-size: 20px;
+    border-radius: 6px;
+    min-height: 60px;
+}
+
+.btn-pink {
+  cursor: pointer;
+  &:hover,
+  &:active {
+    i {
+      transition: all 150ms ease-in;
+      transform: scale(1.05);
+    }
+  }
+  background-color: #EDCDBB;
+  color: $white;
+  font-family: Jua;
+  font-size: 24px;
+  border-radius: 12px;
+  min-height: 60px;
+}
+
+.btn-gradation {
+  cursor: pointer;
+  &:hover,
+  &:active {
+    i {
+      transition: all 150ms ease-in;
+      transform: scale(1.05);
+    }
+  }
+  background: $btn-gradation-2;
+  color: $white;
+  font-family: Jua;
+  font-size: 20px;
+  border-radius: 20px;
+  min-height: 56px;
+}

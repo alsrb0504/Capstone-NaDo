@@ -9,9 +9,14 @@ import PickingCard from "../components/atoms/pickingCard/picking_card";
 import OrderingCard from "../components/atoms/orderingCard/ordering_card";
 import OrderCompleteCard from "../components/atoms/orderCompleteCard/order_complete_card";
 import PickupReadyCard from "../components/atoms/pickupReadCard/pickup_ready_card";
+import Btn from "../components/atoms/btn/btn";
+import BtnProfile from "../components/atoms/btnProfile/btn_profile";
 
 import axios from 'axios';
 import {useState, useEffect} from 'react';
+import BtnOrder from "../components/atoms/btnOrder/btn_order";
+import BtnPickup from "../components/atoms/btnPickup/btn_pickup";
+
 
 const App = () => {
 
@@ -110,6 +115,45 @@ const App = () => {
               date: "13 : 35",
               price: "8900",
             }}
+          />
+
+          <Btn  
+            text="피커와 채팅하기"
+          />
+
+          <Btn
+            color="red"
+            text="신고하기"
+          />
+
+          <Btn
+            color="blue"
+            text="배달 완료 확인"
+          />
+
+          <Btn
+            color="pink"
+            text="로그인"
+          />
+
+          <Btn
+            color="gradation"
+            text="내가 기다리는 주문"
+          />
+
+          <Btn
+            color="gradation"
+            text="내가 픽업중인 주문"
+          />
+        
+          <BtnProfile
+            text="프로필 수정"
+          />
+
+          <BtnOrder
+          />
+
+          <BtnPickup
           />
         </div>
       </div>
