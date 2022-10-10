@@ -12,8 +12,8 @@ WORKDIR /usr/src/app
 
 RUN touch .env.server
 
-
 COPY --chown=node:node . . 
+
 RUN npm install -g @nestjs/cli
 
 CMD ["npm", "run", "start:dev"]

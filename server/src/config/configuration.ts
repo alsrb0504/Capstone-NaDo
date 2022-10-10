@@ -1,6 +1,7 @@
 
 export default () => {
   return {
+    session_secret: process.env.SESSION_SECRET,
     port: parseInt(process.env.PORT, 10) || 3000,
     database_type: process.env.NADO_DATABASE_TYPE,
     database: {
