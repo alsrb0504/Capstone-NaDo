@@ -132,6 +132,11 @@ const App = () => {
           />
 
           <Btn
+            color="pink"
+            text="로그인"
+          />
+
+          <Btn
             color="gradation"
             text="내가 기다리는 주문"
           />
