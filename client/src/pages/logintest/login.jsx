@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { LocalLogin } from "../../store/features/user";
 
@@ -7,46 +7,26 @@ const TestLogin = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { naver } = window;
-
-  const initializeNaverLogin = useCallback(() => {
-    const naverLogin = new naver.LoginWithNaverId({
-      clientId: process.env.REACT_APP_NAVER_CLIENT_ID,
-      callbackUrl: process.env.REACT_APP_NAVER_CALLBACK_URL,
-      // isPopup: true,
-      loginButton: { color: "white", type: 1, height: 60 },
-      callbackHandle: true,
-    });
-
-    naverLogin.init();
-
-    naverLogin.getLoginStatus(async function (status) {
-      if (status) {
-        const userid = naverLogin.user.getEmail();
-        const username = naverLogin.user.nickname;
-
-        console.log(userid, username);
-      }
-    });
-  }, [naver]);
+  const { isFetching } = useSelector((state) => state.user);
 
   const MoveRegister = () => {
-    navigate("/register");
+    navigate("/test/register/local");
   };
 
   const LoginWithLocal = () => {
-    //
     const userInfo = {
-      id: "test",
+      identifier: "test",
       password: "1234",
     };
 
-    dispatch(LocalLogin({ ...userInfo, navigate }));
+    dispatch(LocalLogin(userInfo));
   };
 
   useEffect(() => {
-    initializeNaverLogin();
-  }, [initializeNaverLogin]);
+    // 민준이가 로컬 로그인도 리다이렉션 시켜준다는데..
+    // 그럼 이 부분이 필요 없으러냐..?
+    if (isFetching) navigate("/test/");
+  }, [navigate, isFetching]);
 
   return (
     <div className="col-sm-4">

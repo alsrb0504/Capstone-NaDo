@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import AxiosSetting from "../services/axios";
 import Home from "../pages/home/home";
-import LoginTest from "../pages/logintest/login_test";
+import TestApp from "../pages/logintest/testApp";
 import Login from "../pages/login/login";
 import LocalRegister from "../pages/localRegister/local_register";
 import SocialRegister from "../pages/socialRegister/social_register";
@@ -25,7 +25,7 @@ const App = () => {
               <Route path="social" element={<SocialRegister />} />
             </Route>
             {/* 구분선 : 테스트 페이지*/}
-            <Route path="/test/*" element={<LoginTest />} />
+            <Route path="/test/*" element={<TestApp />} />
           </Routes>
         </div>
       </div>

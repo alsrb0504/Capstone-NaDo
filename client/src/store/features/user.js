@@ -2,39 +2,35 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-  isSocail: false,
   userNickname: "",
   userEmail: "",
+  userProvider: "",
   isFetching: false,
   isSuccess: false,
   isError: false,
   isLogin: false,
-  errorMessage: "",
 };
 
 // 로컬 회원가입 함수
 export const LocalSignup = createAsyncThunk(
   "user/localSignup",
-  async ({ id, password, nickname, email, navigate }, thunkAPI) => {
+  async ({ identifier, password, nickname, email }, thunkAPI) => {
     try {
       const response = await axios.post(
-        // 추후, url 주소 결정하면 교체
-        "https://ec32e1ae-8b3c-4bfe-a72f-4528bdcc0972.mock.pstmn.io/localSignup/test",
+        "http://localhost:3001/auth/local/register",
         {
-          userId: id,
-          userPassword: password,
-          userNickname: nickname,
-          userEmail: email,
-          userProvider: "local",
+          identifier,
+          password,
+          nickname,
+          email,
         }
       );
 
       console.log("response", response);
-      let data = response.data;
+      const data = response.data;
       console.log("data", data);
 
       if (response.status === 200) {
-        navigate("/login");
         return { ...data };
       } else if (response.status === 401) {
         return thunkAPI.rejectWithValue(data);
@@ -49,31 +45,56 @@ export const LocalSignup = createAsyncThunk(
 // 로컬 로그인 함수
 export const LocalLogin = createAsyncThunk(
   "user/localLogin",
-  async ({ id, password, navigate }, thunkAPI) => {
+  async ({ identifier, password }, thunkAPI) => {
     try {
-      console.log(id);
-      const response = await axios.get(
-        // 추후 서버 로그인 url 주소로 변경
-        "https://ec32e1ae-8b3c-4bfe-a72f-4528bdcc0972.mock.pstmn.io/locallogin/test",
+      const response = await axios.post(
+        "http://localhost:3001/auth/local/login",
         {
-          userId: id,
-          userPassword: password,
+          identifier,
+          password,
         }
       );
 
-      console.log(response);
+      console.log("response", response);
+      const data = response.data;
+      console.log("data", data);
 
       if (response.status === 200) {
-        navigate("/home");
-        return { ...response.data };
+        return { ...data };
       }
       // 로그인 실패 status
       else {
         return thunkAPI.rejectWithValue(response.data);
       }
     } catch (e) {
-      console.error(e.message);
-      return thunkAPI.rejectWithValue(e.response.data);
+      // console.error(e.message);
+      return thunkAPI.rejectWithValue();
+    }
+  }
+);
+
+// 로컬 로그아웃 함수
+export const LocalLogout = createAsyncThunk(
+  "user/localLogout",
+  async ({}, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/auth/local/logout",
+        {}
+      );
+
+      console.log("response", response);
+
+      if (response.status === 200) {
+        return {};
+      }
+      // 로그인 실패 status
+      else {
+        return thunkAPI.rejectWithValue(response);
+      }
+    } catch (e) {
+      // console.error(e.message);
+      return thunkAPI.rejectWithValue();
     }
   }
 );
@@ -88,35 +109,56 @@ export const userSlice = createSlice({
     builder
       .addCase(LocalSignup.pending, (state) => {
         state.isFetching = true;
+        state.isSuccess = false;
+        state.isError = false;
       })
       .addCase(LocalSignup.fulfilled, (state) => {
         state.isFetching = false;
         state.isSuccess = true;
       })
-      .addCase(LocalSignup.rejected, (state, { payload }) => {
+      .addCase(LocalSignup.rejected, (state) => {
         state.isFetching = false;
         state.isError = true;
-        state.errorMessage = payload.message;
       });
     //
     // 로컬 로그인 thunk
     builder
       .addCase(LocalLogin.pending, (state) => {
         state.isFetching = true;
+        state.isSuccess = false;
+        state.isError = false;
+        state.isLogin = false;
       })
       .addCase(LocalLogin.fulfilled, (state, { payload }) => {
-        const { userNickname, userEmail, userId } = payload;
+        const { nickname, email, provider } = payload;
         state.isFetching = false;
         state.isSuccess = true;
         state.isLogin = true;
-        state.userNickname = userNickname;
-        state.userEmail = userEmail;
-        state.userId = userId;
+        state.userNickname = nickname;
+        state.userEmail = email;
+        state.userProvider = provider;
       })
       .addCase(LocalLogin.rejected, (state, { payload }) => {
         state.isFetching = false;
         state.isError = true;
-        state.errorMessage = payload.message;
+      });
+    //
+    // 로컬 로그아웃 thunk
+    builder
+      .addCase(LocalLogout.pending, (state) => {
+        state.isFetching = true;
+        state.isError = false;
+      })
+      .addCase(LocalLogout.fulfilled, (state) => {
+        state.isFetching = false;
+        state.isLogin = false;
+        state.userNickname = "";
+        state.userEmail = "";
+        state.userProvider = "";
+      })
+      .addCase(LocalLogout.rejected, (state) => {
+        state.isFetching = false;
+        state.isError = true;
       });
   },
 });
