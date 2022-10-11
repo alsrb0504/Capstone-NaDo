@@ -99,11 +99,7 @@ export const LocalLogout = createAsyncThunk(
         return thunkAPI.rejectWithValue(response);
       }
     } catch (e) {
-<<<<<<< HEAD
-      console.error(e.message);
-=======
       printError(e, "로컬 로그아웃");
->>>>>>> 5c974aa
       return thunkAPI.rejectWithValue();
     }
   }
