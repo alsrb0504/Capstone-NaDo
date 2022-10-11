@@ -96,25 +96,18 @@ export const LocalLogin = createAsyncThunk(
 export const LocalLogout = createAsyncThunk(
   "user/localLogout",
   async (_, thunkAPI) => {
-    console.log("액션 함수 실행 중");
-
     try {
-      console.log("before request")
       const response = await axios.post(
         "http://localhost:3001/auth/local/logout",
         {},
         { withCredentials: true }
       );
-      console.log("after request")
-
-      console.log("response", response);
 
       if (response.status === 200) {
         return {};
       }
       // 로그인 실패 status
       else {
-        
         return thunkAPI.rejectWithValue(response);
       }
     } catch (e) {
