@@ -9,7 +9,7 @@ import * as session from 'express-session'
 import * as cookieParser from 'cookie-parser';
 import * as createRedisStore from 'connect-redis';
 import * as passport from 'passport';
-import {createClient} from 'redis';
+import * as Redis from 'redis';
 
 
 
@@ -20,45 +20,42 @@ async function bootstrap() {
   const configService = app.get<ConfigService>(ConfigService);
 
   app.use(cookieParser())
-
-  const RedisStore = createRedisStore(session);
-  const redisHost = configService.get<string>('REDIS_HOST')
-  const redisPort = configService.get<number>('REDIS_PORT')
-  const redisClient = createClient({
-    legacyMode: true,
-    socket: {
-      port: redisPort,
-      host: redisHost,
-    }
-  })
-
-  
-  redisClient.on('error', (err) => {
-    logger.error("Could not establish a connection with redis", err)
-  })
-  
-  redisClient.on('connect', () => {
-    logger.verbose('Connected to redis successfully')
-  })
   
   app.enableCors({
-    origin: 'http://localhost:3002',
+    origin: ['http://localhost:3002', 'http://localhost:3000'],
     methods: ['GET', 'POST', 'DELETE', 'PATCH'],
     credentials: true
   })
+
+  const redisHost = configService.get<string>('REDIS_HOST')
+  const redisPort = configService.get<number>('REDIS_PORT')
   
-  redisClient.connect();
+  const redisClient = Redis.createClient({
+    legacyMode: true,
+    url: `redis://${redisHost}:${redisPort}`
+  })
+  const RedisStore = createRedisStore(session);
+
+  redisClient.connect()
+    .then(() => {
+      logger.log("redis connected")
+    })
+    .catch(() => {
+      logger.log("not connected");
+    })
+  
   
   app.use(session({
       store: new RedisStore({
         client: redisClient
       }),
       secret: configService.get<string>('session_secret'),
-      resave: false,
-      saveUninitialized: false,
+      resave: true,
+      saveUninitialized: true,
       cookie: {
-        httpOnly: true,
-        maxAge: 1000 * 60 * 60 * 24 * 14
+        httpOnly: false,
+        maxAge: 1000 * 60 * 60 * 24 * 14,
+        secure: false,
       },
     }))
     
