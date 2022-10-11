@@ -36,7 +36,7 @@ export const LocalSignup = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (e) {
-      console.error(e.message);
+      printError(e, "로컬 회원가입");
       return thunkAPI.rejectWithValue(e.response.data);
     }
   }
@@ -67,7 +67,7 @@ export const LocalLogin = createAsyncThunk(
         return thunkAPI.rejectWithValue(response.data);
       }
     } catch (e) {
-      // console.error(e.message);
+      printError(e, "로컬 로그인");
       return thunkAPI.rejectWithValue();
     }
   }
@@ -76,12 +76,15 @@ export const LocalLogin = createAsyncThunk(
 // 로컬 로그아웃 함수
 export const LocalLogout = createAsyncThunk(
   "user/localLogout",
-  async ({}, thunkAPI) => {
+  async (_, thunkAPI) => {
+    console.log("액션 함수 실행 중");
+
     try {
       console.log("before request")
       const response = await axios.post(
         "http://localhost:3001/auth/local/logout",
-        {}
+        {},
+        { withCredentials: true }
       );
       console.log("after request")
 
@@ -96,7 +99,11 @@ export const LocalLogout = createAsyncThunk(
         return thunkAPI.rejectWithValue(response);
       }
     } catch (e) {
+<<<<<<< HEAD
       console.error(e.message);
+=======
+      printError(e, "로컬 로그아웃");
+>>>>>>> 5c974aa
       return thunkAPI.rejectWithValue();
     }
   }
@@ -165,5 +172,10 @@ export const userSlice = createSlice({
       });
   },
 });
+
+function printError(e, src) {
+  console.log(`${src} 에러 : ${e.message}`);
+  console.error(e);
+}
 
 export default userSlice.reducer;

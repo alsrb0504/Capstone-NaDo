@@ -59,6 +59,7 @@ export class AuthController {
     }
 
     @UseGuards(CookieAuthenticationGuard)
+    @Get('local')
     loginPersist(
       @Request() req: ReqWithUser
     ) {
