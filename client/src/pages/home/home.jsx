@@ -9,10 +9,15 @@ const Home = (props) => {
     navigate("/test/login");
   };
 
+  const MoveLogin = () => {
+    navigate("/login");
+  };
+
   return (
     <div>
       home
       <Btn color="red" text="테스트 로그인 페이지" handleClick={MoveTest}></Btn>
+      <Btn color="blue" text="로그인 페이지" handleClick={MoveLogin}></Btn>
     </div>
   );
 };
