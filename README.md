@@ -6,13 +6,19 @@
 ## Contents
 [1.Team](#team)
 
-[2.Technology Stack](#technology-stack) 
+[2.Technology Stack](#technology-stack) <- 해당 링크로의 이동이 안됌
 
 [3.Design](#design)
 
 [4.Demonstration](#demonstration)
 
 [5.Result](#result) 
+
+[6. WorkFlow](#workflow)
+
+[7. Timetable](#timetable)
+
+[8. Test Document](#test-document)
 
 ## __1. 단국대학교 캡스톤디자인2 프로젝트__
 
