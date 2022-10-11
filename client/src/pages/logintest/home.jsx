@@ -11,13 +11,10 @@ const TestHome = (props) => {
     (state) => state.user
   );
 
-  // 추후 로컬 로그아웃 기능 확인되면 로그 제거
   const logout = (e) => {
-    console.log("액션 함수 실행 전");
-
     dispatch(LocalLogout());
-
-    console.log("액션 함수 실행 후");
+    // if (userProvider === "local") {
+    // }
   };
 
   useEffect(() => {
@@ -29,17 +26,7 @@ const TestHome = (props) => {
       <div>TestHome</div>
       <br />
       <h3>{userNickname}님 환영합니다.</h3>
-      <button
-        style={{
-          width: "150px",
-          height: "100px",
-          backgroundColor: "greenyellow",
-          color: "white",
-        }}
-        onClick={logout}
-      >
-        Logout
-      </button>
+      <button onClick={logout}>Logout</button>
     </>
   );
 };
