@@ -1,6 +1,7 @@
-import { Body, Controller, Post, UseGuards, Request, HttpCode, Get, Response, UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards, HttpCode, Get, Request, Response} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import * as bcrypt from 'bcryptjs';
+import * as express from 'express'
 import { ReqWithUser } from './type/request.type';
 
 import User from 'src/entity/user.entity';
@@ -8,7 +9,8 @@ import User from 'src/entity/user.entity';
 import { UserService } from 'src/user/user.service';
 import { AuthService } from './auth.service';
 import { CookieAuthenticationGuard } from './guard/cookieAuthentication.guard';
-import { LoginWithCredentialsGuard } from './guard/loginWithCredentials.guard';
+import { LoginWithCredentialsGuard, NaverLoginWithCredentialsGuard } from './guard/loginWithCredentials.guard';
+
 
 @Controller('auth')
 export class AuthController {
@@ -64,5 +66,25 @@ export class AuthController {
       @Request() req: ReqWithUser
     ) {
       return req.user
+    }
+
+    @UseGuards(AuthGuard('naver'))
+    @Get('social/login')
+    naverLogin() {}
+
+    @UseGuards(NaverLoginWithCredentialsGuard)
+    @Get('naver/login/callback')
+    async naverLoginCallback(
+      @Request() req: ReqWithUser,
+      @Response() res: express.Response,
+    ) {
+      const {email} = req.user
+      const user = await this.userService.findByEmail(email)
+
+      if(user) {
+        res.redirect("http://localhost:3002/test")
+      }
+
+      res.redirect("http://localhost:3002/")
     }
   }

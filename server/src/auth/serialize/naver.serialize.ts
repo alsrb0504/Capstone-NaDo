@@ -4,7 +4,7 @@ import User from "src/entity/user.entity";
 import { UserService } from "src/user/user.service";
 
 @Injectable()
-export class LocalSerializer extends PassportSerializer {
+export class NaverSerializer extends PassportSerializer {
   constructor(
     private readonly userService: UserService
   ) {
@@ -12,11 +12,11 @@ export class LocalSerializer extends PassportSerializer {
   }
 
   serializeUser(user: Partial<User>, done: Function) {
-    done(null, user.identifier)
+    done(null, user.email)
   }
 
-  async deserializeUser(identifier: any, done: Function) {
-    const user = await this.userService.findById(identifier) 
+  async deserializeUser(email: any, done: Function) {
+    const user = await this.userService.findByEmail(email) 
     done(null, user)
   }
 }

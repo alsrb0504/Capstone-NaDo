@@ -28,6 +28,16 @@ export class UserService {
       .where('user.identifier = :id', {id: identifier})
       .getOne()
   }
+
+  async findByEmail(
+    email: string
+  ): Promise<Partial<User>> {
+    return await this.userRepository
+      .createQueryBuilder('user')
+      .where('user.identifier = :email', {email})
+      .getOne()
+  }
+
 }
 
 
