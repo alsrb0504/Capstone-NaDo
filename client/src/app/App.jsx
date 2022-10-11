@@ -7,11 +7,16 @@ import TestApp from "../pages/logintest/testApp";
 import Login from "../pages/login/login";
 import LocalRegister from "../pages/localRegister/local_register";
 import SocialRegister from "../pages/socialRegister/social_register";
+import { GetUserWithSession } from "../store/features/user";
+import { useDispatch } from "react-redux";
 
 const App = () => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     AxiosSetting();
-  }, []);
+    dispatch(GetUserWithSession());
+  }, [dispatch]);
 
   return (
     <div className="App">
