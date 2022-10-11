@@ -55,4 +55,17 @@ export class AuthController {
       })
     }
 
+    @UseGuards(AuthGuard('local'))
+    @Get('test')
+    test(
+      @Request() req
+    ) {
+      console.log(req.cookie)
+      if(req.user) {
+       return "success" 
+      } else {
+        return "fail"
+      }
+    }
+
   }

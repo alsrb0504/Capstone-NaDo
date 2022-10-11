@@ -47,6 +47,8 @@ async function bootstrap() {
     credentials: true
   })
   
+  redisClient.connect();
+  
   app.use(session({
       store: new RedisStore({
         client: redisClient
@@ -56,13 +58,12 @@ async function bootstrap() {
       saveUninitialized: false,
       cookie: {
         httpOnly: true,
-        maxAge: 1000 * 60 * 10
+        maxAge: 1000 * 60 * 60 * 24 * 14
       },
     }))
     
     app.use(passport.initialize())
     app.use(passport.session())
-    redisClient.connect();
 
   await app.listen(3000);
 }
