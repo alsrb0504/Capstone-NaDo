@@ -54,6 +54,7 @@ export class AuthController {
       @Response() res
       ) {
       req.logout(() => {
+        console.log("d")
         res.send("success")
       })
     }
