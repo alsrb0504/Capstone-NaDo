@@ -22,6 +22,10 @@ const TestLogin = (props) => {
     dispatch(LocalLogin(userInfo));
   };
 
+  const LoginWithSocial = () => {
+    console.log("네이버 로그인");
+  };
+
   useEffect(() => {
     // 민준이가 로컬 로그인도 리다이렉션 시켜준다는데..
     // 그럼 이 부분이 필요 없으러냐..?
@@ -55,6 +59,19 @@ const TestLogin = (props) => {
         }}
       >
         로컬 로그인
+      </div>
+
+      <div
+        onClick={LoginWithSocial}
+        style={{
+          width: "100px",
+          height: "100px",
+          backgroundColor: "green",
+          color: "white",
+          textAlign: "center",
+        }}
+      >
+        네이버 로그인
       </div>
     </div>
   );

@@ -11,6 +11,25 @@ const initialState = {
   isLogin: false,
 };
 
+export const GetUserWithSession = createAsyncThunk(
+  "user/getUserWithSession",
+  async (_, thunkAPI) => {
+    //
+    try {
+      const response = await axios.get("http://localhost:3001/auth/local/");
+
+      if (response.status === 200) {
+        return response.data;
+      } else if (response.status === 401) {
+        return;
+      }
+    } catch (e) {
+      PrintError(e, "로그인 유지");
+      return thunkAPI.rejectWithValue(e.response.data);
+    }
+  }
+);
+
 // 로컬 회원가입 함수
 export const LocalSignup = createAsyncThunk(
   "user/localSignup",
@@ -36,7 +55,7 @@ export const LocalSignup = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (e) {
-      printError(e, "로컬 회원가입");
+      PrintError(e, "로컬 회원가입");
       return thunkAPI.rejectWithValue(e.response.data);
     }
   }
@@ -67,7 +86,7 @@ export const LocalLogin = createAsyncThunk(
         return thunkAPI.rejectWithValue(response.data);
       }
     } catch (e) {
-      printError(e, "로컬 로그인");
+      PrintError(e, "로컬 로그인");
       return thunkAPI.rejectWithValue();
     }
   }
@@ -96,7 +115,7 @@ export const LocalLogout = createAsyncThunk(
         return thunkAPI.rejectWithValue(response);
       }
     } catch (e) {
-      printError(e, "로컬 로그아웃");
+      PrintError(e, "로컬 로그아웃");
       return thunkAPI.rejectWithValue();
     }
   }
@@ -108,6 +127,27 @@ export const userSlice = createSlice({
   reducers: {},
 
   extraReducers: (builder) => {
+    // 세션 유저정보 획득
+    builder
+      .addCase(GetUserWithSession.pending, (state) => {
+        state.isFetching = true;
+        state.isSuccess = false;
+        state.isError = false;
+      })
+      .addCase(GetUserWithSession.fulfilled, (state, { payload }) => {
+        const { nickname, email, provider } = payload;
+        state.isFetching = false;
+        state.isSuccess = true;
+        state.isLogin = true;
+        state.userNickname = nickname;
+        state.userEmail = email;
+        state.userProvider = provider;
+      })
+      .addCase(GetUserWithSession.rejected, (state) => {
+        state.isFetching = false;
+        state.isError = true;
+      });
+    //
     // 로컬 회원가입 thunk
     builder
       .addCase(LocalSignup.pending, (state) => {
@@ -166,7 +206,7 @@ export const userSlice = createSlice({
   },
 });
 
-function printError(e, src) {
+function PrintError(e, src) {
   console.log(`${src} 에러 : ${e.message}`);
   console.error(e);
 }
