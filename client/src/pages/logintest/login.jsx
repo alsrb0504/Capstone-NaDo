@@ -7,7 +7,7 @@ const TestLogin = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isFetching } = useSelector((state) => state.user);
+  const { isLogin } = useSelector((state) => state.user);
 
   const MoveRegister = () => {
     navigate("/test/register/local");
@@ -15,7 +15,7 @@ const TestLogin = (props) => {
 
   const LoginWithLocal = () => {
     const userInfo = {
-      identifier: "test",
+      identifier: "user",
       password: "1234",
     };
 
@@ -25,8 +25,8 @@ const TestLogin = (props) => {
   useEffect(() => {
     // 민준이가 로컬 로그인도 리다이렉션 시켜준다는데..
     // 그럼 이 부분이 필요 없으러냐..?
-    if (isFetching) navigate("/test/");
-  }, [navigate, isFetching]);
+    if (isLogin) navigate("/test/");
+  }, [navigate, isLogin]);
 
   return (
     <div className="col-sm-4">
