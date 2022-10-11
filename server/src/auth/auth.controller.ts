@@ -1,11 +1,14 @@
-import { Body, Controller, Post, UseGuards, Request, HttpCode, Get, Response } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards, Request, HttpCode, Get, Response, UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import * as bcrypt from 'bcryptjs';
+import { ReqWithUser } from './type/request.type';
 
 import User from 'src/entity/user.entity';
 
 import { UserService } from 'src/user/user.service';
 import { AuthService } from './auth.service';
+import { CookieAuthenticationGuard } from './guard/cookieAuthentication.guard';
+import { LoginWithCredentialsGuard } from './guard/loginWithCredentials.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -36,36 +39,29 @@ export class AuthController {
       return 'success'
     }
 
-    @UseGuards(AuthGuard('local'))
     @HttpCode(200)
+    @UseGuards(LoginWithCredentialsGuard)
     @Post('local/login')
     async login(@Request() req) {
       return req.user;
     }
 
-    @UseGuards(AuthGuard('local'))
     @HttpCode(200)
+    @UseGuards(CookieAuthenticationGuard)
     @Post('local/logout')
     async logout(
       @Request() req,
       @Response() res
       ) {
       req.logout(() => {
-        res.redirect("http://localhost:3002/")
+        res.send("success")
       })
     }
 
-    @UseGuards(AuthGuard('local'))
-    @Get('test')
-    test(
-      @Request() req
+    @UseGuards(CookieAuthenticationGuard)
+    loginPersist(
+      @Request() req: ReqWithUser
     ) {
-      console.log(req.cookie)
-      if(req.user) {
-       return "success" 
-      } else {
-        return "fail"
-      }
+      return req.user
     }
-
   }
