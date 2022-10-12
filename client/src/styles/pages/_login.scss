@@ -1,0 +1,77 @@
+.login-logo {
+  width: 120%;
+  height: auto;
+  margin-left: -10%;
+  padding-top: 10%;
+}
+
+.login-btn-box {
+  @include flexbox();
+}
+
+.login-btn-social {
+  margin-top: 5%;
+  height: 100%;
+
+  margin-right: 5%;
+  //버튼 간격을 위한 마진
+
+  @include column-flexbox();
+
+  .box {
+    @include column-flexbox();
+    background-color: $white;
+    border: 1px solid #efefef;
+    border-radius: 12px;
+
+    min-width: 72px;
+    min-height: 60px;
+
+    width: 22%;
+    padding: 5%;
+
+    margin-bottom: 10%;
+
+    .icon {
+      width: auto;
+      height: 70%;
+    }
+  }
+
+  .text {
+    font-size: 16px;
+    color: $light-gray;
+  }
+}
+
+.login-btn-local {
+  margin-top: 5%;
+  height: 100%;
+
+  @include column-flexbox();
+
+  .box {
+    @include column-flexbox();
+    background-color: $white;
+    border: 1px solid #efefef;
+    border-radius: 12px;
+
+    min-width: 72px;
+    min-height: 60px;
+
+    width: 22%;
+    padding: 5%;
+
+    margin-bottom: 10%;
+
+    .icon {
+      width: auto;
+      height: 70%;
+    }
+  }
+
+  .text {
+    font-size: 16px;
+    color: $light-gray;
+  }
+}

@@ -13,4 +13,11 @@
   &::placeholder {
     color: $placeholder;
   }
+
+  &-error {
+    position: absolute;
+    margin-top: -4px;
+    font-size: 14px;
+    color: $secondary;
+  }
 }

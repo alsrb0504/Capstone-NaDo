@@ -14,6 +14,7 @@ const LoginForm = ({ LoginWithLocal }) => {
 
   const OnSubmit = (data) => {
     LoginWithLocal(data);
+    // formState.reset
     reset();
   };
 
@@ -42,15 +43,19 @@ const LoginForm = ({ LoginWithLocal }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(OnSubmit)}>
-      <input type="text" />
+    <form className="login-form" onSubmit={handleSubmit(OnSubmit)}>
       <LineInput
         desc="아이디"
         condition={IdCondition}
         id="id"
         register={register}
       />
-      <ErrorMessage errors={errors} name="id" as="p" className="input-error" />
+      <ErrorMessage
+        errors={errors}
+        name="id"
+        as="p"
+        className="line-input-error"
+      />
 
       <LineInput
         desc="비밀번호"
@@ -62,7 +67,7 @@ const LoginForm = ({ LoginWithLocal }) => {
         errors={errors}
         name="password"
         as="p"
-        className="input-error"
+        className="line-input-error"
       />
 
       <Btn type="submit" color="pink" text="로그인" />

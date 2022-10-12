@@ -2,34 +2,18 @@
 
 import React from 'react';
 
-const LineInput = ({ desc, id, val, register, condition }) => {
-  console.log();
+const LineInput = ({ desc, id, val, register, condition }) => (
+  <input
+    {...register(id, {
+      value: val,
+      ...condition,
+    })}
+    id={id}
+    className="line-input"
+    type="text"
+    placeholder={desc}
+    disabled={!!val}
+  />
+);
 
-  return (
-    <input
-      {...register(id, {
-        value: val,
-        ...condition,
-      })}
-      id={id}
-      className="line-input"
-      type="text"
-      placeholder={desc}
-      // value={val}
-      disabled={!!val}
-    />
-  );
-};
-
-// (
-//   <input
-//     {...register(id)}
-//     id={id}
-//     className="line-input"
-//     type="text"
-//     placeholder={desc}
-//     value={val}
-//     disabled={!!val}
-//   />
-// );
 export default LineInput;
