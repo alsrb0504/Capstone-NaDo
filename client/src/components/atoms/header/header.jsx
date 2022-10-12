@@ -11,7 +11,7 @@ const Header = ({ title, handleClick }) => {
     return (
         <div className="header-box">
             <button className="arrow-box" onClick={OnClick} >
-                <img className="arrow" src="images/header_arrow.svg" alt="arrow" />
+                <i className="fa-solid fa-arrow-left"></i>
             </button>
 
             <div className="title">{title}</div>
