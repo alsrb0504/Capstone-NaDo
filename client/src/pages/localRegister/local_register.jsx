@@ -2,7 +2,7 @@ import React from "react";
 import Btn from "../../components/atoms/btn/btn";
 import LineInput from "../../components/atoms/lineInput/line_input";
 
-const LocallRegister = (props) => {
+const LocalRegister = (props) => {
   return (
     <div className="col-sm-4 register">
       <div className="local-register-lineinput1">
@@ -60,4 +60,4 @@ const LocallRegister = (props) => {
   );
 };
 
-export default LocallRegister;
+export default LocalRegister;
