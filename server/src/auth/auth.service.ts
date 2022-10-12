@@ -15,11 +15,7 @@ export class AuthService {
   ){
       const userInfo = await this.userService.findById(identifier)
 
-      if(userInfo) {
-        return true
-      } else {
-        return false
-      }
+      return userInfo ? true : false
   }
 
   async localValidateUser(

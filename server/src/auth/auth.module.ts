@@ -5,11 +5,11 @@ import { AuthController } from './auth.controller';
 import { LocalStrategy } from './strategy/local.strategy';
 import { LocalSerializer } from './serialize/local.serialize';
 import { NaverLoginStrategy } from './strategy/naver.strategy';
-import { NaverSerializer } from './serialize/naver.serialize';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [UserModule],
-  providers: [AuthService, LocalStrategy, LocalSerializer, NaverLoginStrategy, NaverSerializer],
+  imports: [UserModule, ConfigModule],
+  providers: [AuthService, LocalStrategy, LocalSerializer, NaverLoginStrategy],
   controllers: [AuthController]
 })
 export class AuthModule {}
