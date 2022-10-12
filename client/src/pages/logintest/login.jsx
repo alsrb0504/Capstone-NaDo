@@ -23,12 +23,7 @@ const TestLogin = () => {
   };
 
   const LoginWithSocial = () => {
-    console.log('네이버 로그인 시작');
-
     window.location.href = 'http://localhost:3001/auth/social/login';
-
-    // 이거 안뜨는게 정상
-    console.log('네이버 로그인 끝');
   };
 
   useEffect(() => {

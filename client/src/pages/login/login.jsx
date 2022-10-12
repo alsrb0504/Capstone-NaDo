@@ -1,37 +1,44 @@
 import React from 'react';
-import Btn from '../../components/atoms/btn/btn';
-import LineInput from '../../components/atoms/lineInput/line_input';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { LocalLogin } from '../../store/features/user';
+import LoginForm from '../../components/molecules/loginForm/login_form';
 
-const Login = () => (
-  <div className="col-sm-4 login-background">
-    <img className="login-logo" src="images/logo.svg" alt="logo" />
+const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    <div className="login-id">
-      <LineInput desc="아이디" name="userid" val="아이디" />
-    </div>
+  const LoginWithLocal = (info) => {
+    dispatch(LocalLogin(info));
+  };
 
-    <div className="login-pw">
-      <LineInput desc="비밀번호" name="password" val="비밀번호" />
-    </div>
+  const MoveSignup = () => {
+    navigate('/register/local');
+  };
 
-    <Btn color="pink" text="로그인" />
+  return (
+    <div className="col-sm-4 login-background">
+      <img className="login-logo" src="images/logo.svg" alt="logo" />
 
-    <div className="login-btn-box">
-      <div className="login-btn-social">
-        <div className="box">
-          <img className="icon" src="images/naver_icon.svg" alt="social" />
+      <LoginForm LoginWithLocal={LoginWithLocal} />
+
+      <div className="login-btn-box">
+        <div className="login-btn-social">
+          <div className="box">
+            <img className="icon" src="images/naver_icon.svg" alt="social" />
+          </div>
+          <span className="text">네이버</span>
         </div>
-        <span className="text">네이버</span>
-      </div>
 
-      <div className="login-btn-local">
-        <div className="box">
-          <img className="icon" src="images/signup_icon.svg" alt="local" />
-        </div>
-        <span className="text">회원가입</span>
+        <button type="button" className="login-btn-local" onClick={MoveSignup}>
+          <div className="box">
+            <img className="icon" src="images/signup_icon.svg" alt="local" />
+          </div>
+          <span className="text">회원가입</span>
+        </button>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Login;
