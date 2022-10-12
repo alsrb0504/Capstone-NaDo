@@ -57,10 +57,11 @@ export const LocalSignup = createAsyncThunk(
       const { data } = response;
       // console.log('data', data);
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         return { ...data };
       }
       if (response.status === 401) {
+        alert('회원가입 실패');
         return thunkAPI.rejectWithValue(data);
       }
       // return

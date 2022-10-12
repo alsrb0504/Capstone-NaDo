@@ -15,7 +15,7 @@ const TestLogin = () => {
 
   const LoginWithLocal = () => {
     const userInfo = {
-      identifier: 'user',
+      identifier: 'signup',
       password: '1234',
     };
 
