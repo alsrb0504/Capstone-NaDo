@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { LocalLogin } from '../../store/features/user';
 import LoginForm from '../../components/molecules/loginForm/login_form';
+import BtnBox from '../../components/atoms/btnBox/btn_box';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,10 @@ const Login = () => {
     navigate('/register/local');
   };
 
+  const MoveSocial = () => {
+    window.location.href = 'http://localhost:3001/auth/social/login';
+  };
+
   return (
     <div className="col-sm-4 login-background">
       <div className="login-logo-container">
@@ -25,19 +30,17 @@ const Login = () => {
       <LoginForm LoginWithLocal={LoginWithLocal} />
 
       <div className="login-btn-box">
-        <div className="login-btn-social">
-          <div className="box">
-            <img className="icon" src="images/naver_icon.svg" alt="social" />
-          </div>
-          <span className="text">네이버</span>
-        </div>
+        <BtnBox
+          text="네이버"
+          url="images/naver_icon.svg"
+          handleClick={MoveSocial}
+        />
 
-        <button type="button" className="login-btn-local" onClick={MoveSignup}>
-          <div className="box">
-            <img className="icon" src="images/signup_icon.svg" alt="local" />
-          </div>
-          <span className="text">회원가입</span>
-        </button>
+        <BtnBox
+          text="회원가입"
+          url="images/signup_icon.svg"
+          handleClick={MoveSignup}
+        />
       </div>
     </div>
   );

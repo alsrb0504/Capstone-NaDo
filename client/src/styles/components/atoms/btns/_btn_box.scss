@@ -1,0 +1,27 @@
+.btn-box {
+  @include column-flexbox();
+
+  &-icon-container {
+    @include column-flexbox();
+    width: 22%;
+    min-width: 72px;
+    min-height: 60px;
+
+    padding: 5%;
+    margin-bottom: 10%;
+
+    background-color: $white;
+    border: 1px solid $box-border;
+    border-radius: 12px;
+
+    .btn-box-icon {
+      width: auto;
+      height: 70%;
+    }
+  }
+
+  &-text {
+    font-size: 16px;
+    color: $light-gray;
+  }
+}
