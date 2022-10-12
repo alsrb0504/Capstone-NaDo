@@ -4,14 +4,9 @@ import React from 'react';
 const SUBMIT = 'submit';
 
 const Btn = ({ text, type, color, handleClick }) => {
-  const OnClick = () => {
-    handleClick();
-  };
-
-  const AssignEvent = () => {
-    if (text === SUBMIT) return null;
-    return OnClick;
-  };
+  function AssignEvent() {
+    if (type !== SUBMIT) handleClick();
+  }
 
   return (
     <button type={type} className={`btn btn-${color}`} onClick={AssignEvent}>
