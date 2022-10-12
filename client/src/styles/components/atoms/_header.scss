@@ -1,0 +1,29 @@
+.header-box{
+    @include flexbox();
+    position: relative;
+    width: 100%;
+    height: 62px;
+    border-bottom: 2px solid $primary;
+    
+    .title{
+        font-size: 20px;
+        color: $black;
+    }
+}
+
+.arrow-box{
+    width: 26px;
+    height: 22px;
+
+    position: absolute;
+    left: 5.33%;
+    right: 87.73%;
+    top: 32.26%;
+    bottom: 32.26%;
+
+    .arrow{
+        width: 100%;
+        height: auto;
+    }
+}
+
