@@ -11,6 +11,6 @@
   background-color: transparent;
 
   &::placeholder {
-    color: $placeholder;
+    color: $primary; //placeholder 색상 placeholder에서 primary로 변경함
   }
 }
