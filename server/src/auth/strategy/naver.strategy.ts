@@ -12,14 +12,10 @@ export class NaverLoginStrategy extends PassportStrategy(Strategy) {
     const clientID = configService.get<string>('naver_login.clientId')
     const clientSecret =  configService.get<string>("naver_login.clientSecret")
     const callbackURL =  configService.get<string>('naver_login.callbackUrl')
-
-    console.log(clientID)
-    console.log(clientSecret)
-    console.log(callbackURL)
     
     super({
-      clientID : "hLOY4hBgYG8erf4ACDlz",
-      clientSecret: "3tQHSIJzkK", 
+      clientID,
+      clientSecret, 
       callbackURL,
       svcType: 0,
       authType: 'reauthenticate'
