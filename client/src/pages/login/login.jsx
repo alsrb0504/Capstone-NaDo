@@ -18,7 +18,9 @@ const Login = () => {
 
   return (
     <div className="col-sm-4 login-background">
-      <img className="login-logo" src="images/logo.svg" alt="logo" />
+      <div className="login-logo-container">
+        <img className="login-logo" src="images/logo.svg" alt="logo" />
+      </div>
 
       <LoginForm LoginWithLocal={LoginWithLocal} />
 

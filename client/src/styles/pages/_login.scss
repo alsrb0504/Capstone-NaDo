@@ -1,8 +1,23 @@
+.login-logo-container {
+  width: 100vw;
+  max-width: $md-breakpoint;
+
+  padding-top: 20px;
+  margin-bottom: 24px;
+
+  // sm 기준
+  margin-left: calc(0px - (($gutter / 2) + ($sm-margin)));
+}
+
+@media screen and (min-width: $md-breakpoint) {
+  .login-logo-container {
+    margin: auto;
+  }
+}
+
 .login-logo {
-  width: 120%;
+  width: 100%;
   height: auto;
-  margin-left: -10%;
-  padding-top: 10%;
 }
 
 .login-btn-box {
