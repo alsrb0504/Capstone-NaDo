@@ -16,12 +16,12 @@ export class LoginWithCredentialsGuard extends AuthGuard('local') {
 
 @Injectable()
 export class NaverLoginWithCredentialsGuard extends AuthGuard('naver') {
-  async canActivate(context: ExecutionContext):  Promise<boolean> {
-   await super.canActivate(context) 
-   
-   const request = context.switchToHttp().getRequest();
-   await super.logIn(request)
+  async canActivate(context: ExecutionContext): Promise<boolean> {
+    await super.canActivate(context)
 
-   return true
+    const request = context.switchToHttp().getRequest();
+    await super.logIn(request)
+
+    return true
   }
 }
