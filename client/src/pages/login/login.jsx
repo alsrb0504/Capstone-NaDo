@@ -1,45 +1,47 @@
-import React from "react";
-import Btn from "../../components/atoms/btn/btn";
-import LineInput from "../../components/atoms/lineInput/line_input";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { LocalLogin } from '../../store/features/user';
+import LoginForm from '../../components/molecules/loginForm/login_form';
+import BtnBox from '../../components/atoms/btnBox/btn_box';
 
-const Login = (props) => {
+const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const LoginWithLocal = (info) => {
+    dispatch(LocalLogin(info));
+  };
+
+  const MoveSignup = () => {
+    navigate('/register/local');
+  };
+
+  const MoveSocial = () => {
+    window.location.href = 'http://localhost:3001/auth/social/login';
+  };
+
   return (
     <div className="col-sm-4 login-background">
-      <img className="login-logo" src="images/logo.svg" alt="logo"/>
-
-      <div className="login-id">
-        <LineInput
-          desc="아이디"
-          name="userid"
-          val="아이디"
-        />
+      <div className="login-logo-container">
+        <img className="login-logo" src="images/logo.svg" alt="logo" />
       </div>
 
-      <div className="login-pw">
-        <LineInput
-          desc="비밀번호"
-          name="password"
-          val="비밀번호"
-        />
-      </div>
-
-      <Btn
-        color="pink"
-        text="로그인"
-      />
+      <LoginForm LoginWithLocal={LoginWithLocal} />
 
       <div className="login-btn-box">
-        <div className="login-btn-social">
-          <div className="box"><img className="icon" src="images/naver_icon.svg" alt="social"/></div>
-          <span className="text">네이버</span>
-        </div>
-        
-        <div className="login-btn-local">
-          <div className="box"><img className="icon" src="images/signup_icon.svg" alt="local"/></div>
-          <span className="text">회원가입</span>
-        </div>
+        <BtnBox
+          text="네이버"
+          url="images/naver_icon.svg"
+          handleClick={MoveSocial}
+        />
+
+        <BtnBox
+          text="회원가입"
+          url="images/signup_icon.svg"
+          handleClick={MoveSignup}
+        />
       </div>
-      
     </div>
   );
 };

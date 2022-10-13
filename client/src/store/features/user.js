@@ -1,124 +1,138 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialState = {
-  userNickname: "",
-  userEmail: "",
-  userProvider: "",
+  userNickname: '',
+  userEmail: '',
+  userProvider: '',
   isFetching: false,
   isSuccess: false,
   isError: false,
   isLogin: false,
 };
 
+function PrintError(e, src) {
+  console.log(`${src} 에러 : ${e.message}`);
+  console.error(e);
+}
+
 export const GetUserWithSession = createAsyncThunk(
-  "user/getUserWithSession",
+  'user/getUserWithSession',
   async (_, thunkAPI) => {
     //
     try {
-      const response = await axios.get("http://localhost:3001/auth/local/");
+      const response = await axios.get('http://localhost:3001/auth/local/');
 
       if (response.status === 200) {
         return response.data;
-      } else if (response.status === 401) {
-        return;
       }
+      if (response.status === 401) {
+        return null;
+      }
+      // return
+      return thunkAPI.rejectWithValue(response.data);
     } catch (e) {
-      PrintError(e, "로그인 유지");
+      PrintError(e, '로그인 유지');
       return thunkAPI.rejectWithValue(e.response.data);
     }
-  }
+  },
 );
 
 // 로컬 회원가입 함수
 export const LocalSignup = createAsyncThunk(
-  "user/localSignup",
+  'user/localSignup',
   async ({ identifier, password, nickname, email }, thunkAPI) => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/auth/local/register",
+        'http://localhost:3001/auth/local/register',
         {
           identifier,
           password,
           nickname,
           email,
-        }
+        },
       );
 
-      console.log("response", response);
-      const data = response.data;
-      console.log("data", data);
+      // console.log('response', response);
+      const { data } = response;
+      // console.log('data', data);
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         return { ...data };
-      } else if (response.status === 401) {
+      }
+      if (response.status === 401) {
+        alert('회원가입 실패');
         return thunkAPI.rejectWithValue(data);
       }
+      // return
+      return thunkAPI.rejectWithValue(data);
     } catch (e) {
-      PrintError(e, "로컬 회원가입");
+      PrintError(e, '로컬 회원가입');
       return thunkAPI.rejectWithValue(e.response.data);
     }
-  }
+  },
 );
 
 // 로컬 로그인 함수
 export const LocalLogin = createAsyncThunk(
-  "user/localLogin",
+  'user/localLogin',
   async ({ identifier, password }, thunkAPI) => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/auth/local/login",
+        'http://localhost:3001/auth/local/login',
         {
           identifier,
           password,
-        }
+        },
       );
 
-      console.log("response", response);
-      const data = response.data;
-      console.log("data", data);
+      // console.log('response', response);
+
+      const { data } = response;
+
+      // console.log('data', data);
 
       if (response.status === 200) {
         return { ...data };
       }
       // 로그인 실패 status
-      else {
-        return thunkAPI.rejectWithValue(response.data);
-      }
+      // else {
+      return thunkAPI.rejectWithValue(response.data);
+      // }
     } catch (e) {
-      PrintError(e, "로컬 로그인");
+      PrintError(e, '로컬 로그인');
       return thunkAPI.rejectWithValue();
     }
-  }
+  },
 );
 
 // 로컬 로그아웃 함수
 export const LocalLogout = createAsyncThunk(
-  "user/localLogout",
+  'user/localLogout',
   async (_, thunkAPI) => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/auth/local/logout",
+        'http://localhost:3001/auth/local/logout',
         {},
-        { withCredentials: true }
+        { withCredentials: true },
       );
 
       if (response.status === 200) {
         return {};
       }
       // 로그인 실패 status
-      else {
-        return thunkAPI.rejectWithValue(response);
-      }
+      // else {
+      return thunkAPI.rejectWithValue(response);
+      // }
     } catch (e) {
-      PrintError(e, "로컬 로그아웃");
+      PrintError(e, '로컬 로그아웃');
       return thunkAPI.rejectWithValue();
     }
-  }
+  },
 );
 
 export const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {},
 
@@ -177,7 +191,7 @@ export const userSlice = createSlice({
         state.userEmail = email;
         state.userProvider = provider;
       })
-      .addCase(LocalLogin.rejected, (state, { payload }) => {
+      .addCase(LocalLogin.rejected, (state) => {
         state.isFetching = false;
         state.isError = true;
       });
@@ -191,9 +205,9 @@ export const userSlice = createSlice({
       .addCase(LocalLogout.fulfilled, (state) => {
         state.isFetching = false;
         state.isLogin = false;
-        state.userNickname = "";
-        state.userEmail = "";
-        state.userProvider = "";
+        state.userNickname = '';
+        state.userEmail = '';
+        state.userProvider = '';
       })
       .addCase(LocalLogout.rejected, (state) => {
         state.isFetching = false;
@@ -201,10 +215,5 @@ export const userSlice = createSlice({
       });
   },
 });
-
-function PrintError(e, src) {
-  console.log(`${src} 에러 : ${e.message}`);
-  console.error(e);
-}
 
 export default userSlice.reducer;

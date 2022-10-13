@@ -1,34 +1,18 @@
-import React from "react";
+/* eslint-disable react/button-has-type */
+import React from 'react';
 
+const SUBMIT = 'submit';
 
-const Btn = ({ text, color, handleClick }) => {
+const Btn = ({ text, type, color, handleClick }) => {
+  function AssignEvent() {
+    if (type !== SUBMIT) handleClick();
+  }
 
-    const OnClick = () => {
-        handleClick();
-    };
-
-    //수정하기
-    return (
-        <button className={`btn btn-${color}`} onClick={OnClick} >{text}</button>
-    )
-    
-    // if(color==="red"){
-    //     return (
-    //     <button className="btn-red col-sm-4"onClick={OnClick}>{text}</button>
-    // );
-    // }
-    // else if(color==="blue"){
-    //     return (
-    //     <button className="btn-blue col-sm-4"onClick={OnClick}>{text}</button>
-    // );
-    // }
-    // else if(color==null) {
-    //     return (
-    //         <button className="btn col-sm-4"onClick={OnClick}>{text}</button>
-    //     );
-    // }
-
-    
+  return (
+    <button type={type} className={`btn btn-${color}`} onClick={AssignEvent}>
+      {text}
+    </button>
+  );
 };
 
 export default Btn;

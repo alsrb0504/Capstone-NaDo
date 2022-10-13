@@ -1,0 +1,16 @@
+.login-form {
+  width: 100%;
+  margin-bottom: 24px;
+
+  &:nth-child(3) {
+    background-color: pink;
+  }
+
+  .line-input {
+    margin-bottom: 8px;
+  }
+
+  button {
+    margin-top: 16px;
+  }
+}

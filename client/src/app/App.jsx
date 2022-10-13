@@ -1,21 +1,22 @@
-import "./App.scss";
-import { useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
-import AxiosSetting from "../services/axios";
-import Home from "../pages/home/home";
-import TestApp from "../pages/logintest/testApp";
-import Login from "../pages/login/login";
-import LocalRegister from "../pages/localRegister/local_register";
-import SocialRegister from "../pages/socialRegister/social_register";
-import { GetUserWithSession } from "../store/features/user";
-import { useDispatch } from "react-redux";
+/* eslint-disable no-lone-blocks */
+import './App.scss';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Routes, Route } from 'react-router-dom';
+import AxiosSetting from '../services/axios';
+import Home from '../pages/home/home';
+import TestApp from '../pages/logintest/testApp';
+import Login from '../pages/login/login';
+import LocalRegister from '../pages/localRegister/local_register';
+import SocialRegister from '../pages/socialRegister/social_register';
+// import { GetUserWithSession } from '../store/features/user';
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     AxiosSetting();
-    dispatch(GetUserWithSession());
+    // dispatch(GetUserWithSession());
   }, [dispatch]);
 
   return (
@@ -29,7 +30,7 @@ const App = () => {
               <Route path="local" element={<LocalRegister />} />
               <Route path="social" element={<SocialRegister />} />
             </Route>
-            {/* 구분선 : 테스트 페이지*/}
+            {/* 구분선 : 테스트 페이지 */}
             <Route path="/test/*" element={<TestApp />} />
           </Routes>
         </div>

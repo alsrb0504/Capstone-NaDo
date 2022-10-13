@@ -1,38 +1,41 @@
 // base
-@import "./base/reset";
-@import "./base/font";
-@import "./base/base";
+@import './base/reset';
+@import './base/font';
+@import './base/base';
 
 // constants
-@import "./constants/breakpoints";
-@import "./constants/grids";
-@import "./constants/color";
-@import "./constants/typography";
-@import "./constants/z-index";
+@import './constants/breakpoints';
+@import './constants/grids';
+@import './constants/color';
+@import './constants/typography';
+@import './constants/z-index';
 
 // mixins
-@import "./mixins/flexbox";
-@import "./mixins/position";
+@import './mixins/flexbox';
+@import './mixins/position';
 
 // components
 // 이번주 원자는 여기에 import 해서 스타일 적용
-@import "./components/atoms/box_input";
-@import "./components/atoms/line_input";
-@import "./components/atoms/cards/card_common";
-@import "./components/atoms/cards/record_card";
-@import "./components/atoms/cards/order_store_card";
-@import "./components/atoms/cards/pickup_store_card";
-@import "./components/atoms/cards/picking_card";
-@import "./components/atoms/cards/ordering_card";
-@import "./components/atoms/cards/pickup_ready_card";
+@import './components/atoms/box_input';
+@import './components/atoms/line_input';
+@import './components/atoms/cards/card_common';
+@import './components/atoms/cards/record_card';
+@import './components/atoms/cards/order_store_card';
+@import './components/atoms/cards/pickup_store_card';
+@import './components/atoms/cards/picking_card';
+@import './components/atoms/cards/ordering_card';
+@import './components/atoms/cards/pickup_ready_card';
+@import './components/atoms/btns/btn';
+@import './components/atoms/btns/btn_profile';
+@import './components/atoms/btns/btn_order';
+@import './components/atoms/btns/btn_pickup';
+@import './components/atoms/btns/btn_box';
 
-@import "./components/atoms/btns/btn";
-@import "./components/atoms/btns/btn_profile";
-@import "./components/atoms/btns/btn_order";
-@import "./components/atoms/btns/btn_pickup";
-@import "./components/atoms/header";
+// molecules
+@import './components/molecules/login_form';
+@import './components/atoms/header';
 
 // pages
-@import "./pages/login.scss";
-@import "./pages/social_register.scss";
-@import "./pages/local_register.scss";
+@import './pages/login.scss';
+@import './pages/social_register.scss';
+@import './pages/local_register.scss';
