@@ -9,13 +9,13 @@ const Header = ({ title, handleClick }) => {
 
     //헤더 디자인하기 !!
     return (
-        <div className="header-box">
+        <header className="header-box">
             <button className="arrow-box" onClick={OnClick} >
                 <i className="fa-solid fa-arrow-left"></i>
             </button>
 
             <div className="title">{title}</div>
-        </div>
+        </header>
     )
 };
 
