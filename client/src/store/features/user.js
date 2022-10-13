@@ -77,6 +77,9 @@ export const LocalSignup = createAsyncThunk(
 export const LocalLogin = createAsyncThunk(
   'user/localLogin',
   async ({ identifier, password }, thunkAPI) => {
+
+    console.log(identifier, password)
+
     try {
       const response = await axios.post(
         'http://localhost:3001/auth/local/login',

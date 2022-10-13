@@ -92,6 +92,6 @@ export class AuthController {
         }
       }
 
-      res.redirect("http://localhost:3002/test")
+      res.redirect("http://localhost:3002/")
     }
   }

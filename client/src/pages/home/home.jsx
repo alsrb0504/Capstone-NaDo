@@ -8,7 +8,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isLogin, nickname } = useSelector((state) => state.user);
+  const { isLogin, userNickname } = useSelector((state) => state.user);
 
   const MoveTest = () => {
     navigate('/test/login');
@@ -27,7 +27,7 @@ const Home = () => {
       home
       {isLogin && (
         <>
-          <h3>{nickname}님 환영합니다.</h3>
+          <h3>{userNickname}님 환영합니다.</h3>
           <Btn type="button" color="" text="로그아웃" handleClick={Logout} />
         </>
       )}

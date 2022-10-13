@@ -10,6 +10,7 @@ import * as cookieParser from 'cookie-parser';
 import * as createRedisStore from 'connect-redis';
 import * as passport from 'passport';
 import * as Redis from 'redis';
+import { HttpExceptionFilter } from './http.exception';
 
 
 
@@ -61,6 +62,7 @@ async function bootstrap() {
     
     app.use(passport.initialize())
     app.use(passport.session())
+    app.useGlobalFilters(new HttpExceptionFilter());
 
   await app.listen(3000);
 }

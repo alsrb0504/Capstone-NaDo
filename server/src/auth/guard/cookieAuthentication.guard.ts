@@ -21,7 +21,7 @@ export class isNotLoggedInGuard implements CanActivate {
    const loggedIn = request?.isAuthenticated() 
 
    if(loggedIn) {
-    throw new ForbiddenException({}, 'you are already logged in')
+    throw new ForbiddenException('you are already logged in', 'you are already logged in')
    }
 
    return true

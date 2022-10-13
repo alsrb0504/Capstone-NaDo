@@ -9,14 +9,14 @@ import TestApp from '../pages/logintest/testApp';
 import Login from '../pages/login/login';
 import LocalRegister from '../pages/localRegister/local_register';
 import SocialRegister from '../pages/socialRegister/social_register';
-// import { GetUserWithSession } from '../store/features/user';
+import { GetUserWithSession } from '../store/features/user';
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     AxiosSetting();
-    // dispatch(GetUserWithSession());
+    dispatch(GetUserWithSession());
   }, [dispatch]);
 
   return (

@@ -13,6 +13,7 @@ const LoginForm = ({ LoginWithLocal }) => {
   } = useForm();
 
   const OnSubmit = (data) => {
+    console.log("form info", data)
     LoginWithLocal(data);
     // formState.reset
     reset();
@@ -47,12 +48,12 @@ const LoginForm = ({ LoginWithLocal }) => {
       <LineInput
         desc="아이디"
         condition={IdCondition}
-        id="id"
+        id="identifier"
         register={register}
       />
       <ErrorMessage
         errors={errors}
-        name="id"
+        name="identifier"
         as="p"
         className="line-input-error"
       />
