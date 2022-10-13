@@ -13,3 +13,15 @@ export class LoginWithCredentialsGuard extends AuthGuard('local') {
     return true
   }
 }
+
+@Injectable()
+export class NaverLoginWithCredentialsGuard extends AuthGuard('naver') {
+  async canActivate(context: ExecutionContext): Promise<boolean> {
+    await super.canActivate(context)
+
+    const request = context.switchToHttp().getRequest();
+    await super.logIn(request)
+
+    return true
+  }
+}

@@ -33,6 +33,9 @@
 
 // molecules
 @import './components/molecules/login_form';
+@import './components/atoms/header';
 
 // pages
 @import './pages/login.scss';
+@import './pages/social_register.scss';
+@import './pages/local_register.scss';
