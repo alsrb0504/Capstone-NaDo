@@ -9,7 +9,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const {isLogin} = useSelector(state => state.user);
+  const { isLogin } = useSelector((state) => state.user);
 
   const LoginWithLocal = (info) => {
     dispatch(LocalLogin(info));
@@ -23,13 +23,12 @@ const Login = () => {
     window.location.href = 'http://localhost:3001/auth/social/login';
   };
 
-
   useEffect(() => {
-    if(isLogin) navigate('/')
-  }, [navigate, isLogin])
+    if (isLogin) navigate('/');
+  }, [navigate, isLogin]);
 
   return (
-    <div className="col-sm-4 login-background">
+    <div className="col-sm-4 login">
       <div className="login-logo-container">
         <img className="login-logo" src="images/logo.svg" alt="logo" />
       </div>

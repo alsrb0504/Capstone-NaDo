@@ -1,33 +1,27 @@
-.login-logo-container {
-  width: 100vw;
-  max-width: $md-breakpoint;
+.login {
+  @include column-flexbox(start);
+  height: 100vh;
 
-  padding-top: 20px;
-  margin-bottom: 24px;
+  &-logo-container {
+    width: 100vw;
+    max-width: $md-breakpoint;
 
-  // sm 기준
-  margin-left: calc(0px - (($gutter / 2) + ($sm-margin)));
+    padding-top: 20px;
+    margin-bottom: 24px;
 
-  .login-logo {
-    width: 100%;
-    height: auto;
-  }
-}
-
-@media screen and (min-width: $md-breakpoint) {
-  .login-logo-container {
-    margin: auto;
-  }
-}
-
-.login-btn-box {
-  @include flexbox();
-
-  .btn-box:first-child {
-    margin-right: 8px;
+    .login-logo {
+      width: 100%;
+      height: auto;
+    }
   }
 
-  .btn-box:last-child {
-    margin-left: 8px;
+  &-btn-box {
+    @include flexbox();
+    // 로그인 페이지 설계 시, 해당 버튼 최소 크기 72px;
+    width: calc(72px * 2 + 16px);
+    gap: 16px;
+
+    // height: 92px;
+    // width: 200px;
   }
 }
