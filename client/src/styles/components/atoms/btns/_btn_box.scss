@@ -1,22 +1,21 @@
 .btn-box {
   @include column-flexbox();
+  width: 100%;
 
   &-icon-container {
-    @include column-flexbox();
-    width: 22%;
-    min-width: 72px;
-    min-height: 60px;
+    @include flexbox(center, center);
 
-    padding: 5%;
-    margin-bottom: 10%;
+    width: 100%;
+    min-height: 60px;
+    padding: 10% 0;
 
     background-color: $white;
     border: 1px solid $box-border;
     border-radius: 12px;
 
     .btn-box-icon {
-      width: auto;
-      height: 70%;
+      width: 50%;
+      height: auto;
     }
   }
 
