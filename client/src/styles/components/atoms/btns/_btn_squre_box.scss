@@ -1,0 +1,28 @@
+.btn-order {
+  background: $btn-gradation-1;
+  border-radius: 20px;
+  min-height: 160px;
+  min-width: 160px;
+  position: relative;
+
+  @include column-flexbox();
+
+  cursor: pointer;
+  &:hover,
+  &:active {
+    i {
+      transition: all 150ms ease-in;
+      transform: scale(1.05);
+    }
+  }
+
+  .icon {
+    height: 35%;
+    width: auto;
+  }
+
+  .name {
+    font-size: 20px;
+    color: $white;
+  }
+}

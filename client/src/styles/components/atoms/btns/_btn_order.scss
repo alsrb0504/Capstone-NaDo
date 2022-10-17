@@ -1,28 +1,26 @@
-.btn-order{
-    background: $btn-gradation-1;
-    border-radius: 20px;
-    min-height: 160px;
-    min-width: 160px;
-    position: relative;
+.btn-squre {
+  @include column-flexbox();
 
-    @include column-flexbox();
+  position: relative;
+  min-height: 160px;
+  min-width: 160px;
+  border-radius: 20px;
+  background: $btn-gradation-1;
+  cursor: pointer;
 
-    cursor: pointer;
-    &:hover,
-    &:active {
-      i {
-        transition: all 150ms ease-in;
-        transform: scale(1.05);
-      }
-    }
+  &:hover,
+  &:active {
+    opacity: 0.9;
+    transition: all 100ms ease;
+  }
 
-    .icon {
-        height: 35%;
-        width: auto;
-    }
-    
-    .name {
-        font-size: 20px;
-        color: $white;
-    }
+  .icon {
+    height: 35%;
+    width: auto;
+  }
+
+  .name {
+    font-size: 20px;
+    color: $white;
+  }
 }
