@@ -5,6 +5,7 @@ import { LocalLogout } from '../../store/features/user';
 import Btn from '../../components/atoms/btn/btn';
 import HomeHeader from '../../components/molecules/homeHeader/home_header';
 import HomeMainBtns from '../../components/molecules/homeMainBtns/home_main_btns';
+import HomeMenus from '../../components/molecules/homeMenus/home_menus';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,8 @@ const Home = () => {
       <HomeHeader />
 
       <HomeMainBtns />
+
+      <HomeMenus />
 
       {isLogin && (
         <>
