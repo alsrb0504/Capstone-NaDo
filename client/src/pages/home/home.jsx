@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { LocalLogout } from '../../store/features/user';
 import Btn from '../../components/atoms/btn/btn';
 import HomeHeader from '../../components/molecules/homeHeader/home_header';
-import BtnSqureBox from '../../components/atoms/btnSqureBox/btn_squre_box';
+import HomeMainBtns from '../../components/molecules/homeMainBtns/home_main_btns';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -28,8 +28,7 @@ const Home = () => {
     <div className="col-sm-4 home">
       <HomeHeader />
 
-      <BtnSqureBox handleClick={() => {}} text="주문하기" icon="order" />
-      <BtnSqureBox handleClick={() => {}} text="픽업하기" icon="pickup" />
+      <HomeMainBtns />
 
       {isLogin && (
         <>

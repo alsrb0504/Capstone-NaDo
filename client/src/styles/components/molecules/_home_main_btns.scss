@@ -1,0 +1,7 @@
+.home-main-btns {
+  @include flexbox(between);
+  gap: 16px;
+
+  width: 100%;
+  margin-bottom: 24px;
+}
