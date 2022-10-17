@@ -5,11 +5,15 @@ const HomeHeader = () => {
 
   return (
     <div className="home-header">
-      <div>
-        <img src="/images/logo.svg" alt="logo_img" />
+      <div className="home-header-top">
+        <div className="home-header-logo-container">
+          <img src="/images/logo.svg" alt="logo_img" />
+        </div>
+        <i className="fa-solid fa-gear" />
       </div>
-
-      <span>header</span>
+      <div className="home-header-coffee-container">
+        <img src="/images/coffee.svg" alt="커피 이미지" />
+      </div>
     </div>
   );
 };
