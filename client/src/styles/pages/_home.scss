@@ -1,0 +1,6 @@
+.home {
+  position: relative;
+  @include column-flexbox(start, start);
+
+  z-index: 100;
+}

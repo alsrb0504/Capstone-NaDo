@@ -1,8 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Btn from '../../components/atoms/btn/btn';
 import { LocalLogout } from '../../store/features/user';
+import Btn from '../../components/atoms/btn/btn';
+import HomeHeader from '../../components/molecules/homeHeader/home_header';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -23,8 +24,8 @@ const Home = () => {
   };
 
   return (
-    <div>
-      home
+    <div className="col-sm-4 home">
+      <HomeHeader />
       {isLogin && (
         <>
           <h3>{userNickname}님 환영합니다.</h3>
