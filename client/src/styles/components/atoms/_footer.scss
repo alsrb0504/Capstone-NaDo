@@ -1,0 +1,11 @@
+.footer {
+  width: 100vw;
+  height: 100px;
+  // 가운데 정렬
+  margin-left: calc(0px - (($gutter / 2) + ($sm-margin)));
+  // 아래 정렬
+  margin-top: auto;
+  background-color: $box-border;
+
+  @include flexbox;
+}
