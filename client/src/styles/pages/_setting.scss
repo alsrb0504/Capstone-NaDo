@@ -2,9 +2,29 @@
   @include column-flexbox(start);
   min-height: 100vh;
 
-  // background-color: pink;
-
   .header-box {
+    width: 100vw;
     margin-bottom: 16px;
+  }
+
+  .setting-menu {
+    width: 100%;
+
+    &-title {
+      padding: 20px 0;
+      font-size: 20px;
+      color: $primary;
+      text-align: center;
+
+      border-bottom: 2px solid $primary;
+    }
+
+    &-last {
+      margin-bottom: 16px;
+    }
+  }
+
+  .footer {
+    margin: 0;
   }
 }
