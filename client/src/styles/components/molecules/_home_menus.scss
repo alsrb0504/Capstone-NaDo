@@ -1,0 +1,14 @@
+.home-menus {
+  margin-bottom: 16px;
+  width: 100%;
+
+  h3 {
+    margin-bottom: 16px;
+    font-size: 20px;
+  }
+
+  &-btns {
+    @include flexbox(between);
+    gap: 16px;
+  }
+}

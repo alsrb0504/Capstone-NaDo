@@ -27,15 +27,19 @@
 @import './components/atoms/cards/pickup_ready_card';
 @import './components/atoms/btns/btn';
 @import './components/atoms/btns/btn_profile';
-@import './components/atoms/btns/btn_order';
-@import './components/atoms/btns/btn_pickup';
+@import './components/atoms/btns/btn_squre_box';
 @import './components/atoms/btns/btn_box';
+@import './components/atoms/header';
+@import './components/atoms/footer';
 
 // molecules
 @import './components/molecules/login_form';
-@import './components/atoms/header';
+@import './components/molecules/home_header';
+@import './components/molecules/home_main_btns';
+@import './components/molecules/home_menus';
 
 // pages
-@import './pages/login.scss';
-@import './pages/social_register.scss';
-@import './pages/local_register.scss';
+@import './pages/login';
+@import './pages/social_register';
+@import './pages/local_register';
+@import './pages/home';

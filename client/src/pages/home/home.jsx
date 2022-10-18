@@ -1,8 +1,12 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Btn from '../../components/atoms/btn/btn';
 import { LocalLogout } from '../../store/features/user';
+import Btn from '../../components/atoms/btn/btn';
+import HomeHeader from '../../components/molecules/homeHeader/home_header';
+import HomeMainBtns from '../../components/molecules/homeMainBtns/home_main_btns';
+import HomeMenus from '../../components/molecules/homeMenus/home_menus';
+import Footer from '../../components/atoms/footer/footer';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -23,8 +27,13 @@ const Home = () => {
   };
 
   return (
-    <div>
-      home
+    <div className="col-sm-4 home">
+      <HomeHeader />
+
+      <HomeMainBtns />
+
+      <HomeMenus />
+
       {isLogin && (
         <>
           <h3>{userNickname}님 환영합니다.</h3>
@@ -32,18 +41,22 @@ const Home = () => {
         </>
       )}
       {!isLogin && <h3>로그인을 해주세요</h3>}
+
       <Btn
         type="button"
         color="red"
         text="테스트 로그인 페이지"
         handleClick={MoveTest}
       />
+
       <Btn
         type="button"
         color="blue"
         text="로그인 페이지"
         handleClick={MoveLogin}
       />
+
+      <Footer />
     </div>
   );
 };
