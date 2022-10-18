@@ -1,0 +1,10 @@
+.setting {
+  @include column-flexbox(start);
+  min-height: 100vh;
+
+  // background-color: pink;
+
+  .header-box {
+    margin-bottom: 16px;
+  }
+}

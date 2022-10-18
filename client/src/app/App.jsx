@@ -10,6 +10,7 @@ import Login from '../pages/login/login';
 import LocalRegister from '../pages/localRegister/local_register';
 import SocialRegister from '../pages/socialRegister/social_register';
 import { GetUserWithSession } from '../store/features/user';
+import Setting from '../pages/setting/setting';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const App = () => {
               <Route path="local" element={<LocalRegister />} />
               <Route path="social" element={<SocialRegister />} />
             </Route>
+            <Route path="/setting" element={<Setting />} />
             {/* 구분선 : 테스트 페이지 */}
             <Route path="/test/*" element={<TestApp />} />
           </Routes>
