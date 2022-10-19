@@ -38,6 +38,7 @@
 @import './components/molecules/home_header';
 @import './components/molecules/home_main_btns';
 @import './components/molecules/home_menus';
+@import './components/molecules/profile_edit_form';
 
 // pages
 @import './pages/login';
@@ -45,3 +46,4 @@
 @import './pages/local_register';
 @import './pages/home';
 @import './pages/setting';
+@import './pages/edit_profile';

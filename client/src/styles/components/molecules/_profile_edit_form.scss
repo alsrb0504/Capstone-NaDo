@@ -1,0 +1,54 @@
+.edit-profile-form {
+  flex: 1;
+  @include column-flexbox(start);
+  width: 100%;
+
+  .avatar-container {
+    width: 50%;
+    max-width: 250px;
+    margin-bottom: 30px;
+
+    .avatar {
+      position: relative;
+      padding-top: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; // or contain
+      }
+
+      .file-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: pink;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+      }
+    }
+
+    .avatar-hidden {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &-btn {
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: 18px;
+  }
+}
