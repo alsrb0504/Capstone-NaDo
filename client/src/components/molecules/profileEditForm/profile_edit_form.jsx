@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { UpdateProfile } from '../../../store/features/user';
 import Btn from '../../atoms/btn/btn';
 import LineInput from '../../atoms/lineInput/line_input';
 
 const ProfileEditForm = () => {
-  const { register, handleSubmit, watch } = useForm();
+  const dispatch = useDispatch();
 
   // 추후 이미지도 가져올 수 있도록 수정
   const { userNickname } = useSelector((state) => state.user);
+
+  // default Value
+  const { register, handleSubmit, watch } = useForm({
+    defaultValues: {
+      nickname: userNickname,
+      // image: userProfile
+      image: '',
+    },
+  });
 
   const [avatarPreview, setAvatarPreview] = useState('');
 
@@ -22,9 +32,13 @@ const ProfileEditForm = () => {
   }, [avatar]);
 
   const OnSubmit = (data) => {
-    console.log('form info', data);
+    // const { nickname, image } = data;
+    // 구현 실패 시, 여기서 default value로 값 제출
 
-    console.log(avatarPreview);
+    console.log('form info', data);
+    // console.log(avatarPreview);
+
+    dispatch(UpdateProfile(data));
   };
 
   return (
@@ -52,7 +66,8 @@ const ProfileEditForm = () => {
       </div>
 
       <LineInput
-        desc={'현재는 빈 상태' || userNickname}
+        desc={userNickname}
+        // 에러 처리 핸들러 추가할 예정.
         // condition={}
         id="nickname"
         register={register}

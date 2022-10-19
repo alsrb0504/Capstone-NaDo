@@ -2,9 +2,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
-  userNickname: '',
+  // userNickname: '',    // 테스트용
+  userNickname: 'testUser',
   userEmail: '',
   userProvider: '',
+  // userProfile: '',   // 추후 상의 후 추가해야 할 듯
   isFetching: false,
   isSuccess: false,
   isError: false,
@@ -15,6 +17,31 @@ function PrintError(e, src) {
   console.log(`${src} 에러 : ${e.message}`);
   console.error(e);
 }
+
+// 아직 reducer에 연결 X.
+export const UpdateProfile = createAsyncThunk(
+  'user/UpdateProfile',
+  async ({ nickname, image }, thunkAPI) => {
+    console.log(nickname, image);
+
+    // 추후 api 주소 정하면 교체
+    try {
+      const response = await axios.post('/test', {
+        nickname,
+        image, // 아마 추가적인 조치 필요할 거 같은데 추후 구현
+      });
+
+      // 업데이트 된, 닉네임, 프로필 이미지 정보 받아옴.
+      if (response.status === 200) {
+        return response.data;
+      }
+      return thunkAPI.rejectWithValue(response.data);
+    } catch (e) {
+      PrintError(e, '프로필 업데이트');
+      return thunkAPI.rejectWithValue(e.response.data);
+    }
+  },
+);
 
 export const GetUserWithSession = createAsyncThunk(
   'user/getUserWithSession',
@@ -77,8 +104,7 @@ export const LocalSignup = createAsyncThunk(
 export const LocalLogin = createAsyncThunk(
   'user/localLogin',
   async ({ identifier, password }, thunkAPI) => {
-
-    console.log(identifier, password)
+    console.log(identifier, password);
 
     try {
       const response = await axios.post(
