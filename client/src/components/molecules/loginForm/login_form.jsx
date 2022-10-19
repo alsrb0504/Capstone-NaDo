@@ -13,7 +13,7 @@ const LoginForm = ({ LoginWithLocal }) => {
   } = useForm();
 
   const OnSubmit = (data) => {
-    console.log("form info", data)
+    console.log('form info', data);
     LoginWithLocal(data);
     // formState.reset
     reset();
@@ -62,6 +62,7 @@ const LoginForm = ({ LoginWithLocal }) => {
         desc="비밀번호"
         condition={PasswordCondition}
         id="password"
+        type="password"
         register={register}
       />
       <ErrorMessage

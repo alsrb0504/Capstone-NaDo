@@ -37,6 +37,7 @@ const PasswdEditForm = () => {
         desc="새 비밀번호"
         // condition={}
         id="newPasswd"
+        type="password"
         register={register}
       />
 
@@ -44,6 +45,7 @@ const PasswdEditForm = () => {
         desc="새 비밀번호 확인"
         // condition={}
         id="newPasswd2"
+        type="password"
         register={register}
       />
 
