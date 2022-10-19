@@ -18,7 +18,10 @@ function PrintError(e, src) {
   console.error(e);
 }
 
+// *
+// 프로필 업데이트 함수
 // 아직 reducer에 연결 X.
+// *
 export const UpdateProfile = createAsyncThunk(
   'user/UpdateProfile',
   async ({ nickname, image }, thunkAPI) => {
@@ -38,6 +41,35 @@ export const UpdateProfile = createAsyncThunk(
       return thunkAPI.rejectWithValue(response.data);
     } catch (e) {
       PrintError(e, '프로필 업데이트');
+      return thunkAPI.rejectWithValue(e.response.data);
+    }
+  },
+);
+
+// *
+// 비밀번호 변경 함수
+// 아직 reducer에 연결 X.
+// *
+export const ChangePasswd = createAsyncThunk(
+  'user/ChangePasswd',
+  async ({ prevPasswd, newPasswd }, thunkAPI) => {
+    console.log(prevPasswd, newPasswd);
+
+    // 추후 api 주소 정하면 교체
+    try {
+      const response = await axios.post('/test', {
+        prevPasswd,
+        newPasswd,
+      });
+
+      // 비밀번호 변경 성공
+      if (response.status === 200) {
+        return response.data;
+      }
+      // 비밀번호 변경 실패 (원인 출력 X)
+      return thunkAPI.rejectWithValue(response.data);
+    } catch (e) {
+      PrintError(e, '비밀번호 변경');
       return thunkAPI.rejectWithValue(e.response.data);
     }
   },
