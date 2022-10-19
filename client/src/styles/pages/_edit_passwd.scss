@@ -1,0 +1,9 @@
+.change-passwd {
+  @include column-flexbox(start, center);
+  min-height: 100vh;
+
+  .header-box {
+    width: 100vw;
+    margin-bottom: 16px;
+  }
+}

@@ -39,6 +39,7 @@
 @import './components/molecules/home_main_btns';
 @import './components/molecules/home_menus';
 @import './components/molecules/profile_edit_form';
+@import './components/molecules/passwd_edit_form';
 
 // pages
 @import './pages/login';
@@ -47,3 +48,4 @@
 @import './pages/home';
 @import './pages/setting';
 @import './pages/edit_profile';
+@import './pages/edit_passwd';

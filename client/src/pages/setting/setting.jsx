@@ -22,13 +22,13 @@ const Setting = () => {
   };
 
   const MoveEditProfile = () => {
-    navigate('/setting/edit');
+    navigate('/setting/profile');
   };
 
   const MoveEditPassword = () => {
     if (userProvider === 'local') return;
 
-    navigate('/setting/password');
+    navigate('/setting/passwd');
   };
 
   const MoveRecord = () => {
