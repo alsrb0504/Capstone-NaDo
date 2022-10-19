@@ -13,11 +13,6 @@ const initialState = {
   isLogin: false,
 };
 
-function PrintError(e, src) {
-  console.log(`${src} 에러 : ${e.message}`);
-  console.error(e);
-}
-
 // *
 // 프로필 업데이트 함수
 // 아직 reducer에 연결 X.
@@ -200,11 +195,7 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     // 세션 유저정보 획득
     builder
-      .addCase(GetUserWithSession.pending, (state) => {
-        state.isFetching = true;
-        state.isSuccess = false;
-        state.isError = false;
-      })
+      .addCase(GetUserWithSession.pending, (state) => StartLoading(state))
       .addCase(GetUserWithSession.fulfilled, (state, { payload }) => {
         const { nickname, email, provider } = payload;
         state.isFetching = false;
@@ -214,33 +205,21 @@ export const userSlice = createSlice({
         state.userEmail = email;
         state.userProvider = provider;
       })
-      .addCase(GetUserWithSession.rejected, (state) => {
-        state.isFetching = false;
-        state.isError = true;
-      });
+      .addCase(GetUserWithSession.rejected, (state) => ReceiveError(state));
     //
     // 로컬 회원가입 thunk
     builder
-      .addCase(LocalSignup.pending, (state) => {
-        state.isFetching = true;
-        state.isSuccess = false;
-        state.isError = false;
-      })
+      .addCase(LocalSignup.pending, (state) => StartLoading(state))
       .addCase(LocalSignup.fulfilled, (state) => {
         state.isFetching = false;
         state.isSuccess = true;
       })
-      .addCase(LocalSignup.rejected, (state) => {
-        state.isFetching = false;
-        state.isError = true;
-      });
+      .addCase(LocalSignup.rejected, (state) => ReceiveError(state));
     //
     // 로컬 로그인 thunk
     builder
       .addCase(LocalLogin.pending, (state) => {
-        state.isFetching = true;
-        state.isSuccess = false;
-        state.isError = false;
+        StartLoading(state);
         state.isLogin = false;
       })
       .addCase(LocalLogin.fulfilled, (state, { payload }) => {
@@ -252,17 +231,11 @@ export const userSlice = createSlice({
         state.userEmail = email;
         state.userProvider = provider;
       })
-      .addCase(LocalLogin.rejected, (state) => {
-        state.isFetching = false;
-        state.isError = true;
-      });
+      .addCase(LocalLogin.rejected, (state) => ReceiveError(state));
     //
     // 로컬 로그아웃 thunk
     builder
-      .addCase(LocalLogout.pending, (state) => {
-        state.isFetching = true;
-        state.isError = false;
-      })
+      .addCase(LocalLogout.pending, (state) => StartLoading(state))
       .addCase(LocalLogout.fulfilled, (state) => {
         state.isFetching = false;
         state.isLogin = false;
@@ -270,11 +243,28 @@ export const userSlice = createSlice({
         state.userEmail = '';
         state.userProvider = '';
       })
-      .addCase(LocalLogout.rejected, (state) => {
-        state.isFetching = false;
-        state.isError = true;
-      });
+      .addCase(LocalLogout.rejected, (state) => ReceiveError(state));
   },
 });
+
+function PrintError(e, src) {
+  console.log(`${src} 에러 : ${e.message}`);
+  console.error(e);
+}
+
+function StartLoading(state) {
+  Object.assign(state, {
+    isFetching: true,
+    isSuccess: false,
+    isError: false,
+  });
+}
+
+function ReceiveError(state) {
+  Object.assign(state, {
+    isFetching: false,
+    isError: true,
+  });
+}
 
 export default userSlice.reducer;
