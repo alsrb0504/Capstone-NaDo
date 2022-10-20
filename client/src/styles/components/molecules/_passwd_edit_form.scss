@@ -1,0 +1,15 @@
+.passwd-edit-form {
+  flex: 1;
+  @include column-flexbox(start);
+  width: 100%;
+
+  .line-input {
+    margin-bottom: 16px;
+  }
+
+  &-btn {
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: 18px;
+  }
+}

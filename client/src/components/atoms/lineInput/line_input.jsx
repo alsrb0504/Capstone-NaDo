@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const LineInput = ({ desc, id, val, register, condition }) => (
+const LineInput = ({ desc, id, val, type, register, condition }) => (
   <input
     {...register(id, {
       value: val,
@@ -10,7 +10,7 @@ const LineInput = ({ desc, id, val, register, condition }) => (
     })}
     id={id}
     className="line-input"
-    type="text"
+    type={type || 'text'}
     placeholder={desc}
     disabled={!!val}
   />

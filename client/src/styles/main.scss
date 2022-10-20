@@ -25,6 +25,7 @@
 @import './components/atoms/cards/picking_card';
 @import './components/atoms/cards/ordering_card';
 @import './components/atoms/cards/pickup_ready_card';
+@import './components/atoms/cards/profile_card';
 @import './components/atoms/btns/btn';
 @import './components/atoms/btns/btn_profile';
 @import './components/atoms/btns/btn_squre_box';
@@ -37,9 +38,14 @@
 @import './components/molecules/home_header';
 @import './components/molecules/home_main_btns';
 @import './components/molecules/home_menus';
+@import './components/molecules/profile_edit_form';
+@import './components/molecules/passwd_edit_form';
 
 // pages
 @import './pages/login';
 @import './pages/social_register';
 @import './pages/local_register';
 @import './pages/home';
+@import './pages/setting';
+@import './pages/edit_profile';
+@import './pages/edit_passwd';
