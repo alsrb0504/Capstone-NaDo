@@ -55,6 +55,7 @@ const ProfileEditForm = () => {
         {/* 추후 디폴트 이미지로 교체 */}
         <div className="avatar">
           <img
+            className="avatar-img"
             src={
               avatarPreview ||
               'https://cdn.pixabay.com/photo/2022/10/16/13/53/early-morning-7525151_960_720.jpg' ||
@@ -70,6 +71,10 @@ const ProfileEditForm = () => {
             id="profile"
             accept="image/*"
           />
+        </div>
+
+        <div className="camera-container">
+          <img className="camera-img" src="/icon/camera.svg" alt="카메라" />
         </div>
       </div>
 
