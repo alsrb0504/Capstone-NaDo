@@ -49,7 +49,6 @@
       "no-param-reassign": 0,
       "react/jsx-props-no-spreading": "off",
       "no-use-before-define": "off"
-
     },
     "env": {
       "browser": true

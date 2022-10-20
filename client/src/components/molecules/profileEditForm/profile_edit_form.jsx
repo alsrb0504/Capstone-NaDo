@@ -1,6 +1,8 @@
+import { ErrorMessage } from '@hookform/error-message';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { NicknameCond } from '../../../services/formCondition';
 import { UpdateProfile } from '../../../store/features/user';
 import Btn from '../../atoms/btn/btn';
 import LineInput from '../../atoms/lineInput/line_input';
@@ -12,7 +14,12 @@ const ProfileEditForm = () => {
   const { userNickname } = useSelector((state) => state.user);
 
   // default Value
-  const { register, handleSubmit, watch } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm({
     defaultValues: {
       nickname: userNickname,
       // image: userProfile
@@ -20,8 +27,9 @@ const ProfileEditForm = () => {
     },
   });
 
-  const [avatarPreview, setAvatarPreview] = useState('');
+  const NicknameCondition = NicknameCond;
 
+  const [avatarPreview, setAvatarPreview] = useState('');
   const avatar = watch('image');
 
   useEffect(() => {
@@ -65,13 +73,20 @@ const ProfileEditForm = () => {
         </div>
       </div>
 
-      <LineInput
-        desc={userNickname}
-        // 에러 처리 핸들러 추가할 예정.
-        // condition={}
-        id="nickname"
-        register={register}
-      />
+      <div className="line-input-container">
+        <LineInput
+          desc={userNickname}
+          condition={NicknameCondition}
+          id="nickname"
+          register={register}
+        />
+        <ErrorMessage
+          errors={errors}
+          name="nickname"
+          as="p"
+          className="line-input-error is-margin-bottom"
+        />
+      </div>
 
       <div className="edit-profile-form-btn">
         <Btn type="submit" text="프로필 수정 완료" />
