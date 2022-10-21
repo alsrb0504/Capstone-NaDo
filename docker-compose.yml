@@ -14,6 +14,8 @@ services:
       - nado-mysql
       - nado-redis
     platform: linux/amd64
+    ports:
+      - "4002:3000"
     networks:
       - back_end
   nado-mysql:

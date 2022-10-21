@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
-import { Logger } from '@nestjs/common';
+import { BadRequestException, Logger, ValidationPipe } from '@nestjs/common';
 
 
 import { AppModule } from './app.module';
@@ -17,6 +17,20 @@ import { HttpExceptionFilter } from './http.exception';
 async function bootstrap() {
   const logger = new Logger();
   const app = await NestFactory.create(AppModule);
+
+  app.useGlobalPipes(new ValidationPipe({
+    exceptionFactory: (errors) => {
+      const errorMessages = {};
+      errors.forEach(error => {
+        if(error.value === undefined) {
+          errorMessages[error.property]= "this property is not existed" 
+        } else {
+          errorMessages[error.property]= Object.values(error.constraints).join('. ').trim();
+        }
+      })
+      return new BadRequestException(errorMessages);
+    }
+  }))
 
   const configService = app.get<ConfigService>(ConfigService);
 

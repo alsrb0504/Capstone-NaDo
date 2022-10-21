@@ -22,9 +22,7 @@ export class AuthService {
     identifier: string,
     password: string
   ) {
-    console.log(identifier, password)
     const userInfo = await this.userService.findById(identifier)
-    console.log(userInfo)
 
     if(userInfo && await bcrypt.compare(password, userInfo.password)) {
       const { password, ...userInfoWithoutPassword} = userInfo
