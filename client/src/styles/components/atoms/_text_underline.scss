@@ -1,0 +1,17 @@
+.text-underline {
+    @include column-flexbox(start,start);
+    width: 100%;
+    height: 56px;
+
+    h3 {
+      position: relative;
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .bar {
+      width: 100%;
+      height: 8px;
+      background-color: $secondary;
+    }
+}
