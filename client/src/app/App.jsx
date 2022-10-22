@@ -13,6 +13,8 @@ import { GetUserWithSession } from '../store/features/user';
 import Setting from '../pages/setting/setting';
 import EditProfile from '../pages/editProfile/edit_profile';
 import ChangePassword from '../pages/edtiPasswd/edit_passwd';
+import Option from '../pages/option/option';
+// Option화면 테스트후 삭제 필요
 
 const App = () => {
   const dispatch = useDispatch();
@@ -28,6 +30,8 @@ const App = () => {
         <div className="row">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/option" element={<Option />} />
+            {/* Option화면 테스트후 삭제 필요 */}
             <Route path="/login" element={<Login />} />
             <Route path="/register">
               <Route path="local" element={<LocalRegister />} />
