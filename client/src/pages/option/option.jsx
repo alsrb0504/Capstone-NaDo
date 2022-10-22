@@ -26,8 +26,21 @@ const Option = () => {
         <OptionCheckbox
           text="ICE"
         />
+
+        <OptionCheckbox
+          text="HOT"
+        />
+
         <OptionUnderline
             text="에스프레소 샷 추가 (최대 1개)"
+        />
+
+        <OptionCheckbox
+          text="1 샷 추가 (+500원)"
+        />
+
+        <OptionCheckbox
+          text="2 샷 추가 (+1000원)"
         />
     
     </div>
