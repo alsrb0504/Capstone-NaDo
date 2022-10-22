@@ -5,7 +5,7 @@ import Btn from '../../atoms/btn/btn';
 import LineInput from '../../atoms/lineInput/line_input';
 import { IdCond, PasswdCond, NicknameCond } from '../../../services/formCondition';
 
-const SignupLocalForm = ({ LocalSignup }) => {
+const SignupLocalForm = ({ SignupWithLocal }) => {
   const {
     register,
     handleSubmit,
@@ -30,7 +30,7 @@ const SignupLocalForm = ({ LocalSignup }) => {
 
     console.log('form info', data);
 
-    LocalSignup(data);
+    SignupWithLocal(data);
     reset();
   };
 
