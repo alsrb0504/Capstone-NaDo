@@ -1,0 +1,23 @@
+.signup-local-form {
+  width: 100%;
+  margin-bottom: 24px;
+
+  &:nth-child(3) {
+    background-color: pink;
+  }
+
+  .line-input {
+    margin-bottom: 8px;
+  }
+
+  button {
+    margin-top: 16px;
+  }
+}
+
+.signup-local-form-btn-complete{
+  width: 100%;
+  padding-right: 40px; //fixed했을 때, 크기가 이상해져서 패딩으로 하드코딩함
+  position: fixed;
+  bottom: 5%;
+}
