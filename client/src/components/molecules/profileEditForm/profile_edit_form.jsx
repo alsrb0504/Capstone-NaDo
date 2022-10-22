@@ -11,7 +11,7 @@ const ProfileEditForm = () => {
   const dispatch = useDispatch();
 
   // 추후 이미지도 가져올 수 있도록 수정
-  const { userNickname } = useSelector((state) => state.user);
+  const { userNickname, userId } = useSelector((state) => state.user);
 
   // default Value
   const {
@@ -24,6 +24,7 @@ const ProfileEditForm = () => {
       nickname: userNickname,
       // image: userProfile
       image: '',
+      identifier: userId,
     },
   });
 
