@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/atoms/header/header';
+import OptionCheckbox from '../../components/atoms/optionCheckbox/option_checkbox';
 import OptionUnderline from '../../components/atoms/optionUnderline/option_underline';
 import TextUnderline from '../../components/atoms/textUnderline/text_underline';
 
@@ -15,13 +16,16 @@ const Option = () => {
         <Header title="스타벅스" handleClick={MoveBack} />
 
         <TextUnderline 
-            text="녹차 라떼"
+          text="녹차 라떼"
         />
 
         <OptionUnderline
-            text="ICE / HOT"
+          text="ICE / HOT"
         />
 
+        <OptionCheckbox
+          text="ICE"
+        />
         <OptionUnderline
             text="에스프레소 샷 추가 (최대 1개)"
         />
