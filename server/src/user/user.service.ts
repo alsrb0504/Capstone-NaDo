@@ -46,9 +46,9 @@ export class UserService {
   ) {
 
     try {
-      const {newPassword, identifier} = newUserInfo
+      const {newPasswd, identifier} = newUserInfo
       const salt = await bcrypt.genSalt(10)
-      const password = await bcrypt.hash(newPassword, salt)
+      const password = await bcrypt.hash(newPasswd, salt)
       
       await this.userRepository
         .createQueryBuilder('user')
@@ -66,11 +66,11 @@ export class UserService {
   async checkPassword(
     userCredentials: Partial<change_password>
   ) {
-
     const userInfo = await this.findById(userCredentials.identifier)
     if(!userInfo) throw new ForbiddenException("user is not exist")
+    console.log(userCredentials.prevPasswd, userInfo.password)
 
-    return await bcrypt.compare(userCredentials.prevPassword, userInfo.password)
+    return await bcrypt.compare(userCredentials.prevPasswd, userInfo.password)
   }
 
   async changeNickname(

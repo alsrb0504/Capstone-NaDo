@@ -1,10 +1,11 @@
-import { Body, Controller, ForbiddenException, Get, HttpCode, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, ForbiddenException, Get, HttpCode, InternalServerErrorException, Post, Query, UseGuards, Request } from '@nestjs/common';
 import { UserService } from './user.service';
 
 import User from 'src/entity/user.entity';
 import { isLoggedInGuard } from 'src/auth/guard/cookieAuthentication.guard';
 import { change_password, IdWithNickname } from './type/user.type';
 import { IdWithNicknamePipe } from './pipe/user.pipe';
+import { ReqWithUser } from 'src/auth/type/request.type';
 
 @Controller('user')
 export class UserController {
@@ -31,21 +32,28 @@ export class UserController {
   }
 
   @UseGuards(isLoggedInGuard)
+  @HttpCode(200)
   @Post('change_password')
   async changePassword(
+    @Request() req: ReqWithUser,
     @Body() user: change_password
   ) {
     const isPasswordSame = await this.userService.checkPassword({
-      identifier: user.identifier,
-      prevPassword: user.prevPassword
+      prevPasswd: user.prevPasswd,
+      identifier: req.user.identifier
     })
 
     if(!isPasswordSame) throw new ForbiddenException("this password is not same the stored password")
+    try {
+      await this.userService.passwordUpdate({
+        newPasswd: user.newPasswd,
+        identifier: req.user.identifier
+      })
+      return 'success'
+    } catch (err) {
+      throw new InternalServerErrorException(err.message)
+    }
 
-    await this.userService.passwordUpdate({
-      newPassword: user.newPassword,
-      identifier: user.identifier
-    })
   }
 
   @UseGuards(isLoggedInGuard)

@@ -1,8 +1,8 @@
 import { PartialType, PickType } from '@nestjs/mapped-types' 
 export interface change_password {
-  identifier: string,
-  prevPassword: string,
-  newPassword: string
+  identifier?: string
+  prevPasswd: string,
+  newPasswd: string
 }
 
 import { IsString, MinLength, MaxLength, IsOptional, IsEmail } from 'class-validator';

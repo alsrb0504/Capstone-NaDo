@@ -31,9 +31,7 @@ const PasswdEditForm = () => {
     console.log(prevPasswd, newPasswd, newPasswd2);
 
     // 나중에 제거
-    if (false) {
-      dispatch(ChangePasswd({ prevPasswd, newPasswd }));
-    }
+    dispatch(ChangePasswd({ prevPasswd, newPasswd }));
   };
 
   return (
