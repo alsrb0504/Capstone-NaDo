@@ -48,7 +48,8 @@
       "react/prop-types": "off",
       "no-param-reassign": 0,
       "react/jsx-props-no-spreading": "off",
-      "no-use-before-define": "off"
+      "no-use-before-define": "off",
+      "react/jsx-fragments": "off"
     },
     "env": {
       "browser": true

@@ -35,10 +35,10 @@ const Home = () => {
       <HomeMenus />
 
       {isLogin && (
-        <>
+        <React.Fragment>
           <h3>{userNickname}님 환영합니다.</h3>
           <Btn type="button" color="" text="로그아웃" handleClick={Logout} />
-        </>
+        </React.Fragment>
       )}
       {!isLogin && <h3>로그인을 해주세요</h3>}
 

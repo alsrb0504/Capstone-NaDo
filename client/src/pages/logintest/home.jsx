@@ -18,14 +18,14 @@ const TestHome = () => {
   }, [navigate, isLogin]);
 
   return (
-    <>
+    <div>
       <div>TestHome</div>
       <br />
       <h3>{userNickname}님 환영합니다.</h3>
       <button type="button" onClick={logout}>
         Logout
       </button>
-    </>
+    </div>
   );
 };
 
