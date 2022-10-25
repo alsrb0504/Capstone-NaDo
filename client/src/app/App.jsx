@@ -13,6 +13,7 @@ import { GetUserWithSession } from '../store/features/user';
 import Setting from '../pages/setting/setting';
 import EditProfile from '../pages/editProfile/edit_profile';
 import ChangePassword from '../pages/edtiPasswd/edit_passwd';
+import OrderHome from '../pages/order/orderHome/order_home';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,11 @@ const App = () => {
               <Route path="profile" element={<EditProfile />} />
               <Route path="passwd" element={<ChangePassword />} />
             </Route>
+
+            <Route path="/order">
+              <Route index element={<OrderHome />} />
+            </Route>
+
             {/* 구분선 : 테스트 페이지 */}
             <Route path="/test/*" element={<TestApp />} />
           </Routes>
