@@ -22,16 +22,17 @@ const initialState = {
 export const UpdateProfile = createAsyncThunk(
   'user/UpdateProfile',
   async ({ nickname, image, identifier }, thunkAPI) => {
-    console.log(nickname, image);
-
+    //  *
+    // 테스트용 프로필 변경 요청
+    // 아이디, 닉네임, 이미지를 같이 보냄.
+    // *
     try {
       const formData = new FormData();
       formData.append('image', image[0]);
+      formData.append('identifier', identifier);
+      formData.append('nickname', nickname);
 
-      console.log(`image = ${image}`);
-      console.log(formData);
-
-      const img_res = await axios({
+      const response = await axios({
         method: 'post',
         url: 'http://localhost:3001/user/profile_image',
         data: formData,
@@ -40,30 +41,54 @@ export const UpdateProfile = createAsyncThunk(
         },
       });
 
-      console.log(img_res);
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.response.data);
-    }
+      console.log(response);
 
-    // 추후 api 주소 정하면 교체
-    try {
-      const response = await axios.post(
-        'http://localhost:3001/user/change_nickname',
-        {
-          identifier,
-          nickname,
-        },
-      );
-
-      // 업데이트 된, 닉네임, 프로필 이미지 정보 받아옴.
-      if (response.status === 200) {
-        return response.data;
-      }
       return thunkAPI.rejectWithValue(response.data);
     } catch (e) {
       PrintError(e, '프로필 업데이트');
       return thunkAPI.rejectWithValue(e.response.data);
     }
+
+    // try {
+    //   const formData = new FormData();
+    //   formData.append('image', image[0]);
+
+    //   console.log(`image = ${image}`);
+    //   console.log(formData);
+
+    //   const imgResponse = await axios({
+    //     method: 'post',
+    //     url: 'http://localhost:3001/user/profile_image',
+    //     data: formData,
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data',
+    //     },
+    //   });
+
+    //   console.log(imgResponse);
+    // } catch (e) {
+    //   return thunkAPI.rejectWithValue(e.response.data);
+    // }
+
+    // // 추후 api 주소 정하면 교체
+    // try {
+    //   const response = await axios.post(
+    //     'http://localhost:3001/user/change_nickname',
+    //     {
+    //       identifier,
+    //       nickname,
+    //     },
+    //   );
+
+    //   // 업데이트 된, 닉네임, 프로필 이미지 정보 받아옴.
+    //   if (response.status === 200) {
+    //     return response.data;
+    //   }
+    //   return thunkAPI.rejectWithValue(response.data);
+    // } catch (e) {
+    //   PrintError(e, '프로필 업데이트');
+    //   return thunkAPI.rejectWithValue(e.response.data);
+    // }
   },
 );
 
