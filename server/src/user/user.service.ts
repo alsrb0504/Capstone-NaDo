@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import * as bcrypt from 'bcryptjs'
 
 import User from 'src/entity/user.entity';
-import { change_password, IdWithNickname } from './type/user.type';
+import { change_password, Nickname } from './type/user.type';
 
 @Injectable()
 export class UserService {
@@ -73,22 +73,22 @@ export class UserService {
     return await bcrypt.compare(userCredentials.prevPasswd, userInfo.password)
   }
 
-  async changeNickname(
-    idWithNickname: IdWithNickname
-  ) {
-    const {identifier, nickname} = idWithNickname
+  // async changeProfile(
+  //   idWithNickname: any
+  // ) {
+  //   const {nickname} = idWithNickname
 
-    try {
-      await this.userRepository
-      .createQueryBuilder('user')
-      .update(User)
-      .set({ nickname })
-      .where("identifier = :identifier", {identifier})
-      .execute() 
-    } catch (err) {
-      throw new ForbiddenException(err.message)
-    }
-  }
+  //   try {
+  //     await this.userRepository
+  //     .createQueryBuilder('user')
+  //     .update(User)
+  //     .set({ nickname })
+  //     .where("identifier = :identifier", {identifier})
+  //     .execute() 
+  //   } catch (err) {
+  //     throw new ForbiddenException(err.message)
+  //   }
+  // }
 
 }
 

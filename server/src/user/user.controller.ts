@@ -1,11 +1,15 @@
-import { Body, Controller, ForbiddenException, Get, HttpCode, InternalServerErrorException, Post, Query, UseGuards, Request } from '@nestjs/common';
+import { Body, Controller, ForbiddenException, Get, HttpCode, InternalServerErrorException, Post, Query, UseGuards, Request, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { UserService } from './user.service';
 
 import User from 'src/entity/user.entity';
 import { isLoggedInGuard } from 'src/auth/guard/cookieAuthentication.guard';
-import { change_password, IdWithNickname } from './type/user.type';
+import { change_password, Nickname } from './type/user.type';
 import { IdWithNicknamePipe } from './pipe/user.pipe';
 import { ReqWithUser } from 'src/auth/type/request.type';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { v4 as uuidv4} from 'uuid'
+import * as path from 'path';
 
 @Controller('user')
 export class UserController {
@@ -57,10 +61,25 @@ export class UserController {
   }
 
   @UseGuards(isLoggedInGuard)
-  @Post('change_nickname')
+  @UseInterceptors(FileInterceptor('file', {
+    storage: diskStorage({
+      destination: path.join(__dirname, "../", "static", "images"),
+      filename: (req, file, cb) => {
+        const fileName = path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4()
+        const extensionName = path.parse(file.originalname).ext
+        cb(null, `${fileName}${extensionName}`)
+      }
+    })
+  }))
+  @Post('change_profile')
   async changeNickname(
-    @Body(IdWithNicknamePipe) idWithNickname: IdWithNickname
+    @Body(IdWithNicknamePipe) nickname: Nickname,
+    @UploadedFile() profileFile: Express.Multer.File
   ){
-    this.userService.changeNickname(idWithNickname)
+    return {
+      nickname: nickname.nickname,
+      imagePath: profileFile.path
+    } 
+    // await this.userService.changeProfile(nickname)
   }
 }
