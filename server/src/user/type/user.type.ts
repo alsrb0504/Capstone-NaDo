@@ -34,4 +34,4 @@ export class CreateUserDto {
 
 }
 
-export class IdWithNickname extends PickType(CreateUserDto, ['identifier', 'nickname']){}
+export class Nickname extends PickType(CreateUserDto, ['nickname']){}

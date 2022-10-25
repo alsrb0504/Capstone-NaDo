@@ -34,11 +34,14 @@ export const UpdateProfile = createAsyncThunk(
 
       const response = await axios({
         method: 'post',
-        url: 'http://localhost:3001/user/profile_image',
+        url: 'http://localhost:3001/user/change_profile',
         data: formData,
         headers: {
           'Content-Type': 'multipart/form-data',
         },
+        body: {
+          nickname: 'asdf'
+        }
       });
 
       console.log(response);
