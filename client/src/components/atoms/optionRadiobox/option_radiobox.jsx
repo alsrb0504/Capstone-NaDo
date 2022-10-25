@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 
-const OptionCheckbox = ({ text }) => {
+const OptionRadiobox = ({ text }) => {
     const [isChecked, setIsChecked] = useState(false);
 
     return (
-    <div className='option-checkbox'>
+    <div className='option-radiobox'>
         <h3>{text}</h3>
-        <label className='icon-box' htmlFor='checkbox1'>
+        <label className='icon-box' htmlFor='radiobox1'>
             <input 
-            type='checkbox' 
-            id='checkbox1' 
+            id='radiobox1'
+            type='radio'  
             checked={isChecked}
             onChange={() => setIsChecked((prev) => !prev)}
             className={isChecked ? "checked" : "none"}
@@ -19,4 +19,4 @@ const OptionCheckbox = ({ text }) => {
     );
 };
 
-export default OptionCheckbox;
+export default OptionRadiobox;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/atoms/header/header';
-import OptionCheckbox from '../../components/atoms/optionCheckbox/option_checkbox';
+import OptionRadiobox from '../../components/atoms/optionRadiobox/option_radiobox';
 import OptionUnderline from '../../components/atoms/optionUnderline/option_underline';
 import TextUnderline from '../../components/atoms/textUnderline/text_underline';
 
@@ -23,11 +23,11 @@ const Option = () => {
           text="ICE / HOT"
         />
 
-        <OptionCheckbox
+        <OptionRadiobox
           text="ICE"
         />
 
-        <OptionCheckbox
+        <OptionRadiobox
           text="HOT"
         />
 
@@ -35,11 +35,11 @@ const Option = () => {
             text="에스프레소 샷 추가 (최대 1개)"
         />
 
-        <OptionCheckbox
+        <OptionRadiobox
           text="1 샷 추가 (+500원)"
         />
 
-        <OptionCheckbox
+        <OptionRadiobox
           text="2 샷 추가 (+1000원)"
         />
     
