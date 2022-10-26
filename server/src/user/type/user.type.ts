@@ -34,4 +34,10 @@ export class CreateUserDto {
 
 }
 
+export class Change_Profile extends PickType(CreateUserDto, ['identifier', 'nickname']) {
+  @IsString()
+  @IsOptional()
+  imagePath: string
+}
+
 export class Nickname extends PickType(CreateUserDto, ['nickname']){}

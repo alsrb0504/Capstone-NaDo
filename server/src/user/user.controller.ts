@@ -1,4 +1,4 @@
-import { Body, Controller, ForbiddenException, Get, HttpCode, InternalServerErrorException, Post, Query, UseGuards, Request, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { Body, Controller, ForbiddenException, HttpCode, InternalServerErrorException, Post, Query, UseGuards, Request, UseInterceptors, UploadedFile, Get } from '@nestjs/common';
 import { UserService } from './user.service';
 
 import User from 'src/entity/user.entity';
@@ -57,13 +57,16 @@ export class UserController {
     } catch (err) {
       throw new InternalServerErrorException(err.message)
     }
-
   }
 
   @UseGuards(isLoggedInGuard)
-  @UseInterceptors(FileInterceptor('file', {
+  @UseInterceptors(FileInterceptor('image', {
     storage: diskStorage({
-      destination: path.join(__dirname, "../", "static", "images"),
+      destination: (req, file, cb) => {
+        const imageSavePath = path.join(__dirname, "..", "static", "images/")
+        console.log(imageSavePath)
+        cb(null, imageSavePath)
+      },
       filename: (req, file, cb) => {
         const fileName = path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4()
         const extensionName = path.parse(file.originalname).ext
@@ -72,14 +75,19 @@ export class UserController {
     })
   }))
   @Post('change_profile')
+  @HttpCode(200)
   async changeNickname(
-    @Body(IdWithNicknamePipe) nickname: Nickname,
+    @Request() req: ReqWithUser,
+    @Body(IdWithNicknamePipe) body: Nickname,
     @UploadedFile() profileFile: Express.Multer.File
   ){
+    await this.userService.changeProfile({
+      nickname: body.nickname,
+      imagePath: profileFile.filename,
+      identifier: req.user.identifier 
+    })
     return {
-      nickname: nickname.nickname,
-      imagePath: profileFile.path
+      status: 'success'
     } 
-    // await this.userService.changeProfile(nickname)
   }
 }

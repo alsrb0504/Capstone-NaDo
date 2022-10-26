@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { AppService } from './app.service'; 
 
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm'; 
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path'
 import { UserModule } from './user/user.module';
 import { StoreModule } from './store/store.module';
 import { AuthModule } from './auth/auth.module';
@@ -21,6 +23,10 @@ import Pickedorder from './entity/pickedorder.entity';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, 'static', 'images'),
+      serveRoot: "/file"
+    }),
     ConfigModule.forRoot({
       load: [configuration],
       envFilePath: ['.env.server']
