@@ -1,10 +1,10 @@
-import { ForbiddenException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { ForbiddenException, Injectable, InternalServerErrorException, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcryptjs'
 
 import User from 'src/entity/user.entity';
-import { change_password, Nickname } from './type/user.type';
+import { change_password, Change_Profile, Nickname } from './type/user.type';
 
 @Injectable()
 export class UserService {
@@ -73,22 +73,46 @@ export class UserService {
     return await bcrypt.compare(userCredentials.prevPasswd, userInfo.password)
   }
 
-  // async changeProfile(
-  //   idWithNickname: any
-  // ) {
-  //   const {nickname} = idWithNickname
+  async changeProfile(
+    profileInfo : Change_Profile
+  ) {
+    const {nickname, imagePath, identifier} = profileInfo
 
-  //   try {
-  //     await this.userRepository
-  //     .createQueryBuilder('user')
-  //     .update(User)
-  //     .set({ nickname })
-  //     .where("identifier = :identifier", {identifier})
-  //     .execute() 
-  //   } catch (err) {
-  //     throw new ForbiddenException(err.message)
-  //   }
-  // }
+    
+
+    try {
+      await this.userRepository
+      .createQueryBuilder('user')
+      .update(User)
+      .set({ 
+        nickname,
+        imagePath
+      })
+      .where("identifier = :identifier", {identifier})
+      .execute() 
+    } catch (err) {
+      throw new InternalServerErrorException(err.message)
+    }
+  }
+
+  async fetchProfileImage(
+    identifier: string
+  ) {
+    try {
+      const imagePath = await this.userRepository
+        .createQueryBuilder('user')
+        .select("imagePath")
+        .from(User, "user")
+        .where("user.identifier = :identifier", { identifier })
+        .getOne()
+
+      console.log(imagePath)
+      
+      return imagePath
+    } catch (err) {
+      throw new InternalServerErrorException(err.message)
+    }
+  }
 
 }
 

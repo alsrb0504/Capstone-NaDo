@@ -27,6 +27,7 @@ export const UpdateProfile = createAsyncThunk(
     try {
       const formData = new FormData();
       formData.append('image', image[0]);
+      formData.append('nickname', nickname)
 
       console.log(`image = ${image}`);
       console.log(formData);

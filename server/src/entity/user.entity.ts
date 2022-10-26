@@ -43,6 +43,12 @@ export default class User {
   })
   provider: string
 
+  @Column({
+    type: 'varchar',
+    nullable: true
+  })
+  imagePath: string
+
   @CreateDateColumn({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
