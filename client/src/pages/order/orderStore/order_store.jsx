@@ -11,7 +11,10 @@ import StoreMenuSection from '../../../components/molecules/storeMenuSection/sto
 const OrderStore = () => {
   const navigate = useNavigate();
 
-  const { selectedStore } = useSelector((state) => state.order);
+  const { selectedStore, defaultMenuLists } = useSelector(
+    (state) => state.order,
+  );
+
   const {
     shopName,
     shopImg,
@@ -23,6 +26,11 @@ const OrderStore = () => {
 
   const MoveBack = () => navigate('/order');
   const MoveCart = () => navigate('/order/cart');
+
+  const CheckMenuList = () => {
+    if (Object.keys(menuLists).length !== 0) return menuLists;
+    return defaultMenuLists;
+  };
 
   return (
     <div className="col-sm-4 order-store">
@@ -40,7 +48,7 @@ const OrderStore = () => {
 
       <StoreMapSection locationLatLong={locationLatLong} />
 
-      <StoreMenuSection menuLists={menuLists} />
+      <StoreMenuSection menuLists={CheckMenuList()} />
 
       <Footer />
     </div>

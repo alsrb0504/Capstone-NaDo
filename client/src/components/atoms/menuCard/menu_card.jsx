@@ -10,7 +10,11 @@ const MenuCard = ({ menuInfo }) => {
         <p>{coffeePrice} 원</p>
       </div>
       <div className="menu-card-img-container">
-        <img src={coffeeImgUrl} alt="커피 이미지" />
+        <img
+          // src={coffeeImgUrl || '/images/default_coffee.jpg'}
+          src={coffeeImgUrl || '/images/default_coffee_2.jpg'}
+          alt="커피 이미지"
+        />
       </div>
     </div>
   );
