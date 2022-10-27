@@ -4,6 +4,7 @@ const storeData = {
     shopImg:
       'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210206_8%2F1612608733761KSgIs_JPEG%2F94UFLn_jq-3FzBnYnzRbGV8U.jpeg.jpg',
     shopAddress: '경기 용인시 수지구 죽전로144번길 15-14',
+    locationLatLong: { lat: 37.3227651, long: 127.125166 },
     shopContactNumber: '031-889-1319',
     shopOpenTime_: {
       수: { open: '10:00', deadline: '22:00' },
@@ -39,6 +40,7 @@ const storeData = {
   새날: {
     shopName: '새날',
     shopAddress: '경기 용인시 수지구 죽전로 152',
+    locationLatLong: { lat: 37.3229512, long: 127.1279079 },
     shopContactNumber: '031-262-9168',
     shopOpenTime_: { no: 'data' },
     menuLists: {},
@@ -47,6 +49,7 @@ const storeData = {
   오르스커피: {
     shopName: '오르스커피',
     shopAddress: '경기 용인시 수지구 죽전로 152 (죽 전동, 단국대학교) 역사관',
+    locationLatLong: { lat: 37.3195412, long: 127.1300753 },
     shopContactNumber: '031-262-9168',
     shopOpenTime_: { no: 'data' },
     menuLists: {},
@@ -55,6 +58,7 @@ const storeData = {
   '드롭탑 용인단국대점': {
     shopName: '드롭탑 용인단국대점',
     shopAddress: '경기 용인시 수지구 죽전로 152 단국대학교 퇴계기념도서관 2층',
+    locationLatLong: { lat: 37.3229512, long: 127.1279079 },
     shopContactNumber: '',
     shopOpenTime_: { 매: { open: '08:00', deadline: '21:00' } },
     menuLists: {
@@ -113,6 +117,7 @@ const storeData = {
     shopImg:
       'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20170221_157%2F1487638991083vDYgX_JPEG%2F186171503330_0.jpg',
     shopAddress: '경기 용인시 수지구 죽전로 152 단국대학교',
+    locationLatLong: { lat: 37.3229512, long: 127.1279079 },
     shopContactNumber: '031-8005-4100',
     shopOpenTime_: { no: 'data' },
     menuLists: {
@@ -129,6 +134,7 @@ const storeData = {
     shopImg:
       'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20220923_205%2F1663914309622jBM52_JPEG%2FED79F2B5-C2A7-4EAC-8368-949A63D546CD.jpeg',
     shopAddress: '경기 용인시 수지구 죽전로 152 단국대학교 상경관2층',
+    locationLatLong: { lat: 37.3229512, long: 127.1279079 },
     shopContactNumber: '031-8005-4128',
     shopOpenTime_: {
       수: { open: '08:00', deadline: '19:00' },
@@ -147,6 +153,7 @@ const storeData = {
     shopImg:
       'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210909_184%2F1631172510592rJvAb_JPEG%2Fu1Y_-UzO1PVBUqjZ6kumdHp5.jpg',
     shopAddress: '경기 용인시 수지구 죽전로 152 소프트웨어 ICT관 b103호',
+    locationLatLong: { lat: 37.3229512, long: 127.1279079 },
     shopContactNumber: '0507-1396-9886',
     shopOpenTime_: { 매: { open: '10:00', deadline: '23:59' } },
     menuLists: {},
@@ -157,6 +164,7 @@ const storeData = {
     shopImg:
       'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20150901_75%2F14410491996114c6t5_JPEG%2F13518935_0.jpg',
     shopAddress: '경기 용인시 수지구 죽전로 152 단국대학교',
+    locationLatLong: { lat: 37.3229512, long: 127.1279079 },
     shopContactNumber: '031-8005-4009',
     shopOpenTime_: { no: 'data' },
     menuLists: {},
@@ -167,6 +175,7 @@ const storeData = {
     shopImg:
       'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20221022_169%2F1666434570179zR7l9_JPEG%2F9727B018-465B-4FB9-A23C-25E5AB71736E.jpeg',
     shopAddress: '경기 용인시 수지구 죽전로144번길 15-10',
+    locationLatLong: { lat: 37.3226857, long: 127.1250293 },
     shopContactNumber: '031-889-5667',
     shopOpenTime_: {
       수: { open: '09:00', deadline: '24:00' },
@@ -185,6 +194,7 @@ const storeData = {
     shopImg:
       'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20170510_271%2F1494390516637joflY_JPEG%2F186460535854.JPG',
     shopAddress: '경기 용인시 수지구 죽전로144번길 15-4',
+    locationLatLong: { lat: 37.3225807, long: 127.1247214 },
     shopContactNumber: '031-889-8970',
     shopOpenTime_: { no: 'data' },
     menuLists: {
@@ -201,6 +211,7 @@ const storeData = {
     shopImg:
       'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20220912_90%2F16629587460749HLHh_JPEG%2F2CFC9C76-0523-4DB1-93BD-322E251AF906.jpeg',
     shopAddress: '경기 용인시 수지구 죽전로144번길 15-9 1층 CREATIVE COFFEE',
+    locationLatLong: { lat: 37.3228956, long: 127.1249016 },
     shopContactNumber: '0507-1302-7432',
     shopOpenTime_: {
       수: { open: '09:00', deadline: '24:00' },
@@ -302,6 +313,7 @@ const storeData = {
     shopImg:
       'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20220713_33%2F1657680200473z5YXY_JPEG%2FKakaoTalk_20220713_113604916_09.jpg',
     shopAddress: '경기 용인시 기흥구 마북로247번길 108 1층 민가(珉家)',
+    locationLatLong: { lat: 37.3175504, long: 127.1273374 },
     shopContactNumber: '031-283-2272',
     shopOpenTime_: {
       수: { open: '10:00', deadline: '21:00' },
@@ -456,6 +468,7 @@ const storeData = {
   '밀리언커피 본사': {
     shopName: '밀리언커피 본사',
     shopAddress: '경기 용인시 수지구 죽전로 152 단국대학교 서관 213호',
+    locationLatLong: { lat: 37.3229512, long: 127.1279079 },
     shopContactNumber: '070-4119-9109',
     shopOpenTime_: {
       수: { open: '08:30', deadline: '16:30' },
@@ -474,6 +487,7 @@ const storeData = {
     shopImg:
       'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20191029_225%2F1572320380086E1BCW_JPEG%2F2Ajd9RnVcmx6oRg29a39n4zd.jpeg.jpg',
     shopAddress: '경기 용인시 수지구 죽전로168번길 35 1층',
+    locationLatLong: { lat: 37.3241716, long: 127.1267362 },
     shopContactNumber: '0507-1305-3804',
     shopOpenTime_: {
       수: { open: '12:00', deadline: '22:00' },
@@ -501,6 +515,7 @@ const storeData = {
     shopImg:
       'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210913_235%2F1631523760340136AN_JPEG%2FuZq3BRyjNjFSNhwh_wg65Ssq.jpeg.jpg',
     shopAddress: '경기 용인시 수지구 죽전로144번길 7-2',
+    locationLatLong: { lat: 37.3232173, long: 127.1241724 },
     shopContactNumber: '031-889-3811',
     shopOpenTime_: {
       수: {},
@@ -516,9 +531,8 @@ const storeData = {
   },
   보통카페: {
     shopName: '보통카페',
-    shopImg:
-      'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190927_264%2F1569527236626PqHyQ_JPEG%2F1T-jz3T8xespGV-PGOFlYQRF.jpg',
     shopAddress: '경기 용인시 수지구 죽전로168번길 27',
+    locationLatLong: { lat: 37.3241551, long: 127.1258371 },
     shopContactNumber: '070-4241-4175',
     shopOpenTime_: {
       수: { open: '10:00', deadline: '22:00' },
@@ -563,9 +577,8 @@ const storeData = {
   },
   '쥬씨 단국대점': {
     shopName: '쥬씨 단국대점',
-    shopImg:
-      'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190907_289%2F1567844143512JxvHW_JPEG%2FUf6qtPYAX4kRJQPyNFJYR-RO.jpg',
     shopAddress: '경기 용인시 수지구 죽전로 152-1',
+    locationLatLong: { lat: 37.324034, long: 127.1250633 },
     shopContactNumber: '031-262-2770',
     shopOpenTime_: {
       수: { open: '08:00', deadline: '20:00' },
@@ -596,9 +609,8 @@ const storeData = {
   },
   Cafe다락다락방: {
     shopName: 'Cafe다락다락방',
-    shopImg:
-      'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200423_13%2F1587627047511Mq48e_JPEG%2FFHlLOjkd9FCitTK0CsyqR_bX.jpg',
     shopAddress: '경기 용인시 수지구 죽전로 152-1 단대프라자 1',
+    locationLatLong: { lat: 37.324034, long: 127.1250633 },
     shopContactNumber: '031-889-1314',
     shopOpenTime_: {
       수: { open: '11:00', deadline: '23:00' },
@@ -615,9 +627,8 @@ const storeData = {
   },
   '만랩커피 죽전단국대점': {
     shopName: '만랩커피 죽전단국대점',
-    shopImg:
-      'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200520_291%2F1589953978131XOp87_JPEG%2FFHD5U92fQvVGIC5pDbJqmrqs.jpg',
     shopAddress: '경기 용인시 수지구 죽전로 150-1 102,103호',
+    locationLatLong: { lat: 37.323865, long: 127.1243894 },
     shopContactNumber: '0507-1314-0516',
     shopOpenTime_: {
       수: { open: '08:00', deadline: '23:00' },
@@ -669,9 +680,8 @@ const storeData = {
   },
   카페일미: {
     shopName: '카페일미',
-    shopImg:
-      'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210516_276%2F1621123483645sBTRp_JPEG%2FbWaYOqIvPTYYKyht5k42gHWv.jpeg.jpg',
     shopAddress: '경기 용인시 수지구 죽전로144번길 12-8',
+    locationLatLong: { lat: 37.32288399999999, long: 127.1236945 },
     shopContactNumber: '031-889-9061',
     shopOpenTime_: { no: 'data' },
     menuLists: {
@@ -691,9 +701,8 @@ const storeData = {
   },
   캔버스카페몽땅: {
     shopName: '캔버스카페몽땅',
-    shopImg:
-      'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210924_11%2F1632456147770JfD0R_PNG%2FadSXAEHZDP8h5r1lYw9zCTcO.png',
     shopAddress: '경기 용인시 수지구 죽전로 152-1 3층 301호',
+    locationLatLong: { lat: 37.324034, long: 127.1250633 },
     shopContactNumber: '031-309-9808',
     shopOpenTime_: {
       수: { open: '11:00', deadline: '20:00' },
@@ -798,6 +807,7 @@ const storeData = {
   카페김싸롱: {
     shopName: '카페김싸롱',
     shopAddress: '경기 용인시 수지구 죽전로 152-1',
+    locationLatLong: { lat: 37.324034, long: 127.1250633 },
     shopContactNumber: '',
     shopOpenTime_: { no: 'data' },
     menuLists: {},
@@ -805,9 +815,8 @@ const storeData = {
   },
   '데일리원커피 단국대점': {
     shopName: '데일리원커피 단국대점',
-    shopImg:
-      'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20220210_274%2F1644460915402jmMiV_JPEG%2FScreenshot_20220207-135233_Gallery.jpg',
     shopAddress: '경기 용인시 수지구 죽전로 152-1 107-1호',
+    locationLatLong: { lat: 37.324034, long: 127.1250633 },
     shopContactNumber: '031-262-9199',
     shopOpenTime_: {
       수: { open: '08:00', deadline: '20:00' },
@@ -842,9 +851,8 @@ const storeData = {
   },
   역사관카페: {
     shopName: '역사관카페',
-    shopImg:
-      'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200811_136%2F1597114355089fzEHe_JPEG%2FlMBobevrOqBTa7TC1exxfptA.jpg',
     shopAddress: '경기 용인시 기흥구 마북로247번길 109',
+    locationLatLong: { lat: 37.3160063, long: 127.1266625 },
     shopContactNumber: '',
     shopOpenTime_: { no: 'data' },
     menuLists: {},
@@ -852,9 +860,8 @@ const storeData = {
   },
   '허그독 애견유치원': {
     shopName: '허그독 애견유치원',
-    shopImg:
-      'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20220413_137%2F1649839897154ReFI8_JPEG%2F4B60D34A-FA95-4B16-B92B-AA93718EB9A6.jpeg',
     shopAddress: '경기 용인시 기흥구 마북로247번길 92 허그독',
+    locationLatLong: { lat: 37.3168086, long: 127.1287844 },
     shopContactNumber: '0507-1383-3575',
     shopOpenTime_: { 매: { open: '07:30', deadline: '20:00' } },
     menuLists: {},
@@ -862,9 +869,8 @@ const storeData = {
   },
   '플라리네 베이킹스튜디오': {
     shopName: '플라리네 베이킹스튜디오',
-    shopImg:
-      'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f184_184&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20150831_9%2F1441022222865fcrzX_JPEG%2FSUBMIT_1307454611460_12797118.jpg',
     shopAddress: '경기 용인시 수지구 죽전로 150-1 단대프라자 2 6층',
+    locationLatLong: { lat: 37.323865, long: 127.1243894 },
     shopContactNumber: '031-889-9095',
     shopOpenTime_: { no: 'data' },
     menuLists: {},
@@ -873,6 +879,7 @@ const storeData = {
   '프린트카페 단국대점': {
     shopName: '프린트카페 단국대점',
     shopAddress: '경기 용인시 수지구 죽전로168번길 20 프린트카페 단국대점',
+    locationLatLong: { lat: 37.3242208, long: 127.1249822 },
     shopContactNumber: '',
     shopOpenTime_: { 매: { open: '00:00', deadline: '24:00' } },
     menuLists: {},
@@ -881,6 +888,7 @@ const storeData = {
   카페다함: {
     shopName: '카페다함',
     shopAddress: '경기 용인시 수지구 죽전로168번길 19-8 1층',
+    locationLatLong: { lat: 37.3246122, long: 127.1261274 },
     shopContactNumber: '031-216-5856',
     shopOpenTime_: {
       수: { open: '11:00', deadline: '22:00' },
@@ -897,6 +905,7 @@ const storeData = {
   '이디야커피 단대죽전점': {
     shopName: '이디야커피 단대죽전점',
     shopAddress: '경기 용인시 수지구 죽전로144번길 7-5 108호',
+    locationLatLong: { lat: 37.3235661, long: 127.1241774 },
     shopContactNumber: '031-263-2210',
     shopOpenTime_: { 매: { open: '08:00', deadline: '22:00' } },
     menuLists: {
@@ -1182,6 +1191,12 @@ const storeData = {
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20220329_113/1648515328652cS3fT_PNG/R_ICED_%B9%CE%C6%AE%B8%F0%C4%AB.png?type=f220_220_60_sharpen',
       },
+      '쌍쌍 츄로스': {
+        coffeeName: '쌍쌍 츄로스',
+        coffeePrice: '2200',
+        coffeeImgUrl:
+          'https://ldb-phinf.pstatic.net/20220222_207/1645487434494X3v4i_JPEG/%BD%D6%BD%D6%C3%F2%B7%CE%BD%BA_%B4%A9%B3%A2%C0%CC%B9%CC%C1%F6.jpg?type=f220_220_60_sharpen',
+      },
       '하와이안 스퀘어 피자': {
         coffeeName: '하와이안 스퀘어 피자',
         coffeePrice: '4200',
@@ -1290,6 +1305,12 @@ const storeData = {
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20210226_107/16143212510710eVLU_JPEG/20.%BA%ED%B7%E7%BA%A3%B8%AE%BA%A3%C0%CC%B1%DB.jpg?type=f220_220_60_sharpen',
       },
+      '오리지널 핫번': {
+        coffeeName: '오리지널 핫번',
+        coffeePrice: '1900',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20210226_227/1614321271396bxBe5_JPEG/21.%BF%C0%B8%AE%C1%F6%B3%CE%C7%D6%B9%F8.jpg?type=f220_220_60_sharpen',
+      },
       '핫 치즈번': {
         coffeeName: '핫 치즈번',
         coffeePrice: '2000',
@@ -1338,6 +1359,24 @@ const storeData = {
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20210628_122/16248399915649CQ8G_JPEG/%B3%A2%B8%AE_%BD%BA%C6%BD%C4%C9%C0%CD_%BA%ED%B7%E7%BA%A3%B8%AE_%C4%A1%C1%EE.jpg?type=f220_220_60_sharpen',
       },
+      스노우쿠키슈: {
+        coffeeName: '스노우쿠키슈',
+        coffeePrice: '1800',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20210415_91/1618465713227uMXot_PNG/%BD%BA%B3%EB%BF%EC%C4%ED%C5%B0%BD%B4_%B5%CE%B0%B3_copy.png?type=f220_220_60_sharpen',
+      },
+      '밀크레이프 케이크': {
+        coffeeName: '밀크레이프 케이크',
+        coffeePrice: '3900',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20210217_57/1613537973379uii62_PNG/8.%B9%D0%C5%A9%B7%B9%C0%CC%C7%C1.png?type=f220_220_60_sharpen',
+      },
+      '초코 티라미수 케이크': {
+        coffeeName: '초코 티라미수 케이크',
+        coffeePrice: '3900',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20210217_177/1613537999986xD3x4_PNG/9.%C3%CA%C4%DA_%C6%BC%B6%F3%B9%CC%BC%F6.png?type=f220_220_60_sharpen',
+      },
       '수플레 치즈 케이크': {
         coffeeName: '수플레 치즈 케이크',
         coffeePrice: '3900',
@@ -1368,11 +1407,29 @@ const storeData = {
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20210217_10/1613538472656J6As6_PNG/22.%C4%ED%C5%B0_%BE%D8_%C5%A9%B8%B2_%B8%B6%C4%AB%B7%D5.png?type=f220_220_60_sharpen',
       },
+      '바닐라 마카롱': {
+        coffeeName: '바닐라 마카롱',
+        coffeePrice: '2200',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20210415_229/1618465754474MH6O3_PNG/%C0%CC%B5%F0%BE%DF_%B9%D9%B4%D2%B6%F3%B8%B6%C4%AB%B7%D5.png?type=f220_220_60_sharpen',
+      },
       '산딸기 마카롱': {
         coffeeName: '산딸기 마카롱',
         coffeePrice: '2200',
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20210415_44/1618465768582EUjSL_PNG/%C0%CC%B5%F0%BE%DF_%BB%EA%B5%FE%B1%E2%B8%B6%C4%AB%B7%D5.png?type=f220_220_60_sharpen',
+      },
+      '초콜릿 마카롱': {
+        coffeeName: '초콜릿 마카롱',
+        coffeePrice: '2200',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20210415_161/1618465784884MspGn_PNG/%C0%CC%B5%F0%BE%DF_%C3%CA%C4%DD%B8%B4%B8%B6%C4%AB%B7%D5.png?type=f220_220_60_sharpen',
+      },
+      이너츠: {
+        coffeeName: '이너츠',
+        coffeePrice: '1400',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20210415_59/1618465733553whasi_PNG/%C0%CC%B3%CA%C3%F7.png?type=f220_220_60_sharpen',
       },
       'HOT 토피 넛 라떼': {
         coffeeName: 'HOT 토피 넛 라떼',
@@ -1667,6 +1724,48 @@ const storeData = {
         coffeePrice: '4800',
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20220329_19/1648514438037j8icW_PNG/R_ICED_%C4%DD%B5%E5%BA%EA%B7%E7-%C8%AD%C0%CC%C6%AE-%BA%F1%BF%A3%B3%AA-%B5%F0%C4%AB%C6%E4%C0%CE.png?type=f220_220_60_sharpen',
+      },
+      '버블 흑당 라떼': {
+        coffeeName: '버블 흑당 라떼',
+        coffeePrice: '4300',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20220329_127/1648513838088J6vYn_PNG/R_ICED_%B9%F6%BA%ED%C8%E6%B4%E7%B6%F3%B6%BC.png?type=f220_220_60_sharpen',
+      },
+      '(EX)버블 흑당 라떼': {
+        coffeeName: '(EX)버블 흑당 라떼',
+        coffeePrice: '5500',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20220329_245/1648513850516rlxpQ_PNG/EX_ICED_%B9%F6%BA%ED%C8%E6%B4%E7%B6%F3%B6%BC.png?type=f220_220_60_sharpen',
+      },
+      '버블 흑당 콜드브루': {
+        coffeeName: '버블 흑당 콜드브루',
+        coffeePrice: '4700',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20220329_24/1648513859525jjCLV_PNG/R_ICED_%B9%F6%BA%ED%C8%E6%B4%E7%C4%DD%B5%E5%BA%EA%B7%E7.png?type=f220_220_60_sharpen',
+      },
+      '(EX)버블 흑당 콜드브루': {
+        coffeeName: '(EX)버블 흑당 콜드브루',
+        coffeePrice: '5900',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20220329_268/1648513871214CE2C5_PNG/EX_ICED_%B9%F6%BA%ED%C8%E6%B4%E7%C4%DD%B5%E5%BA%EA%B7%E7.png?type=f220_220_60_sharpen',
+      },
+      '디카페인 버블흑당 콜드브루': {
+        coffeeName: '디카페인 버블흑당 콜드브루',
+        coffeePrice: '5000',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20220329_278/16485139100145jVf7_PNG/R_ICED_%B9%F6%BA%ED%C8%E6%B4%E7%B6%F3%B6%BC%28%B5%F0%C4%AB%C6%E4%C0%CE%29.png?type=f220_220_60_sharpen',
+      },
+      '(EX)디카페인 버블흑당 콜드브루': {
+        coffeeName: '(EX)디카페인 버블흑당 콜드브루',
+        coffeePrice: '6200',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20220329_78/1648513919544s74dD_PNG/EX_ICED_%B9%F6%BA%ED%C8%E6%B4%E7%C4%DD%B5%E5%BA%EA%B7%E7%28%B5%F0%C4%AB%C6%E4%C0%CE%29.png?type=f220_220_60_sharpen',
+      },
+      '버블 크림 밀크티': {
+        coffeeName: '버블 크림 밀크티',
+        coffeePrice: '4300',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20220329_7/1648513890096kHAn2_PNG/R_ICED_%B9%F6%BA%ED%C5%A9%B8%B2%B9%D0%C5%A9%C6%BC.png?type=f220_220_60_sharpen',
       },
       '꿀복숭아 플랫치노': {
         coffeeName: '꿀복숭아 플랫치노',
@@ -2028,6 +2127,18 @@ const storeData = {
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20220329_148/1648513697749bRcxN_PNG/R_ICED_%B5%FE%B1%E2%BD%A6%C0%CC%C5%A9.png?type=f220_220_60_sharpen',
       },
+      '이디야 콤부차 복숭아망고': {
+        coffeeName: '이디야 콤부차 복숭아망고',
+        coffeePrice: '3500',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20210415_24/1618465937448p5Bqk_PNG/%C0%CC%B5%F0%BE%DF_%C4%DE%BA%CE%C2%F7_%BA%B9%BC%FE%BE%C6%B8%C1%B0%ED.png?type=f220_220_60_sharpen',
+      },
+      '이디야 콤부차 청포도레몬': {
+        coffeeName: '이디야 콤부차 청포도레몬',
+        coffeePrice: '3500',
+        coffeeImgUrl:
+          'https://ldb-phinf.pstatic.net/20210226_9/1614323424793BQvd7_PNG/8.%C4%DE%BA%CE%C2%F7_%C3%BB%C6%F7%B5%B5_%B7%B9%B8%F3.png?type=f220_220_60_sharpen',
+      },
       '이디야 감귤&한라봉 주스': {
         coffeeName: '이디야 감귤&한라봉 주스',
         coffeePrice: '3400',
@@ -2322,6 +2433,7 @@ const storeData = {
   라잍: {
     shopName: '라잍',
     shopAddress: '경기 용인시 수지구 죽전로168번길 19-3',
+    locationLatLong: { lat: 37.3245151, long: 127.1255384 },
     shopContactNumber: '031-890-6709',
     shopOpenTime_: {
       매: { open: '12:00', deadline: '21:00' },
@@ -2382,6 +2494,7 @@ const storeData = {
   '메가커피 죽전단대점': {
     shopName: '메가커피 죽전단대점',
     shopAddress: '경기 용인시 수지구 죽전로 150 1층 107호',
+    locationLatLong: { lat: 37.323865, long: 127.1243894 },
     shopContactNumber: '0507-1463-8804',
     shopOpenTime_: {
       수: { open: '07:00', deadline: '22:00' },
@@ -3341,9 +3454,16 @@ const storeData = {
   '파리바게뜨 죽전단국대점': {
     shopName: '파리바게뜨 죽전단국대점',
     shopAddress: '경기 용인시 수지구 죽전로 150',
+    locationLatLong: { lat: 37.323865, long: 127.1243894 },
     shopContactNumber: '031-889-2882',
     shopOpenTime_: { no: 'data' },
     menuLists: {
+      고짠고짠소금버터링: {
+        coffeeName: '고짠고짠소금버터링',
+        coffeePrice: '2500',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20220407_178/16493129615208Xiup_PNG/image.png?type=f220_220_60_sharpen',
+      },
       '잭오랜턴 버터링쿠키': {
         coffeeName: '잭오랜턴 버터링쿠키',
         coffeePrice: '6500',
@@ -3392,17 +3512,35 @@ const storeData = {
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20221020_88/1666205027489cOle3_PNG/image.png?type=f220_220_60_sharpen',
       },
+      단백질듬뿍로스트치킨샐러드: {
+        coffeeName: '단백질듬뿍로스트치킨샐러드',
+        coffeePrice: '6800',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20220407_4/1649274613655fFLgw_PNG/image.png?type=f220_220_60_sharpen',
+      },
       '그린 샐러드(80g)': {
         coffeeName: '그린 샐러드(80g)',
         coffeePrice: '2600',
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20220407_78/1649274626792uFXR8_PNG/image.png?type=f220_220_60_sharpen',
       },
+      '통밀 햄에그 샌드위치': {
+        coffeeName: '통밀 햄에그 샌드위치',
+        coffeePrice: '6200',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20220407_141/1649274636547tHr8W_PNG/image.png?type=f220_220_60_sharpen',
+      },
       '비트&그린샐러드': {
         coffeeName: '비트&그린샐러드',
         coffeePrice: '2600',
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20220407_297/1649274644387Hr8uF_PNG/image.png?type=f220_220_60_sharpen',
+      },
+      샐러드빵: {
+        coffeeName: '샐러드빵',
+        coffeePrice: '3900',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20220407_67/1649274686532PMLNo_JPEG/image.jpg?type=f220_220_60_sharpen',
       },
       '가든 샐러드(80g)': {
         coffeeName: '가든 샐러드(80g)',
@@ -3518,29 +3656,23 @@ const storeData = {
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20220407_78/1649312755838jS5IW_PNG/image.png?type=f220_220_60_sharpen',
       },
-      초코소라빵: {
-        coffeeName: '초코소라빵',
-        coffeePrice: '1500',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220407_25/1649312829735toNp5_PNG/image.png?type=f220_220_60_sharpen',
-      },
-      '생(生)유산균플러스딸기크림빵': {
-        coffeeName: '생(生)유산균플러스딸기크림빵',
-        coffeePrice: '1800',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220407_196/1649312835525tvusU_PNG/image.png?type=f220_220_60_sharpen',
-      },
       '초코 왕소라빵 플러스': {
         coffeeName: '초코 왕소라빵 플러스',
         coffeePrice: '2200',
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20220407_70/16493128841218rnrA_JPEG/image.jpg?type=f220_220_60_sharpen',
       },
-      '구름 크림빵': {
-        coffeeName: '구름 크림빵',
-        coffeePrice: '1600',
+      '부드러운 연유브레드': {
+        coffeeName: '부드러운 연유브레드',
+        coffeePrice: '6400',
         coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220407_200/164931308777018uGS_JPEG/image.jpg?type=f220_220_60_sharpen',
+          'https://naverbooking-phinf.pstatic.net/20220407_81/1649312894502sTpnd_JPEG/image.jpg?type=f220_220_60_sharpen',
+      },
+      혼자서도즐기는연유브레드: {
+        coffeeName: '혼자서도즐기는연유브레드',
+        coffeePrice: '3000',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20220407_199/1649312940431CY7lU_PNG/image.png?type=f220_220_60_sharpen',
       },
       '데일리 샌드위치식빵(대)': {
         coffeeName: '데일리 샌드위치식빵(대)',
@@ -3566,12 +3698,6 @@ const storeData = {
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20220922_170/1663803997062imcX1_PNG/image.png?type=f220_220_60_sharpen',
       },
-      '버터 풍미 가득 쫄깃한 토스트': {
-        coffeeName: '버터 풍미 가득 쫄깃한 토스트',
-        coffeePrice: '3500',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220407_8/1649274653926rUhme_PNG/image.png?type=f220_220_60_sharpen',
-      },
       '부드러운 상미종생(生)식빵': {
         coffeeName: '부드러운 상미종생(生)식빵',
         coffeePrice: '3700',
@@ -3596,18 +3722,6 @@ const storeData = {
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20220620_281/1655681493005XoUNP_PNG/image.png?type=f220_220_60_sharpen',
       },
-      '호밀호두 플러스 식빵': {
-        coffeeName: '호밀호두 플러스 식빵',
-        coffeePrice: '3100',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220407_54/1649312555130DMAcp_PNG/image.png?type=f220_220_60_sharpen',
-      },
-      '부드러운 우유모닝롤': {
-        coffeeName: '부드러운 우유모닝롤',
-        coffeePrice: '3700',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220715_116/1657847067567FbjqW_PNG/image.png?type=f220_220_60_sharpen',
-      },
       '온브레드 크림치즈 플레인': {
         coffeeName: '온브레드 크림치즈 플레인',
         coffeePrice: '3400',
@@ -3620,17 +3734,35 @@ const storeData = {
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20220407_198/16493130015289OrVM_PNG/image.png?type=f220_220_60_sharpen',
       },
-      '한입에 두번 반한 단팥크림빵': {
-        coffeeName: '한입에 두번 반한 단팥크림빵',
-        coffeePrice: '1600',
+      '뽀드득 그릴 소시지': {
+        coffeeName: '뽀드득 그릴 소시지',
+        coffeePrice: '2900',
         coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220401_104/1648775869121IPFxc_PNG/image.png?type=f220_220_60_sharpen',
+          'https://naverbooking-phinf.pstatic.net/20220407_207/1649312681250miasb_JPEG/image.jpg?type=f220_220_60_sharpen',
       },
-      땅콩크림빵: {
-        coffeeName: '땅콩크림빵',
-        coffeePrice: '1300',
+      '[NEW]야채감자고로케': {
+        coffeeName: '[NEW]야채감자고로케',
+        coffeePrice: '2600',
         coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220407_238/1649312967611XsGtq_PNG/image.png?type=f220_220_60_sharpen',
+          'https://naverbooking-phinf.pstatic.net/20220407_101/1649313007687jDCUU_PNG/image.png?type=f220_220_60_sharpen',
+      },
+      '[NEW]꽃맛살고로케': {
+        coffeeName: '[NEW]꽃맛살고로케',
+        coffeePrice: '2900',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20220825_286/1661365830602tsbBo_PNG/image.png?type=f220_220_60_sharpen',
+      },
+      건포도토종효모빵: {
+        coffeeName: '건포도토종효모빵',
+        coffeePrice: '4100',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20220405_127/1649108025485mr0ye_PNG/image.png?type=f220_220_60_sharpen',
+      },
+      모닝바게뜨: {
+        coffeeName: '모닝바게뜨',
+        coffeePrice: '2900',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20220405_154/1649108113813SjA6E_PNG/image.png?type=f220_220_60_sharpen',
       },
       통밀브레드: {
         coffeeName: '통밀브레드',
@@ -3638,29 +3770,23 @@ const storeData = {
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20220922_247/1663803858768gTgNh_PNG/image.png?type=f220_220_60_sharpen',
       },
-      허니본델리슈: {
-        coffeeName: '허니본델리슈',
-        coffeePrice: '5600',
+      버터갈릭뀐아망: {
+        coffeeName: '버터갈릭뀐아망',
+        coffeePrice: '2600',
         coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220407_201/1649312640166BDLYm_PNG/image.png?type=f220_220_60_sharpen',
+          'https://naverbooking-phinf.pstatic.net/20220608_7/1654626135063wmLsT_PNG/image.png?type=f220_220_60_sharpen',
+      },
+      '쫄깃한토종효모빵(1/2)': {
+        coffeeName: '쫄깃한토종효모빵(1/2)',
+        coffeePrice: '2100',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20220906_86/1662402818229Myrgc_PNG/image.png?type=f220_220_60_sharpen',
       },
       '촉촉한 치즈케익': {
         coffeeName: '촉촉한 치즈케익',
         coffeePrice: '1800',
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20220407_44/1649312802503LMC2p_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '오리지널 머핀': {
-        coffeeName: '오리지널 머핀',
-        coffeePrice: '2900',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220407_220/16493129270088oStf_PNG/image.png?type=f220_220_60_sharpen',
-      },
-      '순수(秀) 우유 후레쉬번': {
-        coffeeName: '순수(秀) 우유 후레쉬번',
-        coffeePrice: '3800',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220407_79/16493129438080AbYT_PNG/image.png?type=f220_220_60_sharpen',
       },
       '목초(木醋)란으로 만든 핑거스틱': {
         coffeeName: '목초(木醋)란으로 만든 핑거스틱',
@@ -3673,12 +3799,6 @@ const storeData = {
         coffeePrice: '3100',
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20220407_67/1649312957496SkOwd_PNG/image.png?type=f220_220_60_sharpen',
-      },
-      추억의옥수수카스테라: {
-        coffeeName: '추억의옥수수카스테라',
-        coffeePrice: '1900',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220906_126/1662402814816mt4O4_PNG/image.png?type=f220_220_60_sharpen',
       },
       '촉촉한 고구마케익': {
         coffeeName: '촉촉한 고구마케익',
@@ -3968,17 +4088,17 @@ const storeData = {
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20220707_96/1657131772580BK19b_PNG/image.png?type=f220_220_60_sharpen',
       },
+      '정통 에그타르트': {
+        coffeeName: '정통 에그타르트',
+        coffeePrice: '2200',
+        coffeeImgUrl:
+          'https://naverbooking-phinf.pstatic.net/20221018_85/1666078991920eytMz_PNG/image.png?type=f220_220_60_sharpen',
+      },
       '어머나!생일챙겨펭수 (15cm)': {
         coffeeName: '어머나!생일챙겨펭수 (15cm)',
         coffeePrice: '29000',
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20220405_62/1649108028378Tbn1b_PNG/image.png?type=f220_220_60_sharpen',
-      },
-      '라인프렌즈 브라운 (15cm)': {
-        coffeeName: '라인프렌즈 브라운 (15cm)',
-        coffeePrice: '19000',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220405_30/1649108057063z94nG_JPEG/image.jpg?type=f220_220_60_sharpen',
       },
       '보툰뽀로로(트로피칼)': {
         coffeeName: '보툰뽀로로(트로피칼)',
@@ -4009,12 +4129,6 @@ const storeData = {
         coffeePrice: '2400',
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20220407_287/16493126596117lrRg_PNG/image.png?type=f220_220_60_sharpen',
-      },
-      '꼬마 카스테라': {
-        coffeeName: '꼬마 카스테라',
-        coffeePrice: '3100',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220407_161/1649312671596GTKhj_PNG/image.png?type=f220_220_60_sharpen',
       },
       '공룡메카드오렌지(치어팩)': {
         coffeeName: '공룡메카드오렌지(치어팩)',
@@ -4063,12 +4177,6 @@ const storeData = {
         coffeePrice: '2900',
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20220407_202/16493130669130cEg9_PNG/image.png?type=f220_220_60_sharpen',
-      },
-      실키롤케익: {
-        coffeeName: '실키롤케익',
-        coffeePrice: '11000',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220401_126/16487758718456D0du_PNG/image.png?type=f220_220_60_sharpen',
       },
       유자파운드케익: {
         coffeeName: '유자파운드케익',
@@ -4142,53 +4250,11 @@ const storeData = {
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20220704_254/1656919673656xW13q_PNG/image.png?type=f220_220_60_sharpen',
       },
-      '블라썸 러브 (13cm)': {
-        coffeeName: '블라썸 러브 (13cm)',
-        coffeePrice: '23000',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220707_240/1657155714025Jmt5C_PNG/image.png?type=f220_220_60_sharpen',
-      },
-      '클래식모카케이크 (19cm)': {
-        coffeeName: '클래식모카케이크 (19cm)',
-        coffeePrice: '26000',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220405_64/1649108009503mrRm4_PNG/image.png?type=f220_220_60_sharpen',
-      },
       '클래식 벨기에밀크초코 (21cm)': {
         coffeeName: '클래식 벨기에밀크초코 (21cm)',
         coffeePrice: '29000',
         coffeeImgUrl:
           'https://naverbooking-phinf.pstatic.net/20220705_123/1656958658463agKIc_PNG/image.png?type=f220_220_60_sharpen',
-      },
-      '해피스마일 (13cm)': {
-        coffeeName: '해피스마일 (13cm)',
-        coffeePrice: '23000',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220707_101/1657157146658sgPE0_PNG/image.png?type=f220_220_60_sharpen',
-      },
-      '라인프렌즈 슬리핑 브라운 (13cm)': {
-        coffeeName: '라인프렌즈 슬리핑 브라운 (13cm)',
-        coffeePrice: '25000',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220707_24/1657156527459dFoPk_PNG/image.png?type=f220_220_60_sharpen',
-      },
-      '쇼콜라파티  (24cm)': {
-        coffeeName: '쇼콜라파티  (24cm)',
-        coffeePrice: '31000',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220407_296/16492745957622G8j6_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '생딸기프레지에 생크림케이크 (15cm)': {
-        coffeeName: '생딸기프레지에 생크림케이크 (15cm)',
-        coffeePrice: '32000',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220407_234/1649274622915KBdFA_PNG/image.png?type=f220_220_60_sharpen',
-      },
-      '클래식쇼콜라 (18cm)': {
-        coffeeName: '클래식쇼콜라 (18cm)',
-        coffeePrice: '24000',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220407_17/1649274646607yAXFn_JPEG/image.jpg?type=f220_220_60_sharpen',
       },
       러브초: {
         coffeeName: '러브초',
@@ -4220,6 +4286,7 @@ const storeData = {
   '베이크 슈': {
     shopName: '베이크 슈',
     shopAddress: '경기 용인시 수지구 죽전로 150 단대프라자 Ⅲ. 204호',
+    locationLatLong: { lat: 37.323865, long: 127.1243894 },
     shopContactNumber: '0507-1327-1771',
     shopOpenTime_: { no: 'data' },
     menuLists: {
@@ -4236,6 +4303,7 @@ const storeData = {
   '룸카페 노리': {
     shopName: '룸카페 노리',
     shopAddress: '경기 용인시 수지구 죽전로 150 단대프라자3차 3층',
+    locationLatLong: { lat: 37.3237337, long: 127.124601 },
     shopContactNumber: '0507-1420-1753',
     shopOpenTime_: {
       수: { open: '12:00', deadline: '23:00' },
@@ -4253,6 +4321,7 @@ const storeData = {
   '알로하 디저트카페': {
     shopName: '알로하 디저트카페',
     shopAddress: '경기 용인시 수지구 죽전로144번길 4-1',
+    locationLatLong: { lat: 37.32346270000001, long: 127.123725 },
     shopContactNumber: '',
     shopOpenTime_: { no: 'data' },
     menuLists: {},
@@ -4261,6 +4330,7 @@ const storeData = {
   '스타벅스 죽전단국대점': {
     shopName: '스타벅스 죽전단국대점',
     shopAddress: '경기 용인시 수지구 죽전로168번길 18',
+    locationLatLong: { lat: 37.3244016, long: 127.1249428 },
     shopContactNumber: '1522-3232',
     shopOpenTime_: {
       수: {},
@@ -4269,513 +4339,15 @@ const storeData = {
       토: { open: '08:00', deadline: '21:00' },
       일: { open: '08:00', deadline: '21:00' },
       월: { open: '07:00', deadline: '21:00' },
-      화: {},
+      화: { open: '07:00', deadline: '21:00' },
     },
-    menuLists: {
-      '블랙 글레이즈드 라떼N': {
-        coffeeName: '블랙 글레이즈드 라떼N',
-        coffeePrice: '6300',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20221008_162/1665172696830s0o10_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '할로윈 매직 유스베리 티N': {
-        coffeeName: '할로윈 매직 유스베리 티N',
-        coffeePrice: '6100',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20221011_282/1665431868179HSEUO_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '딸기 아사이 레모네이드 스타벅스 리프레셔': {
-        coffeeName: '딸기 아사이 레모네이드 스타벅스 리프레셔',
-        coffeePrice: '5900',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220902_10/1662062171335PbDQY_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '핑크 드링크 위드 딸기 아사이 스타벅스 리프레셔': {
-        coffeeName: '핑크 드링크 위드 딸기 아사이 스타벅스 리프레셔',
-        coffeePrice: '5900',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220823_37/1661198182594pMsH1_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '콜드 브루 오트 라떼': {
-        coffeeName: '콜드 브루 오트 라떼',
-        coffeePrice: '5800',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210430_159/1619725779453BOUJl_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '돌체 콜드 브루': {
-        coffeeName: '돌체 콜드 브루',
-        coffeePrice: '6000',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_207/1618516172256YsdNl_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '바닐라 크림 콜드 브루': {
-        coffeeName: '바닐라 크림 콜드 브루',
-        coffeePrice: '5800',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210519_188/1621367290785Q1y7e_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '콜드 브루': {
-        coffeeName: '콜드 브루',
-        coffeePrice: '4900',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210501_255/1619812131604F3Ku5_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '블론드 바닐라 더블 샷 마키아또': {
-        coffeeName: '블론드 바닐라 더블 샷 마키아또',
-        coffeePrice: '5900',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210427_182/1619466636732SMisb_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '블론드 스타벅스 돌체 라떼': {
-        coffeeName: '블론드 스타벅스 돌체 라떼',
-        coffeePrice: '5900',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210427_214/1619466647517FJfVA_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '블론드 카페 라떼': {
-        coffeeName: '블론드 카페 라떼',
-        coffeePrice: '5000',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210427_112/1619466649251Mq9ow_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '블론드 카페 아메리카노': {
-        coffeeName: '블론드 카페 아메리카노',
-        coffeePrice: '4500',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210501_23/16198121556902zDgj_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '바닐라 플랫 화이트': {
-        coffeeName: '바닐라 플랫 화이트',
-        coffeePrice: '5900',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_83/1618516172891VRd03_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '스타벅스 돌체 라떼': {
-        coffeeName: '스타벅스 돌체 라떼',
-        coffeePrice: '5900',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210427_265/1619466641071S778F_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '카페 모카': {
-        coffeeName: '카페 모카',
-        coffeePrice: '5500',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_74/1618516202838Q1x2Y_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '카페 아메리카노': {
-        coffeeName: '카페 아메리카노',
-        coffeePrice: '4500',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210501_102/1619812153991SXjp7_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '카페 라떼': {
-        coffeeName: '카페 라떼',
-        coffeePrice: '5000',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_181/1618516210638aikcq_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      카푸치노: {
-        coffeeName: '카푸치노',
-        coffeePrice: '5000',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_265/1618516216736J4N0c_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '카라멜 마키아또': {
-        coffeeName: '카라멜 마키아또',
-        coffeePrice: '5900',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_232/1618516220230gAwxC_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '화이트 초콜릿 모카': {
-        coffeeName: '화이트 초콜릿 모카',
-        coffeePrice: '5900',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_86/1618516241145CISOa_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '커피 스타벅스 더블 샷': {
-        coffeeName: '커피 스타벅스 더블 샷',
-        coffeePrice: '5100',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_219/16185161517757Osry_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '바닐라 스타벅스 더블 샷': {
-        coffeeName: '바닐라 스타벅스 더블 샷',
-        coffeePrice: '5100',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_243/1618516152343nk5PQ_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '헤이즐넛 스타벅스 더블 샷': {
-        coffeeName: '헤이즐넛 스타벅스 더블 샷',
-        coffeePrice: '5100',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_266/1618516153018W5LiE_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      에스프레소: {
-        coffeeName: '에스프레소',
-        coffeePrice: '4000',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_258/16185161596939u49V_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '에스프레소 마키아또': {
-        coffeeName: '에스프레소 마키아또',
-        coffeePrice: '4000',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_3/1618516160392YKqmV_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '에스프레소 콘 파나': {
-        coffeeName: '에스프레소 콘 파나',
-        coffeePrice: '4200',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_245/1618516160946XTiSz_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '디카페인 스타벅스 돌체 라떼': {
-        coffeeName: '디카페인 스타벅스 돌체 라떼',
-        coffeePrice: '6200',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210427_33/1619466638144ntyp4_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '디카페인 카라멜 마키아또': {
-        coffeeName: '디카페인 카라멜 마키아또',
-        coffeePrice: '6200',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210427_290/1619466653753UKwzd_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '디카페인 카페 라떼': {
-        coffeeName: '디카페인 카페 라떼',
-        coffeePrice: '5300',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210427_135/1619466658572QGxeb_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '디카페인 카페 아메리카노': {
-        coffeeName: '디카페인 카페 아메리카노',
-        coffeePrice: '4800',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210501_145/1619812158681eiiYW_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '1/2디카페인 스타벅스 돌체 라떼': {
-        coffeeName: '1/2디카페인 스타벅스 돌체 라떼',
-        coffeePrice: '6200',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210427_231/1619466664416lAHpj_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '1/2디카페인 카라멜 마키아또': {
-        coffeeName: '1/2디카페인 카라멜 마키아또',
-        coffeePrice: '6200',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210427_232/1619466666603OFF0H_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '1/2디카페인 카페 라떼': {
-        coffeeName: '1/2디카페인 카페 라떼',
-        coffeePrice: '5300',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210427_11/1619466668293kKnY5_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '1/2디카페인 카페 아메리카노': {
-        coffeeName: '1/2디카페인 카페 아메리카노',
-        coffeePrice: '4800',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210501_24/1619812160434MKuPC_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '더블 에스프레소 칩 프라푸치노': {
-        coffeeName: '더블 에스프레소 칩 프라푸치노',
-        coffeePrice: '6300',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_229/1618516173488WCKve_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '제주 유기농 말차로 만든 크림 프라푸치노': {
-        coffeeName: '제주 유기농 말차로 만든 크림 프라푸치노',
-        coffeePrice: '6300',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210427_152/1619466614331voW28_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '자바 칩 프라푸치노': {
-        coffeeName: '자바 칩 프라푸치노',
-        coffeePrice: '6300',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_198/16185161579260l05V_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '초콜릿 크림 칩 프라푸치노': {
-        coffeeName: '초콜릿 크림 칩 프라푸치노',
-        coffeePrice: '6000',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_30/1618516159017S2cw5_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '화이트 초콜릿 모카 프라푸치노': {
-        coffeeName: '화이트 초콜릿 모카 프라푸치노',
-        coffeePrice: '6000',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_232/1618516157252ca1TJ_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '모카 프라푸치노': {
-        coffeeName: '모카 프라푸치노',
-        coffeePrice: '5900',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_55/1618516155467zKra8_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '카라멜 프라푸치노': {
-        coffeeName: '카라멜 프라푸치노',
-        coffeePrice: '5900',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_30/1618516156610j8Vpi_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '에스프레소 프라푸치노': {
-        coffeeName: '에스프레소 프라푸치노',
-        coffeePrice: '5500',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_38/1618516156091Y2mnT_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '바닐라 크림 프라푸치노': {
-        coffeeName: '바닐라 크림 프라푸치노',
-        coffeePrice: '5100',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_151/1618516158534RxwPw_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '딸기 딜라이트 요거트 블렌디드': {
-        coffeeName: '딸기 딜라이트 요거트 블렌디드',
-        coffeePrice: '6300',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210417_133/1618602490734o9Fao_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '망고 바나나 블렌디드': {
-        coffeeName: '망고 바나나 블렌디드',
-        coffeePrice: '6300',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210420_21/1618861767524RC25k_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '망고 패션 프루트 블렌디드': {
-        coffeeName: '망고 패션 프루트 블렌디드',
-        coffeePrice: '5400',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210420_247/16188617668158GkPp_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '유자 패션 피지오': {
-        coffeeName: '유자 패션 피지오',
-        coffeePrice: '5900',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220524_224/1653335784596BC75i_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '쿨 라임 피지오': {
-        coffeeName: '쿨 라임 피지오',
-        coffeePrice: '5900',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210420_187/1618861766129X1Y6B_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '블랙 티 레모네이드 피지오': {
-        coffeeName: '블랙 티 레모네이드 피지오',
-        coffeePrice: '5400',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210420_126/1618861764311jFDbM_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '패션 탱고 티 레모네이드 피지오': {
-        coffeeName: '패션 탱고 티 레모네이드 피지오',
-        coffeePrice: '5400',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210420_250/1618861765525nLd1i_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '돌체 블랙 밀크 티': {
-        coffeeName: '돌체 블랙 밀크 티',
-        coffeePrice: '5900',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220204_122/1643917970522oT87u_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '유자 민트 티': {
-        coffeeName: '유자 민트 티',
-        coffeePrice: '5900',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20220412_83/16497069005408YgcN_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '제주 유기농 말차로 만든 라떼': {
-        coffeeName: '제주 유기농 말차로 만든 라떼',
-        coffeePrice: '6100',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210420_256/1618861802415fmjO0_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '차이 티 라떼': {
-        coffeeName: '차이 티 라떼',
-        coffeePrice: '5500',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_109/1618516198766P4n2k_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '자몽 허니 블랙 티': {
-        coffeeName: '자몽 허니 블랙 티',
-        coffeePrice: '5700',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210420_165/1618861815316lXmWD_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '제주 유기 녹차': {
-        coffeeName: '제주 유기 녹차',
-        coffeePrice: '5300',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_232/1618516238356O1PJy_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '잉글리쉬 브렉퍼스트 티': {
-        coffeeName: '잉글리쉬 브렉퍼스트 티',
-        coffeePrice: '4500',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_3/1618516244013BXOUQ_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '얼 그레이 티': {
-        coffeeName: '얼 그레이 티',
-        coffeePrice: '4500',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_74/1618516248672U1GN1_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '유스베리 티': {
-        coffeeName: '유스베리 티',
-        coffeePrice: '4500',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_128/1618516250492sUoBt_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '히비스커스 블렌드 티': {
-        coffeeName: '히비스커스 블렌드 티',
-        coffeePrice: '4500',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_151/1618516253108tPMuY_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '민트 블렌드 티': {
-        coffeeName: '민트 블렌드 티',
-        coffeePrice: '4500',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_58/1618516255188yuPiR_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '캐모마일 블렌드 티': {
-        coffeeName: '캐모마일 블렌드 티',
-        coffeePrice: '4500',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_50/1618516258351m5wb2_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '오늘의 커피': {
-        coffeeName: '오늘의 커피',
-        coffeePrice: '4200',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210501_16/1619812131035jLNTI_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '아이스 커피': {
-        coffeeName: '아이스 커피',
-        coffeePrice: '4500',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210501_23/16198121304268fYar_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '바닐라 아포가토': {
-        coffeeName: '바닐라 아포가토',
-        coffeePrice: '5900',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20221011_177/1665431868532hrVqJ_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '초콜릿 아포가토': {
-        coffeeName: '초콜릿 아포가토',
-        coffeePrice: '5900',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20221011_289/1665431868773mMRWJ_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '자바 칩 바닐라 아포가토': {
-        coffeeName: '자바 칩 바닐라 아포가토',
-        coffeePrice: '6600',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20221011_205/1665431869165YIoEf_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '자바 칩 초콜릿 아포가토': {
-        coffeeName: '자바 칩 초콜릿 아포가토',
-        coffeePrice: '6600',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20221011_39/1665431869682RtYA9_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '시그니처 핫 초콜릿': {
-        coffeeName: '시그니처 핫 초콜릿',
-        coffeePrice: '5700',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210416_285/1618516191847M4Sjf_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '스팀 우유': {
-        coffeeName: '스팀 우유',
-        coffeePrice: '4100',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210427_11/1619466608459o4w8L_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      우유: {
-        coffeeName: '우유',
-        coffeePrice: '4100',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210427_75/1619466609042HRLkV_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '유기농 오렌지 100% 주스 190ML': {
-        coffeeName: '유기농 오렌지 100% 주스 190ML',
-        coffeePrice: '4500',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20211026_100/1635191506333NtIqE_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '딸기 가득 요거트 190ML': {
-        coffeeName: '딸기 가득 요거트 190ML',
-        coffeePrice: '4100',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20211026_171/1635191507247cfvqy_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '햇사과 주스 190ML': {
-        coffeeName: '햇사과 주스 190ML',
-        coffeePrice: '4000',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210427_37/1619466618690ljgz2_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '딸기주스 190ML': {
-        coffeeName: '딸기주스 190ML',
-        coffeePrice: '3800',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210427_156/1619466611949P8XVT_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '망고주스 190ML': {
-        coffeeName: '망고주스 190ML',
-        coffeePrice: '4500',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210427_103/1619466611385NY03J_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '케일&사과주스 190ML': {
-        coffeeName: '케일&사과주스 190ML',
-        coffeePrice: '4000',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210427_269/1619466612611aV9qj_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '한라봉주스 190ML': {
-        coffeeName: '한라봉주스 190ML',
-        coffeePrice: '4300',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210427_223/1619466610748FcTDH_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '토마토주스 190ML': {
-        coffeeName: '토마토주스 190ML',
-        coffeePrice: '3800',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210420_46/16188617711530da13_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '블루베리 요거트 190ML': {
-        coffeeName: '블루베리 요거트 190ML',
-        coffeePrice: '3900',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210420_118/1618861770108wPJlN_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '에비앙 생수 330ML': {
-        coffeeName: '에비앙 생수 330ML',
-        coffeePrice: '2500',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210504_96/1620071344822CDGuq_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '페리에 라임 330ML': {
-        coffeeName: '페리에 라임 330ML',
-        coffeePrice: '3300',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210420_14/1618861768824YYt0Q_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-      '유기농 스파클링 애플 주스 296ML': {
-        coffeeName: '유기농 스파클링 애플 주스 296ML',
-        coffeePrice: '4800',
-        coffeeImgUrl:
-          'https://naverbooking-phinf.pstatic.net/20210420_80/1618861769621sJ8i3_JPEG/image.jpg?type=f220_220_60_sharpen',
-      },
-    },
+    menuLists: {},
     imgMenu: [],
   },
   쁘띠가또: {
     shopName: '쁘띠가또',
     shopAddress: '경기 용인시 수지구 죽전로144번길 8-10',
+    locationLatLong: { lat: 37.3231527, long: 127.1233608 },
     shopContactNumber: '031-276-1379',
     shopOpenTime_: { no: 'data' },
     menuLists: {},
@@ -4784,6 +4356,7 @@ const storeData = {
   투엔디스토리: {
     shopName: '투엔디스토리',
     shopAddress: '경기 용인시 수지구 죽전로168번길 17 1층',
+    locationLatLong: { lat: 37.3245476, long: 127.1251849 },
     shopContactNumber: '031-889-8631',
     shopOpenTime_: {
       수: { open: '09:00', deadline: '22:00' },
@@ -4854,6 +4427,7 @@ const storeData = {
   하고메: {
     shopName: '하고메',
     shopAddress: '경기 용인시 수지구 죽전로 146 103호 하고메',
+    locationLatLong: { lat: 37.32380990000001, long: 127.1238891 },
     shopContactNumber: '0507-1339-3058',
     shopOpenTime_: {
       수: { open: '12:00', deadline: '19:00' },

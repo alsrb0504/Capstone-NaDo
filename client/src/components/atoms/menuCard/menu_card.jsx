@@ -3,8 +3,6 @@ import React from 'react';
 const MenuCard = ({ menuInfo }) => {
   const { coffeeName, coffeePrice, coffeeImgUrl } = menuInfo;
 
-  console.log(menuInfo);
-
   return (
     <div className="card-container menu-card">
       <div className="menu-card-info">

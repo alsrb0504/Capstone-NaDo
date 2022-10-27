@@ -51,8 +51,8 @@ export const orderSlice = createSlice({
   initialState,
   reducers: {
     // eslint-disable-next-line no-unused-vars
-    SelectStore: (state, action) => {
-      state.selectedStore = 'select';
+    SelectStore: (state, actions) => {
+      state.selectedStore = actions.payload;
     },
   },
 });
