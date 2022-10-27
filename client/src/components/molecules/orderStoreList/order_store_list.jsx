@@ -6,13 +6,17 @@ const OrderStoreList = () => {
   const { stores } = useSelector((state) => state.order);
 
   const MakeStoreInfo = (store) => {
+    console.log(store);
+
     const info = {
       name: store.shopName,
       // 추후 가게 이미지 존재하는 거 확인하는 과정 필요
-      url: 'images/default_cafe_img.jpg',
+      url: store.shopImg || 'images/default_cafe_img.jpg',
       // 가게 시간 계산 부분 추후 구현
       isOpen: true,
     };
+
+    console.log(store.shopImg);
 
     return info;
   };

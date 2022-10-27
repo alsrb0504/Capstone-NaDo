@@ -1,0 +1,60 @@
+.shop-info {
+  @include column-flexbox(start);
+  position: relative;
+  width: 100vw;
+  height: 120px;
+  padding-top: 12px;
+  border-top: 2px solid $primary;
+  background-color: $white;
+
+  &-name {
+    @include flexbox;
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 60px;
+
+    font-size: 28px;
+    color: $dark-gray;
+
+    border-radius: 25px 25px 0 0;
+    border: 2px solid $primary;
+    border-bottom: none;
+    background-color: $white;
+  }
+
+  &-title {
+    font-size: 20px;
+    margin: 0 0 20px 0;
+  }
+
+  &-main {
+    @include flexbox();
+    width: calc(100% - (2 * $sm-margin));
+
+    div {
+      position: relative;
+      flex-basis: 50%;
+      padding-left: 8%;
+
+      p {
+        font-size: 14px;
+      }
+
+      .info-title {
+        margin-bottom: 12px;
+      }
+    }
+
+    .main-first-child::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 40px;
+      box-shadow: 0px 0px 4px 1px $primary;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+.header-with-img {
+  @include flexbox(between, start);
+  padding: 0 $sm-margin;
+  width: 100vw;
+  height: 164px;
+
+  background: url('../../../../public/images/default_cafe_img.jpg');
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: cover;
+
+  i {
+    margin-top: 16px;
+    font-size: 26px;
+    color: $primary;
+  }
+}
