@@ -48,6 +48,8 @@ const initialState = {
       coffeeImgUrl: '/images/coffeeImg/strawberrylatte.png',
     },
   },
+
+  cartLists: [],
 };
 
 export const orderSlice = createSlice({

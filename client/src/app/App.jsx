@@ -15,6 +15,7 @@ import EditProfile from '../pages/editProfile/edit_profile';
 import ChangePassword from '../pages/edtiPasswd/edit_passwd';
 import OrderHome from '../pages/order/orderHome/order_home';
 import OrderStore from '../pages/order/orderStore/order_store';
+import OrderCart from '../pages/order/orderCart/order_cart';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const App = () => {
             <Route path="/order">
               <Route index element={<OrderHome />} />
               <Route path="store" element={<OrderStore />} />
+              <Route path="cart" element={<OrderCart />} />
             </Route>
 
             {/* 구분선 : 테스트 페이지 */}
