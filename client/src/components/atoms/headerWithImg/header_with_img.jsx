@@ -1,8 +1,9 @@
 import React from 'react';
 
-// eslint-disable-next-line no-unused-vars
-const HeaderWithImg = ({ bg, MoveBack, MoveCart }) => (
+const HeaderWithImg = ({ shopImg, MoveBack, MoveCart }) => (
   <div className="header-with-img">
+    <img className="header-with-img-bg" src={shopImg} alt="카페 이미지" />
+
     <button type="button" onClick={MoveBack}>
       <i className="fa-solid fa-arrow-left" />
     </button>

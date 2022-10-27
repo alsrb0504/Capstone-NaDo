@@ -11,10 +11,11 @@ const OrderHome = () => {
   const { userNickname } = useSelector((state) => state.user);
 
   const MoveHome = () => navigate('/');
+  const MoveCart = () => navigate('/order/cart');
 
   return (
     <div className="col-sm-4 order-home">
-      <HeaderWithLogo MoveBack={MoveHome} />
+      <HeaderWithLogo MoveBack={MoveHome} MoveCart={MoveCart} />
       <h4 className="order-home-nickname">{userNickname || '닉네임'}</h4>
 
       <OrderStoreList />

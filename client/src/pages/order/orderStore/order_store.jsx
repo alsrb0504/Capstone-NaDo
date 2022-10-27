@@ -12,7 +12,6 @@ const OrderStore = () => {
   const navigate = useNavigate();
 
   const { selectedStore } = useSelector((state) => state.order);
-
   const {
     shopName,
     shopImg,
@@ -27,7 +26,11 @@ const OrderStore = () => {
 
   return (
     <div className="col-sm-4 order-store">
-      <HeaderWithImg bg={shopImg} MoveBack={MoveBack} MoveCart={MoveCart} />
+      <HeaderWithImg
+        shopImg={shopImg || '/images/default_cafe_img.jpg'}
+        MoveBack={MoveBack}
+        MoveCart={MoveCart}
+      />
 
       <StoreInfoSection
         shopName={shopName}
