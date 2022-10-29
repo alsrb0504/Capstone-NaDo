@@ -48,6 +48,7 @@ const initialState = {
       coffeeImgUrl: '/images/coffeeImg/strawberrylatte.png',
     },
   },
+  selectCoffee: {},
 
   cartLists: [],
 };
@@ -56,11 +57,15 @@ export const orderSlice = createSlice({
   name: 'order',
   initialState,
   reducers: {
+    SelectCoffee: (state, actions) => {
+      state.selectCoffee = actions.payload;
+    },
     SelectStore: (state, actions) => {
       state.selectedStore = actions.payload;
     },
   },
 });
 
-export const { SelectStore } = orderSlice.actions;
+export const { SelectStore, SelectCoffee } = orderSlice.actions;
+
 export default orderSlice.reducer;
