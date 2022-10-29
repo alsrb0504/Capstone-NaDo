@@ -32,6 +32,10 @@
 @import './components/atoms/btns/btn_box';
 @import './components/atoms/header';
 @import './components/atoms/footer';
+@import './components/atoms/header_with_logo';
+@import './components/atoms/header_with_img';
+@import './components/atoms/store_info_section';
+@import './components/atoms/cards/menu_card';
 
 // molecules
 @import './components/molecules/login_form';
@@ -41,6 +45,9 @@
 @import './components/molecules/home_menus';
 @import './components/molecules/profile_edit_form';
 @import './components/molecules/passwd_edit_form';
+@import './components/molecules/order_store_list';
+@import './components/molecules/store_map_section';
+@import './components/molecules/store_menu_section';
 
 // pages
 @import './pages/login';
@@ -50,3 +57,6 @@
 @import './pages/setting';
 @import './pages/edit_profile';
 @import './pages/edit_passwd';
+@import './pages/order/order_home';
+@import './pages/order/order_store';
+@import './pages/order/order_cart';

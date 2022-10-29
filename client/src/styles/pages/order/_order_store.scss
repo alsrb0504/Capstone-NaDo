@@ -1,0 +1,13 @@
+.order-store {
+  @include column-flexbox(start, center);
+  position: relative;
+  min-height: 100vh;
+
+  .store-map-section {
+    margin-bottom: 20px;
+  }
+
+  .store-menu-section {
+    margin-bottom: 32px;
+  }
+}
