@@ -29,12 +29,8 @@ export const UpdateProfile = createAsyncThunk(
     try {
       const formData = new FormData();
       formData.append('image', image[0]);
-<<<<<<< HEAD
       formData.append('identifier', identifier);
       formData.append('nickname', nickname);
-=======
-      formData.append('nickname', nickname)
->>>>>>> backend_fix
 
       const response = await axios({
         method: 'post',
@@ -44,8 +40,8 @@ export const UpdateProfile = createAsyncThunk(
           'Content-Type': 'multipart/form-data',
         },
         body: {
-          nickname: 'asdf'
-        }
+          nickname: 'asdf',
+        },
       });
 
       console.log(response);

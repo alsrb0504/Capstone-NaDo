@@ -14,13 +14,8 @@ const Home = () => {
 
   const { isLogin, userNickname } = useSelector((state) => state.user);
 
-  const MoveTest = () => {
-    navigate('/test/login');
-  };
-
-  const MoveLogin = () => {
-    navigate('/login');
-  };
+  const MoveTest = () => navigate('/test/login');
+  const MoveLogin = () => navigate('/login');
 
   const Logout = () => {
     dispatch(LocalLogout());

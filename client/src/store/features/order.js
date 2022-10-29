@@ -67,5 +67,4 @@ export const orderSlice = createSlice({
 });
 
 export const { SelectStore, SelectCoffee } = orderSlice.actions;
-
 export default orderSlice.reducer;
