@@ -2,16 +2,20 @@ import { Body, Controller, Post, UseGuards, HttpCode, Get, Request, Response, No
 import { AuthGuard } from '@nestjs/passport';
 import * as bcrypt from 'bcryptjs';
 import * as express from 'express'
-import { ReqWithUser, NecessaryUserInfo } from './type/request.type';
+import { ReqWithUser } from './type/request.type';
 
-import User from 'src/entity/user.entity';
+import User from 'src/entity/user/user.entity';
 
 import { UserService } from 'src/user/user.service';
 import { AuthService } from './auth.service';
 import { isLoggedInGuard, isNotLoggedInGuard} from './guard/cookieAuthentication.guard';
 import { LoginWithCredentialsGuard, NaverLoginWithCredentialsGuard } from './guard/loginWithCredentials.guard';
+import { ApiTags } from '@nestjs/swagger';
+import { UserRegister } from 'src/type/user/user.type';
+import { GetUserInformationDescription, UserLoginDescription, UserNaverLoginDescription, UserRegisterDescription } from './auth.decorator';
 
 
+@ApiTags("auth")
 @Controller('auth')
 export class AuthController {
   constructor(
@@ -21,9 +25,10 @@ export class AuthController {
 
   @UseGuards(isNotLoggedInGuard)
   @HttpCode(201)
+  @UserRegisterDescription()
   @Post('local/register')
   async registerUser(
-    @Body() user: NecessaryUserInfo
+    @Body() user: UserRegister
   ): Promise<boolean> {
       const isRegistered = await this.authService.isAlreadyRegistered(user.identifier)
       if(isRegistered) {
@@ -44,6 +49,7 @@ export class AuthController {
 
     @UseGuards(isNotLoggedInGuard, LoginWithCredentialsGuard)
     @HttpCode(200)
+    @UserLoginDescription()
     @Post('local/login')
     async login(@Request() req) {
       return req.user;
@@ -51,6 +57,7 @@ export class AuthController {
 
     @UseGuards(isLoggedInGuard)
     @HttpCode(200)
+    @UserLoginDescription()
     @Post('local/logout')
     async logout(
       @Request() req,
@@ -63,6 +70,7 @@ export class AuthController {
 
     @UseGuards(isLoggedInGuard)
     @Get('local')
+    @GetUserInformationDescription()
     loginPersist(
       @Request() req: ReqWithUser
     ) {
@@ -70,6 +78,7 @@ export class AuthController {
     }
 
     @UseGuards(AuthGuard('naver'))
+    @UserNaverLoginDescription()
     @Get('social/login')
     naverLogin() {}
 

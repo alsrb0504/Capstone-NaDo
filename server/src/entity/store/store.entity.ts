@@ -1,7 +1,7 @@
 import { PrimaryGeneratedColumn, Column, Entity, OneToMany} from "typeorm";
-import Menu from "./menu.entity";
-import Order from "./orders.entity";
-import Storebusinesstime from "./storebusinesstime.entity";
+import Menu from "../menu/menu.entity";
+import Order from "../orders/orders.entity";
+import Storebusinesstime from "../storebusinesstime/storebusinesstime.entity";
 
 
 @Entity({

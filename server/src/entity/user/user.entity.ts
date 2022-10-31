@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany, JoinTable, OneToOne, JoinColumn } from 'typeorm'
-
-import Orders from './orders.entity'
-import Pickedorder from './pickedorder.entity'
+import { IdentifierDescription, NicknameDescription, EmailDescription, ImagePathDescription, ProviderDescription } from './user.decorator'
+import Orders from '../orders/orders.entity'
+import Pickedorder from '../pickedorder/pickedorder.entity'
 
 
 @Entity({
@@ -11,6 +11,7 @@ export default class User {
   @PrimaryGeneratedColumn()
   sequence: number
 
+  @IdentifierDescription()
   @Column({
     type: 'varchar',
     length: 15,
@@ -25,24 +26,28 @@ export default class User {
   })
   password: string | null
 
+  @NicknameDescription()
   @Column({
     type: 'varchar',
     length: 10,
   })
   nickname: string
 
+  @EmailDescription()
   @Column({
     type: 'varchar',
     length: 45
   })
   email: string
 
+  @ProviderDescription()
   @Column({
     type: 'varchar',
     length: 8
   })
   provider: string
 
+  @ImagePathDescription()
   @Column({
     type: 'varchar',
     nullable: true

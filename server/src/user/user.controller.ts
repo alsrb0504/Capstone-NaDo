@@ -1,46 +1,32 @@
 import { Body, Controller, ForbiddenException, HttpCode, InternalServerErrorException, Post, Query, UseGuards, Request, UseInterceptors, UploadedFile, Get } from '@nestjs/common';
 import { UserService } from './user.service';
 
-import User from 'src/entity/user.entity';
 import { isLoggedInGuard } from 'src/auth/guard/cookieAuthentication.guard';
-import { change_password, Nickname } from './type/user.type';
 import { IdWithNicknamePipe } from './pipe/user.pipe';
 import { ReqWithUser } from 'src/auth/type/request.type';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { v4 as uuidv4} from 'uuid'
 import * as path from 'path';
+import { ApiBody, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { ChangePassword, UserNickname, UserWithPassword} from 'src/type/user/user.type';
+import { ChangePasswordDescription, ChangeProfileDescription } from './user.decorator';
 
+@ApiTags("user")
 @Controller('user')
 export class UserController {
   constructor(
     private userService: UserService
   ){}
 
-  @Post('insert')
-  @HttpCode(200)
-  async insertUser(
-    @Body() insertData: Partial<User>
-  ) {
-      await this.userService.insert(insertData)
-      return 'success'
-  }
-
-  @Get('find')
-  async getUserById(
-    @Query('identifier') identifier: string
-  ){
-    const userInfo = await this.userService.findById(identifier)
-    const { password, ...userInfoWithoutPassword} = userInfo
-    return userInfoWithoutPassword
-  }
 
   @UseGuards(isLoggedInGuard)
   @HttpCode(200)
+  @ChangePasswordDescription()
   @Post('change_password')
   async changePassword(
     @Request() req: ReqWithUser,
-    @Body() user: change_password
+    @Body() user: ChangePassword
   ) {
     const isPasswordSame = await this.userService.checkPassword({
       prevPasswd: user.prevPasswd,
@@ -75,10 +61,11 @@ export class UserController {
     })
   }))
   @Post('change_profile')
+  @ChangeProfileDescription()
   @HttpCode(200)
   async changeNickname(
     @Request() req: ReqWithUser,
-    @Body(IdWithNicknamePipe) body: Nickname,
+    @Body(IdWithNicknamePipe) body: UserNickname,
     @UploadedFile() profileFile: Express.Multer.File
   ){
     await this.userService.changeProfile({

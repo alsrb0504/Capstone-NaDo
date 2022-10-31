@@ -1,6 +1,6 @@
 import { Body, Controller, HttpCode, Post } from '@nestjs/common';
 import { StoreService } from './store.service';
-import Store from 'src/entity/store.entity';
+import Store from 'src/entity/store/store.entity';
 
 @Controller('store')
 export class StoreController {

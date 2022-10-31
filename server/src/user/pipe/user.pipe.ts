@@ -1,10 +1,11 @@
 import { ArgumentMetadata, Injectable, NotAcceptableException, PipeTransform } from "@nestjs/common";
-import { Nickname } from "../type/user.type";
+import { UserNickname } from "src/type/user/user.type";
+
 
 
 @Injectable()
-export class IdWithNicknamePipe implements PipeTransform<Nickname, Nickname> {
-  transform(value: Nickname, metadata: ArgumentMetadata) {
+export class IdWithNicknamePipe implements PipeTransform<UserNickname, UserNickname> {
+  transform(value: UserNickname, metadata: ArgumentMetadata) {
     if(!value.nickname) {
       throw new NotAcceptableException("nickname information is not existed")
     }

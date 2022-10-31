@@ -1,8 +1,8 @@
 import { PrimaryGeneratedColumn, Column, Entity, ManyToOne, OneToOne, OneToMany} from "typeorm";
-import Orderdetails from "./orderdetails.entity";
-import Pickedorder from "./pickedorder.entity";
-import Store from "./store.entity";
-import User from "./user.entity";
+import Orderdetails from "../orderdetails/orderdetails.entity";
+import Pickedorder from "../pickedorder/pickedorder.entity";
+import Store from "../store/store.entity";
+import User from "../user/user.entity";
 
 @Entity({
   name: 'orders'
