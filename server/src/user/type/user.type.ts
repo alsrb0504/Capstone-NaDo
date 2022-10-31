@@ -1,12 +1,13 @@
 import { PartialType, PickType } from '@nestjs/mapped-types' 
+import { ApiProperty, ApiBody } from '@nestjs/swagger';
 export interface change_password {
   identifier?: string
   prevPasswd: string,
   newPasswd: string
 }
 
-import { IsString, MinLength, MaxLength, IsOptional, IsEmail } from 'class-validator';
 
+<<<<<<< HEAD
 export class CreateUserDto {
   @IsString()
   @IsOptional()
@@ -41,3 +42,5 @@ export class Change_Profile extends PickType(CreateUserDto, ['identifier', 'nick
 }
 
 export class Nickname extends PickType(CreateUserDto, ['nickname']){}
+=======
+>>>>>>> backend_fix

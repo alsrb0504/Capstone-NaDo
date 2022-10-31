@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import Menu from "./menu.entity";
+import Menu from "../menu/menu.entity";
 
 @Entity({
   name: 'menusize'

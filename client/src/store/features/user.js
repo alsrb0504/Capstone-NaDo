@@ -32,6 +32,7 @@ export const UpdateProfile = createAsyncThunk(
       formData.append('identifier', identifier);
       formData.append('nickname', nickname);
 
+
       const response = await axios({
         method: 'post',
         url: 'http://localhost:3001/user/change_profile',

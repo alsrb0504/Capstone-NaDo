@@ -3,8 +3,13 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcryptjs'
 
+<<<<<<< HEAD
 import User from 'src/entity/user.entity';
 import { change_password, Change_Profile, Nickname } from './type/user.type';
+=======
+import User from 'src/entity/user/user.entity';
+import { ChangePassword, UserProfile } from 'src/type/user/user.type';
+>>>>>>> backend_fix
 
 @Injectable()
 export class UserService {
@@ -26,10 +31,15 @@ export class UserService {
   async findById(
     identifier: string
   ): Promise<Partial<User>> {
-    return await this.userRepository
-      .createQueryBuilder('user')
-      .where('user.identifier = :id', {id: identifier})
-      .getOne()
+    try {
+      const data = await this.userRepository
+        .createQueryBuilder('user')
+        .where('user.identifier = :id', {id: identifier})
+        .getOne()
+      return data
+    } catch (err) {
+      throw new InternalServerErrorException(err.message)
+    }
   }
 
   async findByEmail(
@@ -42,7 +52,7 @@ export class UserService {
   }
 
   async passwordUpdate(
-    newUserInfo: Partial<change_password>
+    newUserInfo: Partial<ChangePassword>
   ) {
 
     try {
@@ -64,7 +74,7 @@ export class UserService {
   }
 
   async checkPassword(
-    userCredentials: Partial<change_password>
+    userCredentials: Partial<ChangePassword>
   ) {
     const userInfo = await this.findById(userCredentials.identifier)
     if(!userInfo) throw new ForbiddenException("user is not exist")
@@ -74,7 +84,11 @@ export class UserService {
   }
 
   async changeProfile(
+<<<<<<< HEAD
     profileInfo : Change_Profile
+=======
+    profileInfo : UserProfile
+>>>>>>> backend_fix
   ) {
     const {nickname, imagePath, identifier} = profileInfo
 
