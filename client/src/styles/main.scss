@@ -53,7 +53,6 @@
 @import './components/molecules/store_menu_section';
 @import './components/molecules/payment_form';
 @import './components/molecules/payment_confirm';
-@import './components/molecules/waiting_order_list';
 
 // pages
 @import './pages/login';
@@ -67,4 +66,3 @@
 @import './pages/order/order_cart';
 @import './pages/order/order_payment';
 @import './pages/order/order_confirm';
-@import './pages/order/order_waitings';
