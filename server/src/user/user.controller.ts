@@ -61,18 +61,12 @@ export class UserController {
     })
   }))
   @Post('change_profile')
-<<<<<<< HEAD
-  @HttpCode(200)
-  async changeNickname(
-    @Request() req: ReqWithUser,
-    @Body(IdWithNicknamePipe) body: Nickname,
-=======
+
   @ChangeProfileDescription()
   @HttpCode(200)
   async changeNickname(
     @Request() req: ReqWithUser,
     @Body(IdWithNicknamePipe) body: UserNickname,
->>>>>>> backend_fix
     @UploadedFile() profileFile: Express.Multer.File
   ){
     await this.userService.changeProfile({

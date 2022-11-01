@@ -47,10 +47,8 @@ export default class User {
   })
   provider: string
 
-<<<<<<< HEAD:server/src/entity/user.entity.ts
-=======
+
   @ImagePathDescription()
->>>>>>> backend_fix:server/src/entity/user/user.entity.ts
   @Column({
     type: 'varchar',
     nullable: true

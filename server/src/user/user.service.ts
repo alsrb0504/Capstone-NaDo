@@ -3,13 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcryptjs'
 
-<<<<<<< HEAD
-import User from 'src/entity/user.entity';
-import { change_password, Change_Profile, Nickname } from './type/user.type';
-=======
 import User from 'src/entity/user/user.entity';
 import { ChangePassword, UserProfile } from 'src/type/user/user.type';
->>>>>>> backend_fix
 
 @Injectable()
 export class UserService {
@@ -84,11 +79,7 @@ export class UserService {
   }
 
   async changeProfile(
-<<<<<<< HEAD
-    profileInfo : Change_Profile
-=======
     profileInfo : UserProfile
->>>>>>> backend_fix
   ) {
     const {nickname, imagePath, identifier} = profileInfo
 
