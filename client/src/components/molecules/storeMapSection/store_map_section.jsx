@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-const StoreMapSection = ({ locationLatLong }) => {
+const StoreMapSection = ({ locationLatLong, isTitle }) => {
   const mapElement = useRef(null);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const StoreMapSection = ({ locationLatLong }) => {
 
   return (
     <section className="store-map-section">
-      <h3>가게 위치</h3>
+      {isTitle && <h3>가게 위치</h3>}
       <div className="store-maps" ref={mapElement} />
     </section>
   );

@@ -8,6 +8,7 @@ import FormTitle from '../../atoms/formTitle/form_title';
 import order_address from '../../../data/order_address';
 import LineInput from '../../atoms/lineInput/line_input';
 import LineInputContainer from '../lineInputContainer/line_input_container';
+import PaymentReceipt from '../../atoms/paymentReceipt/payment_receipt';
 
 const PaymentForm = () => {
   const {
@@ -76,21 +77,13 @@ const PaymentForm = () => {
 
         <div className="toss-api">토스 결제 정보</div>
 
-        <div className="payment-receipt">
-          <h4 className="receipt-title">최종 결제 금액</h4>
-          <div className="receipt-info">
-            <span>주문금액</span>
-            <span>16,900원</span>
-          </div>
-          <div className="receipt-info">
-            <span>배달팁</span>
-            <span>1,000원</span>
-          </div>
-          <div className="receipt-info">
-            <span>총 결제금액</span>
-            <span>17,900원</span>
-          </div>
-        </div>
+        <PaymentReceipt
+          price_info={{
+            order_price: 16000,
+            delivery_fee: 1000,
+            total_price: 17000,
+          }}
+        />
       </section>
 
       <Btn type="submit" text="17,000원 결제하기" />

@@ -1,0 +1,25 @@
+.payment-receipt {
+  @include column-flexbox();
+  width: 100%;
+  padding: 16px;
+
+  font-size: 20px;
+
+  background-color: $box-border;
+  border-radius: 24px;
+
+  .receipt-title {
+    margin-bottom: 16px;
+  }
+
+  .receipt-info {
+    @include flexbox(between);
+    width: 100%;
+    margin-bottom: 4px;
+
+    &:last-child {
+      margin-bottom: 0;
+      margin-top: 24px;
+    }
+  }
+}

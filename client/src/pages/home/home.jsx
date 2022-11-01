@@ -17,7 +17,7 @@ const Home = () => {
   // 현재 개발중인 페이지 이동
   const MoveLogin = () => navigate('/login');
   const MovePay = () => navigate('/order/payment');
-  const MoveCheck = () => navigate('/order/payment_confirm');
+  const MoveCheck = () => navigate('/order/confirm');
 
   const Logout = () => {
     dispatch(LocalLogout());
