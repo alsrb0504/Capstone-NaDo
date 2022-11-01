@@ -5,10 +5,8 @@ import { useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import AxiosSetting from '../services/axios';
 import Home from '../pages/home/home';
-import TestApp from '../pages/logintest/testApp';
 import Login from '../pages/login/login';
 import LocalRegister from '../pages/localRegister/local_register';
-import SocialRegister from '../pages/socialRegister/social_register';
 import { GetUserWithSession } from '../store/features/user';
 import Setting from '../pages/setting/setting';
 import EditProfile from '../pages/editProfile/edit_profile';
@@ -35,7 +33,6 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register">
               <Route path="local" element={<LocalRegister />} />
-              <Route path="social" element={<SocialRegister />} />
             </Route>
             <Route path="/setting">
               <Route index element={<Setting />} />
@@ -49,9 +46,6 @@ const App = () => {
               <Route path="cart" element={<OrderCart />} />
               <Route path="payment" element={<OrderPayment />} />
             </Route>
-
-            {/* 구분선 : 테스트 페이지 */}
-            <Route path="/test/*" element={<TestApp />} />
           </Routes>
         </div>
       </div>

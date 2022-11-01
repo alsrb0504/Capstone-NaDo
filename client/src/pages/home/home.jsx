@@ -14,8 +14,10 @@ const Home = () => {
 
   const { isLogin, userNickname } = useSelector((state) => state.user);
 
-  const MoveTest = () => navigate('/test/login');
+  // 현재 개발중인 페이지 이동
   const MoveLogin = () => navigate('/login');
+  const MovePay = () => navigate('/order/payment');
+  const MoveCheck = () => navigate('/order/payment_confirm');
 
   const Logout = () => {
     dispatch(LocalLogout());
@@ -37,18 +39,15 @@ const Home = () => {
       )}
       {!isLogin && <h3>로그인을 해주세요</h3>}
 
-      <Btn
-        type="button"
-        color="red"
-        text="테스트 로그인 페이지"
-        handleClick={MoveTest}
-      />
+      <Btn type="button" color="red" text="로그인" handleClick={MoveLogin} />
+
+      <Btn type="button" color="red" text="결제 페이지" handleClick={MovePay} />
 
       <Btn
         type="button"
         color="blue"
-        text="로그인 페이지"
-        handleClick={MoveLogin}
+        text="결제 확인 페이지"
+        handleClick={MoveCheck}
       />
 
       <Footer />
