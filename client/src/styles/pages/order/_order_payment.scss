@@ -1,0 +1,11 @@
+.order-payment {
+  @include column-flexbox(start, center);
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+
+  .header-box {
+    width: 100vw;
+    margin-bottom: 16px;
+  }
+}

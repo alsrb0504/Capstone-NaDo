@@ -1,0 +1,92 @@
+.payment-form {
+  width: 100%;
+
+  // 인풋 컴포넌트
+  .line-input::placeholder {
+    color: $placeholder;
+  }
+
+  // 서브밋 버튼 컴포넌트
+  .btn {
+    margin-bottom: 24px;
+  }
+
+  &-section {
+    @include column-flexbox(start, start);
+    width: 100%;
+    margin-bottom: 24px;
+
+    .form-title {
+      margin-bottom: 18px;
+    }
+  }
+
+  &-label {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  // 하나만 쓰이고
+  // 안의 옵션들 내용을 추후 다른 걸로 바꾸기 힘들어서
+  // 컴포넌트 만들지 않고 구현.
+  &-select {
+    width: 100%;
+    height: 60px;
+    padding: 4px 8px;
+
+    color: $dark-gray;
+    font-size: 20px;
+
+    border: 2px solid $dark-gray;
+    appearance: none;
+    background-color: $white;
+    background: url('../../../../public/icon/select_icon.svg') no-repeat right
+      16px center;
+  }
+
+  .order-time-input {
+    width: 100%;
+    height: 60px;
+    padding: 4px 8px;
+    margin-bottom: 18px;
+
+    color: $dark-gray;
+    font-size: 20px;
+
+    border: 2px solid $dark-gray;
+  }
+
+  .toss-api {
+    background-color: $placeholder;
+    width: 100%;
+    min-height: 120px;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .payment-receipt {
+    @include column-flexbox();
+    width: 100%;
+    padding: 16px;
+
+    font-size: 20px;
+
+    background-color: $box-border;
+    border-radius: 24px;
+
+    .receipt-title {
+      margin-bottom: 16px;
+    }
+
+    .receipt-info {
+      @include flexbox(between);
+      width: 100%;
+      margin-bottom: 4px;
+
+      &:last-child {
+        margin-bottom: 0;
+        margin-top: 24px;
+      }
+    }
+  }
+}
