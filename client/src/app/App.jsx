@@ -16,6 +16,7 @@ import OrderStore from '../pages/order/orderStore/order_store';
 import OrderCart from '../pages/order/orderCart/order_cart';
 import OrderPayment from '../pages/order/orderPayment/order_payment';
 import OrderConfirm from '../pages/order/orderConfirm/order_confirm';
+import OrderWaitings from '../pages/order/orderWaitings/order_waitings';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -47,6 +48,7 @@ const App = () => {
               <Route path="cart" element={<OrderCart />} />
               <Route path="payment" element={<OrderPayment />} />
               <Route path="confirm" element={<OrderConfirm />} />
+              <Route path="waitings" element={<OrderWaitings />} />
             </Route>
           </Routes>
         </div>
