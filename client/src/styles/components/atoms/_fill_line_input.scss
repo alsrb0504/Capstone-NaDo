@@ -1,0 +1,12 @@
+.fill-line-input {
+  height: 60px;
+  width: 100%;
+
+  font-size: 20px;
+
+  border-bottom: 2px solid $primary;
+
+  &:disabled {
+    background-color: transparent;
+  }
+}

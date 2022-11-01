@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable react/jsx-boolean-value */
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -46,7 +46,7 @@ const OrderStore = () => {
         shopNumber={shopContactNumber}
       />
 
-      <StoreMapSection locationLatLong={locationLatLong} />
+      <StoreMapSection locationLatLong={locationLatLong} isTitle={true} />
 
       <StoreMenuSection menuLists={CheckMenuList()} />
 
