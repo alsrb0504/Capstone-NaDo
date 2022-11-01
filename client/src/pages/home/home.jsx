@@ -18,6 +18,7 @@ const Home = () => {
   const MoveLogin = () => navigate('/login');
   const MovePay = () => navigate('/order/payment');
   const MoveCheck = () => navigate('/order/confirm');
+  const MoveWaitins = () => navigate('/order/waitings');
 
   const Logout = () => {
     dispatch(LocalLogout());
@@ -48,6 +49,13 @@ const Home = () => {
         color="blue"
         text="결제 확인 페이지"
         handleClick={MoveCheck}
+      />
+
+      <Btn
+        type="button"
+        color="blue"
+        text="기다리는 주문 페이지"
+        handleClick={MoveWaitins}
       />
 
       <Footer />
