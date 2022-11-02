@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
-  // userNickname: '',    // 테스트용
-  userNickname: 'testUser',
+  userId: '',
+  userNickname: '',
   userEmail: '',
   userProvider: '',
   // userProfile: '',   // 추후 상의 후 추가해야 할 듯
@@ -16,34 +16,92 @@ const initialState = {
 // *
 // 프로필 업데이트 함수
 // 아직 reducer에 연결 X.
+// nickname
+// identifier
 // *
 export const UpdateProfile = createAsyncThunk(
   'user/UpdateProfile',
-  async ({ nickname, image }, thunkAPI) => {
-    console.log(nickname, image);
-
-    // 추후 api 주소 정하면 교체
+  async ({ nickname, image, identifier }, thunkAPI) => {
+    //  *
+    // 테스트용 프로필 변경 요청
+    // 아이디, 닉네임, 이미지를 같이 보냄.
+    // *
     try {
-      const response = await axios.post('/test', {
-        nickname,
-        image, // 아마 추가적인 조치 필요할 거 같은데 추후 구현
+      const formData = new FormData();
+      formData.append('image', image[0]);
+      formData.append('identifier', identifier);
+      formData.append('nickname', nickname);
+
+
+      const response = await axios({
+        method: 'post',
+        url: 'http://localhost:3001/user/change_profile',
+        data: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        body: {
+          nickname: 'asdf',
+        },
       });
 
-      // 업데이트 된, 닉네임, 프로필 이미지 정보 받아옴.
-      if (response.status === 200) {
-        return response.data;
-      }
+      console.log(response);
+
       return thunkAPI.rejectWithValue(response.data);
     } catch (e) {
       PrintError(e, '프로필 업데이트');
       return thunkAPI.rejectWithValue(e.response.data);
     }
+
+    // try {
+    //   const formData = new FormData();
+    //   formData.append('image', image[0]);
+
+    //   console.log(`image = ${image}`);
+    //   console.log(formData);
+
+    //   const imgResponse = await axios({
+    //     method: 'post',
+    //     url: 'http://localhost:3001/user/profile_image',
+    //     data: formData,
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data',
+    //     },
+    //   });
+
+    //   console.log(imgResponse);
+    // } catch (e) {
+    //   return thunkAPI.rejectWithValue(e.response.data);
+    // }
+
+    // // 추후 api 주소 정하면 교체
+    // try {
+    //   const response = await axios.post(
+    //     'http://localhost:3001/user/change_nickname',
+    //     {
+    //       identifier,
+    //       nickname,
+    //     },
+    //   );
+
+    //   // 업데이트 된, 닉네임, 프로필 이미지 정보 받아옴.
+    //   if (response.status === 200) {
+    //     return response.data;
+    //   }
+    //   return thunkAPI.rejectWithValue(response.data);
+    // } catch (e) {
+    //   PrintError(e, '프로필 업데이트');
+    //   return thunkAPI.rejectWithValue(e.response.data);
+    // }
   },
 );
 
 // *
 // 비밀번호 변경 함수
 // 아직 reducer에 연결 X.
+// 기존 비밀번호: prevPasswd
+// 새 비밀번호: newPasswd
+// 아이디: identifier
 // *
 export const ChangePasswd = createAsyncThunk(
   'user/ChangePasswd',
@@ -52,16 +110,20 @@ export const ChangePasswd = createAsyncThunk(
 
     // 추후 api 주소 정하면 교체
     try {
-      const response = await axios.post('/test', {
-        prevPasswd,
-        newPasswd,
-      });
+      const response = await axios.post(
+        'http://localhost:3001/user/change_password',
+        {
+          prevPasswd,
+          newPasswd,
+        },
+      );
 
       // 비밀번호 변경 성공
       if (response.status === 200) {
         return response.data;
       }
-      // 비밀번호 변경 실패 (원인 출력 X)
+      // 비밀번호 변경 실패 (원인 출력 X) 403?
+      alert(response.data.message);
       return thunkAPI.rejectWithValue(response.data);
     } catch (e) {
       PrintError(e, '비밀번호 변경');

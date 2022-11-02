@@ -11,6 +11,7 @@ import * as createRedisStore from 'connect-redis';
 import * as passport from 'passport';
 import * as Redis from 'redis';
 import { HttpExceptionFilter } from './http.exception';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
 
 
@@ -18,6 +19,14 @@ async function bootstrap() {
   const logger = new Logger();
   const app = await NestFactory.create(AppModule);
 
+  const config = new DocumentBuilder()
+  .setTitle('NaDo application')
+  .setDescription('Nado api description')
+  .setVersion('1.0')
+  .addTag('nado')
+  .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
   app.useGlobalPipes(new ValidationPipe({
     exceptionFactory: (errors) => {
       const errorMessages = {};

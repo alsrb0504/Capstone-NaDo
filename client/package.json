@@ -18,6 +18,7 @@
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
+    "redux-persist": "^6.0.0",
     "sass": "^1.55.0",
     "web-vitals": "^2.1.4"
   },
@@ -48,7 +49,11 @@
       "react/prop-types": "off",
       "no-param-reassign": 0,
       "react/jsx-props-no-spreading": "off",
-      "no-use-before-define": "off"
+      "no-use-before-define": "off",
+      "react/jsx-fragments": "off",
+      "jsx-a11y/no-static-element-interactions": "off",
+      "jsx-a11y/click-events-have-key-events": "off",
+      "camelcase": "off"
     },
     "env": {
       "browser": true

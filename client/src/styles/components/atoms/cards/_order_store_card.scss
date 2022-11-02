@@ -12,7 +12,9 @@
   }
 
   .info {
-    @include flexbox;
+    @include flexbox(start);
+    flex: 1;
+    max-width: calc(100% - 24px); // 아이콘 크기 뺀 사이즈
 
     img {
       width: 76px;
@@ -22,12 +24,19 @@
     }
 
     .name-box {
-      @include column-flexbox;
+      @include column-flexbox(start, start);
+      flex: 1;
 
       h3 {
+        flex: 1;
         position: relative;
-        font-size: 20px;
+        width: 80%;
         margin-bottom: 8px;
+        font-size: 20px;
+        // ... 효과
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
       }
 
       .bar {

@@ -1,0 +1,21 @@
+.store-menu-section {
+  width: 100%;
+  text-align: center;
+
+  .store-menu-title {
+    font-size: 20px;
+    margin: 0 0 20px 0;
+  }
+
+  .store-menu-container {
+    width: 100%;
+
+    .menu-card {
+      margin-bottom: 16px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.order-home {
+  @include column-flexbox(start, center);
+  position: relative;
+  min-height: 100vh;
+
+  .header-with-logo {
+    margin-bottom: 8px;
+  }
+
+  &-nickname {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .order-store-card {
+    margin-bottom: 16px;
+  }
+
+  .footer {
+    margin-left: 0 !important;
+  }
+}

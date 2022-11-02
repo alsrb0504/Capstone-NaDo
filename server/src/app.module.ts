@@ -1,26 +1,32 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { AppService } from './app.service'; 
 
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm'; 
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path'
 import { UserModule } from './user/user.module';
 import { StoreModule } from './store/store.module';
 import { AuthModule } from './auth/auth.module';
 import configuration from './config/configuration';
 
-import User from './entity/user.entity'
-import Store from './entity/store.entity'
-import Order from './entity/orders.entity'
-import Orderdetails from './entity/orderdetails.entity';
-import Menu from './entity/menu.entity';
-import Storebusinesstime from './entity/storebusinesstime.entity';
-import Menusize from './entity/menusize.entity';
-import Pickedorder from './entity/pickedorder.entity';
+import User from './entity/user/user.entity'
+import Store from './entity/store/store.entity'
+import Order from './entity/orders/orders.entity'
+import Orderdetails from './entity/orderdetails/orderdetails.entity';
+import Menu from './entity/menu/menu.entity';
+import Storebusinesstime from './entity/storebusinesstime/storebusinesstime.entity';
+import Menusize from './entity/menusize/menusize.entity';
+import Pickedorder from './entity/pickedorder/pickedorder.entity';
 
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, 'static', 'images'),
+      serveRoot: "/file"
+    }),
     ConfigModule.forRoot({
       load: [configuration],
       envFilePath: ['.env.server']

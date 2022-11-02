@@ -26,7 +26,7 @@ const Setting = () => {
   };
 
   const MoveEditPassword = () => {
-    if (userProvider === 'local') return;
+    if (userProvider === 'naver') return;
 
     navigate('/setting/passwd');
   };

@@ -1,17 +1,19 @@
-import React from "react";
+import React from 'react';
 
 const OrderCompleteCard = ({ info }) => {
+  console.log(info);
+
   const { name, options, price, cnt } = info;
 
   // 추후, 이 함수를 다른 곳에서 만들어서 사용할 지 결정.
   const MakeOptionText = (ops) => {
-    if (ops.length === 0) return "없음";
+    if (ops.length === 0) return '없음';
 
-    let txt = "";
+    let txt = '';
 
     ops.forEach((option, idx) => {
       txt += option;
-      if (idx !== ops.length - 1) txt += ", ";
+      if (idx !== ops.length - 1) txt += ', ';
     });
 
     return txt;

@@ -1,0 +1,22 @@
+.order-store-list-container {
+  width: 100%;
+  max-height: 60vh;
+  overflow-y: scroll;
+
+  -ms-overflow-style: none;
+
+  // 스크롤바 물어볼 것.
+  &::-webkit-scrollbar {
+    // width: 4px;
+    display: none;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $primary;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    // background-color: grey;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }
+}

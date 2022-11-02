@@ -5,16 +5,20 @@ import { useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import AxiosSetting from '../services/axios';
 import Home from '../pages/home/home';
-import TestApp from '../pages/logintest/testApp';
 import Login from '../pages/login/login';
 import LocalRegister from '../pages/localRegister/local_register';
-import SocialRegister from '../pages/socialRegister/social_register';
 import { GetUserWithSession } from '../store/features/user';
 import Setting from '../pages/setting/setting';
 import EditProfile from '../pages/editProfile/edit_profile';
 import ChangePassword from '../pages/edtiPasswd/edit_passwd';
-import Option from '../pages/option/option';
-// Option화면 테스트후 삭제 필요
+import OrderHome from '../pages/order/orderHome/order_home';
+import OrderStore from '../pages/order/orderStore/order_store';
+import OrderCart from '../pages/order/orderCart/order_cart';
+import OrderPayment from '../pages/order/orderPayment/order_payment';
+import OrderConfirm from '../pages/order/orderConfirm/order_confirm';
+import OrderWaitings from '../pages/order/orderWaitings/order_waitings';
+import Option from '../pages/option/option'; 
+// option 화면
 
 const App = () => {
   const dispatch = useDispatch();
@@ -35,15 +39,21 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register">
               <Route path="local" element={<LocalRegister />} />
-              <Route path="social" element={<SocialRegister />} />
             </Route>
             <Route path="/setting">
               <Route index element={<Setting />} />
               <Route path="profile" element={<EditProfile />} />
               <Route path="passwd" element={<ChangePassword />} />
             </Route>
-            {/* 구분선 : 테스트 페이지 */}
-            <Route path="/test/*" element={<TestApp />} />
+
+            <Route path="/order">
+              <Route index element={<OrderHome />} />
+              <Route path="store" element={<OrderStore />} />
+              <Route path="cart" element={<OrderCart />} />
+              <Route path="payment" element={<OrderPayment />} />
+              <Route path="confirm" element={<OrderConfirm />} />
+              <Route path="waitings" element={<OrderWaitings />} />
+            </Route>
           </Routes>
         </div>
       </div>

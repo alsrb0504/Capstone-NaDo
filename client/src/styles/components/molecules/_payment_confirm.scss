@@ -1,0 +1,36 @@
+.payment-confirm {
+  @include column-flexbox(start, start);
+
+  width: 100%;
+
+  section {
+    width: 100%;
+    margin-bottom: 24px;
+  }
+
+  &-map-section {
+    @include column-flexbox(center, center);
+
+    .form-title {
+      align-self: start;
+      margin-bottom: 12px;
+    }
+
+    .store-map-section {
+      @include flexbox();
+      width: 100vw;
+      margin-bottom: 0;
+    }
+  }
+
+  &-list-section {
+    margin-bottom: 12px !important;
+
+    .form-title {
+      margin-bottom: 12px;
+    }
+    .order-card {
+      margin-bottom: 12px;
+    }
+  }
+}

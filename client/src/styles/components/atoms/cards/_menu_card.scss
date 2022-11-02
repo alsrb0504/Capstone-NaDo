@@ -1,0 +1,49 @@
+.menu-card {
+  @include flexbox(between);
+  width: 100%;
+  height: 100px;
+  padding: 0 16px 0 32px;
+
+  &-info {
+    position: relative;
+    padding-top: 20px;
+    text-align: left;
+
+    width: calc(100% - (78px + 8px));
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: -14px;
+      width: 4px;
+      height: 36px;
+      background-color: $primary;
+    }
+
+    h3 {
+      width: 100%;
+      margin-bottom: 16px;
+      font-size: 20px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+
+  &-img-container {
+    width: 78px;
+    height: 78px;
+    border-radius: 24px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

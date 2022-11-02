@@ -5,13 +5,8 @@ import BtnSqureBox from '../../atoms/btnSqureBox/btn_squre_box';
 const HomeMainBtns = () => {
   const navigate = useNavigate();
 
-  const MoveOrder = () => {
-    navigate('/');
-  };
-
-  const MovePickup = () => {
-    navigate('/');
-  };
+  const MoveOrder = () => navigate('/order');
+  const MovePickup = () => navigate('/pickup');
 
   return (
     <div className="home-main-btns">

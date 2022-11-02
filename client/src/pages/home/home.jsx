@@ -14,13 +14,11 @@ const Home = () => {
 
   const { isLogin, userNickname } = useSelector((state) => state.user);
 
-  const MoveTest = () => {
-    navigate('/test/login');
-  };
-
-  const MoveLogin = () => {
-    navigate('/login');
-  };
+  // 현재 개발중인 페이지 이동
+  const MoveLogin = () => navigate('/login');
+  const MovePay = () => navigate('/order/payment');
+  const MoveCheck = () => navigate('/order/confirm');
+  const MoveWaitins = () => navigate('/order/waitings');
 
   const Logout = () => {
     dispatch(LocalLogout());
@@ -35,25 +33,29 @@ const Home = () => {
       <HomeMenus />
 
       {isLogin && (
-        <>
+        <React.Fragment>
           <h3>{userNickname}님 환영합니다.</h3>
           <Btn type="button" color="" text="로그아웃" handleClick={Logout} />
-        </>
+        </React.Fragment>
       )}
       {!isLogin && <h3>로그인을 해주세요</h3>}
 
+      <Btn type="button" color="red" text="로그인" handleClick={MoveLogin} />
+
+      <Btn type="button" color="red" text="결제 페이지" handleClick={MovePay} />
+
       <Btn
         type="button"
-        color="red"
-        text="테스트 로그인 페이지"
-        handleClick={MoveTest}
+        color="blue"
+        text="결제 확인 페이지"
+        handleClick={MoveCheck}
       />
 
       <Btn
         type="button"
         color="blue"
-        text="로그인 페이지"
-        handleClick={MoveLogin}
+        text="기다리는 주문 페이지"
+        handleClick={MoveWaitins}
       />
 
       <Footer />

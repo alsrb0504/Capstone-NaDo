@@ -31,9 +31,7 @@ const PasswdEditForm = () => {
     console.log(prevPasswd, newPasswd, newPasswd2);
 
     // 나중에 제거
-    if (false) {
-      dispatch(ChangePasswd({ prevPasswd, newPasswd }));
-    }
+    dispatch(ChangePasswd({ prevPasswd, newPasswd }));
   };
 
   return (
@@ -43,6 +41,7 @@ const PasswdEditForm = () => {
           desc="기존 비밀번호"
           condition={PasswdCondition}
           id="prevPasswd"
+          type="password"
           register={register}
         />
         <ErrorMessage

@@ -34,6 +34,14 @@
 @import './components/atoms/footer';
 @import './components/atoms/text_underline';
 @import './components/atoms/option_underline';
+@import './components/atoms/header_with_logo';
+@import './components/atoms/header_with_img';
+@import './components/atoms/store_info_section';
+@import './components/atoms/cards/menu_card';
+@import './components/atoms/form_title';
+@import './components/atoms/payment_receipt';
+@import './components/atoms/fill_line_input';
+
 
 // molecules
 @import './components/molecules/login_form';
@@ -43,13 +51,24 @@
 @import './components/molecules/home_menus';
 @import './components/molecules/profile_edit_form';
 @import './components/molecules/passwd_edit_form';
+@import './components/molecules/order_store_list';
+@import './components/molecules/store_map_section';
+@import './components/molecules/store_menu_section';
+@import './components/molecules/payment_form';
+@import './components/molecules/payment_confirm';
+@import './components/molecules/waiting_order_list';
 
 // pages
 @import './pages/login';
-@import './pages/social_register';
 @import './pages/local_register';
 @import './pages/home';
 @import './pages/setting';
 @import './pages/edit_profile';
 @import './pages/edit_passwd';
 @import './pages/option';
+@import './pages/order/order_home';
+@import './pages/order/order_store';
+@import './pages/order/order_cart';
+@import './pages/order/order_payment';
+@import './pages/order/order_confirm';
+@import './pages/order/order_waitings';
