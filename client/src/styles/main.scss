@@ -32,6 +32,8 @@
 @import './components/atoms/btns/btn_box';
 @import './components/atoms/header';
 @import './components/atoms/footer';
+@import './components/atoms/text_underline';
+@import './components/atoms/option_underline';
 @import './components/atoms/header_with_logo';
 @import './components/atoms/header_with_img';
 @import './components/atoms/store_info_section';
@@ -39,6 +41,7 @@
 @import './components/atoms/form_title';
 @import './components/atoms/payment_receipt';
 @import './components/atoms/fill_line_input';
+
 
 // molecules
 @import './components/molecules/login_form';
@@ -62,6 +65,7 @@
 @import './pages/setting';
 @import './pages/edit_profile';
 @import './pages/edit_passwd';
+@import './pages/option';
 @import './pages/order/order_home';
 @import './pages/order/order_store';
 @import './pages/order/order_cart';
