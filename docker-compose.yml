@@ -30,7 +30,7 @@ services:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci
     volumes:
-      - /Users/mj/Capstone-NaDo/config/mysql/mysqld.cnf:/etc/mysql/conf.d/mysqld.cnf
+      - ./config/mysql/mysqld.cnf:/etc/mysql/conf.d/mysqld.cnf
     platform: linux/amd64
     networks:
       - back_end
