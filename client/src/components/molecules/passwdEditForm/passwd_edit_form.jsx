@@ -1,11 +1,10 @@
-import { ErrorMessage } from '@hookform/error-message';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { PasswdCond } from '../../../services/formCondition';
 import { ChangePasswd } from '../../../store/features/user';
 import Btn from '../../atoms/btn/btn';
-import LineInput from '../../atoms/lineInput/line_input';
+import LineInputContainer from '../lineInputContainer/line_input_container';
 
 const PasswdEditForm = () => {
   const dispatch = useDispatch();
@@ -28,7 +27,6 @@ const PasswdEditForm = () => {
     }
 
     console.log('data', data);
-    console.log(prevPasswd, newPasswd, newPasswd2);
 
     // 나중에 제거
     dispatch(ChangePasswd({ prevPasswd, newPasswd }));
@@ -36,53 +34,32 @@ const PasswdEditForm = () => {
 
   return (
     <form className="passwd-edit-form" onSubmit={handleSubmit(OnSubmit)}>
-      <div className="line-input-container">
-        <LineInput
-          desc="기존 비밀번호"
-          condition={PasswdCondition}
-          id="prevPasswd"
-          type="password"
-          register={register}
-        />
-        <ErrorMessage
-          errors={errors}
-          name="prevPasswd"
-          as="p"
-          className="line-input-error is-margin-bottom"
-        />
-      </div>
+      <LineInputContainer
+        desc="기존 비밀번호"
+        condition={PasswdCondition}
+        id="prevPasswd"
+        type="password"
+        register={register}
+        errors={errors}
+      />
 
-      <div className="line-input-container">
-        <LineInput
-          desc="새 비밀번호"
-          condition={PasswdCondition}
-          id="newPasswd"
-          type="password"
-          register={register}
-        />
-        <ErrorMessage
-          errors={errors}
-          name="newPasswd"
-          as="p"
-          className="line-input-error is-margin-bottom"
-        />
-      </div>
+      <LineInputContainer
+        desc="새 비밀번호"
+        condition={PasswdCondition}
+        id="newPasswd"
+        type="password"
+        register={register}
+        errors={errors}
+      />
 
-      <div className="line-input-container">
-        <LineInput
-          desc="새 비밀번호 확인"
-          condition={PasswdCondition}
-          id="newPasswd2"
-          type="password"
-          register={register}
-        />
-        <ErrorMessage
-          errors={errors}
-          name="newPasswd2"
-          as="p"
-          className="line-input-error is-margin-bottom"
-        />
-      </div>
+      <LineInputContainer
+        desc="새 비밀번호 확인"
+        condition={PasswdCondition}
+        id="newPasswd2"
+        type="password"
+        register={register}
+        errors={errors}
+      />
 
       <div className="passwd-edit-form-btn">
         <Btn type="submit" text="비밀번호 변경 완료" />

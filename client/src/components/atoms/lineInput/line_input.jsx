@@ -13,6 +13,7 @@ const LineInput = ({ desc, id, val, type, register, condition }) => (
     type={type || 'text'}
     placeholder={desc}
     disabled={!!val}
+    autoComplete="on"
   />
 );
 
