@@ -1,9 +1,14 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { ErrorMessage } from '@hookform/error-message';
-import Btn from '../../atoms/btn/btn';
-import LineInput from '../../atoms/lineInput/line_input';
-import { IdCond, PasswdCond, NicknameCond } from '../../../services/formCondition';
+// import { ErrorMessage } from '@hookform/error-message';
+import Btn from '../../atoms/buttons/btn/btn';
+// import LineInput from '../../atoms/lineInput/line_input';
+import {
+  IdCond,
+  PasswdCond,
+  NicknameCond,
+} from '../../../services/formCondition';
+import LineInputContainer from '../lineInputContainer/line_input_container';
 
 const SignupLocalForm = ({ SignupWithLocal }) => {
   const {
@@ -21,11 +26,11 @@ const SignupLocalForm = ({ SignupWithLocal }) => {
   });
 
   const OnSubmit = (data) => {
-    const {password, password2} = data;
+    const { password, password2 } = data;
 
     if (password !== password2) {
-        alert('비밀번호가 일치하지 않습니다');
-        reset();
+      alert('비밀번호가 일치하지 않습니다');
+      reset();
     }
 
     console.log('form info', data);
@@ -40,86 +45,51 @@ const SignupLocalForm = ({ SignupWithLocal }) => {
 
   return (
     <form className="signup-local-form" onSubmit={handleSubmit(OnSubmit)}>
-      <div className="line-input-container">
-        <LineInput
-          desc="아이디"
-          condition={IdCondition}
-          id="identifier"
-          register={register}
-        />
-        <ErrorMessage
-          errors={errors}
-          name="identifier"
-          as="p"
-          className="line-input-error is-margin-bottom"
-        />
-      </div>
+      <LineInputContainer
+        desc="아이디"
+        condition={IdCondition}
+        id="identifier"
+        register={register}
+        errors={errors}
+      />
 
-      <div className="line-input-container">
-        <LineInput
-          desc="비밀번호"
-          condition={PasswordCondition}
-          id="password"
-          type="password"
-          register={register}
-        />
-        <ErrorMessage
-          errors={errors}
-          name="password"
-          as="p"
-          className="line-input-error is-margin-bottom"
-        />
-      </div>
+      <LineInputContainer
+        desc="비밀번호"
+        condition={PasswordCondition}
+        id="password"
+        type="password"
+        register={register}
+        errors={errors}
+      />
 
-      <div className="line-input-container">
-        <LineInput
-          desc="비밀번호 확인"
-          condition={PasswordCondition}
-          id="password2"
-          type="password" 
-          register={register}
-        />
-        <ErrorMessage
-          errors={errors}
-          name="password2"
-          as="p"
-          className="line-input-error is-margin-bottom"
-        />
-      </div>
+      <LineInputContainer
+        desc="비밀번호 확인"
+        condition={PasswordCondition}
+        id="password2"
+        type="password"
+        register={register}
+        errors={errors}
+      />
 
-      <div className="line-input-container">
-        <LineInput
-          desc="닉네임"
-          condition={NicknameCondition}
-          id="nickname"
-          register={register}
-        />
-        <ErrorMessage
-          errors={errors}
-          name="nickname"
-          as="p"
-          className="line-input-error is-margin-bottom"
-        />
-      </div>
+      <LineInputContainer
+        desc="닉네임"
+        condition={NicknameCondition}
+        id="nickname"
+        register={register}
+        errors={errors}
+      />
 
-      <div className="line-input-container">
-        <LineInput
-          desc="이메일"
+      <LineInputContainer
+        desc="이메일"
         //   condition={NicknameCondition}
         // 이메일 조건 아직 없음
-          id="email"
-          register={register}
-        />
-        <ErrorMessage
-          errors={errors}
-          name="email"
-          as="p"
-          className="line-input-error is-margin-bottom"
-        />
-      </div>
+        id="email"
+        register={register}
+        errors={errors}
+      />
 
       <Btn text="PASS로 인증" />
-      <div className='signup-local-form-btn-complete'>
+      <div className="signup-local-form-btn-complete">
         <Btn type="submit" text="회원가입 완료" />
       </div>
     </form>

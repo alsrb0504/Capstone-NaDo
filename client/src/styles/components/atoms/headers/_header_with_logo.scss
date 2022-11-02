@@ -1,0 +1,25 @@
+.header-with-logo {
+  @include flexbox(between, start);
+  width: 100vw;
+  min-height: 108px;
+  padding: 0 $sm-margin;
+
+  background: url('../../../../../public/images/headers/logo_header_bg.svg');
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: cover;
+
+  .logo-container {
+    height: 100%;
+    width: auto;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  i {
+    margin-top: 16px;
+    font-size: 26px;
+  }
+}

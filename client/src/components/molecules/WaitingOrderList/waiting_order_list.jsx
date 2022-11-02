@@ -1,5 +1,5 @@
 import React from 'react';
-import PickingCard from '../../atoms/pickingCard/picking_card';
+import PickingCard from '../../atoms/cards/pickingCard/picking_card';
 
 const WaitingOrderList = () => {
   const orders = [

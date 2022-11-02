@@ -3,10 +3,10 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
-import Btn from '../../atoms/btn/btn';
+import Btn from '../../atoms/buttons/btn/btn';
 import FormTitle from '../../atoms/formTitle/form_title';
 import order_address from '../../../data/order_address';
-import LineInput from '../../atoms/lineInput/line_input';
+import LineInput from '../../atoms/inputs/lineInput/line_input';
 import LineInputContainer from '../lineInputContainer/line_input_container';
 import PaymentReceipt from '../../atoms/paymentReceipt/payment_receipt';
 

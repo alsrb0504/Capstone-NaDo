@@ -1,0 +1,68 @@
+.home-header {
+  position: relative;
+  width: 100%;
+  min-height: 280px;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    margin-left: calc(0px - (($gutter / 2) + ($sm-margin)));
+
+    background: url('../../../../../public/images/headers/home-header-bg-sm.svg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+
+    background-size: cover;
+
+    z-index: -1;
+  }
+
+  @media screen and (min-width: 1200px) {
+    min-height: 400px;
+
+    &::before {
+      background: url('../../../../../public/images/headers/home-header-bg-xl.svg');
+      background-repeat: no-repeat;
+      background-position: bottom center;
+
+      background-size: cover;
+    }
+  }
+
+  &-top {
+    @include flexbox(between);
+    height: 100px;
+
+    i {
+      font-size: 28px;
+    }
+  }
+
+  &-logo-container {
+    height: 100%;
+
+    img {
+      width: 100%;
+      max-width: 160px;
+    }
+  }
+
+  &-coffee-container {
+    position: absolute;
+    top: 60px;
+    right: 0;
+
+    width: 160px;
+    height: 210px;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

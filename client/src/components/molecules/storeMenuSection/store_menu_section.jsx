@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { SelectCoffee } from '../../../store/features/order';
-import MenuCard from '../../atoms/menuCard/menu_card';
+import MenuCard from '../../atoms/cards/menuCard/menu_card';
 
 const StoreMenuSection = ({ menuLists }) => {
   const navigate = useNavigate();

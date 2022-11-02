@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { SelectStore } from '../../../store/features/order';
-import OrderStoreCard from '../../atoms/orderStoreCard/order_store_card';
+import OrderStoreCard from '../../atoms/cards/orderStoreCard/order_store_card';
 
 const OrderStoreList = () => {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const OrderStoreList = () => {
   const MakeStoreInfo = (store) => {
     const info = {
       name: store.shopName,
-      url: store.shopImg || 'images/default_cafe_img.jpg',
+      url: store.shopImg || 'images/cafeImg/default_cafe_img.jpg',
       // 가게 시간 계산 부분 추후 구현
       isOpen: true,
     };

@@ -1,11 +1,10 @@
-import { ErrorMessage } from '@hookform/error-message';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { NicknameCond } from '../../../services/formCondition';
 import { UpdateProfile } from '../../../store/features/user';
-import Btn from '../../atoms/btn/btn';
-import LineInput from '../../atoms/lineInput/line_input';
+import Btn from '../../atoms/buttons/btn/btn';
+import LineInput from '../../atoms/inputs/lineInput/line_input';
 
 const ProfileEditForm = () => {
   const dispatch = useDispatch();
@@ -41,11 +40,7 @@ const ProfileEditForm = () => {
   }, [avatar]);
 
   const OnSubmit = (data) => {
-    // const { nickname, image } = data;
-    // 구현 실패 시, 여기서 default value로 값 제출
-
     console.log('form info', data);
-    // console.log(avatarPreview);
 
     dispatch(UpdateProfile(data));
   };
@@ -79,20 +74,13 @@ const ProfileEditForm = () => {
         </div>
       </div>
 
-      <div className="line-input-container">
-        <LineInput
-          desc={userNickname}
-          condition={NicknameCondition}
-          id="nickname"
-          register={register}
-        />
-        <ErrorMessage
-          errors={errors}
-          name="nickname"
-          as="p"
-          className="line-input-error is-margin-bottom"
-        />
-      </div>
+      <LineInput
+        desc={userNickname}
+        condition={NicknameCondition}
+        id="nickname"
+        register={register}
+        errors={errors}
+      />
 
       <div className="edit-profile-form-btn">
         <Btn type="submit" text="프로필 수정 완료" />

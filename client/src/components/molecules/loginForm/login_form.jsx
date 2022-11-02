@@ -1,9 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { ErrorMessage } from '@hookform/error-message';
-import Btn from '../../atoms/btn/btn';
-import LineInput from '../../atoms/lineInput/line_input';
+import Btn from '../../atoms/buttons/btn/btn';
 import { IdCond, PasswdCond } from '../../../services/formCondition';
+import LineInputContainer from '../lineInputContainer/line_input_container';
 
 const LoginForm = ({ LoginWithLocal }) => {
   const {
@@ -19,8 +18,6 @@ const LoginForm = ({ LoginWithLocal }) => {
   });
 
   const OnSubmit = (data) => {
-    console.log('form info', data);
-
     LoginWithLocal(data);
     reset();
   };
@@ -30,36 +27,22 @@ const LoginForm = ({ LoginWithLocal }) => {
 
   return (
     <form className="login-form" onSubmit={handleSubmit(OnSubmit)}>
-      <div className="line-input-container">
-        <LineInput
-          desc="아이디"
-          condition={IdCondition}
-          id="identifier"
-          register={register}
-        />
-        <ErrorMessage
-          errors={errors}
-          name="identifier"
-          as="p"
-          className="line-input-error is-margin-bottom"
-        />
-      </div>
+      <LineInputContainer
+        desc="아이디"
+        condition={IdCondition}
+        id="identifier"
+        register={register}
+        errors={errors}
+      />
 
-      <div className="line-input-container">
-        <LineInput
-          desc="비밀번호"
-          condition={PasswordCondition}
-          id="password"
-          type="password"
-          register={register}
-        />
-        <ErrorMessage
-          errors={errors}
-          name="password"
-          as="p"
-          className="line-input-error is-margin-bottom"
-        />
-      </div>
+      <LineInputContainer
+        desc="비밀번호"
+        condition={PasswordCondition}
+        id="password"
+        type="password"
+        register={register}
+        errors={errors}
+      />
 
       <Btn type="submit" color="pink" text="로그인" />
     </form>
