@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../../components/atoms/header/header';
+import Header from '../../../components/atoms/headers/header/header';
 
 // eslint-disable-next-line arrow-body-style
 const OrderCart = () => {

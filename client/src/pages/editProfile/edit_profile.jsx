@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../components/atoms/header/header';
+import Header from '../../components/atoms/headers/header/header';
 import ProfileEditForm from '../../components/molecules/profileEditForm/profile_edit_form';
 
 const EditProfile = () => {

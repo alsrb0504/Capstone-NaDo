@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../../components/atoms/header/header';
+import Header from '../../../components/atoms/headers/header/header';
 import WaitingOrderList from '../../../components/molecules/WaitingOrderList/waiting_order_list';
 
 const OrderWaitings = () => {

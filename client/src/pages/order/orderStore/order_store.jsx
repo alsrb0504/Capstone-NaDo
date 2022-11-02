@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../../components/atoms/footer/footer';
-import HeaderWithImg from '../../../components/atoms/headerWithImg/header_with_img';
+import HeaderWithImg from '../../../components/atoms/headers/headerWithImg/header_with_img';
 import StoreInfoSection from '../../../components/atoms/storeInfoSection/store_info_section';
 import StoreMapSection from '../../../components/molecules/storeMapSection/store_map_section';
 import StoreMenuSection from '../../../components/molecules/storeMenuSection/store_menu_section';

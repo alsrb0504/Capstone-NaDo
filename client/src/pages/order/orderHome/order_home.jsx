@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../../components/atoms/footer/footer';
-import HeaderWithLogo from '../../../components/atoms/headerWithLogo/header_with_logo';
+import HeaderWithLogo from '../../../components/atoms/headers/headerWithLogo/header_with_logo';
 import OrderStoreList from '../../../components/molecules/orderStoreList/order_store_list';
 
 const OrderHome = () => {

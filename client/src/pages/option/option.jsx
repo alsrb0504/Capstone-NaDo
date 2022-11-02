@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../components/atoms/header/header';
+import Header from '../../components/atoms/headers/header/header';
 import OptionUnderline from '../../components/atoms/optionUnderline/option_underline';
 import TextUnderline from '../../components/atoms/textUnderline/text_underline';
 import Btn from '../../components/atoms/buttons/btn/btn';
