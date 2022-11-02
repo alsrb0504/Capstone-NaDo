@@ -61,7 +61,6 @@ export class UserController {
     })
   }))
   @Post('change_profile')
-
   @ChangeProfileDescription()
   @HttpCode(200)
   async changeNickname(

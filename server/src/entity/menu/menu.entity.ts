@@ -16,14 +16,21 @@ export default class Menu {
 
   @Column({
     type: 'varchar',
-    length: 30
+    length: 30,
   })
   menuName: string
 
   @Column({
-    type: 'mediumint'
+    type: 'mediumint',
+    nullable: true,
   })
   menuPrice: number
+
+  @Column({
+    type: 'tinytext',
+    nullable: true
+  })
+  menuImg: string
 
   @Column({
     type: 'boolean',

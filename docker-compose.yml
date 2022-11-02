@@ -26,6 +26,11 @@ services:
       - MYSQL_USER=${NADO_MYSQL_USER}
       - MYSQL_PASSWORD=${NADO_MYSQL_PASSWORD}
       - MYSQL_DATABASE=${NADO_MYSQL_DATABASE}
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - /Users/mj/Capstone-NaDo/config/mysql/mysqld.cnf:/etc/mysql/conf.d/mysqld.cnf
     platform: linux/amd64
     networks:
       - back_end

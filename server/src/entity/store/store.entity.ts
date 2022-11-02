@@ -1,4 +1,4 @@
-import { PrimaryGeneratedColumn, Column, Entity, OneToMany} from "typeorm";
+import { PrimaryGeneratedColumn, Column, Entity, OneToMany, UsingJoinColumnIsNotAllowedError} from "typeorm";
 import Menu from "../menu/menu.entity";
 import Order from "../orders/orders.entity";
 import Storebusinesstime from "../storebusinesstime/storebusinesstime.entity";
@@ -15,16 +15,15 @@ export default class Store {
 
   @Column({
     type: 'varchar',
+    charset: 'utf8mb4',
+    collation: 'utf8mb4_unicode_ci'
   })
   name: string
 
   @Column({
-    type: 'text',
-  })
-  introduce: string
-
-  @Column({
-    type: 'varchar'
+    type: 'varchar',
+    charset: 'utf8mb4',
+    collation: 'utf8mb4_unicode_ci'
   })
   address: string
 
@@ -32,6 +31,12 @@ export default class Store {
     type: 'varchar',
   })
   telephone: string
+
+  @Column({
+    type: 'tinytext',
+    nullable: true
+  })
+  image: string
 
   @OneToMany(() => Order, order => order.store)
   orders: Order[]

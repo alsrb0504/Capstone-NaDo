@@ -1,13 +1,24 @@
-import { Module } from '@nestjs/common';
+import { Module, OnModuleInit } from '@nestjs/common';
 import { StoreService } from './store.service';
 import { StoreController } from './store.controller';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import Store from 'src/entity/store/store.entity';
+import { Repository } from 'typeorm';
+import Menu from 'src/entity/menu/menu.entity';
+import Storebusinesstime from 'src/entity/storebusinesstime/storebusinesstime.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Store])],
+  imports: [TypeOrmModule.forFeature([Store, Menu, Storebusinesstime])],
   providers: [StoreService],
   controllers: [StoreController],
   exports: [StoreService]
 })
-export class StoreModule {}
+export class StoreModule implements OnModuleInit {
+  constructor( 
+    private readonly storeService: StoreService
+  ) {}
+
+  async onModuleInit() {
+    await this.storeService.storeInfoInsert()  
+  }
+}
