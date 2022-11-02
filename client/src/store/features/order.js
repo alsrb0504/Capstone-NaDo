@@ -1,4 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+/* eslint-disable no-unused-vars */
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 import storeData from './crawling';
 
@@ -53,6 +55,19 @@ const initialState = {
   cartLists: [],
 };
 
+export const GetStores = createAsyncThunk(
+  'order/getStore',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get('localhost:3001/store');
+
+      console.log(response);
+    } catch (e) {
+      //
+    }
+  },
+);
+
 export const orderSlice = createSlice({
   name: 'order',
   initialState,
@@ -63,6 +78,11 @@ export const orderSlice = createSlice({
     SelectStore: (state, actions) => {
       state.selectedStore = actions.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(GetStores.fulfilled, (state, { payload }) => {
+      //
+    });
   },
 });
 

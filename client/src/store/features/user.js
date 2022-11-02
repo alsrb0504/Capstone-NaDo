@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -6,22 +7,16 @@ const initialState = {
   userNickname: '',
   userEmail: '',
   userProvider: '',
-  // userProfile: '',   // 추후 상의 후 추가해야 할 듯
+  userProfile: '',
   isFetching: false,
   isSuccess: false,
   isError: false,
   isLogin: false,
 };
 
-// *
-// 프로필 업데이트 함수
-// 아직 reducer에 연결 X.
-// nickname
-// identifier
-// *
 export const UpdateProfile = createAsyncThunk(
   'user/UpdateProfile',
-  async ({ nickname, image, identifier }, thunkAPI) => {
+  async ({ nickname, image }, thunkAPI) => {
     //  *
     // 테스트용 프로필 변경 요청
     // 아이디, 닉네임, 이미지를 같이 보냄.
@@ -29,9 +24,7 @@ export const UpdateProfile = createAsyncThunk(
     try {
       const formData = new FormData();
       formData.append('image', image[0]);
-      formData.append('identifier', identifier);
       formData.append('nickname', nickname);
-
 
       const response = await axios({
         method: 'post',
@@ -40,59 +33,16 @@ export const UpdateProfile = createAsyncThunk(
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-        body: {
-          nickname: 'asdf',
-        },
       });
 
       console.log(response);
+      return null;
 
-      return thunkAPI.rejectWithValue(response.data);
+      // return thunkAPI.rejectWithValue(response.data);
     } catch (e) {
       PrintError(e, '프로필 업데이트');
       return thunkAPI.rejectWithValue(e.response.data);
     }
-
-    // try {
-    //   const formData = new FormData();
-    //   formData.append('image', image[0]);
-
-    //   console.log(`image = ${image}`);
-    //   console.log(formData);
-
-    //   const imgResponse = await axios({
-    //     method: 'post',
-    //     url: 'http://localhost:3001/user/profile_image',
-    //     data: formData,
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data',
-    //     },
-    //   });
-
-    //   console.log(imgResponse);
-    // } catch (e) {
-    //   return thunkAPI.rejectWithValue(e.response.data);
-    // }
-
-    // // 추후 api 주소 정하면 교체
-    // try {
-    //   const response = await axios.post(
-    //     'http://localhost:3001/user/change_nickname',
-    //     {
-    //       identifier,
-    //       nickname,
-    //     },
-    //   );
-
-    //   // 업데이트 된, 닉네임, 프로필 이미지 정보 받아옴.
-    //   if (response.status === 200) {
-    //     return response.data;
-    //   }
-    //   return thunkAPI.rejectWithValue(response.data);
-    // } catch (e) {
-    //   PrintError(e, '프로필 업데이트');
-    //   return thunkAPI.rejectWithValue(e.response.data);
-    // }
   },
 );
 
@@ -105,14 +55,15 @@ export const UpdateProfile = createAsyncThunk(
 // *
 export const ChangePasswd = createAsyncThunk(
   'user/ChangePasswd',
-  async ({ prevPasswd, newPasswd }, thunkAPI) => {
-    console.log(prevPasswd, newPasswd);
+  async ({ identifider, prevPasswd, newPasswd }, thunkAPI) => {
+    console.log(identifider, prevPasswd, newPasswd);
 
     // 추후 api 주소 정하면 교체
     try {
       const response = await axios.post(
         'http://localhost:3001/user/change_password',
         {
+          identifider,
           prevPasswd,
           newPasswd,
         },
@@ -306,6 +257,7 @@ export const userSlice = createSlice({
         state.userProvider = '';
       })
       .addCase(LocalLogout.rejected, (state) => ReceiveError(state));
+    builder.addCase(UpdateProfile.fulfilled, (_) => {});
   },
 });
 

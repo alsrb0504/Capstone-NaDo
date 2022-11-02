@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { PasswdCond } from '../../../services/formCondition';
 import { ChangePasswd } from '../../../store/features/user';
 import Btn from '../../atoms/buttons/btn/btn';
@@ -8,6 +8,8 @@ import LineInputContainer from '../lineInputContainer/line_input_container';
 
 const PasswdEditForm = () => {
   const dispatch = useDispatch();
+
+  const { userId } = useSelector((state) => state.user);
 
   const {
     register,
@@ -29,7 +31,7 @@ const PasswdEditForm = () => {
     console.log('data', data);
 
     // 나중에 제거
-    dispatch(ChangePasswd({ prevPasswd, newPasswd }));
+    dispatch(ChangePasswd({ userId, prevPasswd, newPasswd }));
   };
 
   return (
