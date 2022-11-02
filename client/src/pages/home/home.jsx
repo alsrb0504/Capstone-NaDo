@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { LocalLogout } from '../../store/features/user';
 import Btn from '../../components/atoms/buttons/btn/btn';
-import HomeHeader from '../../components/molecules/homeHeader/home_header';
+import HomeHeader from '../../components/atoms/headers/homeHeader/home_header';
 import HomeMainBtns from '../../components/molecules/homeMainBtns/home_main_btns';
 import HomeMenus from '../../components/molecules/homeMenus/home_menus';
 import Footer from '../../components/atoms/footer/footer';

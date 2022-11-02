@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../components/atoms/headers/header/header';
-import OptionUnderline from '../../components/atoms/optionUnderline/option_underline';
-import TextUnderline from '../../components/atoms/textUnderline/text_underline';
-import Btn from '../../components/atoms/buttons/btn/btn';
+import Header from '../../../components/atoms/headers/header/header';
+import OptionUnderline from '../../../components/atoms/optionUnderline/option_underline';
+import TextUnderline from '../../../components/atoms/textUnderline/text_underline';
+import Btn from '../../../components/atoms/buttons/btn/btn';
 
-const Option = () => {
+const OrderOption = () => {
   // 해야할 일
   // 뒤로가기 버튼 주소 다시 잡아주어야 함
   // 옵션, 수량에 따른 최종 가격 변동 넣어주어야함
@@ -147,4 +147,4 @@ const Option = () => {
   );
 };
 
-export default Option;
+export default OrderOption;

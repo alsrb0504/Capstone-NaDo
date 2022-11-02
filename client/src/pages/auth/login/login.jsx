@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { LocalLogin } from '../../store/features/user';
-import LoginForm from '../../components/molecules/loginForm/login_form';
-import BtnBox from '../../components/atoms/buttons/btnBox/btn_box';
+import { LocalLogin } from '../../../store/features/user';
+import LoginForm from '../../../components/molecules/loginForm/login_form';
+import BtnBox from '../../../components/atoms/buttons/btnBox/btn_box';
 
 const Login = () => {
   const dispatch = useDispatch();
