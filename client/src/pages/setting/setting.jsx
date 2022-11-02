@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import BtnProfile from '../../components/atoms/btnProfile/btn_profile';
+import BtnProfile from '../../components/atoms/buttons/btnProfile/btn_profile';
 import Footer from '../../components/atoms/footer/footer';
 import Header from '../../components/atoms/header/header';
 import ProfileCard from '../../components/atoms/profileCard/profile_card';

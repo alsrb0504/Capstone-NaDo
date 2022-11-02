@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { PasswdCond } from '../../../services/formCondition';
 import { ChangePasswd } from '../../../store/features/user';
-import Btn from '../../atoms/btn/btn';
+import Btn from '../../atoms/buttons/btn/btn';
 import LineInputContainer from '../lineInputContainer/line_input_container';
 
 const PasswdEditForm = () => {

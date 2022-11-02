@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { NicknameCond } from '../../../services/formCondition';
 import { UpdateProfile } from '../../../store/features/user';
-import Btn from '../../atoms/btn/btn';
+import Btn from '../../atoms/buttons/btn/btn';
 import LineInput from '../../atoms/lineInput/line_input';
 
 const ProfileEditForm = () => {

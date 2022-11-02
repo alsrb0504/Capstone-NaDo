@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import BtnBox from '../../atoms/btnBox/btn_box';
+import BtnBox from '../../atoms/buttons/btnBox/btn_box';
 
 const HomeMenus = () => {
   const navigate = useNavigate();

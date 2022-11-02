@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import Btn from '../../atoms/btn/btn';
+import Btn from '../../atoms/buttons/btn/btn';
 import { IdCond, PasswdCond } from '../../../services/formCondition';
 import LineInputContainer from '../lineInputContainer/line_input_container';
 
