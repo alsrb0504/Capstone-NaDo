@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import BtnProfile from '../../components/atoms/buttons/btnProfile/btn_profile';
 import Footer from '../../components/atoms/footer/footer';
 import Header from '../../components/atoms/header/header';
-import ProfileCard from '../../components/atoms/profileCard/profile_card';
+import ProfileCard from '../../components/atoms/cards/profileCard/profile_card';
 
 const Setting = () => {
   const navigate = useNavigate();

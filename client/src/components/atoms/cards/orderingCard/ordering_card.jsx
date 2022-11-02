@@ -1,5 +1,5 @@
-import React from "react";
-import useCount from "../../../hooks/use_count";
+import React from 'react';
+import useCount from '../../../../hooks/hooks';
 
 const OrderingCard = ({ info, updateCount }) => {
   const { name, options, price, cnt } = info;
@@ -8,21 +8,21 @@ const OrderingCard = ({ info, updateCount }) => {
 
   // 추후, 이 함수를 다른 곳에서 만들어서 사용할 지 결정.
   const MakeOptionText = (ops) => {
-    if (ops.length === 0) return "없음";
+    if (ops.length === 0) return '없음';
 
-    let txt = "";
+    let txt = '';
 
     ops.forEach((option, idx) => {
       txt += option;
-      if (idx !== ops.length - 1) txt += ", ";
+      if (idx !== ops.length - 1) txt += ', ';
     });
 
     return txt;
   };
 
   const ChangeCount = (e) => {
-    const target = e.target.className.split(" ")[1];
-    if (target === "fa-plus") Increase();
+    const target = e.target.className.split(' ')[1];
+    if (target === 'fa-plus') Increase();
     else Decrease();
 
     // 값 변경 시, 장바구니에서 가격 변동도 업데이트가
@@ -40,12 +40,12 @@ const OrderingCard = ({ info, updateCount }) => {
 
       <div className="order-count">
         <span className="count-title">수량 : </span>
-        <button onClick={ChangeCount}>
-          <i className="fa-solid fa-plus"></i>
+        <button type="button" onClick={ChangeCount}>
+          <i className="fa-solid fa-plus" />
         </button>
         <span className="cnt">{count}</span>
-        <button onClick={ChangeCount}>
-          <i className="fa-solid fa-minus"></i>
+        <button type="button" onClick={ChangeCount}>
+          <i className="fa-solid fa-minus" />
         </button>
       </div>
     </div>

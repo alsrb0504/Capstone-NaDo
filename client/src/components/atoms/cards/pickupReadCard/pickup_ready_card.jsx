@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const PickupReadyCard = ({ info, handleClick }) => {
   const { place, date, price } = info;
@@ -17,7 +17,7 @@ const PickupReadyCard = ({ info, handleClick }) => {
         </p>
       </div>
 
-      <i className="fa-solid fa-chevron-right"></i>
+      <i className="fa-solid fa-chevron-right" />
     </div>
   );
 };

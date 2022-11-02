@@ -1,7 +1,7 @@
 import React from 'react';
 import FillLineInput from '../../atoms/inputs/fillLineInput/fill_line_input';
 import FormTitle from '../../atoms/formTitle/form_title';
-import OrderCompleteCard from '../../atoms/orderCompleteCard/order_complete_card';
+import OrderCompleteCard from '../../atoms/cards/orderCompleteCard/order_complete_card';
 import PaymentReceipt from '../../atoms/paymentReceipt/payment_receipt';
 import StoreMapSection from '../storeMapSection/store_map_section';
 

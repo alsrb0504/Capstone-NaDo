@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { SelectStore } from '../../../store/features/order';
-import OrderStoreCard from '../../atoms/orderStoreCard/order_store_card';
+import OrderStoreCard from '../../atoms/cards/orderStoreCard/order_store_card';
 
 const OrderStoreList = () => {
   const dispatch = useDispatch();

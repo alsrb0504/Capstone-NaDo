@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const PickupStoreCard = ({ info, handleClick }) => {
   const { name, url, orderCnt, isOpen } = info;
@@ -17,7 +17,7 @@ const PickupStoreCard = ({ info, handleClick }) => {
         </div>
       </div>
 
-      <i className={`fa-solid ${isOpen ? "fa-store" : "fa-store-slash"}`}></i>
+      <i className={`fa-solid ${isOpen ? 'fa-store' : 'fa-store-slash'}`} />
     </div>
   );
 };
