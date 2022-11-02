@@ -1,5 +1,5 @@
 import React from 'react';
-import Boxinput from '../../components/atoms/boxInput/box_input';
+import Boxinput from '../../components/atoms/inputs/boxInput/box_input';
 import Btn from '../../components/atoms/buttons/btn/btn';
 
 const SocialRegister = () => (

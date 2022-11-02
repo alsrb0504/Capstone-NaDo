@@ -1,6 +1,6 @@
 import { ErrorMessage } from '@hookform/error-message';
 import React from 'react';
-import LineInput from '../../atoms/lineInput/line_input';
+import LineInput from '../../atoms/inputs/lineInput/line_input';
 
 const LineInputContainer = ({
   desc,

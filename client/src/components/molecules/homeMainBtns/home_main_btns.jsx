@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import BtnSqureBox from '../../atoms/btnSqureBox/btn_squre_box';
+import BtnSqureBox from '../../atoms/buttons/btnSqureBox/btn_squre_box';
 
 const HomeMainBtns = () => {
   const navigate = useNavigate();
