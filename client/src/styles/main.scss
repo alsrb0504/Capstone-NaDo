@@ -16,8 +16,9 @@
 
 // components
 // 이번주 원자는 여기에 import 해서 스타일 적용
-@import './components/atoms/box_input';
-@import './components/atoms/line_input';
+@import './components/atoms/inputs/box_input';
+@import './components/atoms/inputs/line_input';
+@import './components/atoms/inputs/fill_line_input';
 @import './components/atoms/cards/card_common';
 @import './components/atoms/cards/record_card';
 @import './components/atoms/cards/order_store_card';
@@ -30,23 +31,21 @@
 @import './components/atoms/btns/btn_profile';
 @import './components/atoms/btns/btn_squre_box';
 @import './components/atoms/btns/btn_box';
-@import './components/atoms/header';
+@import './components/atoms/headers/header';
 @import './components/atoms/footer';
 @import './components/atoms/text_underline';
 @import './components/atoms/option_underline';
-@import './components/atoms/header_with_logo';
-@import './components/atoms/header_with_img';
+@import './components/atoms/headers/header_with_img';
+@import './components/atoms/headers/header_with_logo';
+@import './components/atoms/headers/home_header';
 @import './components/atoms/store_info_section';
 @import './components/atoms/cards/menu_card';
 @import './components/atoms/form_title';
 @import './components/atoms/payment_receipt';
-@import './components/atoms/fill_line_input';
-
 
 // molecules
 @import './components/molecules/login_form';
 @import './components/molecules/signup_local_form';
-@import './components/molecules/home_header';
 @import './components/molecules/home_main_btns';
 @import './components/molecules/home_menus';
 @import './components/molecules/profile_edit_form';

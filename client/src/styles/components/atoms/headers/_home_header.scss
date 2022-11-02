@@ -13,7 +13,7 @@
     height: 100%;
     margin-left: calc(0px - (($gutter / 2) + ($sm-margin)));
 
-    background: url('../../../../public/images/headers/home-header-bg-sm.svg');
+    background: url('../../../../../public/images/headers/home-header-bg-sm.svg');
     background-repeat: no-repeat;
     background-position: bottom center;
 
@@ -26,7 +26,7 @@
     min-height: 400px;
 
     &::before {
-      background: url('../../../../public/images/headers/home-header-bg-xl.svg');
+      background: url('../../../../../public/images/headers/home-header-bg-xl.svg');
       background-repeat: no-repeat;
       background-position: bottom center;
 
