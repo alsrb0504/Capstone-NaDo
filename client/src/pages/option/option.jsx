@@ -6,10 +6,15 @@ import TextUnderline from '../../components/atoms/textUnderline/text_underline';
 import Btn from '../../components/atoms/btn/btn';
 
 const Option = () => {
+// 해야할 일
+// 뒤로가기 버튼 주소 다시 잡아주어야 함
+// 옵션, 수량에 따른 최종 가격 변동 넣어주어야함
+// 데이터 정리 및 변수명 정리
+// 주석 정리
   const navigate = useNavigate();
 
   const MoveBack = () => navigate('/');
-  //   뒤로가기 버튼 주소 다시 잡아주어야 함
+  // 뒤로가기 버튼 주소 다시 잡아주어야 함
   
   const itemname = "녹차 라떼";
   const price = 5900;
@@ -18,6 +23,8 @@ const Option = () => {
   const [icehot, setIcehot] = useState('ice');
   // shots 옵션 
   const [shots, setShots] = useState('');
+  // count 수량 옵션
+  const [count, setCount] = useState(1);
   
   // ice/hot 옵션 확인용, 추후 삭제
   const icehotChange = e => {
@@ -30,10 +37,21 @@ const Option = () => {
     setShots(e.target.value);
   }
 
+  // count 수량 옵션 증가
+  const Increase = () => {
+    setCount(count + 1);
+  }
+  // count 수량 옵션 감소
+  const Decrease = () => {
+    if(count > 0){
+      setCount(count - 1);
+    }
+  }
+
   // 데이터 제출, 옵션 외에도 추가 필요
   // 상품명, 가격, 수량 등등...
   const handleSubmit = () => {
-    const result = { icehot, shots };
+    const result = { icehot, shots, count };
     console.log(result)
   }
 
@@ -49,7 +67,6 @@ const Option = () => {
           <OptionUnderline
             text="ICE / HOT"
           />
-          {/* <p>ice/hot : {icehot}</p> */}
 
           <div className='option-radiobox'>
             <h3>ICE</h3>
@@ -84,7 +101,6 @@ const Option = () => {
           <OptionUnderline
               text="에스프레소 샷 추가 (최대 1개)"
           />
-          {/* <p>샷추가 : {shots}</p> */}
 
           <div className='option-radiobox'>
             <h3>1 샷 추가 (+500원)</h3>
@@ -98,7 +114,7 @@ const Option = () => {
                 checked={shots === "shot1"}
                 className={(shots === "shot1") ? "checked" : "none"}
               />
-            </label>
+          </label>
           </div>
 
           <div className='option-radiobox'>
@@ -114,6 +130,19 @@ const Option = () => {
                 className={(shots === "shot2") ? "checked" : "none"}
               />
             </label>
+          </div>
+
+          <div className='count'>
+            <text className='title'>수량 : </text>
+            <button type="button" onClick={Decrease} className="button">
+              <i className='fa-solid fa-minus'/>
+            </button>
+            <div className='cnt-box'>
+              <text className='cnt'>{count}</text>
+            </div>
+            <button type="button" onClick={Increase} className="button">
+              <i className='fa-solid fa-plus'/>
+            </button>
           </div>
 
           <div className='item-option-form-btn-complete'>
