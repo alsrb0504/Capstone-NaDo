@@ -13,7 +13,7 @@ const OrderStoreList = () => {
   const MakeStoreInfo = (store) => {
     const info = {
       name: store.shopName,
-      url: store.shopImg || 'images/default_cafe_img.jpg',
+      url: store.shopImg || 'images/cafeImg/default_cafe_img.jpg',
       // 가게 시간 계산 부분 추후 구현
       isOpen: true,
     };

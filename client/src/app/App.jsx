@@ -17,7 +17,7 @@ import OrderCart from '../pages/order/orderCart/order_cart';
 import OrderPayment from '../pages/order/orderPayment/order_payment';
 import OrderConfirm from '../pages/order/orderConfirm/order_confirm';
 import OrderWaitings from '../pages/order/orderWaitings/order_waitings';
-import Option from '../pages/option/option'; 
+import Option from '../pages/option/option';
 // option 화면
 
 const App = () => {
@@ -34,7 +34,6 @@ const App = () => {
         <div className="row">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/option" element={<Option />} />
             {/* Option화면 테스트후 삭제 필요 */}
             <Route path="/login" element={<Login />} />
             <Route path="/register">
@@ -53,6 +52,7 @@ const App = () => {
               <Route path="payment" element={<OrderPayment />} />
               <Route path="confirm" element={<OrderConfirm />} />
               <Route path="waitings" element={<OrderWaitings />} />
+              <Route path="option" element={<Option />} />
             </Route>
           </Routes>
         </div>

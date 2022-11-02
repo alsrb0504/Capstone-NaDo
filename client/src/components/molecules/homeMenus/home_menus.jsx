@@ -15,22 +15,22 @@ const HomeMenus = () => {
       <div className="home-menus-btns">
         <BtnBox
           text="주문 내역"
-          url="/images/signup_icon.svg"
+          url="icon/signup_icon.svg"
           handleClick={MoveChat}
         />
         <BtnBox
           text="주문 내역"
-          url="/images/signup_icon.svg"
+          url="icon/signup_icon.svg"
           handleClick={MoveChat}
         />
         <BtnBox
           text="주문 내역"
-          url="/images/signup_icon.svg"
+          url="icon/signup_icon.svg"
           handleClick={MoveChat}
         />
         <BtnBox
           text="주문 내역"
-          url="/images/signup_icon.svg"
+          url="icon/signup_icon.svg"
           handleClick={MoveChat}
         />
       </div>

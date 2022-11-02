@@ -35,7 +35,7 @@ const OrderStore = () => {
   return (
     <div className="col-sm-4 order-store">
       <HeaderWithImg
-        shopImg={shopImg || '/images/default_cafe_img.jpg'}
+        shopImg={shopImg || '/images/cafeImg/default_cafe_img.jpg'}
         MoveBack={MoveBack}
         MoveCart={MoveCart}
       />

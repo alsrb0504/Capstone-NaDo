@@ -38,13 +38,13 @@ const Login = () => {
       <div className="login-btn-box">
         <BtnBox
           text="네이버"
-          url="images/naver_icon.svg"
+          url="icon/naver_icon.svg"
           handleClick={MoveSocial}
         />
 
         <BtnBox
           text="회원가입"
-          url="images/signup_icon.svg"
+          url="icon/signup_icon.svg"
           handleClick={MoveSignup}
         />
       </div>
