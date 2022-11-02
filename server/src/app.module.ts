@@ -11,7 +11,7 @@ import { StoreModule } from './store/store.module';
 import { AuthModule } from './auth/auth.module';
 import configuration from './config/configuration';
 
-import User from './entity/user/user.entity'
+import User from './entity/user/user.entity';
 import Store from './entity/store/store.entity'
 import Order from './entity/orders/orders.entity'
 import Orderdetails from './entity/orderdetails/orderdetails.entity';
@@ -44,6 +44,7 @@ import Pickedorder from './entity/pickedorder/pickedorder.entity';
           database: configService.get<string>('database.database'),
           entities: [User, Store, Order, Orderdetails, Menu, Storebusinesstime, Menusize, Pickedorder],
           synchronize: true,
+          charset:'utf8mb4'
         } 
       }
     }),
