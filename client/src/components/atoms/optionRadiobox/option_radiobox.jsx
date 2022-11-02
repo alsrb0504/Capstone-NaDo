@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-
+// 사용하려면 수정 필요
+// option.jsx 참고
+// 스타일 참고를 위해, 파일 자체는 남겨둠
 const OptionRadiobox = ({ text }) => {
     const [isChecked, setIsChecked] = useState(false);
 
