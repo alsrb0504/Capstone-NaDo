@@ -12,7 +12,8 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import UserReducer from './features/user';
-import OrderReduer from './features/order';
+import OrderReducer from './features/order';
+import PickupReducer from './features/pickup';
 
 const persistConfig = {
   key: 'nado',
@@ -21,7 +22,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   user: UserReducer,
-  order: OrderReduer,
+  order: OrderReducer,
+  pickup: PickupReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
