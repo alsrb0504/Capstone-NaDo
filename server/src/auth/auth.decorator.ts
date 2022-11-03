@@ -1,10 +1,10 @@
 import { applyDecorators } from "@nestjs/common";
 import { ApiBody, ApiForbiddenResponse, ApiInternalServerErrorResponse, ApiNotAcceptableResponse, ApiOkResponse, ApiOperation, ApiResponse, ApiUnauthorizedResponse } from "@nestjs/swagger";
-import { UserBody, UserLogin, UserRegister } from "src/type/user/user.type";
+import { ResponseUser, UserBody, UserLogin, UserRegister } from "src/type/user/user.type";
 
 export function UserRegisterDescription() {
   return applyDecorators(
-    ApiResponse({status: 201, description: 'user is successfully created'}),
+    ApiResponse({status: 201, description: 'user is successfully created, this return only status', type: ResponseUser}),
     ApiForbiddenResponse({description: 'user is not logged in'}),
     ApiNotAcceptableResponse({ description: 'user is already exists'}),
     ApiInternalServerErrorResponse({ description: 'query or encryption error'}),

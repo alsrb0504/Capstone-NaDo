@@ -6,6 +6,7 @@ import Store from 'src/entity/store/store.entity';
 import Menu from 'src/entity/menu/menu.entity';
 import { DataSource, Repository } from 'typeorm';
 import Storebusinesstime from 'src/entity/storebusinesstime/storebusinesstime.entity';
+import { StoreQueryService } from './storequery.service';
 
 @Injectable()
 export class StoreService {
@@ -13,10 +14,16 @@ export class StoreService {
     @InjectRepository(Store) private storeRepository: Repository<Store>,
     @InjectRepository(Menu) private menuRepository: Repository<Menu>,
     @InjectRepository(Storebusinesstime) private storeBuisnesstimeRepository: Repository<Storebusinesstime>,
-    private readonly dataSource: DataSource
+    private readonly dataSource: DataSource,
+    private readonly storeQueryService: StoreQueryService
   ) {}
 
   async storeInfoInsert() {
+
+    const isExist = await this.storeQueryService.getAllStore()
+    if(isExist.length > 0) {
+      return null
+    }
     const storeDataJson = await readFile(join(process.cwd(), 'src', 'static', 'crawling.json'))
     const storeData = JSON.parse(storeDataJson.toString())
 

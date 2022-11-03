@@ -74,7 +74,11 @@ export class UserController {
       identifier: req.user.identifier 
     })
     return {
-      status: 'success'
+      status: 'success',
+      data: {
+        nickname: body.nickname,
+        imagePath: profileFile.filename
+      }
     } 
   }
 }

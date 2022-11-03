@@ -6,10 +6,11 @@ import Store from 'src/entity/store/store.entity';
 import { Repository } from 'typeorm';
 import Menu from 'src/entity/menu/menu.entity';
 import Storebusinesstime from 'src/entity/storebusinesstime/storebusinesstime.entity';
+import { StoreQueryService } from './storequery.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Store, Menu, Storebusinesstime])],
-  providers: [StoreService],
+  providers: [StoreService, StoreQueryService],
   controllers: [StoreController],
   exports: [StoreService]
 })

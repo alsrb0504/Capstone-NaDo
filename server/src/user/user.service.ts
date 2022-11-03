@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import * as bcrypt from 'bcryptjs'
 
 import User from 'src/entity/user/user.entity';
-import { ChangePassword, UserProfile } from 'src/type/user/user.type';
+import { ChangePassword, UserProfile, UserBody } from 'src/type/user/user.type';
 
 @Injectable()
 export class UserService {
@@ -15,12 +15,17 @@ export class UserService {
  async insert(
     insertData: Partial<User>
   ): Promise<void> {
-    await this.userRepository
-      .createQueryBuilder('user')
-      .insert()
-      .into(User)
-      .values([insertData])
-      .execute()
+    try {
+      await this.userRepository
+        .createQueryBuilder('user')
+        .insert()
+        .into(User)
+        .values([insertData])
+        .execute()
+    } catch (err) {
+      throw new InternalServerErrorException("user insert error")
+    }
+    
   }
 
   async findById(

@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { PassportSerializer } from "@nestjs/passport";
-import User from "src/entity/user/user.entity";
+import { UserBody } from "src/type/user/user.type";
 import { UserService } from "src/user/user.service";
 
 @Injectable()
@@ -11,7 +11,7 @@ export class LocalSerializer extends PassportSerializer {
     super()
   }
 
-  serializeUser(user: Partial<User>, done: Function) {
+  serializeUser(user: UserBody, done: Function) {
     done(null, user.identifier)
   }
 

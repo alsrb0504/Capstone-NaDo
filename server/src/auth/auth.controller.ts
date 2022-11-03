@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 import { isLoggedInGuard, isNotLoggedInGuard} from './guard/cookieAuthentication.guard';
 import { LoginWithCredentialsGuard, NaverLoginWithCredentialsGuard } from './guard/loginWithCredentials.guard';
 import { ApiTags } from '@nestjs/swagger';
-import { UserRegister } from 'src/type/user/user.type';
+import { ResponseUser, UserRegister } from 'src/type/user/user.type';
 import { GetUserInformationDescription, UserLoginDescription, UserNaverLoginDescription, UserRegisterDescription } from './auth.decorator';
 
 
@@ -29,7 +29,7 @@ export class AuthController {
   @Post('local/register')
   async registerUser(
     @Body() user: UserRegister
-  ): Promise<boolean> {
+  ): Promise<ResponseUser> {
       const isRegistered = await this.authService.isAlreadyRegistered(user.identifier)
       if(isRegistered) {
         throw new NotAcceptableException("this user already exist")
@@ -37,14 +37,18 @@ export class AuthController {
       const salt = await bcrypt.genSalt()
       const hashedPassword = await bcrypt.hash(user.password, salt)
 
-      this.userService.insert({
+      await this.userService.insert({
         identifier: user.identifier,
         password: hashedPassword,
         nickname: user.nickname,
         email: user.email,
         provider: 'local'
       })
-      return true
+
+      return {
+        status: 'success',
+        data: {}
+      }
     }
 
     @UseGuards(isNotLoggedInGuard, LoginWithCredentialsGuard)

@@ -1,6 +1,7 @@
 import { applyDecorators, UseInterceptors } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { ApiBody, ApiConsumes, ApiForbiddenResponse, ApiHeader, ApiInternalServerErrorResponse, ApiOperation, ApiResponse } from "@nestjs/swagger";
+import { ResponseUser } from "src/type/user/user.type";
 
 
 
@@ -18,7 +19,7 @@ export function ChangePasswordDescription () {
 
 export function ChangeProfileDescription() {
   return applyDecorators(
-    ApiResponse({ status: 200, description: '프로필 변경이 성공적으로 완료되었을 때'}),
+    ApiResponse({ status: 200, description: '프로필 변경이 성공적으로 완료되었을 때, (닉네임, 이미지경로) 반환 ', type: ResponseUser}),
     ApiInternalServerErrorResponse({ description: '쿼리문 에러가 발생했을 때'}),
     ApiOperation({
       summary: 'change profile api',
