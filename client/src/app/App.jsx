@@ -18,6 +18,8 @@ import OrderPayment from '../pages/order/orderPayment/order_payment';
 import OrderConfirm from '../pages/order/orderConfirm/order_confirm';
 import OrderWaitings from '../pages/order/orderWaitings/order_waitings';
 import OrderOption from '../pages/order/orderOption/order_option';
+import OrderDetail from '../pages/order/orderDetail/order_detail';
+import OrderReport from '../pages/order/orderReport/order_report';
 import PickupHome from '../pages/pickup/pickupHome/pickup_home';
 
 const App = () => {
@@ -52,6 +54,8 @@ const App = () => {
               <Route path="confirm" element={<OrderConfirm />} />
               <Route path="waitings" element={<OrderWaitings />} />
               <Route path="option" element={<OrderOption />} />
+              <Route path="detail" element={<OrderDetail/>} />
+              <Route path="report" element={<OrderReport/>} />
             </Route>
 
             <Route path="/pickup">

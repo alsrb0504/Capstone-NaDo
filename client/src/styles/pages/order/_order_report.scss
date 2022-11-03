@@ -1,0 +1,51 @@
+.order-report {
+    @include column-flexbox(start, center);
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+  
+    .header-box {
+      width: 100vw;
+      margin-bottom: 16px;
+    }
+
+    .order-report-body{
+        @include column-flexbox(start, start);
+        width: 100%;   
+        
+        section {
+            width: 100%;
+            margin-bottom: 24px;
+        }
+
+        .order-section {
+            @include column-flexbox(center, center);
+        
+            .form-title {
+              align-self: start;
+              margin-bottom: 12px;
+            }
+        }
+    }
+
+    .report-form {
+        @include column-flexbox(center, center);
+        width: 100%;
+    
+        .form-title {
+          align-self: start;
+        }
+
+        .line-input-container{
+            margin-bottom: 12px;
+        }
+
+        .btn-complete{
+            width: 100%;
+            padding-right: 20px;
+            padding-left: 20px;
+            position: fixed;
+            bottom: 5%;
+        }
+    }
+}
