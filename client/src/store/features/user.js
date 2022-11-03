@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -129,9 +128,7 @@ export const LocalSignup = createAsyncThunk(
         },
       );
 
-      // console.log('response', response);
       const { data } = response;
-      // console.log('data', data);
 
       if (response.status === 201) {
         return { ...data };
@@ -213,9 +210,10 @@ export const userSlice = createSlice({
     builder
       .addCase(GetUserWithSession.pending, (state) => StartLoading(state))
       .addCase(GetUserWithSession.fulfilled, (state, { payload }) => {
-        const { nickname, email, provider, imagePath } = payload;
+        const { identifier, nickname, email, provider, imagePath } = payload;
         state.isFetching = false;
         state.isLogin = true;
+        state.userId = identifier;
         state.userNickname = nickname;
         state.userEmail = email;
         state.userProvider = provider;
@@ -226,10 +224,7 @@ export const userSlice = createSlice({
     // 로컬 회원가입 thunk
     builder
       .addCase(LocalSignup.pending, (state) => StartLoading(state))
-      .addCase(LocalSignup.fulfilled, (state) => {
-        state.isFetching = false;
-        state.isSuccess = true;
-      })
+      .addCase(LocalSignup.fulfilled, (state) => SuccessFetching(state))
       .addCase(LocalSignup.rejected, (state) => ReceiveError(state));
     //
     // 로컬 로그인 thunk
@@ -239,10 +234,10 @@ export const userSlice = createSlice({
         state.isLogin = false;
       })
       .addCase(LocalLogin.fulfilled, (state, { payload }) => {
-        const { nickname, email, provider, imagePath } = payload;
+        const { identifier, nickname, email, provider, imagePath } = payload;
         state.isFetching = false;
-        // state.isSuccess = true;
         state.isLogin = true;
+        state.userId = identifier;
         state.userNickname = nickname;
         state.userEmail = email;
         state.userProvider = provider;
