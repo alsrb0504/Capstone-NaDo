@@ -7,6 +7,7 @@ import HomeHeader from '../../components/atoms/headers/homeHeader/home_header';
 import HomeMainBtns from '../../components/molecules/homeMainBtns/home_main_btns';
 import HomeMenus from '../../components/molecules/homeMenus/home_menus';
 import Footer from '../../components/atoms/footer/footer';
+import { ClearStore } from '../../services/store';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const Home = () => {
 
   const Logout = () => {
     dispatch(LocalLogout());
+    ClearStore();
   };
 
   return (

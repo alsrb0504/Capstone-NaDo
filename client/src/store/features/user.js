@@ -17,10 +17,6 @@ const initialState = {
 export const UpdateProfile = createAsyncThunk(
   'user/UpdateProfile',
   async ({ nickname, image }, thunkAPI) => {
-    //  *
-    // 테스트용 프로필 변경 요청
-    // 아이디, 닉네임, 이미지를 같이 보냄.
-    // *
     try {
       const formData = new FormData();
       formData.append('image', image[0]);
@@ -30,15 +26,19 @@ export const UpdateProfile = createAsyncThunk(
         method: 'post',
         url: 'http://localhost:3001/user/change_profile',
         data: formData,
+        body: formData,
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
 
       console.log(response);
-      return null;
 
-      // return thunkAPI.rejectWithValue(response.data);
+      if (response.status === 200) {
+        return { ...response.data.data };
+      }
+
+      return thunkAPI.rejectWithValue(response.data);
     } catch (e) {
       PrintError(e, '프로필 업데이트');
       return thunkAPI.rejectWithValue(e.response.data);
@@ -90,16 +90,17 @@ export const GetUserWithSession = createAsyncThunk(
     try {
       const response = await axios.get('http://localhost:3001/auth/local/');
 
+      console.log(response);
+
       if (response.status === 200) {
         return response.data;
       }
-      if (response.status === 401) {
-        return null;
-      }
+
       // return
       return thunkAPI.rejectWithValue(response.data);
     } catch (e) {
-      PrintError(e, '로그인 유지');
+      // PrintError(e, '로그인 유지');
+      console.log('세션 로그인 실패.');
       return thunkAPI.rejectWithValue(e.response.data);
     }
   },
@@ -144,8 +145,6 @@ export const LocalSignup = createAsyncThunk(
 export const LocalLogin = createAsyncThunk(
   'user/localLogin',
   async ({ identifier, password }, thunkAPI) => {
-    console.log(identifier, password);
-
     try {
       const response = await axios.post(
         'http://localhost:3001/auth/local/login',
@@ -155,19 +154,15 @@ export const LocalLogin = createAsyncThunk(
         },
       );
 
-      // console.log('response', response);
+      console.log('response', response);
 
       const { data } = response;
-
-      // console.log('data', data);
 
       if (response.status === 200) {
         return { ...data };
       }
-      // 로그인 실패 status
-      // else {
+      // 로그인 실패 status === 403
       return thunkAPI.rejectWithValue(response.data);
-      // }
     } catch (e) {
       PrintError(e, '로컬 로그인');
       return thunkAPI.rejectWithValue();
@@ -210,13 +205,14 @@ export const userSlice = createSlice({
     builder
       .addCase(GetUserWithSession.pending, (state) => StartLoading(state))
       .addCase(GetUserWithSession.fulfilled, (state, { payload }) => {
-        const { nickname, email, provider } = payload;
+        const { nickname, email, provider, imagePath } = payload;
         state.isFetching = false;
         state.isSuccess = true;
         state.isLogin = true;
         state.userNickname = nickname;
         state.userEmail = email;
         state.userProvider = provider;
+        state.userProfile = imagePath;
       })
       .addCase(GetUserWithSession.rejected, (state) => ReceiveError(state));
     //
@@ -236,13 +232,14 @@ export const userSlice = createSlice({
         state.isLogin = false;
       })
       .addCase(LocalLogin.fulfilled, (state, { payload }) => {
-        const { nickname, email, provider } = payload;
+        const { nickname, email, provider, imagePath } = payload;
         state.isFetching = false;
         state.isSuccess = true;
         state.isLogin = true;
         state.userNickname = nickname;
         state.userEmail = email;
         state.userProvider = provider;
+        state.userProfile = imagePath;
       })
       .addCase(LocalLogin.rejected, (state) => ReceiveError(state));
     //
@@ -257,7 +254,15 @@ export const userSlice = createSlice({
         state.userProvider = '';
       })
       .addCase(LocalLogout.rejected, (state) => ReceiveError(state));
-    builder.addCase(UpdateProfile.fulfilled, (_) => {});
+    //
+    // 프로필 업데이트
+    builder
+      .addCase(UpdateProfile.fulfilled, (state, { payload }) => {
+        const { nickname, imagePath } = payload;
+        state.userNickname = nickname;
+        state.userProfile = imagePath;
+      })
+      .addCase(UpdateProfile.rejected, (state) => ReceiveError(state));
   },
 });
 

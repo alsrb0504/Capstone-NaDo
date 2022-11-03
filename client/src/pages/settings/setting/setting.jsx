@@ -10,7 +10,9 @@ const Setting = () => {
   const navigate = useNavigate();
 
   // 추후 프로필도 가져와서 업데이트
-  const { userNickname, userProvider } = useSelector((state) => state.user);
+  const { userNickname, userProvider, userProfile } = useSelector(
+    (state) => state.user,
+  );
 
   // 추후 회원탈퇴 구현
   const UnRegister = () => {
@@ -45,7 +47,10 @@ const Setting = () => {
 
       {/* url 나중에 프로필 정보 받아오는 걸로 교체 */}
       <ProfileCard
-        url="https://cdn.pixabay.com/photo/2022/10/16/13/53/early-morning-7525151_960_720.jpg"
+        url={
+          userProfile ||
+          'https://cdn.pixabay.com/photo/2022/10/16/13/53/early-morning-7525151_960_720.jpg'
+        }
         nickname={userNickname}
       />
 
