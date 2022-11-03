@@ -73,15 +73,18 @@ export class UserController {
     @Response() res: Express.Response,
     @UploadedFile() profileFile: Express.Multer.File
   ): Promise<ImageChangeResponseUser>{
-    console.log(profileFile?.filename)
+
+    const serveImgUrl = 'http://localhost:3001/file/' + profileFile.filename
+
     await this.userService.changeImage({
-      imagePath: profileFile?.filename,
+      imagePath: serveImgUrl,
       identifier: req.user.identifier 
     })
+    
     return {
       status: 'success',
       data: {
-        imagePath: profileFile.filename
+        imagePath: serveImgUrl
       }
     } 
   }
@@ -93,6 +96,7 @@ export class UserController {
     @Body(IdWithNicknamePipe) body: {nickname: string},
     @Request() req: ReqWithUser
   ) {
+    
     await this.userService.changeNickname({
       nickname: body.nickname,
       identifier: req.user.identifier
