@@ -13,6 +13,7 @@
 
   .info {
     @include flexbox;
+    width: 100%;
 
     img {
       width: 76px;
@@ -24,9 +25,10 @@
     .detail {
       @include column-flexbox(start, start);
       position: relative;
+      flex: 1;
 
       &::before {
-        content: "";
+        content: '';
         position: absolute;
         top: -2px;
         left: -12px;
@@ -38,8 +40,14 @@
 
       h3 {
         position: relative;
+        width: 80%;
         font-size: 20px;
         margin-bottom: 8px;
+
+        // ... 효과
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
       }
     }
   }

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -17,28 +16,47 @@ const initialState = {
 export const UpdateProfile = createAsyncThunk(
   'user/UpdateProfile',
   async ({ nickname, image }, thunkAPI) => {
-    //  *
-    // 테스트용 프로필 변경 요청
-    // 아이디, 닉네임, 이미지를 같이 보냄.
-    // *
     try {
-      const formData = new FormData();
-      formData.append('image', image[0]);
-      formData.append('nickname', nickname);
+      let updatedImagePath = '';
 
-      const response = await axios({
-        method: 'post',
-        url: 'http://localhost:3001/user/change_profile',
-        data: formData,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      // 이미지가 변경되었을 경우에만 요청보냄.
+      if (image[0]) {
+        const formData = new FormData();
+        formData.append('image', image[0]);
 
-      console.log(response);
-      return null;
+        const ImgResponse = await axios({
+          method: 'post',
+          url: 'http://localhost:3001/user/change_image',
+          data: formData,
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
 
-      // return thunkAPI.rejectWithValue(response.data);
+        console.log('이미지 전송 요청');
+
+        if (ImgResponse.status === 200) {
+          console.log('이미지 받기 성공');
+
+          updatedImagePath = ImgResponse.data.data.imagePath;
+        } else return thunkAPI.rejectWithValue();
+      }
+
+      const NicknameResponse = await axios.post(
+        'http://localhost:3001/user/change_nickname',
+        { nickname },
+      );
+
+      if (NicknameResponse.status === 200) {
+        console.log(NicknameResponse);
+
+        return {
+          nickname: NicknameResponse.data.body.nickname,
+          imagePath: updatedImagePath,
+        };
+      }
+
+      return thunkAPI.rejectWithValue();
     } catch (e) {
       PrintError(e, '프로필 업데이트');
       return thunkAPI.rejectWithValue(e.response.data);
@@ -46,19 +64,9 @@ export const UpdateProfile = createAsyncThunk(
   },
 );
 
-// *
-// 비밀번호 변경 함수
-// 아직 reducer에 연결 X.
-// 기존 비밀번호: prevPasswd
-// 새 비밀번호: newPasswd
-// 아이디: identifier
-// *
 export const ChangePasswd = createAsyncThunk(
   'user/ChangePasswd',
   async ({ identifider, prevPasswd, newPasswd }, thunkAPI) => {
-    console.log(identifider, prevPasswd, newPasswd);
-
-    // 추후 api 주소 정하면 교체
     try {
       const response = await axios.post(
         'http://localhost:3001/user/change_password',
@@ -73,8 +81,10 @@ export const ChangePasswd = createAsyncThunk(
       if (response.status === 200) {
         return response.data;
       }
-      // 비밀번호 변경 실패 (원인 출력 X) 403?
-      alert(response.data.message);
+      if (response.statusCode === 403) {
+        alert('비밀번호 정보가 일치하지 않습니다');
+        console.log(response.data.message);
+      }
       return thunkAPI.rejectWithValue(response.data);
     } catch (e) {
       PrintError(e, '비밀번호 변경');
@@ -86,20 +96,18 @@ export const ChangePasswd = createAsyncThunk(
 export const GetUserWithSession = createAsyncThunk(
   'user/getUserWithSession',
   async (_, thunkAPI) => {
-    //
     try {
       const response = await axios.get('http://localhost:3001/auth/local/');
 
       if (response.status === 200) {
         return response.data;
       }
-      if (response.status === 401) {
-        return null;
-      }
+
       // return
       return thunkAPI.rejectWithValue(response.data);
     } catch (e) {
-      PrintError(e, '로그인 유지');
+      // PrintError(e, '로그인 유지');
+      console.log('세션 로그인 실패.');
       return thunkAPI.rejectWithValue(e.response.data);
     }
   },
@@ -120,9 +128,7 @@ export const LocalSignup = createAsyncThunk(
         },
       );
 
-      // console.log('response', response);
       const { data } = response;
-      // console.log('data', data);
 
       if (response.status === 201) {
         return { ...data };
@@ -144,8 +150,6 @@ export const LocalSignup = createAsyncThunk(
 export const LocalLogin = createAsyncThunk(
   'user/localLogin',
   async ({ identifier, password }, thunkAPI) => {
-    console.log(identifier, password);
-
     try {
       const response = await axios.post(
         'http://localhost:3001/auth/local/login',
@@ -155,19 +159,13 @@ export const LocalLogin = createAsyncThunk(
         },
       );
 
-      // console.log('response', response);
-
       const { data } = response;
-
-      // console.log('data', data);
 
       if (response.status === 200) {
         return { ...data };
       }
-      // 로그인 실패 status
-      // else {
+      // 로그인 실패 status === 403
       return thunkAPI.rejectWithValue(response.data);
-      // }
     } catch (e) {
       PrintError(e, '로컬 로그인');
       return thunkAPI.rejectWithValue();
@@ -190,9 +188,7 @@ export const LocalLogout = createAsyncThunk(
         return {};
       }
       // 로그인 실패 status
-      // else {
       return thunkAPI.rejectWithValue(response);
-      // }
     } catch (e) {
       PrintError(e, '로컬 로그아웃');
       return thunkAPI.rejectWithValue();
@@ -203,30 +199,32 @@ export const LocalLogout = createAsyncThunk(
 export const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    CleanUpSuccess(state) {
+      state.isSuccess = false;
+    },
+  },
 
   extraReducers: (builder) => {
     // 세션 유저정보 획득
     builder
       .addCase(GetUserWithSession.pending, (state) => StartLoading(state))
       .addCase(GetUserWithSession.fulfilled, (state, { payload }) => {
-        const { nickname, email, provider } = payload;
+        const { identifier, nickname, email, provider, imagePath } = payload;
         state.isFetching = false;
-        state.isSuccess = true;
         state.isLogin = true;
+        state.userId = identifier;
         state.userNickname = nickname;
         state.userEmail = email;
         state.userProvider = provider;
+        state.userProfile = imagePath;
       })
       .addCase(GetUserWithSession.rejected, (state) => ReceiveError(state));
     //
     // 로컬 회원가입 thunk
     builder
       .addCase(LocalSignup.pending, (state) => StartLoading(state))
-      .addCase(LocalSignup.fulfilled, (state) => {
-        state.isFetching = false;
-        state.isSuccess = true;
-      })
+      .addCase(LocalSignup.fulfilled, (state) => SuccessFetching(state))
       .addCase(LocalSignup.rejected, (state) => ReceiveError(state));
     //
     // 로컬 로그인 thunk
@@ -236,13 +234,14 @@ export const userSlice = createSlice({
         state.isLogin = false;
       })
       .addCase(LocalLogin.fulfilled, (state, { payload }) => {
-        const { nickname, email, provider } = payload;
+        const { identifier, nickname, email, provider, imagePath } = payload;
         state.isFetching = false;
-        state.isSuccess = true;
         state.isLogin = true;
+        state.userId = identifier;
         state.userNickname = nickname;
         state.userEmail = email;
         state.userProvider = provider;
+        state.userProfile = imagePath;
       })
       .addCase(LocalLogin.rejected, (state) => ReceiveError(state));
     //
@@ -255,9 +254,22 @@ export const userSlice = createSlice({
         state.userNickname = '';
         state.userEmail = '';
         state.userProvider = '';
+        state.userProfile = '';
       })
       .addCase(LocalLogout.rejected, (state) => ReceiveError(state));
-    builder.addCase(UpdateProfile.fulfilled, (_) => {});
+    //
+    // 프로필 업데이트
+    builder
+      .addCase(UpdateProfile.fulfilled, (state, { payload }) => {
+        const { nickname, imagePath } = payload;
+        state.userNickname = nickname;
+        state.userProfile = imagePath || state.userProfile;
+      })
+      .addCase(UpdateProfile.rejected, (state) => ReceiveError(state));
+    builder
+      .addCase(ChangePasswd.pending, (state) => StartLoading(state))
+      .addCase(ChangePasswd.fulfilled, (state) => SuccessFetching(state))
+      .addCase(ChangePasswd.rejected, (state) => ReceiveError(state));
   },
 });
 
@@ -274,6 +286,13 @@ function StartLoading(state) {
   });
 }
 
+function SuccessFetching(state) {
+  Object.assign(state, {
+    isFetching: false,
+    isSuccess: true,
+  });
+}
+
 function ReceiveError(state) {
   Object.assign(state, {
     isFetching: false,
@@ -281,4 +300,5 @@ function ReceiveError(state) {
   });
 }
 
+export const { CleanUpSuccess } = userSlice.actions;
 export default userSlice.reducer;

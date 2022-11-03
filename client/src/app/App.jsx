@@ -20,6 +20,7 @@ import OrderWaitings from '../pages/order/orderWaitings/order_waitings';
 import OrderOption from '../pages/order/orderOption/order_option';
 import OrderDetail from '../pages/order/orderDetail/order_detail';
 import OrderReport from '../pages/order/orderReport/order_report';
+import PickupHome from '../pages/pickup/pickupHome/pickup_home';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -55,6 +56,10 @@ const App = () => {
               <Route path="option" element={<OrderOption />} />
               <Route path="detail" element={<OrderDetail/>} />
               <Route path="report" element={<OrderReport/>} />
+            </Route>
+
+            <Route path="/pickup">
+              <Route index element={<PickupHome />} />
             </Route>
           </Routes>
         </div>
