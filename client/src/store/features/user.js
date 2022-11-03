@@ -18,27 +18,46 @@ export const UpdateProfile = createAsyncThunk(
   'user/UpdateProfile',
   async ({ nickname, image }, thunkAPI) => {
     try {
-      const formData = new FormData();
-      formData.append('image', image[0]);
-      formData.append('nickname', nickname);
+      let updatedImagePath = '';
 
-      const response = await axios({
-        method: 'post',
-        url: 'http://localhost:3001/user/change_profile',
-        data: formData,
-        body: formData,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      // 이미지가 변경되었을 경우에만 요청보냄.
+      if (image[0]) {
+        const formData = new FormData();
+        formData.append('image', image[0]);
 
-      console.log(response);
+        const ImgResponse = await axios({
+          method: 'post',
+          url: 'http://localhost:3001/user/change_image',
+          data: formData,
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
 
-      if (response.status === 200) {
-        return { ...response.data.data };
+        console.log('이미지 전송 요청');
+
+        if (ImgResponse.status === 200) {
+          console.log('이미지 받기 성공');
+
+          updatedImagePath = ImgResponse.data.data.imagePath;
+        } else return thunkAPI.rejectWithValue();
       }
 
-      return thunkAPI.rejectWithValue(response.data);
+      const NicknameResponse = await axios.post(
+        'http://localhost:3001/user/change_nickname',
+        { nickname },
+      );
+
+      if (NicknameResponse.status === 200) {
+        console.log(NicknameResponse);
+
+        return {
+          nickname: NicknameResponse.data.body.nickname,
+          imagePath: updatedImagePath,
+        };
+      }
+
+      return thunkAPI.rejectWithValue();
     } catch (e) {
       PrintError(e, '프로필 업데이트');
       return thunkAPI.rejectWithValue(e.response.data);
@@ -249,7 +268,7 @@ export const userSlice = createSlice({
       .addCase(UpdateProfile.fulfilled, (state, { payload }) => {
         const { nickname, imagePath } = payload;
         state.userNickname = nickname;
-        state.userProfile = imagePath;
+        state.userProfile = imagePath || state.userProfile;
       })
       .addCase(UpdateProfile.rejected, (state) => ReceiveError(state));
     builder

@@ -21,7 +21,7 @@ const ProfileEditForm = () => {
   } = useForm({
     defaultValues: {
       nickname: userNickname,
-      // image: userProfile
+      // image: userProfile,
       image: '',
       identifier: userId,
     },
