@@ -7,6 +7,7 @@ import HomeHeader from '../../components/atoms/headers/homeHeader/home_header';
 import HomeMainBtns from '../../components/molecules/homeMainBtns/home_main_btns';
 import HomeMenus from '../../components/molecules/homeMenus/home_menus';
 import Footer from '../../components/atoms/footer/footer';
+import { ClearStore } from '../../services/store';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,18 @@ const Home = () => {
 
   const Logout = () => {
     dispatch(LocalLogout());
+    ClearStore();
+
+    // 페이지 다 구현 후, 제거.
+    // 현재는 어쩔 수 없이 수동으로 한 번 더 이동해야 함.
+    // (useEffect가 없어서 isLogin의 변화를 감지 못 함..)
+    navigate('/login');
   };
+
+  // 페이지 다 구현 후, 추가
+  // useEffect(() => {
+  //   if (!isLogin) navigate('/login');
+  // }, [isLogin, navigate]);
 
   return (
     <div className="col-sm-4 home">
