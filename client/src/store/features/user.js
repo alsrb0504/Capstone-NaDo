@@ -46,19 +46,9 @@ export const UpdateProfile = createAsyncThunk(
   },
 );
 
-// *
-// 비밀번호 변경 함수
-// 아직 reducer에 연결 X.
-// 기존 비밀번호: prevPasswd
-// 새 비밀번호: newPasswd
-// 아이디: identifier
-// *
 export const ChangePasswd = createAsyncThunk(
   'user/ChangePasswd',
   async ({ identifider, prevPasswd, newPasswd }, thunkAPI) => {
-    console.log(identifider, prevPasswd, newPasswd);
-
-    // 추후 api 주소 정하면 교체
     try {
       const response = await axios.post(
         'http://localhost:3001/user/change_password',
@@ -73,8 +63,10 @@ export const ChangePasswd = createAsyncThunk(
       if (response.status === 200) {
         return response.data;
       }
-      // 비밀번호 변경 실패 (원인 출력 X) 403?
-      alert(response.data.message);
+      if (response.statusCode === 403) {
+        alert('비밀번호 정보가 일치하지 않습니다');
+        console.log(response.data.message);
+      }
       return thunkAPI.rejectWithValue(response.data);
     } catch (e) {
       PrintError(e, '비밀번호 변경');
@@ -86,11 +78,8 @@ export const ChangePasswd = createAsyncThunk(
 export const GetUserWithSession = createAsyncThunk(
   'user/getUserWithSession',
   async (_, thunkAPI) => {
-    //
     try {
       const response = await axios.get('http://localhost:3001/auth/local/');
-
-      console.log(response);
 
       if (response.status === 200) {
         return response.data;
@@ -154,8 +143,6 @@ export const LocalLogin = createAsyncThunk(
         },
       );
 
-      console.log('response', response);
-
       const { data } = response;
 
       if (response.status === 200) {
@@ -198,7 +185,11 @@ export const LocalLogout = createAsyncThunk(
 export const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    CleanUpSuccess(state) {
+      state.isSuccess = false;
+    },
+  },
 
   extraReducers: (builder) => {
     // 세션 유저정보 획득
@@ -207,7 +198,6 @@ export const userSlice = createSlice({
       .addCase(GetUserWithSession.fulfilled, (state, { payload }) => {
         const { nickname, email, provider, imagePath } = payload;
         state.isFetching = false;
-        state.isSuccess = true;
         state.isLogin = true;
         state.userNickname = nickname;
         state.userEmail = email;
@@ -234,7 +224,7 @@ export const userSlice = createSlice({
       .addCase(LocalLogin.fulfilled, (state, { payload }) => {
         const { nickname, email, provider, imagePath } = payload;
         state.isFetching = false;
-        state.isSuccess = true;
+        // state.isSuccess = true;
         state.isLogin = true;
         state.userNickname = nickname;
         state.userEmail = email;
@@ -263,6 +253,10 @@ export const userSlice = createSlice({
         state.userProfile = imagePath;
       })
       .addCase(UpdateProfile.rejected, (state) => ReceiveError(state));
+    builder
+      .addCase(ChangePasswd.pending, (state) => StartLoading(state))
+      .addCase(ChangePasswd.fulfilled, (state) => SuccessFetching(state))
+      .addCase(ChangePasswd.rejected, (state) => ReceiveError(state));
   },
 });
 
@@ -279,6 +273,13 @@ function StartLoading(state) {
   });
 }
 
+function SuccessFetching(state) {
+  Object.assign(state, {
+    isFetching: false,
+    isSuccess: true,
+  });
+}
+
 function ReceiveError(state) {
   Object.assign(state, {
     isFetching: false,
@@ -286,4 +287,5 @@ function ReceiveError(state) {
   });
 }
 
+export const { CleanUpSuccess } = userSlice.actions;
 export default userSlice.reducer;

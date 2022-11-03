@@ -1,15 +1,17 @@
-import React from 'react';
+/* eslint-disable no-alert */
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { PasswdCond } from '../../../services/formCondition';
-import { ChangePasswd } from '../../../store/features/user';
+import { ChangePasswd, CleanUpSuccess } from '../../../store/features/user';
 import Btn from '../../atoms/buttons/btn/btn';
 import LineInputContainer from '../lineInputContainer/line_input_container';
 
 const PasswdEditForm = () => {
   const dispatch = useDispatch();
-
-  const { userId } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+  const { userId, isSuccess, isError } = useSelector((state) => state.user);
 
   const {
     register,
@@ -20,6 +22,15 @@ const PasswdEditForm = () => {
 
   const PasswdCondition = PasswdCond;
 
+  useEffect(() => {
+    if (isSuccess) {
+      navigate('/setting');
+      dispatch(CleanUpSuccess());
+    }
+
+    if (isError) reset();
+  }, [isSuccess, isError, reset, dispatch, navigate]);
+
   const OnSubmit = (data) => {
     const { prevPasswd, newPasswd, newPasswd2 } = data;
 
@@ -28,9 +39,6 @@ const PasswdEditForm = () => {
       reset();
     }
 
-    console.log('data', data);
-
-    // 나중에 제거
     dispatch(ChangePasswd({ userId, prevPasswd, newPasswd }));
   };
 
