@@ -18,6 +18,7 @@ import OrderPayment from '../pages/order/orderPayment/order_payment';
 import OrderConfirm from '../pages/order/orderConfirm/order_confirm';
 import OrderWaitings from '../pages/order/orderWaitings/order_waitings';
 import OrderOption from '../pages/order/orderOption/order_option';
+import PickupHome from '../pages/pickup/pickupHome/pickup_home';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -33,7 +34,6 @@ const App = () => {
         <div className="row">
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* Option화면 테스트후 삭제 필요 */}
             <Route path="/login" element={<Login />} />
             <Route path="/register">
               <Route path="local" element={<LocalRegister />} />
@@ -52,6 +52,10 @@ const App = () => {
               <Route path="confirm" element={<OrderConfirm />} />
               <Route path="waitings" element={<OrderWaitings />} />
               <Route path="option" element={<OrderOption />} />
+            </Route>
+
+            <Route path="/pickup">
+              <Route index element={<PickupHome />} />
             </Route>
           </Routes>
         </div>
