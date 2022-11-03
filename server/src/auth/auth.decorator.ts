@@ -12,7 +12,7 @@ export function UserRegisterDescription() {
       summary: 'register local user api',
       description: '로컬 유저 회원가입 api로 user id, nickname, password, email 정보를 받고 생성한다.'
     }),
-    ApiBody({ type: [UserRegister]})
+    ApiBody({ type: UserRegister})
   )
 }
 

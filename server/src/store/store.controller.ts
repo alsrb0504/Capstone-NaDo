@@ -4,7 +4,9 @@ import Store from 'src/entity/store/store.entity';
 import { StoreQueryService } from './storequery.service';
 import { GetAllStoreDescription } from './store.decorator';
 import { StoreList } from 'src/type/store/store.type';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags("store")
 @Controller('store')
 export class StoreController {
   constructor(

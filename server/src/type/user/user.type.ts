@@ -20,7 +20,8 @@ export class UserWithPassword extends UserBody {
   password: string;
 }
 
-export class UserProfile extends PickType(UserBody, ['identifier', 'nickname', 'imagePath']) {}
+export class UserProfile extends PickType(UserBody, ['identifier',  'imagePath']) {}
+export class ChangeNickname extends PickType(UserBody, ['identifier',  'nickname']) {}
 
 export class ChangePassword extends PickType(UserBody, ['identifier']) {
   @ApiProperty({
@@ -48,7 +49,7 @@ export class UserLogin extends PickType(UserWithPassword, ['identifier', 'passwo
 
 export class PartialUserBody extends PartialType(UserBody) {}
 
-
+export class UserImage extends PickType(UserBody, ['imagePath']) {}
 
 export class ResponseUser {
 
@@ -59,11 +60,19 @@ export class ResponseUser {
   })
   status: Success 
 
+}
+
+export class ImageChangeResponseUser extends ResponseUser {
   @ApiProperty({
-    description: 'api response data: Partial User Body, content was optional',
-    type: PartialUserBody 
+    description: 'api response data: (imagePath), content was optional',
+    type: UserImage 
   })
-  data: PartialUserBody
-
-
+  data: UserImage
+}
+export class NicknameChangeResponseUser extends ResponseUser {
+  @ApiProperty({
+    description: 'api response data: (imagePath), content was optional',
+    type: UserNickname 
+  })
+  data: UserNickname
 }

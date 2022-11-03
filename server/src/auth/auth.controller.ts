@@ -47,7 +47,6 @@ export class AuthController {
 
       return {
         status: 'success',
-        data: {}
       }
     }
 

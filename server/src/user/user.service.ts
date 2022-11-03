@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import * as bcrypt from 'bcryptjs'
 
 import User from 'src/entity/user/user.entity';
-import { ChangePassword, UserProfile, UserBody } from 'src/type/user/user.type';
+import { ChangePassword, UserProfile, UserBody, ChangeNickname } from 'src/type/user/user.type';
 
 @Injectable()
 export class UserService {
@@ -83,19 +83,16 @@ export class UserService {
     return await bcrypt.compare(userCredentials.prevPasswd, userInfo.password)
   }
 
-  async changeProfile(
+  async changeImage(
     profileInfo : UserProfile
   ) {
-    const {nickname, imagePath, identifier} = profileInfo
-
-    
+    const {imagePath, identifier} = profileInfo
 
     try {
       await this.userRepository
       .createQueryBuilder('user')
       .update(User)
       .set({ 
-        nickname,
         imagePath
       })
       .where("identifier = :identifier", {identifier})
@@ -105,20 +102,37 @@ export class UserService {
     }
   }
 
+  async changeNickname(
+    profileInfo : ChangeNickname
+  ) {
+    const {nickname, identifier} = profileInfo
+
+    try {
+      await this.userRepository
+      .createQueryBuilder('user')
+      .update(User)
+      .set({ 
+       nickname 
+      })
+      .where("identifier = :identifier", {identifier})
+      .execute() 
+    } catch (err) {
+      throw new InternalServerErrorException(err.message)
+    }
+  }
   async fetchProfileImage(
     identifier: string
-  ) {
+  ): Promise<string> {
     try {
-      const imagePath = await this.userRepository
+      const responseUser = await this.userRepository
         .createQueryBuilder('user')
         .select("imagePath")
         .from(User, "user")
         .where("user.identifier = :identifier", { identifier })
         .getOne()
 
-      console.log(imagePath)
-      
-      return imagePath
+      const {imagePath} = responseUser
+      return imagePath 
     } catch (err) {
       throw new InternalServerErrorException(err.message)
     }

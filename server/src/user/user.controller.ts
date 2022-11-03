@@ -1,4 +1,4 @@
-import { Body, Controller, ForbiddenException, HttpCode, InternalServerErrorException, Post, Query, UseGuards, Request, UseInterceptors, UploadedFile, Get } from '@nestjs/common';
+import { Body, Controller, ForbiddenException, HttpCode, InternalServerErrorException, Post, Response, UseGuards, Request, UseInterceptors, UploadedFile, Get, BadRequestException } from '@nestjs/common';
 import { UserService } from './user.service';
 
 import { isLoggedInGuard } from 'src/auth/guard/cookieAuthentication.guard';
@@ -9,8 +9,8 @@ import { diskStorage } from 'multer';
 import { v4 as uuidv4} from 'uuid'
 import * as path from 'path';
 import { ApiBody, ApiQuery, ApiTags } from '@nestjs/swagger';
-import { ChangePassword, UserNickname, UserWithPassword} from 'src/type/user/user.type';
-import { ChangePasswordDescription, ChangeProfileDescription } from './user.decorator';
+import { ChangePassword, ImageChangeResponseUser, ResponseUser, UserNickname, UserWithPassword} from 'src/type/user/user.type';
+import { ChangeImageDescription, ChangePasswordDescription, ChangeNicknameDescription } from './user.decorator';
 
 @ApiTags("user")
 @Controller('user')
@@ -27,7 +27,7 @@ export class UserController {
   async changePassword(
     @Request() req: ReqWithUser,
     @Body() user: ChangePassword
-  ) {
+  ): Promise<ResponseUser> {
     const isPasswordSame = await this.userService.checkPassword({
       prevPasswd: user.prevPasswd,
       identifier: req.user.identifier
@@ -39,7 +39,9 @@ export class UserController {
         newPasswd: user.newPasswd,
         identifier: req.user.identifier
       })
-      return 'success'
+      return {
+        status: 'success'
+      }
     } catch (err) {
       throw new InternalServerErrorException(err.message)
     }
@@ -49,6 +51,9 @@ export class UserController {
   @UseInterceptors(FileInterceptor('image', {
     storage: diskStorage({
       destination: (req, file, cb) => {
+        if(!file) {
+          throw new BadRequestException('file is not selected')
+        }
         const imageSavePath = path.join(__dirname, "..", "static", "images/")
         console.log(imageSavePath)
         cb(null, imageSavePath)
@@ -60,25 +65,45 @@ export class UserController {
       }
     })
   }))
-  @Post('change_profile')
-  @ChangeProfileDescription()
+  @Post('change_image')
+  @ChangeImageDescription()
   @HttpCode(200)
-  async changeNickname(
+  async changeImage(
     @Request() req: ReqWithUser,
-    @Body(IdWithNicknamePipe) body: UserNickname,
+    @Response() res: Express.Response,
     @UploadedFile() profileFile: Express.Multer.File
-  ){
-    await this.userService.changeProfile({
-      nickname: body.nickname,
-      imagePath: profileFile.filename,
+  ): Promise<ImageChangeResponseUser>{
+    console.log(profileFile?.filename)
+    await this.userService.changeImage({
+      imagePath: profileFile?.filename,
       identifier: req.user.identifier 
     })
     return {
       status: 'success',
       data: {
-        nickname: body.nickname,
         imagePath: profileFile.filename
       }
     } 
   }
+
+  @Post("/change_nickname")
+  @ChangeNicknameDescription()
+  @HttpCode(200)
+  async changeNickname(
+    @Body(IdWithNicknamePipe) body: {nickname: string},
+    @Request() req: ReqWithUser
+  ) {
+    await this.userService.changeNickname({
+      nickname: body.nickname,
+      identifier: req.user.identifier
+    })
+
+    return {
+      status: 'success',
+      body: {
+        nickname: body.nickname
+      }
+    }
+  } 
+
 }
