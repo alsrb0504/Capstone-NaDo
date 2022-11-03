@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import Btn from '../../atoms/buttons/btn/btn';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   IdCond,
   PasswdCond,
   NicknameCond,
 } from '../../../services/formCondition';
+import { CleanUpSuccess } from '../../../store/features/user';
+import Btn from '../../atoms/buttons/btn/btn';
 import LineInputContainer from '../lineInputContainer/line_input_container';
 
 const SignupLocalForm = ({ SignupWithLocal }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -23,6 +29,16 @@ const SignupLocalForm = ({ SignupWithLocal }) => {
     },
   });
 
+  const { isSuccess, isError } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate('/login');
+      dispatch(CleanUpSuccess());
+    }
+    if (isError) reset();
+  }, [isSuccess, isError, reset, dispatch, navigate]);
+
   const OnSubmit = (data) => {
     const { password, password2 } = data;
 
@@ -31,10 +47,7 @@ const SignupLocalForm = ({ SignupWithLocal }) => {
       reset();
     }
 
-    console.log('form info', data);
-
     SignupWithLocal(data);
-    reset();
   };
 
   const IdCondition = IdCond;
