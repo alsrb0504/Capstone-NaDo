@@ -18,6 +18,7 @@ import OrderPayment from '../pages/order/orderPayment/order_payment';
 import OrderConfirm from '../pages/order/orderConfirm/order_confirm';
 import OrderWaitings from '../pages/order/orderWaitings/order_waitings';
 import OrderOption from '../pages/order/orderOption/order_option';
+import OrderDetail from '../pages/order/orderDetail/order_detail';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -52,6 +53,7 @@ const App = () => {
               <Route path="confirm" element={<OrderConfirm />} />
               <Route path="waitings" element={<OrderWaitings />} />
               <Route path="option" element={<OrderOption />} />
+              <Route path="detail" element={<OrderDetail/>} />
             </Route>
           </Routes>
         </div>
