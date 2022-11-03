@@ -172,9 +172,7 @@ export const LocalLogout = createAsyncThunk(
         return {};
       }
       // 로그인 실패 status
-      // else {
       return thunkAPI.rejectWithValue(response);
-      // }
     } catch (e) {
       PrintError(e, '로컬 로그아웃');
       return thunkAPI.rejectWithValue();
@@ -242,6 +240,7 @@ export const userSlice = createSlice({
         state.userNickname = '';
         state.userEmail = '';
         state.userProvider = '';
+        state.userProfile = '';
       })
       .addCase(LocalLogout.rejected, (state) => ReceiveError(state));
     //
