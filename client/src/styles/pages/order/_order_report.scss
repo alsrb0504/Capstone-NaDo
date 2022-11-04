@@ -41,7 +41,7 @@
         }
 
         .btn-complete{
-            width: 100%;
+            width: calc(100% - 16px);
             padding-right: 20px;
             padding-left: 20px;
             position: fixed;
