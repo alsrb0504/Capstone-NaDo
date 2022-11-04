@@ -1,4 +1,5 @@
 import React from "react";
+import Swal from "sweetalert2";
 import { useForm } from 'react-hook-form';
 import { useNavigate } from "react-router-dom";
 import Btn from "../../../components/atoms/buttons/btn/btn";
@@ -15,6 +16,7 @@ const OrderReport = () => {
     } = useForm();
 
     const OnSubmit = (info) => {
+        handleAlert();
         console.log(info);
     };
 
@@ -22,7 +24,33 @@ const OrderReport = () => {
     const navigate = useNavigate();
 
     const MoveBack = () => navigate('/order/detail');
-    const MoveOrder = () => navigate('/order/detail')
+    const MoveOrder = () => navigate('/order/detail');
+    const MoveHome = () => navigate('/');
+
+    const handleAlert = () => {
+        Swal.fire({
+            title: '정말 신고 하시겠습니까?',
+            text: "접수된 신고는 취소할 수 없습니다.",
+            icon: 'warning',
+            showCancelButton: true,
+            cancelButtonText: '아니요',
+            confirmButtonColor: '#43a2ff',
+            cancelButtonColor: '#f47272',
+            confirmButtonText: '네, 신고하겠습니다.'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: '신고 완료!',
+                text: '',
+                icon: 'success',
+                // confirmButtonColor: '#43a2ff',
+                showConfirmButton: false,
+                timer: 1200,
+            })
+              MoveHome();
+            }
+          });
+    }
 
     const data = {
         place: '소프트웨어관 313호',
@@ -52,7 +80,7 @@ const OrderReport = () => {
                         errors={errors}
                     />
                     <div className="btn-complete">
-                        <Btn type="submit" text="신고하기" color="red"/>
+                        <Btn type="submit" text="신고하기" color="red" handleClick={MoveBack}/>
                     </div>    
                 </form>
             </div>
