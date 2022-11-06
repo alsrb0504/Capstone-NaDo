@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PickingCard = ({ info, handleDesc, handleChat }) => {
-  const { address, request_time, price, picker } = info;
+  const { pickupAddress, pickupTime, pickupPrice, orderer } = info;
 
   // 주문 상세 정보로 이동
   const GoDesc = () => {
@@ -10,20 +10,20 @@ const PickingCard = ({ info, handleDesc, handleChat }) => {
 
   // 채팅하기로 이동
   const GoChat = () => {
-    // picker
-    handleChat(picker);
+    // orderer
+    handleChat(orderer);
   };
 
   return (
     <div className="card-container ordering-card">
       <div className="order-info" onClick={GoDesc}>
         <div className="info">
-          <h3>{address}</h3>
+          <h3>{pickupAddress}</h3>
           <p>
-            마감 시간 : <span>~ {request_time}</span>
+            마감 시간 : <span>~ {pickupTime}</span>
           </p>
           <p>
-            주문 금액 : <span>{price} 원</span>
+            주문 금액 : <span>{pickupPrice} 원</span>
           </p>
         </div>
 
