@@ -1,0 +1,18 @@
+.pickup-list {
+  width: 100%;
+
+  // footer 대용
+  &:last-child {
+    margin-bottom: 24px;
+  }
+
+  .pickup-list-title {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .pickup-ready-card {
+    margin-bottom: 16px;
+  }
+}

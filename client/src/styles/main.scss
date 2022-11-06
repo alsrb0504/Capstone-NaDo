@@ -58,6 +58,7 @@
 @import './components/molecules/payment_confirm';
 @import './components/molecules/waiting_order_list';
 @import './components/molecules/pickup_store_list';
+@import './components/molecules/store_pickup_list';
 
 // pages
 @import './pages/login';
@@ -76,4 +77,4 @@
 @import './pages/order/order_detail';
 @import './pages/order/order_report';
 @import './pages/pickup/pickup_home';
-
+@import './pages/pickup/pickup_store';
