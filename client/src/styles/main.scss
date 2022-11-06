@@ -43,6 +43,7 @@
 @import './components/atoms/form_title';
 @import './components/atoms/payment_receipt';
 @import './components/atoms/state_box';
+@import './components/atoms/price_box';
 
 // molecules
 @import './components/molecules/login_form';
@@ -80,3 +81,4 @@
 @import './pages/pickup/pickup_home';
 @import './pages/pickup/pickup_store';
 @import './pages/pickup/pickup_mypickup';
+@import './pages/pickup/pickup_detail';

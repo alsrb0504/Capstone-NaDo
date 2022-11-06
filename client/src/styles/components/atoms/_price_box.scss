@@ -1,0 +1,29 @@
+.price-box {
+    @include flexbox(between,center);
+    width: 100%;
+    min-height: 62px;
+    padding: 16px;
+    margin-bottom: 20px;
+
+    font-size: 20px;
+
+    background-color: $box-border;
+    border-radius: 24px;
+}
+
+.price-box-배달팁 {
+    @include flexbox(between,center);
+    width: 100%;
+    min-height: 62px;
+    padding: 16px;
+    margin-bottom: 20px;
+
+    font-size: 20px;
+
+    background-color: $green;
+    border-radius: 24px;
+
+    text {
+        color: $white;
+    }
+}
