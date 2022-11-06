@@ -161,6 +161,22 @@ const initialState = {
       pickupTime: '13:35',
     },
   ],
+  myPickupList: [
+    {
+      pickupId: 321,
+      pickupAddress: '소프트웨어관 313호',
+      pickupPrice: 8900,
+      pickupTime: '13:35',
+      orderer: '주문한 사람1',
+    },
+    {
+      pickupId: 322,
+      pickupAddress: '상경관 201호',
+      pickupPrice: 18900,
+      pickupTime: '15:00',
+      orderer: '주문한 사람2',
+    },
+  ],
 };
 
 export const pickupSlice = createSlice({
