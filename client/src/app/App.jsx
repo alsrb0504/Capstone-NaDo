@@ -23,6 +23,7 @@ import OrderReport from '../pages/order/orderReport/order_report';
 import PickupHome from '../pages/pickup/pickupHome/pickup_home';
 import PickupStore from '../pages/pickup/pickupStore/pickup_store';
 import PickupMyPickup from '../pages/pickup/pickupMyPickup/pickup_my_pickup';
+import PickupDetail from '../pages/pickup/pickupDetail/pickup_detail';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -64,6 +65,7 @@ const App = () => {
               <Route index element={<PickupHome />} />
               <Route path="store" element={<PickupStore />} />
               <Route path="mypickup" element={<PickupMyPickup />} />
+              <Route path="detail" element={<PickupDetail />} />
             </Route>
           </Routes>
         </div>
