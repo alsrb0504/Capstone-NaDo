@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import Btn from '../../../components/atoms/buttons/btn/btn';
-import RecordCard from '../../../components/atoms/cards/recordCard/record_card';
+import RecordCard from '../../../components/atoms/cards/pickuprecordCard/pickup_record_card';
 import FormTitle from '../../../components/atoms/formTitle/form_title';
 import Header from '../../../components/atoms/headers/header/header';
 import LineInputContainer from '../../../components/molecules/lineInputContainer/line_input_container';

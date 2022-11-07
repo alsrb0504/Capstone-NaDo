@@ -38,7 +38,7 @@ const Setting = () => {
   };
 
   const MoveProfit = () => {
-    navigate('/setting/profit');
+    navigate('/setting/income_calculate');
   };
 
   return (

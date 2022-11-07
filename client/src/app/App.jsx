@@ -24,6 +24,7 @@ import PickupHome from '../pages/pickup/pickupHome/pickup_home';
 import PickupStore from '../pages/pickup/pickupStore/pickup_store';
 import PickupMyPickup from '../pages/pickup/pickupMyPickup/pickup_my_pickup';
 import OrderHistory from '../pages/settings/orderHistory/order_history';
+import IncomeCalculate from '../pages/settings/incomeCalculate/income_calculate';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ const App = () => {
               <Route path="profile" element={<EditProfile />} />
               <Route path="passwd" element={<ChangePassword />} />
               <Route path="order_history" element={<OrderHistory />} />
+              <Route path="income_calculate" element={<IncomeCalculate />} />
             </Route>
 
             <Route path="/order">

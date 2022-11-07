@@ -20,10 +20,8 @@ const OrderHistory = () => {
       <Header title="주문 내역" handleClick={MoveBack} />
 
       <section className="date-picker-section">
-        {/* <div> */}
         <FormTitle title="조회 기간" />
         <DatePickerContainer />
-        {/* </div> */}
       </section>
 
       <section className="order-history-list-section">

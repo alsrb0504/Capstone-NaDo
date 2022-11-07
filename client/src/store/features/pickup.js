@@ -177,6 +177,28 @@ const initialState = {
       orderer: '주문한 사람2',
     },
   ],
+  pickup_history: [
+    {
+      pickup_id: 321,
+      pickupAddress: '소프트웨어관 313호',
+      pickupFee: 1200,
+      pickupTime: '21.09.08 13 : 35',
+    },
+
+    {
+      pickup_id: 322,
+      pickupAddress: '소프트웨어관 313호',
+      pickupFee: 1200,
+      pickupTime: '21.09.08 13 : 35',
+    },
+
+    {
+      pickup_id: 323,
+      pickupAddress: '소프트웨어관 313호',
+      pickupFee: 1200,
+      pickupTime: '21.09.08 13 : 35',
+    },
+  ],
 };
 
 export const pickupSlice = createSlice({
