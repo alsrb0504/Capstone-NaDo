@@ -1,4 +1,4 @@
-.result-card {
+.order-record-card {
   @include flexbox(between);
   padding: 0 24px 0 32px;
   cursor: pointer;
@@ -15,7 +15,7 @@
     position: relative;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       left: -14px;
       top: 0;

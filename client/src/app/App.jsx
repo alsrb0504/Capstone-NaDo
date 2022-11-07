@@ -23,6 +23,7 @@ import OrderReport from '../pages/order/orderReport/order_report';
 import PickupHome from '../pages/pickup/pickupHome/pickup_home';
 import PickupStore from '../pages/pickup/pickupStore/pickup_store';
 import PickupMyPickup from '../pages/pickup/pickupMyPickup/pickup_my_pickup';
+import OrderHistory from '../pages/settings/orderHistory/order_history';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ const App = () => {
               <Route index element={<Setting />} />
               <Route path="profile" element={<EditProfile />} />
               <Route path="passwd" element={<ChangePassword />} />
+              <Route path="order_history" element={<OrderHistory />} />
             </Route>
 
             <Route path="/order">

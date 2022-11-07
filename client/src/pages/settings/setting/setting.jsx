@@ -34,7 +34,7 @@ const Setting = () => {
   };
 
   const MoveRecord = () => {
-    navigate('/setting/record');
+    navigate('/setting/order_history');
   };
 
   const MoveProfit = () => {
