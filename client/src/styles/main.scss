@@ -44,6 +44,7 @@
 @import './components/atoms/payment_receipt';
 @import './components/atoms/state_box';
 @import './components/atoms/cards/pickup_record_card';
+@import './components/atoms/price_box';
 
 // molecules
 @import './components/molecules/login_form';
@@ -84,3 +85,4 @@
 @import './pages/pickup/pickup_mypickup';
 @import './pages/settings/order_history';
 @import './pages/settings/income_calculate';
+@import './pages/pickup/pickup_detail';

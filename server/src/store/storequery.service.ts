@@ -28,7 +28,33 @@ export class StoreQueryService {
     } catch (err) {
       throw new InternalServerErrorException("get query error")
     }
+  }
 
+    async getStoreById(
+      sequence: string
+    ) {
+      try {
+        const storeInfo = await this.storeRepository
+          .createQueryBuilder('store')
+          .select('store.name')
+          .addSelect('store.image')
+          .addSelect('store.sequence')
+          .addSelect("storebusinesstime.dayOfWeek")
+          .addSelect("storebusinesstime.startTime")
+          .addSelect("storebusinesstime.endTime")
+          .addSelect("menu.sequence")
+          .addSelect("menu.menuName")
+          .addSelect("menu.menuPrice")
+          .addSelect("menu.menuImg")
+          .where('store.sequence = :sequence', {sequence})
+          .leftJoin('store.businesstimes', 'storebusinesstime')
+          .leftJoin('store.menus', 'menu')
+          .getOne()
 
+          return storeInfo
+      }  catch (err) {
+      console.log(err.message)
+      throw new InternalServerErrorException("get query error")
+    }
   }
 }
