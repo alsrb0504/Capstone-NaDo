@@ -9,7 +9,7 @@ const PickupMyPickup = () => {
 
   const { myPickupList } = useSelector((state) => state.pickup);
 
-  const MoveBack = navigate('/');
+  const MoveBack = () => navigate('/');
 
   return (
     <div className="col-sm-4 pickup-my-pickup">

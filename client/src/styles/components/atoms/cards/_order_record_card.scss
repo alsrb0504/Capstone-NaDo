@@ -1,0 +1,51 @@
+.order-record-card {
+  @include flexbox(between);
+  padding: 0 24px 0 32px;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    i {
+      transition: all 150ms ease-in;
+      transform: scale(1.1);
+    }
+  }
+
+  .info {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: -14px;
+      top: 0;
+
+      width: 4px;
+      height: 36px;
+      background: $secondary;
+    }
+
+    h3 {
+      font-size: 24px;
+      margin-bottom: 4px;
+    }
+
+    p {
+      font-size: 16px;
+      color: $gray;
+
+      .deliver {
+        color: $green;
+      }
+    }
+
+    .date {
+      margin-bottom: 4px;
+    }
+  }
+
+  i {
+    font-size: 24px; // 1.5rem
+    color: $primary;
+  }
+}

@@ -53,6 +53,29 @@ const initialState = {
   selectCoffee: {},
 
   cartLists: [],
+
+  order_history: [
+    {
+      order_id: 321,
+      orderAddress: '소프트웨어관 313호',
+      orderPrice: 8900,
+      orderTime: '13:35',
+    },
+
+    {
+      order_id: 322,
+      orderAddress: '소프트웨어관 313호',
+      orderPrice: 8900,
+      orderTime: '13:35',
+    },
+
+    {
+      id: 323,
+      orderAddress: '소프트웨어관 313호',
+      orderPrice: 8900,
+      orderTime: '13:35',
+    },
+  ],
 };
 
 export const GetStores = createAsyncThunk(

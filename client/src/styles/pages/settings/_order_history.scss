@@ -1,0 +1,27 @@
+.order-history {
+  @include column-flexbox(start, center);
+  min-height: 100vh;
+
+  .header-box {
+    width: 100vw;
+    margin-bottom: 16px;
+  }
+
+  .date-picker-section {
+    @include column-flexbox(start, start);
+
+    margin-bottom: 24px;
+
+    .form-title {
+      margin-bottom: 8px;
+    }
+  }
+
+  &-list-section {
+    width: 100%;
+
+    .order-record-card {
+      margin-bottom: 12px;
+    }
+  }
+}

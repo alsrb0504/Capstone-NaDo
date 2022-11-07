@@ -34,11 +34,11 @@ const Setting = () => {
   };
 
   const MoveRecord = () => {
-    navigate('/setting/record');
+    navigate('/setting/order_history');
   };
 
   const MoveProfit = () => {
-    navigate('/setting/profit');
+    navigate('/setting/income_calculate');
   };
 
   return (

@@ -23,6 +23,8 @@ import OrderReport from '../pages/order/orderReport/order_report';
 import PickupHome from '../pages/pickup/pickupHome/pickup_home';
 import PickupStore from '../pages/pickup/pickupStore/pickup_store';
 import PickupMyPickup from '../pages/pickup/pickupMyPickup/pickup_my_pickup';
+import OrderHistory from '../pages/settings/orderHistory/order_history';
+import IncomeCalculate from '../pages/settings/incomeCalculate/income_calculate';
 import PickupDetail from '../pages/pickup/pickupDetail/pickup_detail';
 
 const App = () => {
@@ -47,6 +49,8 @@ const App = () => {
               <Route index element={<Setting />} />
               <Route path="profile" element={<EditProfile />} />
               <Route path="passwd" element={<ChangePassword />} />
+              <Route path="order_history" element={<OrderHistory />} />
+              <Route path="income_calculate" element={<IncomeCalculate />} />
             </Route>
 
             <Route path="/order">
