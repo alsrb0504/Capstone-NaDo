@@ -3,8 +3,6 @@ import React from 'react';
 const PickupRecordCard = ({ info, handleClick }) => {
   const { pickupAddress, pickupTime, pickupFee } = info;
 
-  console.log(pickupFee);
-
   const OnClick = () => {
     handleClick();
   };
