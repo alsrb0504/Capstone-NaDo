@@ -39,6 +39,7 @@ export class StoreQueryService {
           .select('store.name')
           .addSelect('store.image')
           .addSelect('store.sequence')
+          .addSelect('store.telephone')
           .addSelect("storebusinesstime.dayOfWeek")
           .addSelect("storebusinesstime.startTime")
           .addSelect("storebusinesstime.endTime")
@@ -51,7 +52,13 @@ export class StoreQueryService {
           .leftJoin('store.menus', 'menu')
           .getOne()
 
-          return storeInfo
+          const storeImage = storeInfo.image
+
+          delete storeInfo.image
+          return {
+            ...storeInfo,
+            storeImage: storeImage
+          }
       }  catch (err) {
       console.log(err.message)
       throw new InternalServerErrorException("get query error")
