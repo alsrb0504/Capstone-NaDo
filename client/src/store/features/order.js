@@ -12,48 +12,56 @@ const initialState = {
 
   selectedStore: {},
   // 디폴트 메뉴 추후 다른 곳으로 옮길 것.
-  defaultMenuLists: {
-    아메리카노: {
-      coffeeName: '아메리카노',
-      coffeePrice: '3800',
-      coffeeImgUrl: '/images/coffeeImg/americano.png',
+  defaultMenuList: [
+    {
+      menuName: '아메리카노',
+      menuPrice: '3800',
+      menuImg: '/images/coffeeImg/americano.png',
+      sequence: 101,
     },
-    카페라떼: {
-      coffeeName: '카페라떼',
-      coffeePrice: '4300',
-      coffeeImgUrl: '/images/coffeeImg/caffelatte.png',
+    {
+      menuName: '카페라떼',
+      menuPrice: '4300',
+      menuImg: '/images/coffeeImg/caffelatte.png',
+      sequence: 102,
     },
-    카페모카: {
-      coffeeName: '카페모카',
-      coffeePrice: '4300',
-      coffeeImgUrl: '/images/coffeeImg/caffemocha.png',
+    {
+      menuName: '카페모카',
+      menuPrice: '4300',
+      menuImg: '/images/coffeeImg/caffemocha.png',
+      sequence: 103,
     },
-    카푸치노: {
-      coffeeName: '카푸치노',
-      coffeePrice: '4500',
-      coffeeImgUrl: '/images/coffeeImg/cappuchino.png',
+    {
+      menuName: '카푸치노',
+      menuPrice: '4500',
+      menuImg: '/images/coffeeImg/cappuchino.png',
+      sequence: 104,
     },
-    카라멜마끼아또: {
-      coffeeName: '카라멜 마끼아또',
-      coffeePrice: '4500',
-      coffeeImgUrl: '/images/coffeeImg/caramelmacchiato.png',
+    {
+      menuName: '카라멜 마끼아또',
+      menuPrice: '4500',
+      menuImg: '/images/coffeeImg/caramelmacchiato.png',
+      sequence: 105,
     },
-    콜드브류: {
-      coffeeName: '콜드브류',
-      coffeePrice: '4300',
-      coffeeImgUrl: '/images/coffeeImg/coldbrew.png',
+    {
+      menuName: '콜드브류',
+      menuPrice: '4300',
+      menuImg: '/images/coffeeImg/coldbrew.png',
+      sequence: 106,
     },
-    복숭아아이스티: {
-      coffeeName: '복숭아 아이스티',
-      coffeePrice: '3800',
-      coffeeImgUrl: '/images/coffeeImg/peachicedtae.png',
+    {
+      menuName: '복숭아 아이스티',
+      menuPrice: '3800',
+      menuImg: '/images/coffeeImg/peachicedtae.png',
+      sequence: 107,
     },
-    딸기라떼: {
-      coffeeName: '딸기라떼',
-      coffeePrice: '4700',
-      coffeeImgUrl: '/images/coffeeImg/strawberrylatte.png',
+    {
+      menuName: '딸기라떼',
+      menuPrice: '4700',
+      menuImg: '/images/coffeeImg/strawberrylatte.png',
+      sequence: 108,
     },
-  },
+  ],
   selectCoffee: {},
 
   cartLists: [],
@@ -82,11 +90,39 @@ const initialState = {
   ],
 };
 
+// *
+// GET : 가게 목록 받아오는 함수
+// *
 export const GetStoreList = createAsyncThunk(
   'order/getStore',
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('http://localhost:3001/store');
+
+      if (response.status === 200) {
+        return response.data;
+      }
+
+      return thunkAPI.rejectWithValue();
+    } catch (e) {
+      PrintError(e, '프로필 업데이트');
+      return thunkAPI.rejectWithValue();
+    }
+  },
+);
+
+// *
+// 가게 상세 정보 받아오는 함수
+// *
+export const GetStoreDetail = createAsyncThunk(
+  'order/getStoreDetail',
+  async (sequence, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/store/detail?sequence=${sequence}`,
+      );
+
+      console.log(response);
 
       if (response.status === 200) {
         return response.data;
@@ -114,6 +150,9 @@ export const orderSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(GetStoreList.fulfilled, (state, { payload }) => {
       state.storeList = payload;
+    });
+    builder.addCase(GetStoreDetail.fulfilled, (state, { payload }) => {
+      state.selectedStore = payload;
     });
   },
 });

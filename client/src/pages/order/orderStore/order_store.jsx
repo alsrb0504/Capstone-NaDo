@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 /* eslint-disable react/jsx-boolean-value */
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -11,44 +13,48 @@ import StoreMenuSection from '../../../components/molecules/storeMenuSection/sto
 const OrderStore = () => {
   const navigate = useNavigate();
 
-  const { selectedStore, defaultMenuLists } = useSelector(
+  const { selectedStore, defaultMenuList } = useSelector(
     (state) => state.order,
   );
 
+  // 가게 위치 정보 빠져있음.
   const {
-    shopName,
-    shopImg,
-    locationLatLong,
-    shopContactNumber,
-    shopOpenTime,
-    menuLists,
+    // sequence,
+    name,
+    storeImage,
+    // locationLatLong,
+    telephone,
+    businesstimes,
+    menus,
   } = selectedStore;
 
   const MoveBack = () => navigate('/order');
   const MoveCart = () => navigate('/order/cart');
 
   const CheckMenuList = () => {
-    if (Object.keys(menuLists).length !== 0) return menuLists;
-    return defaultMenuLists;
+    console.log(menus);
+
+    if (menus && menus.length !== 0) return menus;
+    return defaultMenuList;
   };
 
   return (
     <div className="col-sm-4 order-store">
       <HeaderWithImg
-        shopImg={shopImg || '/images/cafeImg/default_cafe_img.jpg'}
+        shopImg={storeImage || '/images/cafeImg/default_cafe_img.jpg'}
         MoveBack={MoveBack}
         MoveCart={MoveCart}
       />
 
       <StoreInfoSection
-        shopName={shopName}
-        shopOpenTime={shopOpenTime}
-        shopNumber={shopContactNumber}
+        shopName={name}
+        shopOpenTime={businesstimes}
+        shopNumber={telephone}
       />
 
-      <StoreMapSection locationLatLong={locationLatLong} isTitle={true} />
+      {/* <StoreMapSection locationLatLong={locationLatLong} isTitle={true} /> */}
 
-      <StoreMenuSection menuLists={CheckMenuList()} />
+      <StoreMenuSection menuList={CheckMenuList()} />
 
       <Footer />
     </div>

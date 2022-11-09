@@ -1,10 +1,12 @@
 import React from 'react';
 
 const OrderStoreCard = ({ info, handleClick }) => {
-  const { name, image, businesstimes } = info;
+  const { sequence, name, image, businesstimes } = info;
 
   const SelectCard = () => {
-    handleClick(name);
+    console.log(sequence);
+
+    handleClick(sequence);
   };
 
   return (
