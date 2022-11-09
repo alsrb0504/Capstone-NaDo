@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { SelectCoffee } from '../../../store/features/order';
 import MenuCard from '../../atoms/cards/menuCard/menu_card';
 
-const StoreMenuSection = ({ menuLists }) => {
+const StoreMenuSection = ({ menuList }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -16,15 +16,17 @@ const StoreMenuSection = ({ menuLists }) => {
     MoveOption();
   };
 
+  console.log(`menuList`, menuList);
+
   return (
     <section className="store-menu-section">
       <h3 className="store-menu-title">메뉴</h3>
       <ul className="store-menu-container">
-        {menuLists &&
-          Object.keys(menuLists).map((menuName) => (
+        {menuList &&
+          menuList.map((menu) => (
             <MenuCard
-              key={menuName}
-              menuInfo={menuLists[menuName]}
+              key={menu.sequence}
+              menuInfo={menu}
               handleClick={ClickMenu}
             />
           ))}
