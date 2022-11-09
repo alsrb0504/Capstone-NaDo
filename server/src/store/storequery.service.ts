@@ -1,7 +1,7 @@
 import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import Store from "src/entity/store/store.entity";
-import { StoreList } from "src/type/store/store.type";
+import { StoreDetail, StoreList } from "src/type/store/store.type";
 import { Repository } from "typeorm";
 
 @Injectable()
@@ -32,7 +32,7 @@ export class StoreQueryService {
 
     async getStoreById(
       sequence: string
-    ) {
+    ): Promise<StoreDetail>{
       try {
         const storeInfo = await this.storeRepository
           .createQueryBuilder('store')
@@ -40,6 +40,8 @@ export class StoreQueryService {
           .addSelect('store.image')
           .addSelect('store.sequence')
           .addSelect('store.telephone')
+          .addSelect('store.lat')
+          .addSelect('store.long')
           .addSelect("storebusinesstime.dayOfWeek")
           .addSelect("storebusinesstime.startTime")
           .addSelect("storebusinesstime.endTime")
@@ -53,11 +55,22 @@ export class StoreQueryService {
           .getOne()
 
           const storeImage = storeInfo.image
+          
+          const locationLating = {
+            lat: storeInfo.lat,
+            long: storeInfo.long
+          }
 
           delete storeInfo.image
+          delete storeInfo.lat
+          delete storeInfo.long
+
+
           return {
+            storeImage: storeImage,
+            locationLating,
             ...storeInfo,
-            storeImage: storeImage
+
           }
       }  catch (err) {
       console.log(err.message)

@@ -55,6 +55,30 @@ export default class User {
   })
   imagePath: string
 
+  @Column({
+    type: 'varchar',
+    nullable: true
+  })
+  paymentKey: string
+
+  @Column({
+    type: 'varchar',
+    nullable: true
+  })
+  customerKey: string
+
+  @Column({
+    type: 'varchar',
+    nullable: true
+  })
+  lat: string
+
+  @Column({
+    type: 'varchar',
+    nullable: true
+  })
+  long: string
+
   @CreateDateColumn({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
