@@ -6,6 +6,10 @@ import storeData from './crawling';
 
 const initialState = {
   stores: storeData,
+
+  // 연결
+  storeList: [],
+
   selectedStore: {},
   // 디폴트 메뉴 추후 다른 곳으로 옮길 것.
   defaultMenuLists: {
@@ -78,15 +82,20 @@ const initialState = {
   ],
 };
 
-export const GetStores = createAsyncThunk(
+export const GetStoreList = createAsyncThunk(
   'order/getStore',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('localhost:3001/store');
+      const response = await axios.get('http://localhost:3001/store');
 
-      console.log(response);
+      if (response.status === 200) {
+        return response.data;
+      }
+
+      return thunkAPI.rejectWithValue();
     } catch (e) {
-      //
+      PrintError(e, '프로필 업데이트');
+      return thunkAPI.rejectWithValue();
     }
   },
 );
@@ -103,11 +112,16 @@ export const orderSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(GetStores.fulfilled, (state, { payload }) => {
-      //
+    builder.addCase(GetStoreList.fulfilled, (state, { payload }) => {
+      state.storeList = payload;
     });
   },
 });
+
+function PrintError(e, src) {
+  console.log(`${src} 에러 : ${e.message}`);
+  console.error(e);
+}
 
 export const { SelectStore, SelectCoffee } = orderSlice.actions;
 export default orderSlice.reducer;
