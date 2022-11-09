@@ -54,11 +54,11 @@ export class StoreQueryService {
           .leftJoin('store.menus', 'menu')
           .getOne()
 
-          const storeImage = storeInfo.image
-          
+          console.log("storeInfo", storeInfo) 
+          const storeImage = storeInfo?.image
           const locationLating = {
-            lat: storeInfo.lat,
-            long: storeInfo.long
+            lat: storeInfo?.lat,
+            long: storeInfo?.long
           }
 
           delete storeInfo.image

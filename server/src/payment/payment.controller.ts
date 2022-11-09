@@ -51,7 +51,6 @@ export class PaymentController {
     const userInfo = await this.paymentService.getCardInfo(req.user.sequence)
     return userInfo
   }
-
   }  
 
 

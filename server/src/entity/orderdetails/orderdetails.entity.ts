@@ -26,4 +26,14 @@ export default class Orderdetails {
     type: 'tinyint'
   })
   productQuantity: number
+
+  @Column({
+    type: 'varchar'
+  })
+  iceOrHot: string
+
+  @Column({
+    type: 'tinyint'
+  })
+  shots: number
 }

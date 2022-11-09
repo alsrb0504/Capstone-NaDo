@@ -45,8 +45,8 @@ export class StoreService {
           address: shopAddress,
           telephone: shopContactNumber,
           image: shopImg,
-          lat: locationLatLong.lat,
-          long: locationLatLong.long
+          lat: locationLatLong?.lat || null,
+          long: locationLatLong?.long || null,
         })
         .execute()
         
