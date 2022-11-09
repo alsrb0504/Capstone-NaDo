@@ -126,12 +126,12 @@ const OrderOption = () => {
         </div>
 
         <div className="count">
-          <text className="title">수량 : </text>
+          <span className="title">수량 : </span>
           <button type="button" onClick={Decrease} className="button">
             <i className="fa-solid fa-minus" />
           </button>
           <div className="cnt-box">
-            <text className="cnt">{count}</text>
+            <span className="cnt">{count}</span>
           </div>
           <button type="button" onClick={Increase} className="button">
             <i className="fa-solid fa-plus" />
@@ -139,7 +139,7 @@ const OrderOption = () => {
         </div>
 
         <div className="item-option-form-btn-complete">
-          <Btn text={`${price}원 장바구니 담기`} />
+          <Btn text={`${price}원 장바구니 담기`} handleSubmit={handleSubmit} />
           {/* 옵션과 수량에 따라 가격 변동 되도록 하기 */}
         </div>
       </form>
