@@ -1,6 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from "typeorm";
 import Menusize from "../menusize/menusize.entity";
+import Orderdetails from "../orderdetails/orderdetails.entity";
 import Store from "../store/store.entity";
 
 @Entity({
@@ -63,4 +64,11 @@ export default class Menu {
   })
   @OneToMany(() => Menusize, menusize => menusize.menu)
   menuSizes: Menusize[]
+
+  @ApiProperty({
+    type: Orderdetails,
+    isArray: true
+  })
+  @OneToMany(() => Orderdetails, orderdetails => orderdetails.menu)
+  orderDetails: Orderdetails[]
 }
