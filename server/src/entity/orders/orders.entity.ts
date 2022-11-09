@@ -19,6 +19,16 @@ export default class Orders {
   address: string
 
   @Column({
+    type: 'char'
+  })
+  addressDetail: string
+
+  @Column({
+    type: 'tinytext'
+  })
+  message: string
+
+  @Column({
     type: 'timestamp',
   })
   orderDate: Date
@@ -38,6 +48,16 @@ export default class Orders {
     nullable: true
   })
   orderCompleteDate: Date
+
+  @Column({
+    type: 'mediumint'
+  })
+  deliveryFee: number
+
+  @Column({
+    type: 'mediumint'
+  })
+  menuPrice: number
 
   @Column({
     type: 'mediumint'
