@@ -1,16 +1,13 @@
-import { Controller, Get, Request } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { HttpService } from '@nestjs/axios';
+import { Controller, ForbiddenException, Get, Inject, Post, Request, Response } from '@nestjs/common';
+import { catchError, map, lastValueFrom } from 'rxjs';
 import { AppService } from './app.service';
+
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
-  @Get()
-  getHello(
-    @Request() req
-  ): string {
-    console.log("app service")
-    return this.appService.getTest(req);
-  }
+  constructor(
+    private readonly appService: AppService,
+    private http: HttpService
+    ) {}
 }

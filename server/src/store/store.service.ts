@@ -31,10 +31,11 @@ export class StoreService {
     await queryRunner.connect()
 
     for(let storeInfo in storeData) {
-      const {shopName, shopImg, shopAddress, shopContactNumber, menuLists, shopOpenTime_ } = storeData[storeInfo]
+      const {shopName, shopImg, shopAddress, shopContactNumber, menuLists, shopOpenTime_, locationLatLong} = storeData[storeInfo]
       try {
         await queryRunner.startTransaction()
         
+        console.log(locationLatLong)
         await this.storeRepository
         .createQueryBuilder('store')
         .insert()
@@ -43,7 +44,9 @@ export class StoreService {
           name: shopName,
           address: shopAddress,
           telephone: shopContactNumber,
-          image: shopImg
+          image: shopImg,
+          lat: locationLatLong.lat,
+          long: locationLatLong.long
         })
         .execute()
         

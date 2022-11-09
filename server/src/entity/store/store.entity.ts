@@ -61,6 +61,26 @@ export default class Store {
   image: string
 
   @ApiProperty({
+    type: String,
+    description: 'store latitude'
+  })
+  @Column({
+    type: 'tinytext',
+    nullable: true
+  })
+  lat: string
+
+  @ApiProperty({
+    type: String,
+    description: 'store longtitude'
+  })
+  @Column({
+    type: 'tinytext',
+    nullable: true
+  })
+  long: string
+
+  @ApiProperty({
     type: Array<Order>,
     description: 'store order\'s'
   })

@@ -5,7 +5,16 @@ import { StoreDetailMenu } from "../menu/menu.type";
 
 export class BusinessTime extends PickType(Storebusinesstime, ['dayOfWeek', 'startTime', 'endTime']) {}
 
-export class StoreList extends PickType(Store, ['sequence', 'name', 'image']) {
+export class StoreLocation extends PickType(Store, ['lat', 'long']) {}
+
+export class StoreList extends Store {
+
+  @ApiProperty({
+    type: StoreLocation,
+    description: 'store location'
+  })
+  locationLating: StoreLocation
+
 
   @ApiProperty({
     type: Storebusinesstime,
@@ -15,7 +24,13 @@ export class StoreList extends PickType(Store, ['sequence', 'name', 'image']) {
   businessTimes: Storebusinesstime[]
 }
 
-export class StoreDetail extends StoreList {
+export class StoreDetail extends PickType(Store, ['sequence', 'name', 'telephone']){
+
+  @ApiProperty({
+    type: String
+  })
+  storeImage: string
+  
   @ApiProperty({
     type: Storebusinesstime,
     isArray: true,
@@ -28,4 +43,13 @@ export class StoreDetail extends StoreList {
     isArray: true
   })
   menus: StoreDetailMenu[]
+
+  @ApiProperty({
+    type: StoreLocation
+  })
+  locationLating: StoreLocation
+
 }
+
+export class GetAllStore extends PickType(StoreList, ['name', 'image', 'sequence', 'businessTimes']) {}
+

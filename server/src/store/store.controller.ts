@@ -3,7 +3,7 @@ import { StoreService } from './store.service';
 import Store from 'src/entity/store/store.entity';
 import { StoreQueryService } from './storequery.service';
 import { GetAllStoreDescription, GetStoreByIdDescription } from './store.decorator';
-import { StoreList } from 'src/type/store/store.type';
+import { GetAllStore, StoreDetail, StoreList } from 'src/type/store/store.type';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags("store")
@@ -26,7 +26,7 @@ export class StoreController {
   @Get()
   @GetAllStoreDescription()
   @HttpCode(200)
-  async getAllStore(): Promise<Array<StoreList>>{
+  async getAllStore(): Promise<Array<GetAllStore>>{
     const allStoreInfo = await this.storeQueryService.getAllStore()
     return allStoreInfo
   }
@@ -36,7 +36,7 @@ export class StoreController {
   @HttpCode(200)
   async getStoreByStoreId(
     @Query('sequence') sequence: string
-  ) {
+  ): Promise<StoreDetail> {
     const storeInfo = await this.storeQueryService.getStoreById(sequence)
 
     return storeInfo
