@@ -50,4 +50,4 @@ export default class Orderdetails {
     type: 'tinyint'
   })
   shots: number
-}
+} ``
