@@ -5,7 +5,7 @@ import Orderdetails from 'src/entity/orderdetails/orderdetails.entity';
 import Orders from 'src/entity/orders/orders.entity';
 import Store from 'src/entity/store/store.entity';
 import User from 'src/entity/user/user.entity';
-import { OrderPay } from 'src/type/order/order.type';
+import { OrderDetail, OrderPay, WaitOrder } from 'src/type/order/order.type';
 import { addHours } from 'src/util/util';
 import { DataSource, InsertResult, Repository } from 'typeorm';
 
@@ -97,4 +97,100 @@ export class OrderService {
       }
     }
   }
+
+  async getOrderByUser(
+    userSequence: number | string
+  ): Promise<WaitOrder[]>{
+    try {
+      const allOrderLists = await this.ordersRepository
+        .createQueryBuilder('orders')
+        .where("orders.userSequence = :sequence", {sequence: userSequence})
+        .andWhere("orders.orderStatus = :status", {status: 'ordered'})
+        .getMany()
+      
+      const orderLists = []
+      for (let order of allOrderLists) {
+        const { sequence, orderTimeout, amountOfPayment, address, addressDetail} = order
+        orderLists.push({
+          orderTimeout: orderTimeout,
+          totalPrice: amountOfPayment,
+          orderSequence: sequence,
+          orderAddress: {
+            address,
+            detail: addressDetail
+          }
+        })
+      }
+
+      return orderLists
+      
+      
+    } catch (err) {
+      throw new InternalServerErrorException(err.message)
+    }
+  }
+
+  async getOrderDetail(
+    orderSequence: string | number
+  ): Promise<any>{
+    try {
+      const orderList = await this.ordersRepository
+        .createQueryBuilder('orders')
+        .select('orders.sequence')
+        .addSelect('orders.orderTimeout')
+        .addSelect('orders.amountOfPayment')
+        .addSelect('orders.deliveryFee')
+        .addSelect('orders.menuPrice')
+        .addSelect('orders.orderStatus')
+        .addSelect('orderdetails.sequence')
+        .addSelect('orderdetails.productQuantity')
+        .addSelect('orderdetails.iceOrHot')
+        .addSelect('orderdetails.shots')
+        .addSelect('menus.sequence')
+        .addSelect('menus.menuName')
+        .addSelect('menus.menuPrice')
+        .addSelect('store.sequence')
+        .addSelect('store.lat')
+        .addSelect('store.long')
+        .where('orders.sequence = :sequence', {sequence: orderSequence})
+        .leftJoin("orders.store", "store")
+        .leftJoin("orders.orderProducts", "orderdetails")
+        .leftJoin("orderdetails.menu", "menus")
+        .getOne()
+        
+        const menuDetails= []
+        const {sequence, store, orderProducts} = orderList
+
+        console.log(orderList)
+
+        for (let [index, menuDetail] of orderProducts.entries()) {
+          menuDetails.push({
+            ...menuDetail,
+            orderdetailsSequence: menuDetail.sequence,
+            menu: {
+              menuName: menuDetail.sequence,
+            }
+          })
+
+          delete menuDetails[index].sequence
+        }
+
+        const result = {
+          orderSequence: sequence,
+          ...orderList,
+          store: {
+            ...store,
+            storeSequence: store.sequence
+          },
+        }
+
+        delete result.sequence
+        delete result.store.sequence
+
+        return result
+  } catch (err) {
+    console.log(err.response)
+    throw new InternalServerErrorException(err.message)
+  }
+}
 }

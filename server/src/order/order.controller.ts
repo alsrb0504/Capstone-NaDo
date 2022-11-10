@@ -1,8 +1,8 @@
-import { Body, Controller, HttpCode, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Post, Query, Request, UseGuards } from '@nestjs/common';
 import { isLoggedInGuard } from 'src/auth/guard/cookieAuthentication.guard';
 import { ReqWithUser } from 'src/auth/type/request.type';
-import { OrderPay } from 'src/type/order/order.type';
-import { orderPayDescription } from './order.decorator';
+import { OrderDetail, OrderPay } from 'src/type/order/order.type';
+import { orderListDescription, orderPayDescription } from './order.decorator';
 import { OrderService } from './order.service';
 
 @Controller('order')
@@ -23,4 +23,26 @@ export class OrderController {
 
     return orderPayResult
   }
+
+  @UseGuards(isLoggedInGuard)
+  @orderListDescription()
+  @Get('user')
+  @HttpCode(200)
+  async getOrderByUser(
+    @Request() req: ReqWithUser,
+  ) {
+   const orderLists = await this.orderService.getOrderByUser(req?.user?.sequence || 1)
+   
+   return orderLists
+  }
+
+  @Get('detail')
+  async orderDetail(
+    @Query('orderSequence') orderSequence: string
+  ): Promise<OrderDetail> {
+    const orderDetail = await this.orderService.getOrderDetail(orderSequence)
+
+    return orderDetail
+  }
+
 }
