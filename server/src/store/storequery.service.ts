@@ -66,12 +66,15 @@ export class StoreQueryService {
           delete storeInfo.long
 
 
-          return {
+          const result =  {
+            storeSequence: storeInfo.sequence,
             storeImage: storeImage,
             locationLating,
             ...storeInfo,
-
           }
+          delete result.sequence
+
+          return result
       }  catch (err) {
       console.log(err.message)
       throw new InternalServerErrorException("get query error")

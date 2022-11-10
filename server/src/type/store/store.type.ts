@@ -24,7 +24,12 @@ export class StoreList extends Store {
   businessTimes: Storebusinesstime[]
 }
 
-export class StoreDetail extends PickType(Store, ['sequence', 'name', 'telephone']){
+export class StoreDetail extends PickType(Store, ['name', 'telephone']){
+
+  @ApiProperty({
+    type: Number
+  })
+  storeSequence: Number
 
   @ApiProperty({
     type: String
