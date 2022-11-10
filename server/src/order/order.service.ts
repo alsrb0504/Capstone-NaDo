@@ -167,9 +167,6 @@ export class OrderService {
           menuDetails.push({
             ...menuDetail,
             orderdetailsSequence: menuDetail.sequence,
-            menu: {
-              menuName: menuDetail.sequence,
-            }
           })
 
           delete menuDetails[index].sequence
@@ -182,6 +179,7 @@ export class OrderService {
             ...store,
             storeSequence: store.sequence
           },
+          orderProducts: menuDetails
         }
 
         delete result.sequence
