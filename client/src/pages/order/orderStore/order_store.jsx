@@ -32,8 +32,6 @@ const OrderStore = () => {
   const MoveCart = () => navigate('/order/cart');
 
   const CheckMenuList = () => {
-    console.log(menus);
-
     if (menus && menus.length !== 0) return menus;
     return defaultMenuList;
   };

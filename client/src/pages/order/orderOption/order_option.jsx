@@ -1,65 +1,83 @@
-import React, { useState } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../../components/atoms/headers/header/header';
 import OptionUnderline from '../../../components/atoms/optionUnderline/option_underline';
 import TextUnderline from '../../../components/atoms/textUnderline/text_underline';
 import Btn from '../../../components/atoms/buttons/btn/btn';
+import { AddCart } from '../../../store/features/cart';
 
 const OrderOption = () => {
-  // 해야할 일
-  // 뒤로가기 버튼 주소 다시 잡아주어야 함
-  // 옵션, 수량에 따른 최종 가격 변동 넣어주어야함
-  // 데이터 정리 및 변수명 정리
-  // 주석 정리
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const MoveBack = () => navigate('/');
-  // 뒤로가기 버튼 주소 다시 잡아주어야 함
+  const { cartStoreName } = useSelector((state) => state.cart);
+  const { selectedStore, selectedMenu } = useSelector((state) => state.order);
 
-  const itemname = '녹차 라떼';
-  const price = 5900;
+  const { name } = selectedStore;
+  const { sequence, menuName, menuPrice } = selectedMenu;
 
   // ice/hot 옵션
   const [icehot, setIcehot] = useState('ice');
   // shots 옵션
-  const [shots, setShots] = useState('');
+  const [shots, setShots] = useState(0);
   // count 수량 옵션
   const [count, setCount] = useState(1);
+  // 총 가격
+  const [totalPrice, setTotalPrice] = useState(menuPrice);
 
   // ice/hot 옵션 확인용, 추후 삭제
   const icehotChange = (e) => {
-    console.log(e.target.value);
     setIcehot(e.target.value);
   };
   // shots 옵션 확인용, 추후 삭제
   const shotsChange = (e) => {
-    console.log(e.target.value);
-    setShots(e.target.value);
+    setShots(Number(e.target.value));
   };
 
   // count 수량 옵션 증가
-  const Increase = () => {
-    setCount(count + 1);
+  const IncreaseCnt = () => {
+    if (count < 8) setCount(count + 1);
   };
   // count 수량 옵션 감소
-  const Decrease = () => {
-    if (count > 0) {
-      setCount(count - 1);
-    }
+  const DecreaseCnt = () => {
+    if (count > 1) setCount(count - 1);
   };
 
-  // 데이터 제출, 옵션 외에도 추가 필요
-  // 상품명, 가격, 수량 등등...
+  const MoveBack = () => navigate('/order/store');
+
   const handleSubmit = () => {
-    const result = { icehot, shots, count };
-    console.log(result);
+    if (cartStoreName !== '' && cartStoreName !== name) {
+      alert('장바구니에는 동일한 가게의 음료만 담을 수 있습니다.');
+      return;
+    }
+
+    const menuInfo = {
+      menuName,
+      menuOptions: {
+        icehot: 'ice',
+        shots,
+      },
+      cnt: count,
+      menuPrice,
+      totalPrice,
+      menuSequence: sequence,
+    };
+
+    dispatch(AddCart({ storeName: selectedStore.name, menuInfo }));
   };
+
+  useEffect(() => {
+    const coffeePrice = menuPrice + shots * 500;
+    setTotalPrice(count * coffeePrice);
+  }, [count, menuPrice, shots]);
 
   return (
     <div className="option col-sm-4">
-      <Header title="스타벅스" handleClick={MoveBack} />
-      <form className="item-option-form" onSubmit={handleSubmit}>
-        <TextUnderline text={itemname} />
+      <Header title={name} handleClick={MoveBack} />
+      <div className="item-option-form">
+        <TextUnderline text={menuName} />
 
         <OptionUnderline text="ICE / HOT" />
 
@@ -102,10 +120,10 @@ const OrderOption = () => {
               type="radio"
               name="shots"
               id="shot1"
-              value="shot1"
+              value={1}
               onChange={shotsChange}
-              checked={shots === 'shot1'}
-              className={shots === 'shot1' ? 'checked' : 'none'}
+              checked={shots === 1}
+              className={shots === 1 ? 'checked' : 'none'}
             />
           </label>
         </div>
@@ -117,32 +135,34 @@ const OrderOption = () => {
               type="radio"
               name="shots"
               id="shot2"
-              value="shot2"
+              value={2}
               onChange={shotsChange}
-              checked={shots === 'shot2'}
-              className={shots === 'shot2' ? 'checked' : 'none'}
+              checked={shots === 2}
+              className={shots === 2 ? 'checked' : 'none'}
             />
           </label>
         </div>
 
         <div className="count">
           <span className="title">수량 : </span>
-          <button type="button" onClick={Decrease} className="button">
+          <button type="button" onClick={DecreaseCnt} className="button">
             <i className="fa-solid fa-minus" />
           </button>
           <div className="cnt-box">
             <span className="cnt">{count}</span>
           </div>
-          <button type="button" onClick={Increase} className="button">
+          <button type="button" onClick={IncreaseCnt} className="button">
             <i className="fa-solid fa-plus" />
           </button>
         </div>
 
         <div className="item-option-form-btn-complete">
-          <Btn text={`${price}원 장바구니 담기`} handleSubmit={handleSubmit} />
-          {/* 옵션과 수량에 따라 가격 변동 되도록 하기 */}
+          <Btn
+            text={`${totalPrice}원 장바구니 담기`}
+            handleClick={handleSubmit}
+          />
         </div>
-      </form>
+      </div>
     </div>
   );
 };

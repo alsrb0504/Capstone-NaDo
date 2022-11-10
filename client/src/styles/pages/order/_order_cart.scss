@@ -28,4 +28,28 @@
       font-size: 20px;
     }
   }
+
+  &-fill-section {
+    @include column-flexbox(start);
+    position: relative;
+    width: 100%;
+    flex: 1;
+
+    .order-cart-fill-name {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .order-card {
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      width: calc(100% - 40px);
+      transform: translateX(-50%);
+    }
+  }
 }

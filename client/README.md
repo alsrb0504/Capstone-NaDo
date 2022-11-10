@@ -15,3 +15,39 @@
 7. 추후 픽업 가게 받을 때, 시간을... 흠.. 고민 좀 해봐야 할 듯 (pickup_store_card 에서는 일단 주문이 있는 건 다 오픈한 가게라 생각)
 
 8. 주문 내역 조회 저거 버튼도 필요할 거 같고 나중에 hook으로 좀 바꿔야 할 듯
+
+주문하기 데이터 형식
+
+{
+orderAddress: {
+address: '소웨관',
+detail: '303호 강의실',
+},
+orderRequest: {
+time: "2022-04-23 05:30",
+detail: '조심히 배달해주세요.',
+},
+
+// 가격 정보 Number
+orderPrice: {
+menuPrice: 16000,
+deliveryFee: 1200,
+totalPrice: 17200,
+},
+
+// 배열
+orderMenu: [
+{
+menuName: '아메리카노',
+menuOptions: {
+icehot: 'ice',
+cnt: 1,
+shots: 1,
+},
+menuPrice: 5900,
+menuSequence: 123
+},
+],
+
+storeId: 123,
+};
