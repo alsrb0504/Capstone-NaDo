@@ -1,3 +1,4 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { PrimaryGeneratedColumn, Column, Entity, ManyToOne, OneToOne, OneToMany} from "typeorm";
 import Orderdetails from "../orderdetails/orderdetails.entity";
 import Pickedorder from "../pickedorder/pickedorder.entity";
@@ -8,64 +9,99 @@ import User from "../user/user.entity";
   name: 'orders'
 })
 export default class Orders {
+
+  @ApiProperty({
+    type: Number
+  })
   @PrimaryGeneratedColumn({
     type: 'int'
   })
   sequence: number
 
+  @ApiProperty({
+    type: String
+  })
   @Column({
-    type: 'char'
+    type: 'varchar'
   })
   address: string
 
+  @ApiProperty({
+    type: String
+  })
   @Column({
-    type: 'char'
+    type: 'varchar'
   })
   addressDetail: string
 
+  @ApiProperty({
+    type: String 
+  })
   @Column({
     type: 'tinytext'
   })
   message: string
 
+  @ApiProperty({
+    type: Date 
+  })
   @Column({
     type: 'timestamp',
   })
   orderDate: Date
 
+  @ApiProperty({
+    type: Date 
+  })
   @Column({
     type: 'timestamp'
   })
   orderTimeout: Date
 
-  @Column({
-    type: 'boolean'
+  @ApiProperty({
+    type: String 
   })
-  isOrderCompleted: boolean
+  @Column({
+    type: 'varchar'
+  })
+  orderStatus: string
 
+  @ApiProperty({
+    type: Date 
+  })
   @Column({
     type: 'timestamp',
     nullable: true
   })
   orderCompleteDate: Date
 
+  @ApiProperty({
+    type: Number
+  })
   @Column({
     type: 'mediumint'
   })
   deliveryFee: number
 
+  @ApiProperty({
+    type: Number
+  })
   @Column({
     type: 'mediumint'
   })
   menuPrice: number
 
+  @ApiProperty({
+    type: Number 
+  })
   @Column({
     type: 'mediumint'
   })
   amountOfPayment: number
 
-
-
+  @ApiProperty({
+    type: Number 
+  })
   @OneToMany(() => Orderdetails, orderdetails => orderdetails.order)
   orderProducts: Orderdetails[]
 
