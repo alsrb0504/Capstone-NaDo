@@ -18,36 +18,4 @@
 
 주문하기 데이터 형식
 
-{
-orderAddress: {
-address: '소웨관',
-detail: '303호 강의실',
-},
-orderRequest: {
-time: "2022-04-23 05:30",
-detail: '조심히 배달해주세요.',
-},
-
-// 가격 정보 Number
-orderPrice: {
-menuPrice: 16000,
-deliveryFee: 1200,
-totalPrice: 17200,
-},
-
-// 배열
-orderMenu: [
-{
-menuName: '아메리카노',
-menuOptions: {
-icehot: 'ice',
-cnt: 1,
-shots: 1,
-},
-menuPrice: 5900,
-menuSequence: 123
-},
-],
-
-storeId: 123,
-};
+9. 윤호형에게 그 신고하기처럼 주문하기 완료 되면 팝업 메시지 보여주도록 하는 컴포넌트 부탁하기.

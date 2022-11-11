@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   cartStoreName: '',
+  cartStoreSequence: 0,
   cartList: [],
   totalPrice: 0,
 };
@@ -11,10 +12,11 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     AddCart: (state, { payload }) => {
-      const { storeName, menuInfo } = payload;
+      const { storeSequence, storeName, menuInfo } = payload;
       const sumPrice = state.totalPrice + menuInfo.totalPrice;
 
-      state.storeName = storeName;
+      state.cartStoreSequence = storeSequence;
+      state.cartStoreName = storeName;
       state.cartList = [...state.cartList, menuInfo];
       state.totalPrice = sumPrice;
     },

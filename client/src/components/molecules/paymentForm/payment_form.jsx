@@ -2,15 +2,13 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { ErrorMessage } from '@hookform/error-message';
 import Btn from '../../atoms/buttons/btn/btn';
 import FormTitle from '../../atoms/formTitle/form_title';
 import order_address from '../../../data/order_address';
-import LineInput from '../../atoms/inputs/lineInput/line_input';
 import LineInputContainer from '../lineInputContainer/line_input_container';
 import PaymentReceipt from '../../atoms/paymentReceipt/payment_receipt';
 
-const PaymentForm = () => {
+const PaymentForm = ({ SubmitPayment }) => {
   const {
     register,
     handleSubmit,
@@ -19,7 +17,8 @@ const PaymentForm = () => {
   } = useForm();
 
   const OnSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
+    SubmitPayment(data);
   };
 
   return (
@@ -42,7 +41,7 @@ const PaymentForm = () => {
         {/* 조건 추가해줄 것 */}
         <LineInputContainer
           desc="상세주소"
-          id="order-detail"
+          id="order_detail"
           register={register}
           errors={errors}
         />
@@ -56,7 +55,7 @@ const PaymentForm = () => {
         </label>
         <input
           className="order-time-input"
-          {...register('order-time')}
+          {...register('order_time')}
           type="time"
         />
 
@@ -66,7 +65,7 @@ const PaymentForm = () => {
         {/* 조건 추가해줄 것 */}
         <LineInputContainer
           desc="요청사항"
-          id="order-request"
+          id="order_request"
           register={register}
           errors={errors}
         />

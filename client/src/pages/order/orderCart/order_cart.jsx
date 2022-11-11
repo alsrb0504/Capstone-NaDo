@@ -15,6 +15,10 @@ const OrderCart = () => {
     (state) => state.cart,
   );
 
+  // 추후 가게 화면 또는 가게 리스트 화면 중 하나로 이동하도록
+  const MoveBack = () => navigate('/order');
+  const MovePay = () => navigate('/order/payment');
+
   const UpdateMenu = (cartSequence, cartCnt) => {
     const updatedCartList = cartList.map((el) => {
       if (el.menuSequence === cartSequence)
@@ -29,9 +33,6 @@ const OrderCart = () => {
 
     dispatch(UpdateCart({ updatedCartList }));
   };
-
-  // 추후 가게 화면 또는 가게 리스트 화면 중 하나로 이동하도록
-  const MoveBack = () => navigate('/order');
 
   return (
     <div className="col-sm-4 order-cart">
@@ -56,7 +57,7 @@ const OrderCart = () => {
             />
           ))}
 
-          <Btn text={`${totalPrice}원 결제하기`} />
+          <Btn text={`${totalPrice}원 결제하기`} handleClick={MovePay} />
         </div>
       )}
     </div>
