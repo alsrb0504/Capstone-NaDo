@@ -15,10 +15,6 @@ const OrderOption = () => {
   const { cartStoreName } = useSelector((state) => state.cart);
   const { selectedStore, selectedMenu } = useSelector((state) => state.order);
 
-  // *
-  // 가게 sequence 랑 menu의 Sequence가 이름이 같아서 에러
-  // menu의 경우 menuSequence로 바꿀 수 있는지.
-  // *
   const { storeSequence, name } = selectedStore;
   const { sequence, menuName, menuPrice } = selectedMenu;
 
@@ -70,6 +66,9 @@ const OrderOption = () => {
     };
 
     dispatch(AddCart({ storeSequence, storeName: name, menuInfo }));
+
+    alert('장바구니에 담겼습니다! 추후 팝업으로 교체');
+    MoveBack();
   };
 
   useEffect(() => {
