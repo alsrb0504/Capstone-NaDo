@@ -16,8 +16,6 @@ const StoreMenuSection = ({ menuList }) => {
     MoveOption();
   };
 
-  console.log(`menuList`, menuList);
-
   return (
     <section className="store-menu-section">
       <h3 className="store-menu-title">메뉴</h3>

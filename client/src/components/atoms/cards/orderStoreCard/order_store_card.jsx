@@ -4,8 +4,6 @@ const OrderStoreCard = ({ info, handleClick }) => {
   const { sequence, name, image, businesstimes } = info;
 
   const SelectCard = () => {
-    console.log(sequence);
-
     handleClick(sequence);
   };
 

@@ -1,10 +1,10 @@
 import React from 'react';
 
 const MenuCard = ({ menuInfo, handleClick }) => {
-  const { sequence, menuName, menuPrice, menuImg } = menuInfo;
+  const { menuName, menuPrice, menuImg } = menuInfo;
 
   const OnClick = () => {
-    handleClick(sequence);
+    handleClick(menuInfo);
   };
 
   return (

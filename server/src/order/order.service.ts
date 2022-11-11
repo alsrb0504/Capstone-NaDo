@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import Menu from 'src/entity/menu/menu.entity';
 import Orderdetails from 'src/entity/orderdetails/orderdetails.entity';
@@ -14,32 +18,33 @@ export class OrderService {
   constructor(
     @InjectRepository(Orders) private ordersRepository: Repository<Orders>,
     @InjectRepository(Menu) private menuRepository: Repository<Menu>,
-    @InjectRepository(Orderdetails) private orderdetailRepository: Repository<Orderdetails>,
-    private dataSource: DataSource
+    @InjectRepository(Orderdetails)
+    private orderdetailRepository: Repository<Orderdetails>,
+    private dataSource: DataSource,
   ) {}
 
-  async orderPay(
-    orderInfo: OrderPay,
-    user: User
-  ) {
-    const queryRunner = this.dataSource.createQueryRunner()
-    await queryRunner.connect()
+  async orderPay(orderInfo: OrderPay, user: User) {
+    const queryRunner = this.dataSource.createQueryRunner();
+    await queryRunner.connect();
 
-    await queryRunner.startTransaction()
+    await queryRunner.startTransaction();
 
-    const {orderAddress, orderRequest, orderPrice, orderMenu, storeId} = orderInfo
+    const { orderAddress, orderRequest, orderPrice, orderMenu, storeId } =
+      orderInfo;
 
-    if((new Date(orderRequest.time)).toString() === 'Invalid Date') {
-      throw new BadRequestException(" orderRequest.time ==>> 시간 형식의 문자열이 아닙니다. ==> '2022/03/23 15:32' 이러한 형식으로 보내야합니다.")
+    if (new Date(orderRequest.time).toString() === 'Invalid Date') {
+      throw new BadRequestException(
+        " orderRequest.time ==>> 시간 형식의 문자열이 아닙니다. ==> '2022/03/23 15:32' 이러한 형식으로 보내야합니다.",
+      );
     }
 
-    const orderDate = new Date(orderRequest.time)
-    const orderTimeout = addHours(1, orderDate)
+    const orderDate = new Date(orderRequest.time);
+    const orderTimeout = addHours(1, orderDate);
 
-    console.log(orderInfo)
+    console.log(orderInfo);
 
     try {
-      const insertedData:InsertResult = await this.ordersRepository
+      const insertedData: InsertResult = await this.ordersRepository
         .createQueryBuilder('orders')
         .insert()
         .into(Orders)
@@ -55,16 +60,27 @@ export class OrderService {
             amountOfPayment: orderPrice.totalPrice,
             orderStatus: 'ordered',
             user: () => user?.sequence.toString(),
-            store: () => storeId.toString()
-          }
+            store: () => storeId.toString(),
+          },
         ])
-        .execute()
-      
-      const menus = []
+        .execute();
 
-      for(let menu of orderMenu) {
-        const {menuId, menuOptions, menuPrice} = menu
-        const {icehot, cnt, shots} = menuOptions
+      const menus = [];
+
+      console.log(`orderMenu : ${orderMenu}`);
+
+      for (let menu of orderMenu) {
+        console.log(`menu : ${menu}`);
+
+        const { menuId, menuOptions, menuPrice } = menu;
+        console.log(`menuOptions : ${menuOptions}`);
+
+        console.log(`menuId : ${menuId}`);
+        console.log(`menuPrice : ${menuPrice}`);
+
+        const { icehot, cnt, shots } = menuOptions;
+
+        console.log(`icehot : ${icehot}`);
 
         menus.push({
           shots,
@@ -73,66 +89,66 @@ export class OrderService {
           menu: menuId,
           iceOrHot: icehot,
           productQuantity: cnt,
-        })
+        });
       }
-        
+
       await this.orderdetailRepository
         .createQueryBuilder('orderdetails')
         .insert()
         .into(Orderdetails)
         .values(menus)
-        .execute()
-      
-     await queryRunner.commitTransaction() 
+        .execute();
 
-     return 'success'
+      await queryRunner.commitTransaction();
+
+      return 'success';
     } catch (err) {
-      await queryRunner.rollbackTransaction()
-      console.log(err.message)
-      switch(err.status) {
+      await queryRunner.rollbackTransaction();
+      console.log(err.message);
+      switch (err.status) {
         case 400:
-          throw new BadRequestException(err.message)
+          throw new BadRequestException(err.message);
         default:
-          throw new InternalServerErrorException(err.message)
+          throw new InternalServerErrorException(err.message);
       }
     }
   }
 
-  async getOrderByUser(
-    userSequence: number | string
-  ): Promise<WaitOrder[]>{
+  async getOrderByUser(userSequence: number | string): Promise<WaitOrder[]> {
     try {
       const allOrderLists = await this.ordersRepository
         .createQueryBuilder('orders')
-        .where("orders.userSequence = :sequence", {sequence: userSequence})
-        .andWhere("orders.orderStatus = :status", {status: 'ordered'})
-        .getMany()
-      
-      const orderLists = []
+        .where('orders.userSequence = :sequence', { sequence: userSequence })
+        .andWhere('orders.orderStatus = :status', { status: 'ordered' })
+        .getMany();
+
+      const orderLists = [];
       for (let order of allOrderLists) {
-        const { sequence, orderTimeout, amountOfPayment, address, addressDetail} = order
+        const {
+          sequence,
+          orderTimeout,
+          amountOfPayment,
+          address,
+          addressDetail,
+        } = order;
         orderLists.push({
           orderTimeout: orderTimeout,
           totalPrice: amountOfPayment,
           orderSequence: sequence,
           orderAddress: {
             address,
-            detail: addressDetail
-          }
-        })
+            detail: addressDetail,
+          },
+        });
       }
 
-      return orderLists
-      
-      
+      return orderLists;
     } catch (err) {
-      throw new InternalServerErrorException(err.message)
+      throw new InternalServerErrorException(err.message);
     }
   }
 
-  async getOrderDetail(
-    orderSequence: string | number
-  ): Promise<any>{
+  async getOrderDetail(orderSequence: string | number): Promise<any> {
     try {
       const orderList = await this.ordersRepository
         .createQueryBuilder('orders')
@@ -152,43 +168,43 @@ export class OrderService {
         .addSelect('store.sequence')
         .addSelect('store.lat')
         .addSelect('store.long')
-        .where('orders.sequence = :sequence', {sequence: orderSequence})
-        .leftJoin("orders.store", "store")
-        .leftJoin("orders.orderProducts", "orderdetails")
-        .leftJoin("orderdetails.menu", "menus")
-        .getOne()
-        
-        const menuDetails= []
-        const {sequence, store, orderProducts} = orderList
+        .where('orders.sequence = :sequence', { sequence: orderSequence })
+        .leftJoin('orders.store', 'store')
+        .leftJoin('orders.orderProducts', 'orderdetails')
+        .leftJoin('orderdetails.menu', 'menus')
+        .getOne();
 
-        console.log(orderList)
+      const menuDetails = [];
+      const { sequence, store, orderProducts } = orderList;
 
-        for (let [index, menuDetail] of orderProducts.entries()) {
-          menuDetails.push({
-            ...menuDetail,
-            orderdetailsSequence: menuDetail.sequence,
-          })
+      console.log(orderList);
 
-          delete menuDetails[index].sequence
-        }
+      for (let [index, menuDetail] of orderProducts.entries()) {
+        menuDetails.push({
+          ...menuDetail,
+          orderdetailsSequence: menuDetail.sequence,
+        });
 
-        const result = {
-          orderSequence: sequence,
-          ...orderList,
-          store: {
-            ...store,
-            storeSequence: store.sequence
-          },
-          orderProducts: menuDetails
-        }
+        delete menuDetails[index].sequence;
+      }
 
-        delete result.sequence
-        delete result.store.sequence
+      const result = {
+        orderSequence: sequence,
+        ...orderList,
+        store: {
+          ...store,
+          storeSequence: store.sequence,
+        },
+        orderProducts: menuDetails,
+      };
 
-        return result
-  } catch (err) {
-    console.log(err.response)
-    throw new InternalServerErrorException(err.message)
+      delete result.sequence;
+      delete result.store.sequence;
+
+      return result;
+    } catch (err) {
+      console.log(err.response);
+      throw new InternalServerErrorException(err.message);
+    }
   }
-}
 }
