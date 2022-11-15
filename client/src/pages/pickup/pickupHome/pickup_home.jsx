@@ -4,7 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import Footer from '../../../components/atoms/footer/footer';
 import HeaderWithLogo from '../../../components/atoms/headers/headerWithLogo/header_with_logo';
 import PickupStoreList from '../../../components/molecules/pickupStoreList/pickup_store_list';
-import { GetPickupStoreList } from '../../../store/features/pickup';
+import {
+  GetPickupStoreDetail,
+  GetPickupStoreList,
+} from '../../../store/features/pickup';
 
 const PickupHome = () => {
   const dispatch = useDispatch();
@@ -16,6 +19,11 @@ const PickupHome = () => {
   const MoveHome = () => navigate('/');
   const MoveCart = () => navigate('/order/cart');
 
+  const SelectStore = (storeId) => {
+    dispatch(GetPickupStoreDetail(storeId));
+    navigate('/pickup/store');
+  };
+
   useEffect(() => {
     dispatch(GetPickupStoreList());
   }, [dispatch]);
@@ -25,7 +33,7 @@ const PickupHome = () => {
       <HeaderWithLogo MoveBack={MoveHome} MoveCart={MoveCart} />
       <h4 className="pickup-home-nickname">{userNickname || '닉네임'}</h4>
 
-      <PickupStoreList stores={storeList} />
+      <PickupStoreList stores={storeList} SelectStore={SelectStore} />
 
       <Footer />
     </div>

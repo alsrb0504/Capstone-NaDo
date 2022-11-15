@@ -1,10 +1,10 @@
 import React from 'react';
 
 const PickupStoreCard = ({ info, handleClick }) => {
-  const { name, image, pickupCnt } = info;
+  const { sequence, name, image, pickupCnt } = info;
 
   const MovePage = () => {
-    handleClick();
+    handleClick(sequence);
   };
 
   return (

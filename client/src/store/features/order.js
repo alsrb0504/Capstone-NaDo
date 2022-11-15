@@ -112,7 +112,7 @@ export const GetStoreList = createAsyncThunk(
 );
 
 // *
-// 가게 상세 정보 요청 함수
+// GET : 가게 상세 정보 요청 함수
 // *
 export const GetStoreDetail = createAsyncThunk(
   'order/getStoreDetail',

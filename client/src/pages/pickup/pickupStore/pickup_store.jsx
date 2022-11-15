@@ -15,31 +15,24 @@ const PickupStore = () => {
   const MoveCart = () => navigate('/order/cart');
 
   const { selectedStore, pickupList } = useSelector((state) => state.pickup);
-  const {
-    shopImg,
-    shopName,
-    shopContactNumber,
-    shopOpenTime,
-    locationLatLong,
-  } = selectedStore;
-
-  console.log(pickupList);
+  const { storeImage, name, telephone, shopOpenTime, locationLating } =
+    selectedStore;
 
   return (
     <div className="col-sm-4 pickup-store">
       <HeaderWithImg
-        shopImg={shopImg || '/images/cafeImg/default_cafe_img.jpg'}
+        shopImg={storeImage || '/images/cafeImg/default_cafe_img.jpg'}
         MoveBack={MoveBack}
         MoveCart={MoveCart}
       />
 
       <StoreInfoSection
-        shopName={shopName}
+        shopName={name}
         shopOpenTime={shopOpenTime}
-        shopNumber={shopContactNumber}
+        shopNumber={telephone}
       />
 
-      <StoreMapSection locationLatLong={locationLatLong} isTitle={true} />
+      <StoreMapSection locationLatLong={locationLating} isTitle={true} />
 
       <StorePickupList pickupList={pickupList} MoveDetail={MoveDetail} />
     </div>
