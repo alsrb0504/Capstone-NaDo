@@ -86,6 +86,8 @@ const initialState = {
   ],
 
   myOrderList: [],
+
+  currentOrder: {},
 };
 
 // *
@@ -222,6 +224,29 @@ export const GetOrderList = createAsyncThunk(
   },
 );
 
+// *
+// 진행 중인 주문 정보 요청 함수
+// *
+export const GetOrderDetail = createAsyncThunk(
+  'order/getOrderDetail',
+  async (orderId, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/order/detail?orderSequence=${orderId}`,
+      );
+
+      if (response.status === 200) {
+        return response.data;
+      }
+
+      return thunkAPI.rejectWithValue();
+    } catch (e) {
+      PrintError(e, '프로필 업데이트');
+      return thunkAPI.rejectWithValue();
+    }
+  },
+);
+
 export const orderSlice = createSlice({
   name: 'order',
   initialState,
@@ -242,6 +267,9 @@ export const orderSlice = createSlice({
     });
     builder.addCase(GetOrderList.fulfilled, (state, { payload }) => {
       state.myOrderList = payload;
+    });
+    builder.addCase(GetOrderDetail.fulfilled, (state, { payload }) => {
+      state.currentOrder = payload;
     });
   },
 });

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { NicknameCond } from '../../../services/formCondition';
+import { NicknameCond } from '../../../utils/formCondition';
 import { UpdateProfile } from '../../../store/features/user';
 import Btn from '../../atoms/buttons/btn/btn';
 import LineInput from '../../atoms/inputs/lineInput/line_input';

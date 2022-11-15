@@ -1,5 +1,5 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
+import { ChangeTimeInfo } from '../../../../utils/time';
 
 const PickingCard = ({ info, MoveDesc }) => {
   const { orderAddress, orderSequence, orderTimeout, totalPrice } = info;
@@ -12,18 +12,7 @@ const PickingCard = ({ info, MoveDesc }) => {
 
   // 채팅하기로 이동
   const GoChat = () => {
-    // orderer
     alert('채팅하기 미구현(주문 상세 페이지 이동으로 변경?)');
-  };
-
-  const ChangeTimeInfo = (timeInfo) => {
-    const date = new Date(timeInfo);
-    const hour = date.getHours();
-    const minute = date.getMinutes();
-
-    return `${hour < 10 ? `0${hour}` : hour} : ${
-      minute < 10 ? `0${minute}` : minute
-    }`;
   };
 
   return (

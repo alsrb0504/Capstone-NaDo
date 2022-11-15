@@ -2,11 +2,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import {
-  IdCond,
-  PasswdCond,
-  NicknameCond,
-} from '../../../services/formCondition';
+import { IdCond, PasswdCond, NicknameCond } from '../../../utils/formCondition';
 import { CleanUpSuccess } from '../../../store/features/user';
 import Btn from '../../atoms/buttons/btn/btn';
 import LineInputContainer from '../lineInputContainer/line_input_container';
