@@ -42,8 +42,7 @@ const OrderDetail = () => {
   return (
     <div className="col-sm-4 order-detail">
       <Header title="주문 상세" handleClick={MoveBack} />
-      {/* 헤더 "결제 확인"보다는, "주문 상세"가 더 어울려서 수정함 */}
-      <StateBox text="수락 대기 중..." />
+      <StateBox state={orderStatus} />
       <div className="info">
         <section className="info-map-section">
           <FormTitle title="가게 위치" />
