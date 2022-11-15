@@ -1,4 +1,4 @@
-import { ApiProperty, PickType } from "@nestjs/swagger";
+import { ApiProperty, OmitType, PickType } from "@nestjs/swagger";
 import Store from "src/entity/store/store.entity";
 import Storebusinesstime from "src/entity/storebusinesstime/storebusinesstime.entity";
 import { StoreDetailMenu } from "../menu/menu.type";
@@ -53,7 +53,6 @@ export class StoreDetail extends PickType(Store, ['name', 'telephone']){
     type: StoreLocation
   })
   locationLating: StoreLocation
-
 }
 
 export class GetAllStore extends PickType(StoreList, ['name', 'image', 'sequence', 'businessTimes']) {}
@@ -72,3 +71,27 @@ export class GetAllStoreForPick extends PickType(StoreList, ['name', 'image', 's
   businesstimes: Storebusinesstime[]
 }
 
+export class PickupList {
+  @ApiProperty({
+    type: Number
+  })
+  orderSequence: number
+
+  @ApiProperty({
+    type: String
+  })
+  dest: string
+
+  @ApiProperty({
+    type: Number
+  })
+  price: number
+}
+
+export class StoreDetailForPick extends OmitType(StoreDetail, ['menus']) {
+  @ApiProperty({
+    type: PickupList,
+    isArray: true
+  })
+  pickupList: PickupList[]
+}
