@@ -33,8 +33,6 @@ const OrderDetail = () => {
     orderProducts,
   } = currentOrder;
 
-  console.log(currentOrder);
-
   useEffect(() => {
     dispatch(GetOrderDetail(orderId));
   }, [orderId, dispatch]);

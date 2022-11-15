@@ -5,3 +5,15 @@ export const MakeOptionText = (icehot, shotCnt) => {
 
   return `${iceHotInfo} ${shotInfo}`;
 };
+
+export const PrintPrice = (price) => {
+  const priceStr = typeof price === 'number' ? price.toString() : price;
+  const priceSize = priceStr.length;
+
+  if (priceSize > 3) {
+    return `
+      ${priceStr.slice(0, priceSize - 3)},${priceStr.slice(priceSize - 3)}
+      `;
+  }
+  return priceStr;
+};
