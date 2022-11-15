@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { PasswdCond } from '../../../services/formCondition';
+import { PasswdCond } from '../../../utils/formCondition';
 import { ChangePasswd, CleanUpSuccess } from '../../../store/features/user';
 import Btn from '../../atoms/buttons/btn/btn';
 import LineInputContainer from '../lineInputContainer/line_input_container';

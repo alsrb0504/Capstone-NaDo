@@ -2,13 +2,18 @@ import React from 'react';
 import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Btn from '../../../components/atoms/buttons/btn/btn';
-import RecordCard from '../../../components/atoms/cards/pickuprecordCard/pickup_record_card';
 import FormTitle from '../../../components/atoms/formTitle/form_title';
 import Header from '../../../components/atoms/headers/header/header';
 import LineInputContainer from '../../../components/molecules/lineInputContainer/line_input_container';
+import OrderRecordCard from '../../../components/atoms/cards/orderRecordCard/order_record_card';
+import { MakeFullTimeInfo } from '../../../utils/time';
 
 const OrderReport = () => {
+  const { currentOrder } = useSelector((state) => state.order);
+  const { address, addressDetail, orderTimeout, priceInfo } = currentOrder;
+
   const {
     register,
     handleSubmit,
@@ -51,20 +56,20 @@ const OrderReport = () => {
     });
   };
 
-  const data = {
-    place: '소프트웨어관 313호',
-    date: '21.09.08 13 : 35',
-    price: '8,900',
-    isOrder: true,
-  };
-
   return (
     <div className="col-sm-4 order-report">
       <Header title="신고하기" handleClick={MoveBack} />
       <div className="order-report-body">
         <section className="order-section">
           <FormTitle title="신고 주문" />
-          <RecordCard info={data} handleClick={MoveOrder} />
+          <OrderRecordCard
+            info={{
+              orderAddress: `${address} ${addressDetail}`,
+              orderTime: MakeFullTimeInfo(orderTimeout),
+              orderPrice: priceInfo.amountOfPayment,
+            }}
+            handleClick={MoveOrder}
+          />
         </section>
 
         <form className="report-form" onSubmit={handleSubmit(OnSubmit)}>

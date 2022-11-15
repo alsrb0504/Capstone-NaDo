@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { LocalLogout } from '../../store/features/user';
@@ -7,19 +7,22 @@ import HomeHeader from '../../components/atoms/headers/homeHeader/home_header';
 import HomeMainBtns from '../../components/molecules/homeMainBtns/home_main_btns';
 import HomeMenus from '../../components/molecules/homeMenus/home_menus';
 import Footer from '../../components/atoms/footer/footer';
-import { ClearStore } from '../../services/store';
+import { ClearStore } from '../../utils/store';
+import { GetOrderList } from '../../store/features/order';
 
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { isLogin, userNickname } = useSelector((state) => state.user);
+  const { myOrderList } = useSelector((state) => state.order);
+
+  const MoveOrderWaiting = () => navigate('/order/waitings');
 
   // 현재 개발중인 페이지 이동
   const MoveLogin = () => navigate('/login');
   const MovePay = () => navigate('/order/payment');
   const MoveCheck = () => navigate('/order/confirm');
-  const MoveWaitins = () => navigate('/order/waitings');
 
   const Logout = () => {
     dispatch(LocalLogout());
@@ -32,15 +35,27 @@ const Home = () => {
   };
 
   // 페이지 다 구현 후, 추가
-  // useEffect(() => {
-  //   if (!isLogin) navigate('/login');
-  // }, [isLogin, navigate]);
+  useEffect(() => {
+    //   if (!isLogin) navigate('/login');
+    dispatch(GetOrderList());
+  }, [dispatch]);
 
   return (
     <div className="col-sm-4 home">
       <HomeHeader />
 
       <HomeMainBtns />
+
+      {myOrderList.length > 0 && (
+        <div className="home-order-btn">
+          <Btn
+            tupe="buton"
+            color="gradation"
+            text="내가 기다리는 주문"
+            handleClick={MoveOrderWaiting}
+          />
+        </div>
+      )}
 
       <HomeMenus />
 
@@ -61,13 +76,6 @@ const Home = () => {
         color="blue"
         text="결제 확인 페이지"
         handleClick={MoveCheck}
-      />
-
-      <Btn
-        type="button"
-        color="blue"
-        text="기다리는 주문 페이지"
-        handleClick={MoveWaitins}
       />
 
       <Footer />

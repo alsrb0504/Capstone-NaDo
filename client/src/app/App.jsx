@@ -3,7 +3,7 @@ import './App.scss';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
-import AxiosSetting from '../services/axios';
+import AxiosSetting from '../utils/axios';
 import Home from '../pages/home/home';
 import Login from '../pages/auth/login/login';
 import LocalRegister from '../pages/auth/localRegister/local_register';
