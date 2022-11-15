@@ -20,6 +20,7 @@ const OrderDetail = () => {
   const orderId = window.location.search.split('id=')[1];
 
   const MoveBack = () => navigate('/order/waitings');
+  const MoveReport = () => navigate('/order/report');
 
   const { currentOrder } = useSelector((state) => state.order);
   const {
@@ -75,7 +76,7 @@ const OrderDetail = () => {
       </div>
       <Btn text="배달 완료 확인" color="blue" />
       <Btn text="피커와 채팅하기" />
-      <Btn text="신고하기" color="red" />
+      <Btn text="신고하기" color="red" handleClick={MoveReport} />
     </div>
   );
 };
