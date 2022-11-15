@@ -15,7 +15,7 @@ const PickupStore = () => {
   const MoveCart = () => navigate('/order/cart');
 
   const { selectedStore, pickupList } = useSelector((state) => state.pickup);
-  const { storeImage, name, telephone, shopOpenTime, locationLating } =
+  const { storeImage, name, telephone, businesstimes, locationLating } =
     selectedStore;
 
   return (
@@ -28,7 +28,7 @@ const PickupStore = () => {
 
       <StoreInfoSection
         shopName={name}
-        shopOpenTime={shopOpenTime}
+        shopOpenTime={businesstimes}
         shopNumber={telephone}
       />
 

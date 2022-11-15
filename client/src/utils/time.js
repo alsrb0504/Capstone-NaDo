@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 export const ChangeTimeInfo = (timeInfo) => {
   const date = new Date(timeInfo);
   const hour = date.getHours();
@@ -24,4 +23,14 @@ export const MakeFullTimeInfo = (timeInfo) => {
   if (minute < 10) minute = `0${minute}`;
 
   return `${yy}.${mm}.${dd} ${hour} : ${minute}`;
+};
+
+export const MakeStoreOpenTime = (openTime) => {
+  const { dayOfWeek, startTime, endTime } = openTime[0];
+
+  if (dayOfWeek === '매') {
+    return `매일 ${startTime || '10:00'} ~ ${endTime || '20:00'}`;
+  }
+
+  return `금일 ${startTime || '10:00'} ~ ${endTime || '20:00'}`;
 };
