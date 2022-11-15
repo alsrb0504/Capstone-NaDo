@@ -1,13 +1,15 @@
 import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import Orders from "src/entity/orders/orders.entity";
 import Store from "src/entity/store/store.entity";
-import { StoreDetail, StoreList } from "src/type/store/store.type";
+import { GetAllStoreForPick, StoreDetail, StoreList } from "src/type/store/store.type";
 import { Repository } from "typeorm";
 
 @Injectable()
 export class StoreQueryService {
   constructor(
-    @InjectRepository(Store) private storeRepository: Repository<StoreList>
+    @InjectRepository(Store) private storeRepository: Repository<StoreList>,
+    @InjectRepository(Orders) private orderRepository: Repository<Orders>
   ) {}
 
   async getAllStore(): Promise<Array<StoreList>> {
@@ -27,6 +29,50 @@ export class StoreQueryService {
         return storeInfo
     } catch (err) {
       throw new InternalServerErrorException("get query error")
+    }
+  }
+  async getAllStoreForPick() {
+
+    try {
+      
+      const orderCount = await this.orderRepository
+      .createQueryBuilder('orders')
+      .select([
+        'orders.store',
+        'COUNT(orders.store) AS pickupCnt'
+      ])
+      .groupBy('orders.store')
+      .getRawMany()
+      
+      const storeInfo = await this.storeRepository
+        .createQueryBuilder('store')
+        .select([
+          "store.name",
+          "store.image",
+          "store.sequence"
+        ])
+        .addSelect("storebusinesstime.dayOfWeek")
+        .addSelect("storebusinesstime.startTime")
+        .addSelect("storebusinesstime.endTime")
+        .innerJoin("store.businesstimes", "storebusinesstime")
+        .getMany()
+        
+        const result: any = storeInfo.map((store) => {
+          const v = orderCount.filter((data) => data.storeSequence === store.sequence)
+          let cnt;
+          if(v.length) {
+            cnt = v[0].pickupCnt
+          }
+
+          return {
+            ...store,
+            pickupCnt: parseInt(cnt) || 0
+          }
+        })
+
+        return result
+    } catch (err) {
+      throw new InternalServerErrorException(err.message)
     }
   }
 
