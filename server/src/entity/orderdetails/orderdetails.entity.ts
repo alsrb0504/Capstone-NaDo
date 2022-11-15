@@ -33,6 +33,9 @@ export default class Orderdetails {
   @ApiProperty({
     type: Number
   })
+  @Column({
+    type: 'mediumint'
+  })
   menuPrice: number
 
   @ApiProperty({
@@ -50,4 +53,4 @@ export default class Orderdetails {
     type: 'tinyint'
   })
   shots: number
-} ``
+}

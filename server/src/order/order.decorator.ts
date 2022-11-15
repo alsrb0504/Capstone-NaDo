@@ -1,7 +1,7 @@
 import { applyDecorators } from "@nestjs/common";
 import { ApiBadRequestResponse, ApiBody, ApiInternalServerErrorResponse, ApiOkResponse, ApiOperation } from "@nestjs/swagger";
 import { exceptionResponseType } from "src/type/exception/exception.type";
-import { OrderPay, WaitOrder } from "src/type/order/order.type";
+import { OrderDetail, OrderPay, WaitOrder } from "src/type/order/order.type";
 
 export function orderPayDescription() {
   return applyDecorators(
@@ -23,6 +23,17 @@ export function orderListDescription() {
     ApiOperation({
       summary: '주문 목록 받아오기',
       description: '주문 목록 받아오는 api, 로그인 된 사용자만 사용가능하며, 주문 시 유저의 주문 목록이 반환된다.'
+    })
+  )
+}
+
+export function orderdetailDescription() {
+  return applyDecorators(
+    ApiOkResponse({description: '주문을 성공적으로 반환합니다.', type: OrderDetail}),
+    ApiInternalServerErrorResponse({description: 'query error', type: exceptionResponseType}),
+    ApiOperation({
+      summary: '주문 상세 정보 api',
+      description: '주문의 상세목록을 보내준다.'
     })
   )
 }
