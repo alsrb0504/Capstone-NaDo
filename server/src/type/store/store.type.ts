@@ -58,3 +58,17 @@ export class StoreDetail extends PickType(Store, ['name', 'telephone']){
 
 export class GetAllStore extends PickType(StoreList, ['name', 'image', 'sequence', 'businessTimes']) {}
 
+export class GetAllStoreForPick extends PickType(StoreList, ['name', 'image', 'sequence']) {
+  @ApiProperty({
+    type: Number
+  })
+  pickupCnt: number
+
+  @ApiProperty({
+    type: Storebusinesstime,
+    isArray: true,
+    description: 'all store businesstime'
+  })
+  businesstimes: Storebusinesstime[]
+}
+

@@ -51,6 +51,24 @@ export class PaymentController {
     const userInfo = await this.paymentService.getCardInfo(req.user.sequence)
     return userInfo
   }
+
+  @Post('card/fake')
+  @HttpCode(201)
+  async registerFakeCard(
+    @Request() req: ReqWithUser
+  ) {
+    const result = await this.paymentService.registerFakeCard(req?.user.sequence || 1)
+    return result
+  }
+
+  @Delete('card/fake')
+  @HttpCode(200)
+  async deleteFakeCard(
+   @Request() req: ReqWithUser 
+  ) {
+    const result = await this.paymentService.deleteFakeCard(req?.user.sequence || 1)
+    return result
+  }
   }  
 
 

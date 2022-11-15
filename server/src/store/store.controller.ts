@@ -1,9 +1,9 @@
-import { Body, Controller, Get, HttpCode, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Post, Query, Response } from '@nestjs/common';
 import { StoreService } from './store.service';
 import Store from 'src/entity/store/store.entity';
 import { StoreQueryService } from './storequery.service';
-import { GetAllStoreDescription, GetStoreByIdDescription } from './store.decorator';
-import { GetAllStore, StoreDetail, StoreList } from 'src/type/store/store.type';
+import { GetAllStoreDescription, GetAllStoreForPickDescription, GetStoreByIdDescription } from './store.decorator';
+import { GetAllStore, GetAllStoreForPick, StoreDetail, StoreList } from 'src/type/store/store.type';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags("store")
@@ -41,4 +41,15 @@ export class StoreController {
 
     return storeInfo
   }
+
+  @Get('picker')
+  @GetAllStoreForPickDescription()
+  @HttpCode(200)
+  async getAllStoreForPick(
+  ): Promise<Array<GetAllStoreForPick>> {
+    const result = await this.storeQueryService.getAllStoreForPick()
+    return result
+  }
+
+
 }

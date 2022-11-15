@@ -35,6 +35,8 @@ export class OrderService {
     const { orderAddress, orderRequest, orderPrice, orderMenu, storeId } =
       orderInfo;
 
+    
+
     if (new Date(orderRequest.time).toString() === 'Invalid Date') {
       throw new BadRequestException(
         " orderRequest.time ==>> 시간 형식의 문자열이 아닙니다. ==> '2022/03/23 15:32' 이러한 형식으로 보내야합니다.",
@@ -151,7 +153,7 @@ export class OrderService {
     }
   }
 
-  async getOrderDetail(orderSequence: string | number): Promise<any> {
+  async getOrderDetail(orderSequence: string | number): Promise<OrderDetail> {
     try {
       const orderList = await this.ordersRepository
         .createQueryBuilder('orders')
@@ -161,6 +163,9 @@ export class OrderService {
         .addSelect('orders.deliveryFee')
         .addSelect('orders.menuPrice')
         .addSelect('orders.orderStatus')
+        .addSelect('orders.address')
+        .addSelect('orders.addressDetail')
+        .addSelect('orders.message')
         .addSelect('orderdetails.sequence')
         .addSelect('orderdetails.productQuantity')
         .addSelect('orderdetails.iceOrHot')
@@ -179,7 +184,7 @@ export class OrderService {
         .getOne();
 
       const menuDetails = [];
-      const { sequence, store, orderProducts } = orderList;
+      const { sequence, store, orderProducts, deliveryFee, amountOfPayment, menuPrice } = orderList;
 
       console.log(orderList);
 
@@ -199,11 +204,19 @@ export class OrderService {
           ...store,
           storeSequence: store.sequence,
         },
+        priceInfo: {
+          deliveryFee,
+          menuPrice,
+          amountOfPayment,
+        },
         orderProducts: menuDetails,
       };
 
       delete result.sequence;
       delete result.store.sequence;
+      delete result.menuPrice;
+      delete result.deliveryFee;
+      delete result.amountOfPayment;
 
       return result;
     } catch (err) {

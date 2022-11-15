@@ -145,12 +145,14 @@ export class OrderdetailProducts extends PickType(Orderdetails, ['productQuantit
 
 export class StoreLocationWithSequence extends StoreLocation {
   @ApiProperty({
-    type: String
+    type: Number
   }) 
-  storeSequence: string
+  storeSequence: number
 }
 
-export class OrderDetail extends PickType(Orders, ['orderTimeout', 'orderStatus', 'deliveryFee', 'menuPrice', 'amountOfPayment']){
+export class PriceInfo extends PickType(Orders, ['deliveryFee', 'menuPrice', 'amountOfPayment']) {}
+
+export class OrderDetail extends PickType(Orders, ['orderTimeout', 'orderStatus']){
 
   @ApiProperty({
     type: Number
@@ -163,9 +165,14 @@ export class OrderDetail extends PickType(Orders, ['orderTimeout', 'orderStatus'
   store: StoreLocationWithSequence
 
   @ApiProperty({
+    type: PriceInfo
+  })
+  priceInfo: PriceInfo
+
+  @ApiProperty({
     type: OrderdetailProducts,
     isArray: true
   })
-  menu: OrderdetailProducts[]
+  orderProducts: OrderdetailProducts[]
 }
 

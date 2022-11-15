@@ -16,6 +16,40 @@ export class PaymentService {
     @InjectRepository(User) private  userRepository: Repository<User>
   ) {}
 
+  async registerFakeCard(
+    userSequence: string | number
+  ) {
+    try {
+      await this.userRepository
+        .createQueryBuilder('user')
+        .update(User)
+        .set({
+          paymentKey: uuid()
+        })
+        .where('sequence = :userSequence', {userSequence})
+        .execute()
+      return 'success'
+    } catch (err) {
+      throw new InternalServerErrorException(err.message)
+    }
+  }
+  async deleteFakeCard(
+    userSequence: string | number
+  ) {
+    try {
+      await this.userRepository
+        .createQueryBuilder('user')
+        .update(User)
+        .set({
+          paymentKey: null
+        })
+        .where('sequence = :userSequence', {userSequence})
+        .execute()
+      return 'success'
+    } catch (err) {
+      throw new InternalServerErrorException(err.message)
+    }
+  }
   async registerCard(
       cardInfo: CardType,
       req: ReqWithUser
