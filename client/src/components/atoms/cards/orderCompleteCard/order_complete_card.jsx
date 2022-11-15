@@ -1,14 +1,8 @@
 import React from 'react';
+import { MakeOptionText } from '../../../../utils/text';
 
 const OrderCompleteCard = ({ info }) => {
   const { menu, menuPrice, productQuantity, iceOrHot, shots } = info;
-
-  const MakeOptionText = (icehot, shotCnt) => {
-    const iceHotInfo = icehot === 'ice' ? 'ICE' : 'HOT';
-    const shotInfo = shotCnt > 0 ? `샷 추가(+${500 * shotCnt}원)` : '';
-
-    return `${iceHotInfo} ${shotInfo}`;
-  };
 
   return (
     <div className="card-container order-card ordering">
