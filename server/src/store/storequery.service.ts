@@ -150,7 +150,8 @@ export class StoreQueryService {
         .select([
           'orders.sequence AS orderSequence',
           'CONCAT_WS(" ",orders.address, orders.addressDetail) AS dest',
-          'orders.menuPrice AS price'
+          'orders.menuPrice AS price',
+          'orders.orderDate AS orderDate'
         ])
         .where('orders.store = :sequence', {sequence})
         .andWhere('orders.orderStatus = :status', {status: 'ordered'})

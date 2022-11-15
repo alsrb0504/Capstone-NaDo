@@ -86,6 +86,11 @@ export class PickupList {
     type: Number
   })
   price: number
+
+  @ApiProperty({
+    type: Date
+  })
+  orderDate: Date
 }
 
 export class StoreDetailForPick extends OmitType(StoreDetail, ['menus']) {
