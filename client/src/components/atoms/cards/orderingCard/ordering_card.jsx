@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
+import { PrintPrice } from '../../../../utils/text';
 
 const OrderingCard = ({ info, UpdateMenu }) => {
   const { menuSequence, menuName, menuOptions, menuPrice, cnt } = info;
@@ -31,7 +32,7 @@ const OrderingCard = ({ info, UpdateMenu }) => {
       <div className="info">
         <h3>{menuName}</h3>
         <p className="options">옵션 : {optionText}</p>
-        <p>{curPrice} 원</p>
+        <p>{PrintPrice(curPrice)} 원</p>
       </div>
 
       <div className="order-count">

@@ -6,6 +6,7 @@ import Btn from '../../../components/atoms/buttons/btn/btn';
 import OrderingCard from '../../../components/atoms/cards/orderingCard/ordering_card';
 import Header from '../../../components/atoms/headers/header/header';
 import { UpdateCart } from '../../../store/features/cart';
+import { PrintPrice } from '../../../utils/text';
 
 const OrderCart = () => {
   const navigate = useNavigate();
@@ -58,7 +59,10 @@ const OrderCart = () => {
             />
           ))}
 
-          <Btn text={`${totalPrice}원 결제하기`} handleClick={MovePay} />
+          <Btn
+            text={`${PrintPrice(totalPrice)}원 결제하기`}
+            handleClick={MovePay}
+          />
         </div>
       )}
     </div>

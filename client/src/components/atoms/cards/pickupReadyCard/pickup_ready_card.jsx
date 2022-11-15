@@ -1,4 +1,5 @@
 import React from 'react';
+import { PrintPrice } from '../../../../utils/text';
 
 const PickupReadyCard = ({ info, handleClick }) => {
   const { pickupAddress, pickupTime, pickupPrice } = info;
@@ -13,7 +14,7 @@ const PickupReadyCard = ({ info, handleClick }) => {
         <h3>{pickupAddress}</h3>
         <p className="date">마감 시간 : ~ {pickupTime}</p>
         <p>
-          <span>주문 금액 : {pickupPrice} 원</span>
+          <span>주문 금액 : {PrintPrice(pickupPrice)} 원</span>
         </p>
       </div>
 

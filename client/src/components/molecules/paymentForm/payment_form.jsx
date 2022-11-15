@@ -8,6 +8,7 @@ import FormTitle from '../../atoms/formTitle/form_title';
 import order_address from '../../../data/order_address';
 import LineInputContainer from '../lineInputContainer/line_input_container';
 import PaymentReceipt from '../../atoms/paymentReceipt/payment_receipt';
+import { PrintPrice } from '../../../utils/text';
 
 const PaymentForm = ({ SubmitPayment }) => {
   const { totalPrice } = useSelector((state) => state.cart);
@@ -16,13 +17,14 @@ const PaymentForm = ({ SubmitPayment }) => {
     register,
     handleSubmit,
     formState: { errors },
-    // reset,
   } = useForm();
 
   const OnSubmit = (data) => {
-    // console.log(data);
     SubmitPayment(data);
   };
+
+  const deliveryFee = 1200;
+  const amountOfPayment = totalPrice + deliveryFee;
 
   return (
     <form className="payment-form" onSubmit={handleSubmit(OnSubmit)}>
@@ -82,13 +84,13 @@ const PaymentForm = ({ SubmitPayment }) => {
         <PaymentReceipt
           price_info={{
             menuPrice: totalPrice,
-            deliveryFee: 1200,
-            amountOfPayment: totalPrice + 1200,
+            deliveryFee,
+            amountOfPayment,
           }}
         />
       </section>
 
-      <Btn type="submit" text="17,000원 결제하기" />
+      <Btn type="submit" text={`${PrintPrice(amountOfPayment)}원 결제하기`} />
     </form>
   );
 };
