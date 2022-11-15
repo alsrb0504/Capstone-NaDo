@@ -31,6 +31,7 @@ services:
       - --collation-server=utf8mb4_unicode_ci
     volumes:
       - ./config/mysql/mysqld.cnf:/etc/mysql/conf.d/mysqld.cnf
+      - ${PWD}/db:/var/lib/mysql
     platform: linux/amd64
     networks:
       - back_end

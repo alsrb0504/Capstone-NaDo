@@ -20,7 +20,7 @@ export class OrderService {
 
   async orderPay(
     orderInfo: OrderPay,
-    user: User
+    sequence: number
   ) {
     const queryRunner = this.dataSource.createQueryRunner()
     await queryRunner.connect()
@@ -54,7 +54,7 @@ export class OrderService {
             menuPrice: orderPrice.menuPrice,
             amountOfPayment: orderPrice.totalPrice,
             orderStatus: 'ordered',
-            user: () => user?.sequence.toString(),
+            user: () => sequence.toString(),
             store: () => storeId.toString()
           }
         ])
@@ -146,6 +146,7 @@ export class OrderService {
         .addSelect('orderdetails.productQuantity')
         .addSelect('orderdetails.iceOrHot')
         .addSelect('orderdetails.shots')
+        .addSelect('orderdetails.menuPrice')
         .addSelect('menus.sequence')
         .addSelect('menus.menuName')
         .addSelect('menus.menuPrice')
