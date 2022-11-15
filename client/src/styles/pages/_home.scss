@@ -3,4 +3,9 @@
   position: relative;
   min-height: 100vh;
   z-index: 100;
+
+  &-order-btn {
+    width: 100%;
+    margin-bottom: 24px;
+  }
 }

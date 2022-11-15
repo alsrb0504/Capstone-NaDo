@@ -6,10 +6,7 @@ import storeData from './crawling';
 
 const initialState = {
   stores: storeData,
-
-  // 연결
   storeList: [],
-
   selectedStore: {},
   // 디폴트 메뉴 추후 다른 곳으로 옮길 것.
   defaultMenuList: [
@@ -87,6 +84,8 @@ const initialState = {
       orderTime: '13:35',
     },
   ],
+
+  myOrderList: [],
 };
 
 // *
@@ -111,7 +110,7 @@ export const GetStoreList = createAsyncThunk(
 );
 
 // *
-// 가게 상세 정보 받아오는 함수
+// 가게 상세 정보 요청 함수
 // *
 export const GetStoreDetail = createAsyncThunk(
   'order/getStoreDetail',
@@ -133,6 +132,9 @@ export const GetStoreDetail = createAsyncThunk(
   },
 );
 
+// *
+// 주문하기 요청 함수
+// *
 export const RequestPayment = createAsyncThunk(
   'order/RequestPayment',
   async (orderInfo, thunkAPI) => {
@@ -198,6 +200,28 @@ export const RequestPayment = createAsyncThunk(
   },
 );
 
+// *
+// 현재 주문 목록 요청 함수
+// 주문 목록 빈 경우 : []를 받아오는지 확인 필요.
+// *
+export const GetOrderList = createAsyncThunk(
+  'order/getOrderList',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get(`http://localhost:3001/order/user`);
+
+      if (response.status === 200) {
+        return response.data;
+      }
+
+      return thunkAPI.rejectWithValue();
+    } catch (e) {
+      PrintError(e, '프로필 업데이트');
+      return thunkAPI.rejectWithValue();
+    }
+  },
+);
+
 export const orderSlice = createSlice({
   name: 'order',
   initialState,
@@ -215,6 +239,9 @@ export const orderSlice = createSlice({
     });
     builder.addCase(GetStoreDetail.fulfilled, (state, { payload }) => {
       state.selectedStore = payload;
+    });
+    builder.addCase(GetOrderList.fulfilled, (state, { payload }) => {
+      state.myOrderList = payload;
     });
   },
 });
