@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 import Btn from '../../atoms/buttons/btn/btn';
 import FormTitle from '../../atoms/formTitle/form_title';
 import order_address from '../../../data/order_address';
@@ -9,6 +10,8 @@ import LineInputContainer from '../lineInputContainer/line_input_container';
 import PaymentReceipt from '../../atoms/paymentReceipt/payment_receipt';
 
 const PaymentForm = ({ SubmitPayment }) => {
+  const { totalPrice } = useSelector((state) => state.cart);
+
   const {
     register,
     handleSubmit,
@@ -78,9 +81,9 @@ const PaymentForm = ({ SubmitPayment }) => {
 
         <PaymentReceipt
           price_info={{
-            order_price: 16000,
-            delivery_fee: 1000,
-            total_price: 17000,
+            menuPrice: totalPrice,
+            deliveryFee: 1200,
+            amountOfPayment: totalPrice + 1200,
           }}
         />
       </section>

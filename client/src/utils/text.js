@@ -6,6 +6,8 @@ export const MakeOptionText = (icehot, shotCnt) => {
 };
 
 export const PrintPrice = (price) => {
+  if (!!price === false) return 0;
+
   const priceStr = typeof price === 'number' ? price.toString() : price;
   const priceSize = priceStr.length;
 
