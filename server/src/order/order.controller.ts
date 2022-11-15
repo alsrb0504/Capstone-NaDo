@@ -19,7 +19,7 @@ export class OrderController {
     @Body() body: OrderPay,
     @Request() req: ReqWithUser
   ) {
-    const orderPayResult = await this.orderService.orderPay(body, 1)
+    const orderPayResult = await this.orderService.orderPay(body, req?.user?.sequence || 1)
 
     return orderPayResult
   }
