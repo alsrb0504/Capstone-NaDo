@@ -46,6 +46,7 @@ export class StoreQueryService {
         'COUNT(orders.store) AS pickupCnt'
       ])
       .where('orders.orderTimeout > :availableOrderDate', {availableOrderDate: currTime.toISOString().slice(0, 19).replace('T', ' ')})
+      .andWhere('orders.orderStatus = :status', {status: 'ordered'})
       .groupBy('orders.store')
       .getRawMany()
       
