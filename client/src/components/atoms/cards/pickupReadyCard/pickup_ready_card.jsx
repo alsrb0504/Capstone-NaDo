@@ -1,20 +1,21 @@
 import React from 'react';
 import { PrintPrice } from '../../../../utils/text';
+import { ChangeTimeInfo } from '../../../../utils/time';
 
 const PickupReadyCard = ({ info, handleClick }) => {
-  const { pickupAddress, pickupTime, pickupPrice } = info;
+  const { orderSequence, dest, orderDate, price } = info;
 
   const OnClick = () => {
-    handleClick();
+    handleClick(orderSequence);
   };
 
   return (
     <div className="card-container pickup-ready-card" onClick={OnClick}>
       <div className="info">
-        <h3>{pickupAddress}</h3>
-        <p className="date">마감 시간 : ~ {pickupTime}</p>
+        <h3>{dest}</h3>
+        <p className="date">마감 시간 : ~ {ChangeTimeInfo(orderDate)}</p>
         <p>
-          <span>주문 금액 : {PrintPrice(pickupPrice)} 원</span>
+          <span>주문 금액 : {PrintPrice(price)} 원</span>
         </p>
       </div>
 

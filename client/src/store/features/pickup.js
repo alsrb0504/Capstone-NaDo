@@ -4,28 +4,6 @@ import axios from 'axios';
 const initialState = {
   storeList: [],
   selectedStore: {},
-  pickupList: [
-    {
-      pickupId: 321,
-      pickupAddress: '소프트웨어관 313호',
-      pickupPrice: 8900,
-      pickupTime: '13:35',
-    },
-
-    {
-      pickupId: 322,
-      pickupAddress: '소프트웨어관 313호',
-      pickupPrice: 8900,
-      pickupTime: '13:35',
-    },
-
-    {
-      pickupId: 323,
-      pickupAddress: '소프트웨어관 313호',
-      pickupPrice: 8900,
-      pickupTime: '13:35',
-    },
-  ],
   myPickupList: [
     {
       pickupId: 321,
@@ -97,6 +75,8 @@ export const GetPickupStoreDetail = createAsyncThunk(
       const response = await axios.get(
         `http://localhost:3001/store/picker/detail?sequence=${sequence}`,
       );
+
+      console.log(response);
 
       if (response.status === 200) {
         return response.data;
