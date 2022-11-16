@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../../components/atoms/headers/header/header';
@@ -67,7 +68,15 @@ const OrderOption = () => {
 
     dispatch(AddCart({ storeSequence, storeName: name, menuInfo }));
 
-    alert('장바구니에 담겼습니다! 추후 팝업으로 교체');
+    // alert('장바구니에 담겼습니다! 추후 팝업으로 교체');
+    Swal.fire({
+      title: '장바구니에 담겼습니다!',
+      text: '',
+      icon: 'success',
+      // confirmButtonColor: '#43a2ff',
+      showConfirmButton: false,
+      timer: 1200,
+    });
     MoveBack();
   };
 
