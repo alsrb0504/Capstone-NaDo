@@ -12,6 +12,7 @@ import { AuthModule } from './auth/auth.module';
 import { HttpModule } from '@nestjs/axios';
 import { PaymentModule } from './payment/payment.module';
 import { OrderModule } from './order/order.module';
+import { PickupModule } from './pickup/pickup.module';
 import configuration from './config/configuration';
 
 import User from './entity/user/user.entity';
@@ -57,6 +58,7 @@ import Pickedorder from './entity/pickedorder/pickedorder.entity';
     AuthModule,
     PaymentModule,
     OrderModule,
+    PickupModule,
   ],
   controllers: [AppController],
   providers: [AppService],

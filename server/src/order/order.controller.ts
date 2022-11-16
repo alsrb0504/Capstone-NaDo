@@ -1,10 +1,12 @@
 import { Body, Controller, Get, HttpCode, Post, Query, Request, UseGuards } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { isLoggedInGuard } from 'src/auth/guard/cookieAuthentication.guard';
 import { ReqWithUser } from 'src/auth/type/request.type';
 import { OrderDetail, OrderPay } from 'src/type/order/order.type';
 import { orderdetailDescription, orderListDescription, orderPayDescription } from './order.decorator';
 import { OrderService } from './order.service';
 
+@ApiTags('order')
 @Controller('order')
 export class OrderController {
   constructor(
