@@ -3,6 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import Orders from 'src/entity/orders/orders.entity';
 import Pickedorder from 'src/entity/pickedorder/pickedorder.entity';
 import { OrderDetail } from 'src/type/order/order.type';
+import { PickupList_ } from 'src/type/pickup/pickup.type';
+import { PickupList } from 'src/type/store/store.type';
 import { getCurrentTime } from 'src/util/util';
 import { DataSource, Repository } from 'typeorm';
 
@@ -27,7 +29,7 @@ export class PickupService {
         .createQueryBuilder('pickedorder')
         .select('pickedorder.sequence')
         .leftJoinAndSelect('pickedorder.order', 'orders')
-        .where('pickedorder.picker = :pickerSequence', {pickerSequence: userSequence})
+        .where('pickedorder.picker = :pickerSequence', {pickerSequence: parseInt(userSequence)})
         .andWhere('orders.orderStatus = :status', {status: 'ordered'})
         .getMany()
       
@@ -39,8 +41,12 @@ export class PickupService {
       const orderInfo = await this.ordersRepository
         .createQueryBuilder('orders')
         .select('orders.orderTimeout')
-        .where('orders.sequence = :orderSequence', {orderSequence})
+        .addSelect('user.sequence')
+        .where('orders.sequence = :orderSequence', {orderSequence: parseInt(orderSequence)})
+        .leftJoin('orders.user', 'user')
         .getOne()
+      console.log(orderSequence)
+      console.log(orderInfo)
 
       const timeout = new Date(orderInfo.orderTimeout)
       const currTime = getCurrentTime()
@@ -49,6 +55,11 @@ export class PickupService {
       if(timeout.getTime() < currTime.getTime()) {
         throw new ForbiddenException("this can not pickup because pickup timeout before 20 minutes")
       }
+
+      if(orderInfo.user.sequence === parseInt(userSequence)){
+        throw new ForbiddenException("this ordered by yours")
+      }
+
       await this.pickupRepository
         .createQueryBuilder('pickedorder')
         .insert()
@@ -156,6 +167,47 @@ export class PickupService {
 
       return result;
     } catch (err){
+      throw new HttpException(err.message, err?.status || 500)
+    }
+  }
+
+  async pickupList(
+    pickerSequence: number
+  ): Promise<Array<PickupList_>>{
+    try {
+      const pickupLists = await this.pickupRepository
+        .createQueryBuilder('pickedorder')
+        .select('orders.address')
+        .addSelect('orders.addressDetail')
+        .addSelect('orders.orderTimeout')
+        .addSelect('orders.menuPrice')
+        .addSelect('pickedorder.sequence')
+        .leftJoin('pickedorder.order', 'orders')
+        .where('pickedorder.picker = :pickerSequence', {pickerSequence})
+        .andWhere('orders.orderStatus = :status', {status: 'pickuped'})
+        .getMany()
+
+      console.log(pickupLists)
+
+      const result = []
+
+      for(let pickupList of pickupLists) {
+        const {sequence, order} = pickupList 
+        const {address, addressDetail, menuPrice, orderTimeout} = order
+
+        result.push({
+          address: {
+            address,
+            detail: addressDetail
+          },
+          timeout: orderTimeout,
+          totalPrice: menuPrice,
+          pickupSequence: sequence
+        })
+      }
+
+      return result
+    } catch (err) {
       throw new HttpException(err.message, err?.status || 500)
     }
   }
