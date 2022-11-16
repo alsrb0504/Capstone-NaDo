@@ -12,9 +12,9 @@ const PickingCard = ({ info, MoveDesc }) => {
   };
 
   // 채팅하기로 이동
-  const GoChat = () => {
-    alert('채팅하기 미구현(주문 상세 페이지 이동으로 변경?)');
-  };
+  // const GoChat = () => {
+  //   alert('채팅하기 미구현(주문 상세 페이지 이동으로 변경?)');
+  // };
 
   return (
     <div className="card-container ordering-card">
@@ -34,8 +34,10 @@ const PickingCard = ({ info, MoveDesc }) => {
         <i className="fa-solid fa-chevron-right" />
       </div>
 
-      <button type="button" onClick={GoChat}>
-        피커와 채팅하기
+      {/* <button type="button" onClick={GoChat}> */}
+      <button type="button" onClick={GoDesc}>
+        {/* 피커와 채팅하기 */}
+        주문 상세 정보 보기
       </button>
     </div>
   );

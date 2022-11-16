@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Btn from '../../../components/atoms/buttons/btn/btn';
 import OrderCompleteCard from '../../../components/atoms/cards/orderCompleteCard/order_complete_card';
@@ -9,14 +9,10 @@ import FillLineInput from '../../../components/atoms/inputs/fillLineInput/fill_l
 import PaymentReceipt from '../../../components/atoms/paymentReceipt/payment_receipt';
 import StateBox from '../../../components/atoms/stateBox/state_box';
 import StoreMapSection from '../../../components/molecules/storeMapSection/store_map_section';
-import { GetOrderDetail } from '../../../store/features/order';
 import { ChangeTimeInfo } from '../../../utils/time';
 
 const OrderDetail = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const orderId = window.location.search.split('id=')[1];
 
   const MoveBack = () => navigate('/order/waitings');
   const MoveReport = () => navigate('/order/report');
@@ -32,10 +28,6 @@ const OrderDetail = () => {
     orderTimeout,
     orderProducts,
   } = currentOrder;
-
-  useEffect(() => {
-    dispatch(GetOrderDetail(orderId));
-  }, [orderId, dispatch]);
 
   return (
     <div className="col-sm-4 order-detail">

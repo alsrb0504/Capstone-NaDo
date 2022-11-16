@@ -2,10 +2,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// import storeData from './crawling';
-
 const initialState = {
-  // stores: storeData,
   storeList: [],
   selectedStore: {},
   // 디폴트 메뉴 추후 다른 곳으로 옮길 것.

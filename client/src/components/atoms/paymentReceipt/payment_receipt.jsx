@@ -4,8 +4,6 @@ import { PrintPrice } from '../../../utils/text';
 const PaymentReceipt = ({ price_info }) => {
   const { menuPrice, deliveryFee, amountOfPayment } = price_info;
 
-  console.log(menuPrice, deliveryFee, amountOfPayment);
-
   return (
     <div className="payment-receipt">
       <h4 className="receipt-title">최종 결제 금액</h4>
