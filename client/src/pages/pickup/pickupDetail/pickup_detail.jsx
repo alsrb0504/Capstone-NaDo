@@ -1,87 +1,102 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import Btn from "../../../components/atoms/buttons/btn/btn";
-import OrderCompleteCard from "../../../components/atoms/cards/orderCompleteCard/order_complete_card";
-import FormTitle from "../../../components/atoms/formTitle/form_title";
-import Header from "../../../components/atoms/headers/header/header";
-import FillLineInput from "../../../components/atoms/inputs/fillLineInput/fill_line_input";
-import PriceBox from "../../../components/atoms/priceBox/price_box";
-import StateBox from "../../../components/atoms/stateBox/state_box";
-import StoreMapSection from "../../../components/molecules/storeMapSection/store_map_section";
+/* eslint-disable no-unused-vars */
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import Btn from '../../../components/atoms/buttons/btn/btn';
+import OrderCompleteCard from '../../../components/atoms/cards/orderCompleteCard/order_complete_card';
+import FormTitle from '../../../components/atoms/formTitle/form_title';
+import Header from '../../../components/atoms/headers/header/header';
+import FillLineInput from '../../../components/atoms/inputs/fillLineInput/fill_line_input';
+import PriceBox from '../../../components/atoms/priceBox/price_box';
+import StateBox from '../../../components/atoms/stateBox/state_box';
+import StoreMapSection from '../../../components/molecules/storeMapSection/store_map_section';
+import { CatchPickup } from '../../../store/features/pickup';
+import { PrintPrice } from '../../../utils/text';
+import { ChangeTimeInfo } from '../../../utils/time';
 
 const PickupDetail = () => {
-    const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const MoveBack = () => navigate('/order/waitings');
+  const MoveBack = () => navigate('/pickup/store');
 
-    const location = {
-        lat: 37.3227651,
-        long: 127.125166,
-      };
+  const { isCatch, selectedOrder } = useSelector((state) => state.pickup);
+  const {
+    address,
+    addressDetail,
+    message,
+    store,
+    priceInfo,
+    orderTimeout,
+    orderProducts,
+    orderSequence,
+  } = selectedOrder;
 
-    const data = {
-        address: '경기 용인시 수지구 죽전로144번길 15-14',
-        request_time: '14:30 까지',
-        request_content: '조심히 배달해주세요',
-        list: [
-            {
-            name: '아메리카노',
-            options: ['샷 추가(+500원)'],
-            cnt: 1,
-            price: '3500',
-            },
-            {
-            name: '녹차라떼',
-            options: ['샷 추가(+500원)'],
-            cnt: 1,
-            price: '4900',
-            },
-        ],
-        price_info: {
-            order_price: 16000,
-            delivery_fee: 1000,
-            total_price: 17000,
-        },
-    };
+  const { deliveryFee, amountOfPayment } = priceInfo;
 
+  const AccessOrder = () => {
+    if (isCatch) {
+      alert('이미 진행중인 주문이 있습니다.');
+      return;
+    }
 
-    return (
-        <div className="col-sm-4 pickup-detail">
-            <Header title="픽업 주문 상세" handleClick={MoveBack} />
-            <StateBox text="주문을 수락했습니다." color='blue'/>
-            <div className="info">
-                <section className="info-map-section">
-                    <FormTitle title="배달 위치" />
-                    <StoreMapSection locationLatLong={location}/>
-                </section>
+    dispatch(CatchPickup(orderSequence));
+  };
 
-                <section>
-                    {/* <FormTitle title="주소" /> */}
-                    <FillLineInput val={data.address} />
-                </section>
+  const CancelOrder = () => {
+    alert('아직 미구현');
+  };
 
-                <section>
-                    <FormTitle title="요청 사항" />
-                    <FillLineInput val={data.request_time} />
+  const CompleteOrder = () => {
+    alert('미구현, 음.. 여기서 배달 완료가 필요한가?');
+  };
 
-                    <FillLineInput val={data.request_content} />
-                </section>
+  return (
+    <div className="col-sm-4 pickup-detail">
+      <Header title="픽업 주문 상세" handleClick={MoveBack} />
+      {isCatch && <StateBox state="catched" />}
+      <div className="info">
+        <section className="info-map-section">
+          <FormTitle title="배달 위치" />
+          <StoreMapSection locationLatLong={store} />
+        </section>
 
-                <section className="info-list-section">
-                    <FormTitle title="주문 목록" />
-                    {data.list.map((coffee) => (
-                    <OrderCompleteCard info={coffee} />
-                    ))}
-                </section>
+        <section>
+          <FormTitle title="주소" />
+          <FillLineInput val={`${address} ${addressDetail}`} />
+        </section>
 
-                <PriceBox text="주문금액" price={data.price_info.total_price}/>
-                
-                <PriceBox text="배달팁" price={data.price_info.delivery_fee}/>
-                
-            </div>
-            <Btn text="취소하기" color="red"/>
-            <Btn text="배달 완료"/>
-        </div>
-    );
+        <section>
+          <FormTitle title="요청 사항" />
+          <FillLineInput val={`~ ${ChangeTimeInfo(orderTimeout)} 까지`} />
+
+          <FillLineInput val={message} />
+        </section>
+
+        <section className="info-list-section">
+          <FormTitle title="주문 목록" />
+          {orderProducts.map((coffee) => (
+            <OrderCompleteCard
+              key={coffee.orderdetailsSequence}
+              info={coffee}
+            />
+          ))}
+        </section>
+
+        <PriceBox text="주문금액" price={PrintPrice(amountOfPayment)} />
+
+        <PriceBox text="배달팁" color="배달" price={PrintPrice(deliveryFee)} />
+      </div>
+
+      {isCatch && (
+        <React.Fragment>
+          <Btn text="취소하기" color="red" handleClick={CancelOrder} />
+          <Btn text="배달 완료" handleClick={CompleteOrder} />
+        </React.Fragment>
+      )}
+
+      {!isCatch && <Btn text="픽업하기" handleClick={AccessOrder} />}
+    </div>
+  );
 };
 export default PickupDetail;

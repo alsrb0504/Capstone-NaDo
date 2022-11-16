@@ -1,5 +1,5 @@
 import React from 'react';
-import { MakeOptionText } from '../../../../utils/text';
+import { MakeOptionText, PrintPrice } from '../../../../utils/text';
 
 const OrderCompleteCard = ({ info }) => {
   const { menu, menuPrice, productQuantity, iceOrHot, shots } = info;
@@ -9,7 +9,7 @@ const OrderCompleteCard = ({ info }) => {
       <div className="info">
         <h3>{menu.menuName}</h3>
         <p className="options">옵션 : {MakeOptionText(iceOrHot, shots)}</p>
-        <p>{menuPrice} 원</p>
+        <p>{PrintPrice(menuPrice)} 원</p>
       </div>
 
       <div className="order-count">

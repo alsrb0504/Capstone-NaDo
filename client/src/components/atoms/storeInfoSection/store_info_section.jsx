@@ -8,7 +8,6 @@ const StoreInfoSection = ({ shopName, shopOpenTime, shopNumber }) => (
     <div className="shop-info-main">
       <div className="opening-info main-first-child">
         <p className="info-title">운영 시간</p>
-        {/* 운영 시간은 나중에 수정 */}
         <p>{MakeStoreOpenTime(shopOpenTime)}</p>
       </div>
 

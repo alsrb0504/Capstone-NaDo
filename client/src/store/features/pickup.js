@@ -42,6 +42,14 @@ const initialState = {
       pickupTime: '21.09.08 13 : 35',
     },
   ],
+
+  // 픽업 주문 수락 전, 픽업 주문
+  selectedOrder: {},
+
+  // 픽업 주문 수락 후, 현재 진행 중인 주문
+  currentPickup: {},
+
+  isCatch: false,
 };
 
 // *
@@ -76,6 +84,54 @@ export const GetPickupStoreDetail = createAsyncThunk(
         `http://localhost:3001/store/picker/detail?sequence=${sequence}`,
       );
 
+      if (response.status === 200) {
+        return response.data;
+      }
+
+      return thunkAPI.rejectWithValue();
+    } catch (e) {
+      PrintError(e, '픽업 가게 상세 정보');
+      return thunkAPI.rejectWithValue();
+    }
+  },
+);
+
+// *
+// GET : 픽업 상세 정보 요청 함수
+// *
+export const GetPickupDetail = createAsyncThunk(
+  'order/getPickupDetail',
+  async (sequence, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/order/detail?orderSequence=${sequence}`,
+      );
+
+      console.log(response);
+
+      if (response.status === 200) {
+        return response.data;
+      }
+
+      return thunkAPI.rejectWithValue();
+    } catch (e) {
+      PrintError(e, '픽업 가게 상세 정보');
+      return thunkAPI.rejectWithValue();
+    }
+  },
+);
+
+// *
+// POST : 픽업 요청 (주문 수락) 함수
+// *
+export const CatchPickup = createAsyncThunk(
+  'order/catchPickup',
+  async (sequence, thunkAPI) => {
+    try {
+      const response = await axios.post(`http://localhost:3001/pickup`, {
+        orderSequence: sequence,
+      });
+
       console.log(response);
 
       if (response.status === 200) {
@@ -100,6 +156,12 @@ export const pickupSlice = createSlice({
     });
     builder.addCase(GetPickupStoreDetail.fulfilled, (state, { payload }) => {
       state.selectedStore = payload;
+    });
+    builder.addCase(GetPickupDetail.fulfilled, (state, { payload }) => {
+      state.selectedOrder = payload;
+    });
+    builder.addCase(CatchPickup.fulfilled, (state) => {
+      state.isCatch = true;
     });
   },
 });

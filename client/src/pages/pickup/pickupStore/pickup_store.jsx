@@ -7,6 +7,7 @@ import HeaderWithImg from '../../../components/atoms/headers/headerWithImg/heade
 import StoreInfoSection from '../../../components/atoms/storeInfoSection/store_info_section';
 import StoreMapSection from '../../../components/molecules/storeMapSection/store_map_section';
 import StorePickupList from '../../../components/molecules/storePickupList/store_pickup_list';
+import { GetPickupDetail } from '../../../store/features/pickup';
 
 const PickupStore = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,9 @@ const PickupStore = () => {
   const SelectPickup = (orderId) => {
     console.log(orderId);
 
-    // navigate(`/pickupDetail?sequence=${orderId}`);
+    dispatch(GetPickupDetail(orderId));
+
+    navigate(`/pickup/detail?sequence=${orderId}`);
   };
 
   return (

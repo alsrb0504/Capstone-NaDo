@@ -14,6 +14,10 @@ const StateBox = ({ state }) => {
       text: '배달 완료 요청',
       color: 'blue',
     },
+    catched: {
+      text: '주문을 수락했습니다.',
+      color: 'blue',
+    },
   };
 
   return (
