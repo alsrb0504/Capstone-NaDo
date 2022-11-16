@@ -4,3 +4,12 @@ export function addHours(numOfHours, date = new Date()) {
 
   return copyDate;
 }
+
+export function getCurrentTime() {
+  const currentTime = new Date()
+  const curr = currentTime.getTime()
+  const KR_TIME_DIFF = 9 * 60 * 60 * 1000
+  const kr_curr = new Date(curr + (KR_TIME_DIFF))
+
+  return kr_curr
+}
