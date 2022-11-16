@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
+import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Btn from '../../atoms/buttons/btn/btn';
 import FormTitle from '../../atoms/formTitle/form_title';
@@ -12,6 +14,9 @@ import { CheckOrderTime } from '../../../utils/time';
 
 const PaymentForm = ({ SubmitPayment }) => {
   const { totalPrice } = useSelector((state) => state.cart);
+
+  const navigate = useNavigate();
+  const MoveHome = () => navigate('/');
 
   const {
     register,
@@ -26,6 +31,18 @@ const PaymentForm = ({ SubmitPayment }) => {
     }
 
     SubmitPayment(data);
+    
+    // alert 추가
+    Swal.fire({
+      title: '결제 완료!',
+      text: '',
+      icon: 'success',
+      // confirmButtonColor: '#43a2ff',
+      showConfirmButton: false,
+      timer: 1200,
+    });
+    // 홈으로 화면 이동
+    MoveHome();
   };
 
   const deliveryFee = 1200;

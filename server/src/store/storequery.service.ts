@@ -3,6 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import Orders from "src/entity/orders/orders.entity";
 import Store from "src/entity/store/store.entity";
 import { GetAllStoreForPick, StoreDetail, StoreDetailForPick, StoreList } from "src/type/store/store.type";
+import { getCurrentTime } from "src/util/util";
 import { Repository } from "typeorm";
 
 @Injectable()
@@ -34,6 +35,9 @@ export class StoreQueryService {
   async getAllStoreForPick() {
 
     try {
+
+      const currTime = getCurrentTime()
+      currTime.setMinutes(currTime.getMinutes() + 20)
       
       const orderCount = await this.orderRepository
       .createQueryBuilder('orders')
@@ -41,6 +45,7 @@ export class StoreQueryService {
         'orders.store',
         'COUNT(orders.store) AS pickupCnt'
       ])
+      .where('orders.orderTimeout > :availableOrderDate', {availableOrderDate: currTime.toISOString().slice(0, 19).replace('T', ' ')})
       .groupBy('orders.store')
       .getRawMany()
       
@@ -145,6 +150,9 @@ export class StoreQueryService {
         .leftJoin('store.businesstimes', 'storebusinesstime')
         .getOne()
 
+        const currTime = getCurrentTime()
+        currTime.setMinutes(currTime.getMinutes() + 20)
+
       const orderInfo = await this.orderRepository
         .createQueryBuilder('orders')
         .select([
@@ -155,6 +163,7 @@ export class StoreQueryService {
         ])
         .where('orders.store = :sequence', {sequence})
         .andWhere('orders.orderStatus = :status', {status: 'ordered'})
+        .andWhere('orders.orderTimeout > :availableOrderDate', {availableOrderDate: currTime.toISOString().slice(0, 19).replace('T', ' ')})
         .getRawMany()
 
         console.log("storeInfo", storeInfo) 
