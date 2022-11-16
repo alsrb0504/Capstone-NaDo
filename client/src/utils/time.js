@@ -34,3 +34,31 @@ export const MakeStoreOpenTime = (openTime) => {
 
   return `금일 ${startTime || '10:00'} ~ ${endTime || '20:00'}`;
 };
+
+// *
+// 주문하기 시간 확인 함수.
+// *
+export const CheckOrderTime = (orderTime) => {
+  console.log(`orderTime = ${orderTime}`);
+  const curTime = new Date();
+  const yy = curTime.getFullYear();
+  const mm = curTime.getMonth();
+  const dd = curTime.getDate();
+  const curH = curTime.getHours();
+
+  const [reqH, reqM] = orderTime.split(':').map(Number);
+
+  // 서비스 영업 시간이 아님.
+  if (curH < 8 || curH > 22 || reqH < 9 || reqH > 22) return false;
+
+  const reqTimeObj = new Date(yy, mm, dd, reqH, reqM);
+  const curTimeObj = new Date();
+
+  // 시간차(분 단위) 계산.
+  const diff = (reqTimeObj.getTime() - curTimeObj.getTime()) / (1000 * 60);
+
+  // 최소 60분 이상 최대 120분 이하 범위에서만 주문 가능.
+  if (diff < 60 || diff > 120) return false;
+
+  return true;
+};

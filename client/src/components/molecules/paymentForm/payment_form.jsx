@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
@@ -9,6 +8,7 @@ import order_address from '../../../data/order_address';
 import LineInputContainer from '../lineInputContainer/line_input_container';
 import PaymentReceipt from '../../atoms/paymentReceipt/payment_receipt';
 import { PrintPrice } from '../../../utils/text';
+import { CheckOrderTime } from '../../../utils/time';
 
 const PaymentForm = ({ SubmitPayment }) => {
   const { totalPrice } = useSelector((state) => state.cart);
@@ -20,6 +20,11 @@ const PaymentForm = ({ SubmitPayment }) => {
   } = useForm();
 
   const OnSubmit = (data) => {
+    if (!CheckOrderTime(data.order_time)) {
+      alert('주문 시간은 최소 1시간 ~ 2시간 범위에서만 가능합니다.');
+      return;
+    }
+
     SubmitPayment(data);
   };
 
