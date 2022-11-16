@@ -2,24 +2,29 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 import Btn from '../../atoms/buttons/btn/btn';
 import FormTitle from '../../atoms/formTitle/form_title';
 import order_address from '../../../data/order_address';
 import LineInputContainer from '../lineInputContainer/line_input_container';
 import PaymentReceipt from '../../atoms/paymentReceipt/payment_receipt';
+import { PrintPrice } from '../../../utils/text';
 
 const PaymentForm = ({ SubmitPayment }) => {
+  const { totalPrice } = useSelector((state) => state.cart);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-    // reset,
   } = useForm();
 
   const OnSubmit = (data) => {
-    // console.log(data);
     SubmitPayment(data);
   };
+
+  const deliveryFee = 1200;
+  const amountOfPayment = totalPrice + deliveryFee;
 
   return (
     <form className="payment-form" onSubmit={handleSubmit(OnSubmit)}>
@@ -78,14 +83,14 @@ const PaymentForm = ({ SubmitPayment }) => {
 
         <PaymentReceipt
           price_info={{
-            order_price: 16000,
-            delivery_fee: 1000,
-            total_price: 17000,
+            menuPrice: totalPrice,
+            deliveryFee,
+            amountOfPayment,
           }}
         />
       </section>
 
-      <Btn type="submit" text="17,000원 결제하기" />
+      <Btn type="submit" text={`${PrintPrice(amountOfPayment)}원 결제하기`} />
     </form>
   );
 };

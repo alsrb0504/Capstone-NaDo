@@ -1,4 +1,5 @@
 import React from 'react';
+import { PrintPrice } from '../../../../utils/text';
 
 const MenuCard = ({ menuInfo, handleClick }) => {
   const { menuName, menuPrice, menuImg } = menuInfo;
@@ -11,7 +12,7 @@ const MenuCard = ({ menuInfo, handleClick }) => {
     <div className="card-container menu-card" onClick={OnClick}>
       <div className="menu-card-info">
         <h3>{menuName}</h3>
-        <p>{menuPrice} 원</p>
+        <p>{PrintPrice(menuPrice)} 원</p>
       </div>
       <div className="menu-card-img-container">
         <img

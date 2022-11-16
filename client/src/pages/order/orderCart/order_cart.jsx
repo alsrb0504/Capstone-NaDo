@@ -6,6 +6,7 @@ import Btn from '../../../components/atoms/buttons/btn/btn';
 import OrderingCard from '../../../components/atoms/cards/orderingCard/ordering_card';
 import Header from '../../../components/atoms/headers/header/header';
 import { UpdateCart } from '../../../store/features/cart';
+import { PrintPrice } from '../../../utils/text';
 
 const OrderCart = () => {
   const navigate = useNavigate();
@@ -34,6 +35,13 @@ const OrderCart = () => {
     dispatch(UpdateCart({ updatedCartList }));
   };
 
+  const DeleteMenu = (cartSequence) => {
+    const updatedCartList = cartList.filter(
+      (el) => el.menuSequence !== cartSequence,
+    );
+    dispatch(UpdateCart({ updatedCartList }));
+  };
+
   return (
     <div className="col-sm-4 order-cart">
       <Header title="장바구니" handleClick={MoveBack} />
@@ -55,10 +63,14 @@ const OrderCart = () => {
               key={item.menuSequence}
               info={item}
               UpdateMenu={UpdateMenu}
+              DeleteMenu={DeleteMenu}
             />
           ))}
 
-          <Btn text={`${totalPrice}원 결제하기`} handleClick={MovePay} />
+          <Btn
+            text={`${PrintPrice(totalPrice)}원 결제하기`}
+            handleClick={MovePay}
+          />
         </div>
       )}
     </div>

@@ -30,6 +30,11 @@ export const cartSlice = createSlice({
 
       state.cartList = [...updatedCartList];
       state.totalPrice = sumPrice;
+
+      if (updatedCartList.length === 0) {
+        state.cartStoreName = '';
+        state.cartStoreSequence = 0;
+      }
     },
   },
 });
