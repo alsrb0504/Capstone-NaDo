@@ -1,14 +1,10 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
-import { PrintPrice } from '../../../../utils/text';
+import React, { useState } from 'react';
+import { MakeOptionText, PrintPrice } from '../../../../utils/text';
 
-const OrderingCard = ({ info, UpdateMenu }) => {
+const OrderingCard = ({ info, UpdateMenu, DeleteMenu }) => {
   const { menuSequence, menuName, menuOptions, menuPrice, cnt } = info;
   const { icehot, shots } = menuOptions;
-
-  const optionText = `${icehot.toUpperCase()} ${
-    shots > 0 ? `, 샷 추가(+${500 * shots}원)` : ''
-  }`;
 
   // 추후 hook 으로 교체.
   const [curCnt, setCurCnt] = useState(cnt);
@@ -27,11 +23,20 @@ const OrderingCard = ({ info, UpdateMenu }) => {
     }
   };
 
+  const DeleteCard = () => {
+    DeleteMenu(menuSequence);
+  };
+
   return (
-    <div className="card-container order-card ordering">
+    <div className="card-container order-card ordering cart-card">
+      <div className="cart-trash-can-icon" onClick={DeleteCard}>
+        <img src="/icon/trash_can_icon.svg" alt="지우기 아이콘" />
+      </div>
+
       <div className="info">
-        <h3>{menuName}</h3>
-        <p className="options">옵션 : {optionText}</p>
+        <h3 className="menu-name">{menuName}</h3>
+        <p className="options">옵션 : {MakeOptionText(icehot, shots)}</p>
+
         <p>{PrintPrice(curPrice)} 원</p>
       </div>
 

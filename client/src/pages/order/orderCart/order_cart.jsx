@@ -35,6 +35,13 @@ const OrderCart = () => {
     dispatch(UpdateCart({ updatedCartList }));
   };
 
+  const DeleteMenu = (cartSequence) => {
+    const updatedCartList = cartList.filter(
+      (el) => el.menuSequence !== cartSequence,
+    );
+    dispatch(UpdateCart({ updatedCartList }));
+  };
+
   return (
     <div className="col-sm-4 order-cart">
       <Header title="장바구니" handleClick={MoveBack} />
@@ -56,6 +63,7 @@ const OrderCart = () => {
               key={item.menuSequence}
               info={item}
               UpdateMenu={UpdateMenu}
+              DeleteMenu={DeleteMenu}
             />
           ))}
 
