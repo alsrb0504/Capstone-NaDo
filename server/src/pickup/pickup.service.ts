@@ -196,7 +196,7 @@ export class PickupService {
         const {address, addressDetail, menuPrice, orderTimeout} = order
 
         result.push({
-          address: {
+          location: {
             address,
             detail: addressDetail
           },
