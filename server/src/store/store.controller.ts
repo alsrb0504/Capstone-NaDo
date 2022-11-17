@@ -5,7 +5,6 @@ import { StoreQueryService } from './storequery.service';
 import { GetAllStoreDescription, GetAllStoreForPickDescription, GetStoreByIdDescription, GetStoreByIdForPickDescription } from './store.decorator';
 import { GetAllStore, GetAllStoreForPick, StoreDetail, StoreDetailForPick, StoreList } from 'src/type/store/store.type';
 import { ApiTags } from '@nestjs/swagger';
-import Sequence from 'mysql2/typings/mysql/lib/protocol/sequences/Sequence';
 
 @ApiTags("store")
 @Controller('store')
