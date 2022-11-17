@@ -29,5 +29,5 @@ export class PickupList_ {
   @ApiProperty({
     type: OrderAddress
   })
-  address: OrderAddress
+  location: OrderAddress
 }
