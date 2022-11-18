@@ -170,17 +170,19 @@ export const GetMyPickList = createAsyncThunk(
     try {
       const response = await axios.get(`http://localhost:3001/pickup/list`);
 
-      const { timeout, totalPrice, pickupSequence, location } =
-        response.data[0];
-
-      const pickingCardFormat = {
-        timeout,
-        price: totalPrice,
-        sequence: pickupSequence,
-        location,
-      };
-
       if (response.status === 200) {
+        if (response.data.length === 0) return [];
+
+        const { timeout, totalPrice, pickupSequence, location } =
+          response.data[0];
+
+        const pickingCardFormat = {
+          timeout,
+          price: totalPrice,
+          sequence: pickupSequence,
+          location,
+        };
+
         return [pickingCardFormat];
       }
 

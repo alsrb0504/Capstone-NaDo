@@ -18,7 +18,7 @@ const PickupDetail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const MoveBack = () => navigate('/pickup/store');
+  const MoveBack = () => navigate('/pickup');
 
   const { isCatch, selectedOrder } = useSelector((state) => state.pickup);
   const {
