@@ -178,6 +178,7 @@ export class PickupService {
       const pickupLists = await this.pickupRepository
         .createQueryBuilder('pickedorder')
         .select('orders.address')
+        .select('orders.sequence')
         .addSelect('orders.addressDetail')
         .addSelect('orders.orderTimeout')
         .addSelect('orders.menuPrice')
@@ -202,7 +203,8 @@ export class PickupService {
           },
           timeout: orderTimeout,
           totalPrice: menuPrice,
-          pickupSequence: sequence
+          pickupSequence: sequence,
+          orderSequence: order.sequence
         })
       }
 

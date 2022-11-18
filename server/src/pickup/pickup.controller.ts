@@ -45,7 +45,7 @@ export class PickupController {
   async pickupList(
     @Request() req: ReqWithUser
   ): Promise<Array<PickupList_>> {
-    const pickupListResult = await this.pickupService.pickupList(req?.user?.sequence || 1)
+    const pickupListResult = await this.pickupService.pickupList(req?.user?.sequence || 3)
 
     return pickupListResult
   }

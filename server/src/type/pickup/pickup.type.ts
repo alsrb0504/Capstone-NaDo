@@ -32,6 +32,11 @@ export class PickupList_ {
     type: Number
   })
   pickupSequence: number
+  
+  @ApiProperty({
+    type: Number
+  })
+  orderSequence: number
 
   @ApiProperty({
     type: OrderAddress
