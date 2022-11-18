@@ -1,67 +1,16 @@
 /* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-
-// import storeData from './crawling';
+import defaultMenus from '../constants/default_menu';
 
 const initialState = {
-  // stores: storeData,
   storeList: [],
   selectedStore: {},
   // 디폴트 메뉴 추후 다른 곳으로 옮길 것.
-  defaultMenuList: [
-    {
-      menuName: '아메리카노',
-      menuPrice: 3800,
-      menuImg: '/images/coffeeImg/americano.png',
-      sequence: 101,
-    },
-    {
-      menuName: '카페라떼',
-      menuPrice: 4300,
-      menuImg: '/images/coffeeImg/caffelatte.png',
-      sequence: 102,
-    },
-    {
-      menuName: '카페모카',
-      menuPrice: 4300,
-      menuImg: '/images/coffeeImg/caffemocha.png',
-      sequence: 103,
-    },
-    {
-      menuName: '카푸치노',
-      menuPrice: 4500,
-      menuImg: '/images/coffeeImg/cappuchino.png',
-      sequence: 104,
-    },
-    {
-      menuName: '카라멜 마끼아또',
-      menuPrice: 4500,
-      menuImg: '/images/coffeeImg/caramelmacchiato.png',
-      sequence: 105,
-    },
-    {
-      menuName: '콜드브류',
-      menuPrice: 4300,
-      menuImg: '/images/coffeeImg/coldbrew.png',
-      sequence: 106,
-    },
-    {
-      menuName: '복숭아 아이스티',
-      menuPrice: 3800,
-      menuImg: '/images/coffeeImg/peachicedtae.png',
-      sequence: 107,
-    },
-    {
-      menuName: '딸기라떼',
-      menuPrice: 4700,
-      menuImg: '/images/coffeeImg/strawberrylatte.png',
-      sequence: 108,
-    },
-  ],
-
+  defaultMenuList: defaultMenus,
   selectedMenu: {},
-
+  myOrderList: [],
+  currentOrder: {},
   order_history: [
     {
       order_id: 321,
@@ -84,10 +33,6 @@ const initialState = {
       orderTime: '13:35',
     },
   ],
-
-  myOrderList: [],
-
-  currentOrder: {},
 };
 
 // *
@@ -212,8 +157,23 @@ export const GetOrderList = createAsyncThunk(
     try {
       const response = await axios.get(`http://localhost:3001/order/user`);
 
+      const orderList = [];
+
+      response.data.forEach((el) => {
+        const { orderAddress, orderTimeout, totalPrice, orderSequence } = el;
+
+        const pickingCardFormat = {
+          timeout: orderTimeout,
+          price: totalPrice,
+          sequence: orderSequence,
+          location: orderAddress,
+        };
+
+        orderList.push(pickingCardFormat);
+      });
+
       if (response.status === 200) {
-        return response.data;
+        return orderList;
       }
 
       return thunkAPI.rejectWithValue();
@@ -247,6 +207,34 @@ export const GetOrderDetail = createAsyncThunk(
   },
 );
 
+// *
+// POST : 주문 완료 요청 함수
+// *
+export const CompleteOrder = createAsyncThunk(
+  'pickup/CompleteOrder',
+  async (orderId, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:3001/order/complete`,
+        {
+          orderSequence: orderId,
+        },
+      );
+
+      console.log(response);
+
+      if (response.status === 200) {
+        return response.data;
+      }
+
+      return thunkAPI.rejectWithValue();
+    } catch (e) {
+      PrintError(e, '픽업 취소');
+      return thunkAPI.rejectWithValue();
+    }
+  },
+);
+
 export const orderSlice = createSlice({
   name: 'order',
   initialState,
@@ -270,6 +258,10 @@ export const orderSlice = createSlice({
     });
     builder.addCase(GetOrderDetail.fulfilled, (state, { payload }) => {
       state.currentOrder = payload;
+    });
+    builder.addCase(CompleteOrder.fulfilled, (state) => {
+      // state.currentOrder = payload;
+      // 이따가 주문 현황 변경.
     });
   },
 });

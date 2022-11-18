@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 /* eslint-disable react/jsx-boolean-value */
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -17,12 +15,11 @@ const OrderStore = () => {
     (state) => state.order,
   );
 
-  // 가게 위치 정보 빠져있음.
   const {
     // sequence,
     name,
     storeImage,
-    // locationLatLong,
+    locationLating,
     telephone,
     businesstimes,
     menus,
@@ -50,7 +47,7 @@ const OrderStore = () => {
         shopNumber={telephone}
       />
 
-      {/* <StoreMapSection locationLatLong={locationLatLong} isTitle={true} /> */}
+      <StoreMapSection locationLatLong={locationLating} isTitle={true} />
 
       <StoreMenuSection menuList={CheckMenuList()} />
 

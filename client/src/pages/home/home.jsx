@@ -9,6 +9,7 @@ import HomeMenus from '../../components/molecules/homeMenus/home_menus';
 import Footer from '../../components/atoms/footer/footer';
 import { ClearStore } from '../../utils/store';
 import { GetOrderList } from '../../store/features/order';
+import { GetMyPickList } from '../../store/features/pickup';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -16,13 +17,10 @@ const Home = () => {
 
   const { isLogin, userNickname } = useSelector((state) => state.user);
   const { myOrderList } = useSelector((state) => state.order);
+  const { isCatch } = useSelector((state) => state.pickup);
 
   const MoveOrderWaiting = () => navigate('/order/waitings');
-
-  // 현재 개발중인 페이지 이동
-  const MoveLogin = () => navigate('/login');
-  const MovePay = () => navigate('/order/payment');
-  const MoveCheck = () => navigate('/order/confirm');
+  const MovePickupList = () => navigate('/pickup/mypickup');
 
   const Logout = () => {
     dispatch(LocalLogout());
@@ -36,9 +34,10 @@ const Home = () => {
 
   // 페이지 다 구현 후, 추가
   useEffect(() => {
-    //   if (!isLogin) navigate('/login');
+    if (!isLogin) navigate('/login');
     dispatch(GetOrderList());
-  }, [dispatch]);
+    dispatch(GetMyPickList());
+  }, [isLogin, dispatch, navigate]);
 
   return (
     <div className="col-sm-4 home">
@@ -56,6 +55,16 @@ const Home = () => {
           />
         </div>
       )}
+      {isCatch && (
+        <div className="home-order-btn">
+          <Btn
+            tupe="buton"
+            color="gradation"
+            text="내가 픽업한 주문"
+            handleClick={MovePickupList}
+          />
+        </div>
+      )}
 
       <HomeMenus />
 
@@ -66,17 +75,6 @@ const Home = () => {
         </React.Fragment>
       )}
       {!isLogin && <h3>로그인을 해주세요</h3>}
-
-      <Btn type="button" color="red" text="로그인" handleClick={MoveLogin} />
-
-      <Btn type="button" color="red" text="결제 페이지" handleClick={MovePay} />
-
-      <Btn
-        type="button"
-        color="blue"
-        text="결제 확인 페이지"
-        handleClick={MoveCheck}
-      />
 
       <Footer />
     </div>

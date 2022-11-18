@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Btn from '../../../components/atoms/buttons/btn/btn';
@@ -9,14 +9,12 @@ import FillLineInput from '../../../components/atoms/inputs/fillLineInput/fill_l
 import PaymentReceipt from '../../../components/atoms/paymentReceipt/payment_receipt';
 import StateBox from '../../../components/atoms/stateBox/state_box';
 import StoreMapSection from '../../../components/molecules/storeMapSection/store_map_section';
-import { GetOrderDetail } from '../../../store/features/order';
+import { CompleteOrder } from '../../../store/features/order';
 import { ChangeTimeInfo } from '../../../utils/time';
 
 const OrderDetail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const orderId = window.location.search.split('id=')[1];
 
   const MoveBack = () => navigate('/order/waitings');
   const MoveReport = () => navigate('/order/report');
@@ -31,11 +29,13 @@ const OrderDetail = () => {
     priceInfo,
     orderTimeout,
     orderProducts,
+    orderSequence,
   } = currentOrder;
 
-  useEffect(() => {
-    dispatch(GetOrderDetail(orderId));
-  }, [orderId, dispatch]);
+  const TestComplete = () => {
+    dispatch(CompleteOrder(orderSequence));
+    alert('완료');
+  };
 
   return (
     <div className="col-sm-4 order-detail">
@@ -73,7 +73,7 @@ const OrderDetail = () => {
           <PaymentReceipt price_info={priceInfo} />
         </section>
       </div>
-      <Btn text="배달 완료 확인" color="blue" />
+      <Btn text="배달 완료 확인" color="blue" handleClick={TestComplete} />
       <Btn text="피커와 채팅하기" />
       <Btn text="신고하기" color="red" handleClick={MoveReport} />
     </div>

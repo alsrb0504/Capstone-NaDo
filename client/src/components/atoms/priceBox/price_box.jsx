@@ -1,9 +1,9 @@
 import React from 'react';
 
-const PriceBox = ({ text, price }) => (
-  <div className={`price-box price-box-${text}`}>
-    <q>{text}</q>
-    <q>{price}원</q>
+const PriceBox = ({ text, price, color }) => (
+  <div className={`price-box price-box-${color}`}>
+    <p>{text}</p>
+    <p>{price}원</p>
   </div>
 );
 

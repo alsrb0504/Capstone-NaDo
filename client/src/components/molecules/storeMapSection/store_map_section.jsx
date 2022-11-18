@@ -8,8 +8,8 @@ const StoreMapSection = ({ locationLatLong, isTitle }) => {
     if (!mapElement.current || !naver) return;
 
     const location = new naver.maps.LatLng(
-      locationLatLong.lat,
-      locationLatLong.long,
+      locationLatLong.lat || '37.3229512',
+      locationLatLong.long || '127.1279079',
     );
     const mapOptions = {
       center: location,
