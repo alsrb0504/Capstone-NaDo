@@ -26,6 +26,7 @@ import PickupMyPickup from '../pages/pickup/pickupMyPickup/pickup_my_pickup';
 import OrderHistory from '../pages/settings/orderHistory/order_history';
 import IncomeCalculate from '../pages/settings/incomeCalculate/income_calculate';
 import PickupDetail from '../pages/pickup/pickupDetail/pickup_detail';
+import PickupProcessing from '../pages/pickup/pickupProcessing/pickup_processing';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -70,6 +71,7 @@ const App = () => {
               <Route path="store" element={<PickupStore />} />
               <Route path="mypickup" element={<PickupMyPickup />} />
               <Route path="detail" element={<PickupDetail />} />
+              <Route path="processing" element={<PickupProcessing />} />
             </Route>
           </Routes>
         </div>

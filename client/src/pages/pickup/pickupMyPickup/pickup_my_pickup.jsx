@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../../components/atoms/headers/header/header';
 import PickingOrderList from '../../../components/molecules/pickingOrderList/picking_order_list';
-import { GetPickupDetail } from '../../../store/features/pickup';
+import { GetCurrentPickupDetail } from '../../../store/features/pickup';
 
 const PickupMyPickup = () => {
   const dispatch = useDispatch();
@@ -12,9 +12,10 @@ const PickupMyPickup = () => {
   const { myPickupList } = useSelector((state) => state.pickup);
 
   const MoveBack = () => navigate('/');
+
   const MoveDesc = (orderId) => {
-    dispatch(GetPickupDetail(orderId));
-    navigate(`/pickup/detail?sequence=${orderId}`);
+    dispatch(GetCurrentPickupDetail(orderId));
+    navigate(`/pickup/processing?sequence=${orderId}`);
   };
 
   return (

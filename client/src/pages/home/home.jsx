@@ -17,7 +17,7 @@ const Home = () => {
 
   const { isLogin, userNickname } = useSelector((state) => state.user);
   const { myOrderList } = useSelector((state) => state.order);
-  const { myPickupList } = useSelector((state) => state.pickup);
+  const { isCatch } = useSelector((state) => state.pickup);
 
   const MoveOrderWaiting = () => navigate('/order/waitings');
   const MovePickupList = () => navigate('/pickup/mypickup');
@@ -34,10 +34,10 @@ const Home = () => {
 
   // 페이지 다 구현 후, 추가
   useEffect(() => {
-    //   if (!isLogin) navigate('/login');
+    if (!isLogin) navigate('/login');
     dispatch(GetOrderList());
     dispatch(GetMyPickList());
-  }, [dispatch]);
+  }, [isLogin, dispatch, navigate]);
 
   return (
     <div className="col-sm-4 home">
@@ -55,7 +55,7 @@ const Home = () => {
           />
         </div>
       )}
-      {myPickupList.length > 0 && (
+      {isCatch && (
         <div className="home-order-btn">
           <Btn
             tupe="buton"

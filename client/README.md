@@ -31,3 +31,5 @@
 16. pickup_detail.jsx 의 AccesssOrder에서 주문 수락 실패 시 alert 팝업으로 수정
 
 17. 픽업 완료 후에 뜨는 페이지에서 주문 취소, 주문 완료 시 한 번 더 확인하는 confirm 창 만들기 (팝업)
+
+18. pickup_detail.jsx에서 AccessOrder 함수 안에 alert() 경고문 팝업으로 부탁

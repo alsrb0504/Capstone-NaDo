@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -36,13 +37,14 @@ const initialState = {
   currentPickup: {},
 
   isCatch: false,
+  isCancel: false,
 };
 
 // *
 // GET : 픽업 가게 목록 받아오는 함수
 // *
 export const GetPickupStoreList = createAsyncThunk(
-  'order/getPickupStoreList',
+  'pickup/getPickupStoreList',
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('http://localhost:3001/store/picker');
@@ -63,7 +65,7 @@ export const GetPickupStoreList = createAsyncThunk(
 // GET : 가게 상세 정보 요청 함수
 // *
 export const GetPickupStoreDetail = createAsyncThunk(
-  'order/getPickupStoreDetail',
+  'pickup/getPickupStoreDetail',
   async (sequence, thunkAPI) => {
     try {
       const response = await axios.get(
@@ -86,7 +88,7 @@ export const GetPickupStoreDetail = createAsyncThunk(
 // GET : 픽업 상세 정보 요청 함수
 // *
 export const GetPickupDetail = createAsyncThunk(
-  'order/getPickupDetail',
+  'pickup/getPickupDetail',
   async (sequence, thunkAPI) => {
     try {
       const response = await axios.get(
@@ -106,10 +108,35 @@ export const GetPickupDetail = createAsyncThunk(
 );
 
 // *
+// GET : 현재 진행중인 픽업 상세 정보 요청 함수
+// *
+export const GetCurrentPickupDetail = createAsyncThunk(
+  'pickup/getCurrentPickupDetail',
+  async (pickupId, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/pickup/detail?pickupSequence=${pickupId}`,
+      );
+
+      console.log(response);
+
+      if (response.status === 200) {
+        return response.data;
+      }
+
+      return thunkAPI.rejectWithValue();
+    } catch (e) {
+      PrintError(e, '픽업 가게 상세 정보');
+      return thunkAPI.rejectWithValue();
+    }
+  },
+);
+
+// *
 // POST : 픽업 요청 (주문 수락) 함수
 // *
 export const CatchPickup = createAsyncThunk(
-  'order/catchPickup',
+  'pickup/catchPickup',
   async (sequence, thunkAPI) => {
     try {
       const response = await axios.post(`http://localhost:3001/pickup`, {
@@ -134,11 +161,11 @@ export const CatchPickup = createAsyncThunk(
 // POST : 픽업 취소 요청 함수
 // *
 export const CancelPickup = createAsyncThunk(
-  'order/cancelPickup',
-  async (sequence, thunkAPI) => {
+  'pickup/cancelPickup',
+  async (pickupId, thunkAPI) => {
     try {
       const response = await axios.post(`http://localhost:3001/pickup/cancel`, {
-        orderSequence: sequence,
+        pickupSequence: pickupId,
       });
 
       console.log(response);
@@ -149,12 +176,34 @@ export const CancelPickup = createAsyncThunk(
 
       return thunkAPI.rejectWithValue();
     } catch (e) {
-      if (e.status === 403) {
-        alert('5분이 경과해서 취소할 수 없습니다.');
-        console.log(e);
-        return thunkAPI.rejectWithValue(e);
+      PrintError(e, '픽업 취소');
+      return thunkAPI.rejectWithValue();
+    }
+  },
+);
+
+// *
+// POST : 픽업 완료 요청 함수
+// *
+export const CompletePickup = createAsyncThunk(
+  'pickup/CompletePickup',
+  async (pickupId, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:3001/pickup/complete`,
+        {
+          pickupSequence: pickupId,
+        },
+      );
+
+      console.log(response);
+
+      if (response.status === 200) {
+        return response.data;
       }
 
+      return thunkAPI.rejectWithValue();
+    } catch (e) {
       PrintError(e, '픽업 취소');
       return thunkAPI.rejectWithValue();
     }
@@ -180,7 +229,8 @@ export const GetMyPickList = createAsyncThunk(
           timeout,
           price: totalPrice,
           sequence: pickupSequence,
-          location,
+
+          location, // 이따 수정
         };
 
         return [pickingCardFormat];
@@ -197,7 +247,11 @@ export const GetMyPickList = createAsyncThunk(
 export const pickupSlice = createSlice({
   name: 'pickup',
   initialState,
-  reducers: {},
+  reducers: {
+    InitCancel: (state) => {
+      state.isCancel = false;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(GetPickupStoreList.fulfilled, (state, { payload }) => {
       state.storeList = payload;
@@ -216,9 +270,18 @@ export const pickupSlice = createSlice({
     builder.addCase(GetMyPickList.fulfilled, (state, { payload }) => {
       state.myPickupList = payload;
     });
+    // current Pickup Detail
+    builder.addCase(GetCurrentPickupDetail.fulfilled, (state, { payload }) => {
+      state.currentPickup = payload;
+    });
     builder.addCase(CancelPickup.fulfilled, (state) => {
       state.isCatch = false;
+      state.isCancel = true;
       state.currentPickup = [];
+    });
+    builder.addCase(CompletePickup.fulfilled, (state, payload) => {
+      // 추후 따로 분리
+      state.currentPickup.orderStatus = 'delivered';
     });
   },
 });
@@ -228,4 +291,5 @@ function PrintError(e, src) {
   console.error(e);
 }
 
+export const { InitCancel } = pickupSlice.actions;
 export default pickupSlice.reducer;

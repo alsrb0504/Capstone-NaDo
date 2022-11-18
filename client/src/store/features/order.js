@@ -207,6 +207,34 @@ export const GetOrderDetail = createAsyncThunk(
   },
 );
 
+// *
+// POST : 주문 완료 요청 함수
+// *
+export const CompleteOrder = createAsyncThunk(
+  'pickup/CompleteOrder',
+  async (orderId, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:3001/order/complete`,
+        {
+          orderSequence: orderId,
+        },
+      );
+
+      console.log(response);
+
+      if (response.status === 200) {
+        return response.data;
+      }
+
+      return thunkAPI.rejectWithValue();
+    } catch (e) {
+      PrintError(e, '픽업 취소');
+      return thunkAPI.rejectWithValue();
+    }
+  },
+);
+
 export const orderSlice = createSlice({
   name: 'order',
   initialState,
@@ -230,6 +258,10 @@ export const orderSlice = createSlice({
     });
     builder.addCase(GetOrderDetail.fulfilled, (state, { payload }) => {
       state.currentOrder = payload;
+    });
+    builder.addCase(CompleteOrder.fulfilled, (state) => {
+      // state.currentOrder = payload;
+      // 이따가 주문 현황 변경.
     });
   },
 });
