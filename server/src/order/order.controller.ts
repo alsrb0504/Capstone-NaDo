@@ -3,7 +3,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { isLoggedInGuard } from 'src/auth/guard/cookieAuthentication.guard';
 import { ReqWithUser } from 'src/auth/type/request.type';
 import { OrderDetail, OrderPay, OrderSequence } from 'src/type/order/order.type';
-import { orderdetailDescription, orderListDescription, orderPayDescription } from './order.decorator';
+import { OrderCompleteDescription, orderdetailDescription, orderListDescription, orderPayDescription } from './order.decorator';
 import { OrderService } from './order.service';
 
 @ApiTags('order')
@@ -49,6 +49,7 @@ export class OrderController {
   }
 
   @Post('complete')
+  @OrderCompleteDescription()
   @HttpCode(200) 
   async completeOrder(
     @Body() body: OrderSequence
