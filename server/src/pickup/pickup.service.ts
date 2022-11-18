@@ -66,7 +66,8 @@ export class PickupService {
         .into(Pickedorder)
         .values([{
           picker: () => userSequence,
-          order: () => orderSequence
+          order: () => orderSequence,
+          pickupedAt: getCurrentTime()
         }])
         .execute()
 
@@ -146,6 +147,7 @@ export class PickupService {
 
       const result = {
         orderSequence: sequence,
+        pickupSequence,
         ...orderList,
         store: {
           ...store,

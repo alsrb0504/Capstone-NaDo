@@ -16,9 +16,9 @@ export default class Pickedorder{
   @JoinColumn()
   order: Orders
 
-  @CreateDateColumn({
+  @Column({
     type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP(6)',
+    nullable: true
   })
   pickupedAt: Date
 
