@@ -180,7 +180,7 @@ export class PickupService {
       const pickupLists = await this.pickupRepository
         .createQueryBuilder('pickedorder')
         .select('orders.address')
-        .select('orders.sequence')
+        .addSelect('orders.sequence')
         .addSelect('orders.addressDetail')
         .addSelect('orders.orderTimeout')
         .addSelect('orders.menuPrice')
