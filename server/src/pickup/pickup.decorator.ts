@@ -44,12 +44,24 @@ export function PickupListDescription() {
 export function DeletePickupDescription() {
   return applyDecorators(
     ApiOkResponse({description: 'successfully delete pickup information', type: String}), 
-    ApiForbiddenResponse({description: 'you can\'t cancel pickup because it\'s been 5 minutes since pick up', type: exceptionResponseType}),
+    ApiForbiddenResponse({description: 'not exist pickup information or you can\'t cancel pickup because it\'s been 5 minutes since pick up', type: exceptionResponseType}),
     ApiInternalServerErrorResponse({description: 'query error or server down', type: exceptionResponseType}),
     ApiBody({type: PickupSequence}),
     ApiOperation({
       summary: '픽업 삭제',
       description: '픽업을 삭제하는 api, 로그인 된 사용자만 이용가능하다.'
+    }) 
+  )
+}
+export function CompletePickupDescription() {
+  return applyDecorators(
+    ApiOkResponse({description: 'successfully delivered order product', type: String}), 
+    ApiForbiddenResponse({description: 'not exist pickup information', type: exceptionResponseType}),
+    ApiInternalServerErrorResponse({description: 'query error or server down', type: exceptionResponseType}),
+    ApiBody({type: PickupSequence}),
+    ApiOperation({
+      summary: '픽업 완료',
+      description: '픽업을 완료시키는 api, 로그인 된 사용자만 이용가능하다.'
     }) 
   )
 }

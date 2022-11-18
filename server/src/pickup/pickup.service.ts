@@ -6,7 +6,7 @@ import { OrderDetail } from 'src/type/order/order.type';
 import { PickupList_ } from 'src/type/pickup/pickup.type';
 import { PickupList } from 'src/type/store/store.type';
 import { getCurrentTime } from 'src/util/util';
-import { DataSource, Repository } from 'typeorm';
+import { DataSource, QueryResult, Repository } from 'typeorm';
 
 @Injectable()
 export class PickupService {
@@ -227,8 +227,11 @@ export class PickupService {
         .leftJoin('pickedorder.order', 'orders')
         .where('pickedorder.sequence = :pickupSequence',  {pickupSequence})
         .getOne()
+      
+      if(!pickupInfo) {
+          throw new ForbiddenException("pickup information is not exist")
+      }
 
-      console.log(pickupInfo)
         const timeout = new Date(pickupInfo.pickupedAt)
         const currTime = getCurrentTime()
         timeout.setMinutes(timeout.getMinutes() + 5)
@@ -258,7 +261,54 @@ export class PickupService {
       await queryRunner.rollbackTransaction()
       throw new HttpException(err.message, err?.status || 500)
     }
+  }
 
+  async completePickup(
+    pickupSequence: string
+  ) {
+    const queryRunner = this.dataSource.createQueryRunner()
+    await queryRunner.connect()
 
+    await queryRunner.startTransaction();
+    
+    try {
+      const pickupInfo = await this.pickupRepository
+        .createQueryBuilder('pickedorder')
+        .select('pickedorder.sequence')
+        .addSelect('orders.sequence')
+        .leftJoin('pickedorder.order', 'orders')
+        .where('pickedorder.sequence = :pickupSequence', {pickupSequence})
+        .andWhere('orders.orderStatus = :status', {status: 'pickuped'})
+        .getOne()
+      
+      if(!pickupInfo) {
+          throw new ForbiddenException("pickup information is not exist")
+      }
+
+      await this.ordersRepository
+        .createQueryBuilder('orders')
+        .update(Orders)
+        .set({
+          orderStatus: 'delivered',
+        })
+        .where('orders.sequence = :orderSequence', {orderSequence: pickupInfo.order.sequence})
+        .execute()
+      
+      await this.pickupRepository
+        .createQueryBuilder('pickedorder')
+        .update(Pickedorder)
+        .set({
+          completedAt: getCurrentTime()
+        })
+        .where('pickedorder.sequence = :pickupSequence', {pickupSequence})
+        .execute()
+      
+      await queryRunner.commitTransaction()
+      return 'success'
+
+    } catch (err) {
+      await queryRunner.rollbackTransaction()
+      throw new HttpException(err.message, err?.status || 500)
+    }
   }
 }

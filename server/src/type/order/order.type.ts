@@ -176,3 +176,9 @@ export class OrderDetail extends PickType(Orders, ['orderTimeout', 'orderStatus'
   orderProducts: OrderdetailProducts[]
 }
 
+export class OrderSequence {
+  @ApiProperty({
+    type: Number
+  })
+  orderSequence: number 
+}

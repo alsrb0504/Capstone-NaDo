@@ -1,9 +1,12 @@
 import {
   BadRequestException,
+  ForbiddenException,
+  HttpException,
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Http2ServerRequest } from 'http2';
 import Menu from 'src/entity/menu/menu.entity';
 import Orderdetails from 'src/entity/orderdetails/orderdetails.entity';
 import Orders from 'src/entity/orders/orders.entity';
@@ -72,20 +75,12 @@ export class OrderService {
 
       const menus = [];
 
-      console.log(`orderMenu : ${orderMenu}`);
 
       for (let menu of orderMenu) {
-        console.log(`menu : ${menu}`);
 
         const { menuId, menuOptions, menuPrice } = menu;
-        console.log(`menuOptions : ${menuOptions}`);
-
-        console.log(`menuId : ${menuId}`);
-        console.log(`menuPrice : ${menuPrice}`);
 
         const { icehot, cnt, shots } = menuOptions;
-
-        console.log(`icehot : ${icehot}`);
 
         menus.push({
           shots,
@@ -109,7 +104,6 @@ export class OrderService {
       return 'success';
     } catch (err) {
       await queryRunner.rollbackTransaction();
-      console.log(err.message);
       switch (err.status) {
         case 400:
           throw new BadRequestException(err.message);
@@ -186,7 +180,6 @@ export class OrderService {
       const menuDetails = [];
       const { sequence, store, orderProducts, deliveryFee, amountOfPayment, menuPrice } = orderList;
 
-      console.log(orderList);
 
       for (let [index, menuDetail] of orderProducts.entries()) {
         menuDetails.push({
@@ -220,8 +213,37 @@ export class OrderService {
 
       return result;
     } catch (err) {
-      console.log(err.response);
       throw new InternalServerErrorException(err.message);
+    }
+  }
+
+  async completeOrder(
+    orderSequence: number
+  ) {
+    try {
+      const orderInfo = await this.ordersRepository
+        .createQueryBuilder('orders')
+        .select('orders.sequence')
+        .where('orders.sequence = :orderSequence', {orderSequence})
+        .andWhere('orders.orderStatus = :status', {status: 'delivered'})
+        .getOne()
+
+      if(!orderInfo) {
+        throw new ForbiddenException('order information is not exists or orderStatus is not delivered')
+      }
+
+      await this.ordersRepository
+        .createQueryBuilder('orders')
+        .update(Orders)
+        .set({
+          orderStatus: 'accepted'
+        })
+        .where('orders.sequence = :orderSequence', {orderSequence})
+        .execute()
+
+      return 'success'
+    } catch (err) {
+      throw new HttpException(err.message, err?.status || 500)
     }
   }
 }

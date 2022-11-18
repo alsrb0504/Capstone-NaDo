@@ -2,7 +2,7 @@ import { Body, Controller, Get, HttpCode, Post, Query, Request, UseGuards } from
 import { ApiTags } from '@nestjs/swagger';
 import { isLoggedInGuard } from 'src/auth/guard/cookieAuthentication.guard';
 import { ReqWithUser } from 'src/auth/type/request.type';
-import { OrderDetail, OrderPay } from 'src/type/order/order.type';
+import { OrderDetail, OrderPay, OrderSequence } from 'src/type/order/order.type';
 import { orderdetailDescription, orderListDescription, orderPayDescription } from './order.decorator';
 import { OrderService } from './order.service';
 
@@ -48,4 +48,12 @@ export class OrderController {
     return orderDetail
   }
 
+  @Post('complete')
+  @HttpCode(200) 
+  async completeOrder(
+    @Body() body: OrderSequence
+  ) {
+    const completeOrderResult = await this.orderService.completeOrder(body.orderSequence)
+    return completeOrderResult
+  }
 }

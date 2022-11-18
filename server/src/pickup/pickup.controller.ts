@@ -4,7 +4,7 @@ import { ReqWithUser } from 'src/auth/type/request.type';
 import { OrderDetail } from 'src/type/order/order.type';
 import { Pickup, PickupList_, PickupSequence } from 'src/type/pickup/pickup.type';
 import { PickupList } from 'src/type/store/store.type';
-import { DeletePickupDescription, PickupDescription, PickupDetailDescription, PickupListDescription } from './pickup.decorator';
+import { CompletePickupDescription, DeletePickupDescription, PickupDescription, PickupDetailDescription, PickupListDescription } from './pickup.decorator';
 import { PickupService } from './pickup.service';
 
 @ApiTags('pickup')
@@ -61,12 +61,13 @@ export class PickupController {
     return deletePickupResult
   }
 
-  // @Post('complete')
-  // @HttpCode(200)
-  // async completePickup(
-  //   @Body() body: PickupSequence
-  // ) {
-  //   const completePickupResult = await this.pickupService.completePickup(body.pickupSequence)
-  //   return completePickupResult
-  // }
+  @Post('complete')
+  @CompletePickupDescription()
+  @HttpCode(200)
+  async completePickup(
+    @Body() body: PickupSequence
+  ) {
+    const completePickupResult = await this.pickupService.completePickup(body.pickupSequence)
+    return completePickupResult
+  }
 }
