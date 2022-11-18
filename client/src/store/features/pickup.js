@@ -4,22 +4,8 @@ import axios from 'axios';
 const initialState = {
   storeList: [],
   selectedStore: {},
-  myPickupList: [
-    {
-      pickupId: 321,
-      pickupAddress: '소프트웨어관 313호',
-      pickupPrice: 8900,
-      pickupTime: '13:35',
-      orderer: '주문한 사람1',
-    },
-    {
-      pickupId: 322,
-      pickupAddress: '상경관 201호',
-      pickupPrice: 18900,
-      pickupTime: '15:00',
-      orderer: '주문한 사람2',
-    },
-  ],
+  myPickupList: [],
+
   pickup_history: [
     {
       pickup_id: 321,
@@ -146,6 +132,27 @@ export const CatchPickup = createAsyncThunk(
   },
 );
 
+// *
+// GET : 나의 픽업 리스트 요청 함수
+// *
+export const GetMyPickList = createAsyncThunk(
+  'order/GetMyPickList',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get(`http://localhost:3001/pickup/list`);
+
+      if (response.status === 200) {
+        return response.data;
+      }
+
+      return thunkAPI.rejectWithValue();
+    } catch (e) {
+      PrintError(e, '픽업 가게 상세 정보');
+      return thunkAPI.rejectWithValue();
+    }
+  },
+);
+
 export const pickupSlice = createSlice({
   name: 'pickup',
   initialState,
@@ -162,6 +169,9 @@ export const pickupSlice = createSlice({
     });
     builder.addCase(CatchPickup.fulfilled, (state) => {
       state.isCatch = true;
+    });
+    builder.addCase(GetMyPickList.fulfilled, (state, { payload }) => {
+      state.myPickupList = payload;
     });
   },
 });
