@@ -10,37 +10,36 @@
   @include column-flexbox(center, first);
   padding-left: 5%;
 
-  .iconbox{
+  .iconbox {
     width: 24px;
     height: 24px;
   }
 
-  .box1{
-    @include flexbox(first,center);
+  .box1 {
+    @include flexbox(first, center);
     margin-bottom: 10px;
   }
 
-  .box2{
-    @include flexbox(first,center);
+  .box2 {
+    @include flexbox(first, center);
   }
 
-  text{
+  p {
     color: $placeholder;
   }
 
-  .firstline{
+  .firstline {
     font-size: 20px;
     margin-right: 3%;
   }
 
-  .secondline{
+  .secondline {
     font-size: 14px;
     margin-bottom: 10px;
   }
 
-  .name{
+  .name {
     font-size: 10px;
     margin-right: 3%;
   }
-
 }
