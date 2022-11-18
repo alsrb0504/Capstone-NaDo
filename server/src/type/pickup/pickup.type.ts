@@ -8,6 +8,13 @@ export class Pickup {
   orderSequence: string
 }
 
+export class PickupSequence {
+  @ApiProperty({
+    type: String
+  })
+  pickupSequence: string
+}
+
 
 
 export class PickupList_ {
