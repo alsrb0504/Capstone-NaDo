@@ -1,5 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { OrderAddress } from "../order/order.type";
+import { ApiProperty, OmitType } from "@nestjs/swagger";
+import { OrderAddress, SettleOrder } from "../order/order.type";
 
 export class Pickup {
   @ApiProperty({
@@ -32,9 +32,34 @@ export class PickupList_ {
     type: Number
   })
   pickupSequence: number
+  
+  @ApiProperty({
+    type: Number
+  })
+  orderSequence: number
 
   @ApiProperty({
     type: OrderAddress
   })
   location: OrderAddress
+}
+
+export class Profit extends OmitType(SettleOrder, ['totalPrice']) {
+  @ApiProperty({
+    type: Number
+  })
+  deliveryFee: number
+}
+
+export class ProfitList {
+  @ApiProperty({
+    type: Profit,
+    isArray: true
+  })
+  profitList: Profit[]
+
+  @ApiProperty({
+    type: Number
+  })
+  totalProfit: number
 }

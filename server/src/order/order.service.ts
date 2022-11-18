@@ -1,5 +1,7 @@
 import {
   BadRequestException,
+  ForbiddenException,
+  HttpException,
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
@@ -7,9 +9,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import Menu from 'src/entity/menu/menu.entity';
 import Orderdetails from 'src/entity/orderdetails/orderdetails.entity';
 import Orders from 'src/entity/orders/orders.entity';
-import Store from 'src/entity/store/store.entity';
-import User from 'src/entity/user/user.entity';
-import { OrderDetail, OrderPay, WaitOrder } from 'src/type/order/order.type';
+import Pickedorder from 'src/entity/pickedorder/pickedorder.entity';
+import { OrderDetail, OrderPay, SettleOrder, WaitOrder } from 'src/type/order/order.type';
 import { addHours } from 'src/util/util';
 import { DataSource, InsertResult, Repository } from 'typeorm';
 
@@ -17,6 +18,7 @@ import { DataSource, InsertResult, Repository } from 'typeorm';
 export class OrderService {
   constructor(
     @InjectRepository(Orders) private ordersRepository: Repository<Orders>,
+    @InjectRepository(Pickedorder) private pickupRepository: Repository<Pickedorder>,
     @InjectRepository(Menu) private menuRepository: Repository<Menu>,
     @InjectRepository(Orderdetails)
     private orderdetailRepository: Repository<Orderdetails>,
@@ -72,20 +74,12 @@ export class OrderService {
 
       const menus = [];
 
-      console.log(`orderMenu : ${orderMenu}`);
 
       for (let menu of orderMenu) {
-        console.log(`menu : ${menu}`);
 
         const { menuId, menuOptions, menuPrice } = menu;
-        console.log(`menuOptions : ${menuOptions}`);
-
-        console.log(`menuId : ${menuId}`);
-        console.log(`menuPrice : ${menuPrice}`);
 
         const { icehot, cnt, shots } = menuOptions;
-
-        console.log(`icehot : ${icehot}`);
 
         menus.push({
           shots,
@@ -109,7 +103,6 @@ export class OrderService {
       return 'success';
     } catch (err) {
       await queryRunner.rollbackTransaction();
-      console.log(err.message);
       switch (err.status) {
         case 400:
           throw new BadRequestException(err.message);
@@ -186,7 +179,6 @@ export class OrderService {
       const menuDetails = [];
       const { sequence, store, orderProducts, deliveryFee, amountOfPayment, menuPrice } = orderList;
 
-      console.log(orderList);
 
       for (let [index, menuDetail] of orderProducts.entries()) {
         menuDetails.push({
@@ -220,8 +212,87 @@ export class OrderService {
 
       return result;
     } catch (err) {
-      console.log(err.response);
       throw new InternalServerErrorException(err.message);
     }
+  }
+
+  async completeOrder(
+    orderSequence: number
+  ) {
+    try {
+      const orderInfo = await this.ordersRepository
+        .createQueryBuilder('orders')
+        .select('orders.sequence')
+        .where('orders.sequence = :orderSequence', {orderSequence})
+        .andWhere('orders.orderStatus = :status', {status: 'delivered'})
+        .getOne()
+
+      if(!orderInfo) {
+        throw new ForbiddenException('order information is not exists or orderStatus is not delivered')
+      }
+
+      await this.ordersRepository
+        .createQueryBuilder('orders')
+        .update(Orders)
+        .set({
+          orderStatus: 'accepted'
+        })
+        .where('orders.sequence = :orderSequence', {orderSequence})
+        .execute()
+
+      return 'success'
+    } catch (err) {
+      throw new HttpException(err.message, err?.status || 500)
+    }
+  }
+
+  async settleOrder(
+    startTime: string,
+    endTime: string,
+    userSequence: number
+  ): Promise<Array<SettleOrder>>{
+
+    try {
+      const startTime_ = new Date(startTime)
+      const endTime_ = new Date(endTime)
+  
+      const orderInfoWithDelivered = await this.pickupRepository
+       .createQueryBuilder('pickedorder')
+       .select('orders.sequence AS orderSequence')
+       .addSelect('orders.address AS address')
+       .addSelect('orders.addressDetail AS addressDetail')
+       .addSelect('orders.menuPrice AS totalPrice')
+       .addSelect('pickedorder.completedAt AS deliveredAt')
+       .leftJoin('pickedorder.order', 'orders')
+       .leftJoin('orders.user', 'user')
+       .where('orders.orderStatus = :status', {status: 'delivered'})
+       .andWhere('user.sequence = :userSequence', {userSequence})
+       .andWhere('pickedorder.completedAt > :startTime', {startTime: startTime_})
+       .andWhere('pickedorder.completedAt < :endTime', {endTime: endTime_})
+       .getRawMany()
+      
+      
+      endTime_.setDate(endTime_.getDate() + 1)
+  
+      const orderInfoWithAccepted = await this.pickupRepository
+       .createQueryBuilder('pickedorder')
+       .select('orders.sequence AS orderSequence')
+       .addSelect('orders.address AS address')
+       .addSelect('orders.addressDetail AS addressDetail')
+       .addSelect('orders.menuPrice AS totalPrice')
+       .addSelect('pickedorder.completedAt AS deliveredAt')
+       .leftJoin('pickedorder.order', 'orders')
+       .leftJoin('orders.user', 'user')
+       .where('orders.orderStatus = :status', {status: 'accepted'})
+       .andWhere('user.sequence = :userSequence', {userSequence})
+       .andWhere('pickedorder.completedAt > :startTime', {startTime: startTime_})
+       .andWhere('pickedorder.completedAt < :endTime', {endTime: endTime_})
+       .getRawMany()
+
+       return [...orderInfoWithDelivered, ...orderInfoWithAccepted]
+    } catch (err) {
+      throw new HttpException(err.message, err?.status || 500)
+    }
+
   }
 }

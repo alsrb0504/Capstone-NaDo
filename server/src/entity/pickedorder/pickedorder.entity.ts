@@ -1,4 +1,4 @@
-import { CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import Orders from "../orders/orders.entity";
 import User from "../user/user.entity";
 
@@ -21,4 +21,10 @@ export default class Pickedorder{
     default: () => 'CURRENT_TIMESTAMP(6)',
   })
   pickupedAt: Date
+
+  @Column({
+    type: 'timestamp',
+    nullable: true
+  })
+  completedAt: Date
 }

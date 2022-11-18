@@ -2,9 +2,9 @@ import { Body, Controller, Get, HttpCode, Post, Query, Request } from '@nestjs/c
 import { ApiTags } from '@nestjs/swagger';
 import { ReqWithUser } from 'src/auth/type/request.type';
 import { OrderDetail } from 'src/type/order/order.type';
-import { Pickup, PickupList_, PickupSequence } from 'src/type/pickup/pickup.type';
+import { Pickup, PickupList_, PickupSequence, ProfitList } from 'src/type/pickup/pickup.type';
 import { PickupList } from 'src/type/store/store.type';
-import { DeletePickupDescription, PickupDescription, PickupDetailDescription, PickupListDescription } from './pickup.decorator';
+import { CompletePickupDescription, DeletePickupDescription, PickupDescription, PickupDetailDescription, PickupListDescription, ProfitDescription } from './pickup.decorator';
 import { PickupService } from './pickup.service';
 
 @ApiTags('pickup')
@@ -45,7 +45,7 @@ export class PickupController {
   async pickupList(
     @Request() req: ReqWithUser
   ): Promise<Array<PickupList_>> {
-    const pickupListResult = await this.pickupService.pickupList(req?.user?.sequence || 1)
+    const pickupListResult = await this.pickupService.pickupList(req?.user?.sequence || 3)
 
     return pickupListResult
   }
@@ -61,12 +61,25 @@ export class PickupController {
     return deletePickupResult
   }
 
-  // @Post('complete')
-  // @HttpCode(200)
-  // async completePickup(
-  //   @Body() body: PickupSequence
-  // ) {
-  //   const completePickupResult = await this.pickupService.completePickup(body.pickupSequence)
-  //   return completePickupResult
-  // }
+  @Post('complete')
+  @CompletePickupDescription()
+  @HttpCode(200)
+  async completePickup(
+    @Body() body: PickupSequence
+  ) {
+    const completePickupResult = await this.pickupService.completePickup(body.pickupSequence)
+    return completePickupResult
+  }
+
+  @Get('profit')
+  @ProfitDescription()
+  @HttpCode(200)
+  async profit(
+    @Query('startTime') startTime: string,
+    @Query('endTime') endTime: string,
+    @Request() req: ReqWithUser
+  ): Promise<ProfitList>{
+    const profitResult = await this.pickupService.profit(startTime, endTime, req?.user?.sequence || 3)
+    return profitResult
+  }
 }

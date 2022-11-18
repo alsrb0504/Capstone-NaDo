@@ -176,3 +176,26 @@ export class OrderDetail extends PickType(Orders, ['orderTimeout', 'orderStatus'
   orderProducts: OrderdetailProducts[]
 }
 
+export class OrderSequence {
+  @ApiProperty({
+    type: Number
+  })
+  orderSequence: number 
+}
+
+export class SettleOrder extends PickType(WaitOrder, ['totalPrice', 'orderSequence']) {
+  @ApiProperty({
+    type: String
+  })
+  address: string
+
+  @ApiProperty({
+    type: String
+  })
+  addressDetail: string
+
+  @ApiProperty({
+    type: Date
+  })
+  deliveredAt: Date
+}
