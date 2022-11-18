@@ -1,5 +1,5 @@
 import { ApiProperty, OmitType } from "@nestjs/swagger";
-import { OrderAddress, SettleOrder } from "../order/order.type";
+import { OrderAddress, OrderDetail, SettleOrder } from "../order/order.type";
 
 export class Pickup {
   @ApiProperty({
@@ -62,4 +62,11 @@ export class ProfitList {
     type: Number
   })
   totalProfit: number
+}
+
+export class PickupDetail extends OrderDetail {
+  @ApiProperty({
+    type: String
+  })
+  pickupSequence
 }
