@@ -30,7 +30,7 @@ export class PickupService {
         .select('pickedorder.sequence')
         .leftJoinAndSelect('pickedorder.order', 'orders')
         .where('pickedorder.picker = :pickerSequence', {pickerSequence: parseInt(userSequence)})
-        .andWhere('orders.orderStatus = :status', {status: 'ordered'})
+        .andWhere('orders.orderStatus = :status', {status: 'pickuped'})
         .getMany()
       
       // throw new Error("afsd")
@@ -210,5 +210,55 @@ export class PickupService {
     } catch (err) {
       throw new HttpException(err.message, err?.status || 500)
     }
+  }
+
+  async deletePickup(
+    pickupSequence: string
+  ) {
+    const queryRunner = this.dataSource.createQueryRunner()
+    await queryRunner.connect()
+
+    await queryRunner.startTransaction();
+    try {
+      const pickupInfo = await this.pickupRepository
+        .createQueryBuilder('pickedorder')
+        .select('pickedorder.pickupedAt')
+        .addSelect('orders.sequence')
+        .leftJoin('pickedorder.order', 'orders')
+        .where('pickedorder.sequence = :pickupSequence',  {pickupSequence})
+        .getOne()
+
+      console.log(pickupInfo)
+        const timeout = new Date(pickupInfo.pickupedAt)
+        const currTime = getCurrentTime()
+        timeout.setMinutes(timeout.getMinutes() + 5)
+  
+        if(timeout.getTime() < currTime.getTime()) {
+          throw new ForbiddenException("you can't cancel pickup because it's been 5 minutes since pick up")
+        }
+      
+      await this.pickupRepository
+        .createQueryBuilder('pickedorder')
+        .delete()
+        .from(Pickedorder)
+        .where('pickedorder.sequence = :pickupSequence', {pickupSequence})
+        .execute()
+
+      await this.ordersRepository
+        .createQueryBuilder('orders')
+        .update(Orders)
+        .set({
+          orderStatus: 'ordered'
+        })
+        .execute()
+      await queryRunner.commitTransaction()
+
+      return 'success'
+    } catch (err) {
+      await queryRunner.rollbackTransaction()
+      throw new HttpException(err.message, err?.status || 500)
+    }
+
+
   }
 }

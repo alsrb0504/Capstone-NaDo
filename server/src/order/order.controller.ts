@@ -14,8 +14,8 @@ export class OrderController {
   ) {}
 
   // @UseGuards(isLoggedInGuard)
-  @orderPayDescription()
   @Post('pay')
+  @orderPayDescription()
   @HttpCode(200)
   async orderPay(
     @Body() body: OrderPay,
@@ -27,8 +27,8 @@ export class OrderController {
   }
 
   // @UseGuards(isLoggedInGuard)
-  @orderListDescription()
   @Get('user')
+  @orderListDescription()
   @HttpCode(200)
   async getOrderByUser(
     @Request() req: ReqWithUser,

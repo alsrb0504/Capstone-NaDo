@@ -2,7 +2,7 @@ import { applyDecorators } from "@nestjs/common";
 import { ApiBadRequestResponse, ApiBody, ApiForbiddenResponse, ApiInternalServerErrorResponse, ApiOkResponse, ApiOperation, ApiQuery } from "@nestjs/swagger";
 import { exceptionResponseType } from "src/type/exception/exception.type";
 import { OrderDetail } from "src/type/order/order.type";
-import { Pickup, PickupList_ } from "src/type/pickup/pickup.type";
+import { Pickup, PickupList_, PickupSequence } from "src/type/pickup/pickup.type";
 
 export function PickupDescription() {
   return applyDecorators(
@@ -37,6 +37,19 @@ export function PickupListDescription() {
     ApiOperation({
       summary: '픽업 현황',
       description: '픽업 현황을 반환하는 api, 로그인 된 사용자만 이용가능하다.'
+    }) 
+  )
+}
+
+export function DeletePickupDescription() {
+  return applyDecorators(
+    ApiOkResponse({description: 'successfully delete pickup information', type: String}), 
+    ApiForbiddenResponse({description: 'you can\'t cancel pickup because it\'s been 5 minutes since pick up', type: exceptionResponseType}),
+    ApiInternalServerErrorResponse({description: 'query error or server down', type: exceptionResponseType}),
+    ApiBody({type: PickupSequence}),
+    ApiOperation({
+      summary: '픽업 삭제',
+      description: '픽업을 삭제하는 api, 로그인 된 사용자만 이용가능하다.'
     }) 
   )
 }

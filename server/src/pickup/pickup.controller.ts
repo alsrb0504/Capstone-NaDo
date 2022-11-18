@@ -2,9 +2,9 @@ import { Body, Controller, Get, HttpCode, Post, Query, Request } from '@nestjs/c
 import { ApiTags } from '@nestjs/swagger';
 import { ReqWithUser } from 'src/auth/type/request.type';
 import { OrderDetail } from 'src/type/order/order.type';
-import { Pickup, PickupList_ } from 'src/type/pickup/pickup.type';
+import { Pickup, PickupList_, PickupSequence } from 'src/type/pickup/pickup.type';
 import { PickupList } from 'src/type/store/store.type';
-import { PickupDescription, PickupDetailDescription, PickupListDescription } from './pickup.decorator';
+import { DeletePickupDescription, PickupDescription, PickupDetailDescription, PickupListDescription } from './pickup.decorator';
 import { PickupService } from './pickup.service';
 
 @ApiTags('pickup')
@@ -22,7 +22,7 @@ export class PickupController {
     @Request() req: ReqWithUser
   ): Promise<string> {
     const orderSequence = (body.orderSequence).toString()
-    const userSequence = (req?.user?.sequence || 2).toString()
+    const userSequence = (req?.user?.sequence || 3).toString()
     const pickkupResult = await this.pickupService.pickup(orderSequence, userSequence) 
 
     return pickkupResult
@@ -49,4 +49,24 @@ export class PickupController {
 
     return pickupListResult
   }
+
+  @Post('cancel')
+  @DeletePickupDescription()
+  @HttpCode(200)
+  async deletePickup(
+    @Body() body: PickupSequence
+  ) {
+    const deletePickupResult = await this.pickupService.deletePickup(body.pickupSequence)
+
+    return deletePickupResult
+  }
+
+  // @Post('complete')
+  // @HttpCode(200)
+  // async completePickup(
+  //   @Body() body: PickupSequence
+  // ) {
+  //   const completePickupResult = await this.pickupService.completePickup(body.pickupSequence)
+  //   return completePickupResult
+  // }
 }
