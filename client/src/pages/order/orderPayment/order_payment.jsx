@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../../components/atoms/headers/header/header';
 import PaymentForm from '../../../components/molecules/paymentForm/payment_form';
+import { CleanCart } from '../../../store/features/cart';
 import { RequestPayment } from '../../../store/features/order';
 
 const OrderPayment = () => {
@@ -25,6 +26,8 @@ const OrderPayment = () => {
         cartTotalPrice: totalPrice,
       }),
     );
+
+    dispatch(CleanCart());
   };
 
   return (

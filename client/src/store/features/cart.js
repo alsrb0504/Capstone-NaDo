@@ -36,8 +36,14 @@ export const cartSlice = createSlice({
         state.cartStoreSequence = 0;
       }
     },
+    CleanCart: (state) => {
+      state.cartStoreName = '';
+      state.cartStoreSequence = 0;
+      state.cartList = [];
+      state.totalPrice = 0;
+    },
   },
 });
 
-export const { AddCart, UpdateCart } = cartSlice.actions;
+export const { AddCart, UpdateCart, CleanCart } = cartSlice.actions;
 export default cartSlice.reducer;

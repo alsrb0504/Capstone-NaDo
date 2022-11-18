@@ -30,8 +30,10 @@ const PaymentForm = ({ SubmitPayment }) => {
       return;
     }
 
+    const popupTimer = 1200;
+
     SubmitPayment(data);
-    
+
     // alert 추가
     Swal.fire({
       title: '결제 완료!',
@@ -39,10 +41,13 @@ const PaymentForm = ({ SubmitPayment }) => {
       icon: 'success',
       // confirmButtonColor: '#43a2ff',
       showConfirmButton: false,
-      timer: 1200,
+
+      timer: popupTimer,
     });
     // 홈으로 화면 이동
-    MoveHome();
+    setTimeout(() => {
+      MoveHome();
+    }, popupTimer);
   };
 
   const deliveryFee = 1200;
