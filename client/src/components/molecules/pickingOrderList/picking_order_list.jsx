@@ -5,7 +5,7 @@ const PickingOrderList = ({ pickups, MoveDesc }) => (
   <section className="picking-order-list">
     <ul>
       {pickups.map((el) => (
-        <PickingCard key={el.pickupSequence} info={el} MoveDesc={MoveDesc} />
+        <PickingCard key={el.sequence} info={el} MoveDesc={MoveDesc} />
       ))}
     </ul>
   </section>

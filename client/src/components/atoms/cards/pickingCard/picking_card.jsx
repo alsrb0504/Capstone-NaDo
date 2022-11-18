@@ -3,13 +3,12 @@ import { PrintPrice } from '../../../../utils/text';
 import { ChangeTimeInfo } from '../../../../utils/time';
 
 const PickingCard = ({ info, MoveDesc }) => {
-  const { orderAddress, pickupSequence, orderTimeout, totalPrice } = info;
-  // 이름 중복
-  const { address, detail } = orderAddress;
+  const { location, sequence, timeout, price } = info;
+  const { address, detail } = location;
 
   // 주문 상세 정보로 이동
   const GoDesc = () => {
-    MoveDesc(pickupSequence);
+    MoveDesc(sequence);
   };
 
   return (
@@ -20,10 +19,10 @@ const PickingCard = ({ info, MoveDesc }) => {
             {address} {detail}
           </h3>
           <p>
-            마감 시간 : <span>~ {ChangeTimeInfo(orderTimeout)}</span>
+            마감 시간 : <span>~ {ChangeTimeInfo(timeout)}</span>
           </p>
           <p>
-            주문 금액 : <span>{PrintPrice(totalPrice)} 원</span>
+            주문 금액 : <span>{PrintPrice(price)} 원</span>
           </p>
         </div>
 

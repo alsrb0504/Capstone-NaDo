@@ -27,10 +27,7 @@ const PickupStore = () => {
   } = selectedStore;
 
   const SelectPickup = (orderId) => {
-    console.log(orderId);
-
     dispatch(GetPickupDetail(orderId));
-
     navigate(`/pickup/detail?sequence=${orderId}`);
   };
 

@@ -11,8 +11,6 @@ const PickupMyPickup = () => {
 
   const { myPickupList } = useSelector((state) => state.pickup);
 
-  console.log(myPickupList);
-
   const MoveBack = () => navigate('/');
   const MoveDesc = (orderId) => {
     dispatch(GetPickupDetail(orderId));

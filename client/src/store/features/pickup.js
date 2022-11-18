@@ -93,8 +93,6 @@ export const GetPickupDetail = createAsyncThunk(
         `http://localhost:3001/order/detail?orderSequence=${sequence}`,
       );
 
-      console.log(response);
-
       if (response.status === 200) {
         return response.data;
       }
@@ -133,16 +131,57 @@ export const CatchPickup = createAsyncThunk(
 );
 
 // *
+// POST : 픽업 취소 요청 함수
+// *
+export const CancelPickup = createAsyncThunk(
+  'order/cancelPickup',
+  async (sequence, thunkAPI) => {
+    try {
+      const response = await axios.post(`http://localhost:3001/pickup/cancel`, {
+        orderSequence: sequence,
+      });
+
+      console.log(response);
+
+      if (response.status === 200) {
+        return response.data;
+      }
+
+      return thunkAPI.rejectWithValue();
+    } catch (e) {
+      if (e.status === 403) {
+        alert('5분이 경과해서 취소할 수 없습니다.');
+        console.log(e);
+        return thunkAPI.rejectWithValue(e);
+      }
+
+      PrintError(e, '픽업 취소');
+      return thunkAPI.rejectWithValue();
+    }
+  },
+);
+
+// *
 // GET : 나의 픽업 리스트 요청 함수
 // *
 export const GetMyPickList = createAsyncThunk(
-  'order/GetMyPickList',
+  'pickup/GetMyPickList',
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(`http://localhost:3001/pickup/list`);
 
+      const { timeout, totalPrice, pickupSequence, location } =
+        response.data[0];
+
+      const pickingCardFormat = {
+        timeout,
+        price: totalPrice,
+        sequence: pickupSequence,
+        location,
+      };
+
       if (response.status === 200) {
-        return response.data;
+        return [pickingCardFormat];
       }
 
       return thunkAPI.rejectWithValue();
@@ -169,9 +208,15 @@ export const pickupSlice = createSlice({
     });
     builder.addCase(CatchPickup.fulfilled, (state) => {
       state.isCatch = true;
+      // 추후 확인
+      state.currentPickup = state.myPickupList;
     });
     builder.addCase(GetMyPickList.fulfilled, (state, { payload }) => {
       state.myPickupList = payload;
+    });
+    builder.addCase(CancelPickup.fulfilled, (state) => {
+      state.isCatch = false;
+      state.currentPickup = [];
     });
   },
 });

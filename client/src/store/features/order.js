@@ -157,8 +157,23 @@ export const GetOrderList = createAsyncThunk(
     try {
       const response = await axios.get(`http://localhost:3001/order/user`);
 
+      const orderList = [];
+
+      response.data.forEach((el) => {
+        const { orderAddress, orderTimeout, totalPrice, orderSequence } = el;
+
+        const pickingCardFormat = {
+          timeout: orderTimeout,
+          price: totalPrice,
+          sequence: orderSequence,
+          location: orderAddress,
+        };
+
+        orderList.push(pickingCardFormat);
+      });
+
       if (response.status === 200) {
-        return response.data;
+        return orderList;
       }
 
       return thunkAPI.rejectWithValue();

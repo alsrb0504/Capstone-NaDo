@@ -10,7 +10,7 @@ import FillLineInput from '../../../components/atoms/inputs/fillLineInput/fill_l
 import PriceBox from '../../../components/atoms/priceBox/price_box';
 import StateBox from '../../../components/atoms/stateBox/state_box';
 import StoreMapSection from '../../../components/molecules/storeMapSection/store_map_section';
-import { CatchPickup } from '../../../store/features/pickup';
+import { CancelPickup, CatchPickup } from '../../../store/features/pickup';
 import { PrintPrice } from '../../../utils/text';
 import { ChangeTimeInfo } from '../../../utils/time';
 
@@ -44,7 +44,7 @@ const PickupDetail = () => {
   };
 
   const CancelOrder = () => {
-    alert('아직 미구현');
+    dispatch(CancelPickup(orderSequence));
   };
 
   const CompleteOrder = () => {
