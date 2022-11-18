@@ -6,13 +6,11 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Http2ServerRequest } from 'http2';
 import Menu from 'src/entity/menu/menu.entity';
 import Orderdetails from 'src/entity/orderdetails/orderdetails.entity';
 import Orders from 'src/entity/orders/orders.entity';
-import Store from 'src/entity/store/store.entity';
-import User from 'src/entity/user/user.entity';
-import { OrderDetail, OrderPay, WaitOrder } from 'src/type/order/order.type';
+import Pickedorder from 'src/entity/pickedorder/pickedorder.entity';
+import { OrderDetail, OrderPay, SettleOrder, WaitOrder } from 'src/type/order/order.type';
 import { addHours } from 'src/util/util';
 import { DataSource, InsertResult, Repository } from 'typeorm';
 
@@ -20,6 +18,7 @@ import { DataSource, InsertResult, Repository } from 'typeorm';
 export class OrderService {
   constructor(
     @InjectRepository(Orders) private ordersRepository: Repository<Orders>,
+    @InjectRepository(Pickedorder) private pickupRepository: Repository<Pickedorder>,
     @InjectRepository(Menu) private menuRepository: Repository<Menu>,
     @InjectRepository(Orderdetails)
     private orderdetailRepository: Repository<Orderdetails>,
@@ -245,5 +244,55 @@ export class OrderService {
     } catch (err) {
       throw new HttpException(err.message, err?.status || 500)
     }
+  }
+
+  async settleOrder(
+    startTime: string,
+    endTime: string,
+    userSequence: number
+  ): Promise<Array<SettleOrder>>{
+
+    try {
+      const startTime_ = new Date(startTime)
+      const endTime_ = new Date(endTime)
+  
+      const orderInfoWithDelivered = await this.pickupRepository
+       .createQueryBuilder('pickedorder')
+       .select('orders.sequence AS orderSequence')
+       .addSelect('orders.address AS address')
+       .addSelect('orders.addressDetail AS addressDetail')
+       .addSelect('orders.menuPrice AS totalPrice')
+       .addSelect('pickedorder.completedAt AS deliveredAt')
+       .leftJoin('pickedorder.order', 'orders')
+       .leftJoin('orders.user', 'user')
+       .where('orders.orderStatus = :status', {status: 'delivered'})
+       .andWhere('user.sequence = :userSequence', {userSequence})
+       .andWhere('pickedorder.completedAt > :startTime', {startTime: startTime_})
+       .andWhere('pickedorder.completedAt < :endTime', {endTime: endTime_})
+       .getRawMany()
+      
+      
+      endTime_.setDate(endTime_.getDate() + 1)
+  
+      const orderInfoWithAccepted = await this.pickupRepository
+       .createQueryBuilder('pickedorder')
+       .select('orders.sequence AS orderSequence')
+       .addSelect('orders.address AS address')
+       .addSelect('orders.addressDetail AS addressDetail')
+       .addSelect('orders.menuPrice AS totalPrice')
+       .addSelect('pickedorder.completedAt AS deliveredAt')
+       .leftJoin('pickedorder.order', 'orders')
+       .leftJoin('orders.user', 'user')
+       .where('orders.orderStatus = :status', {status: 'accepted'})
+       .andWhere('user.sequence = :userSequence', {userSequence})
+       .andWhere('pickedorder.completedAt > :startTime', {startTime: startTime_})
+       .andWhere('pickedorder.completedAt < :endTime', {endTime: endTime_})
+       .getRawMany()
+
+       return [...orderInfoWithDelivered, ...orderInfoWithAccepted]
+    } catch (err) {
+      throw new HttpException(err.message, err?.status || 500)
+    }
+
   }
 }

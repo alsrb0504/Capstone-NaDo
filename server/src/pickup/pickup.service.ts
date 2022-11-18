@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import Orders from 'src/entity/orders/orders.entity';
 import Pickedorder from 'src/entity/pickedorder/pickedorder.entity';
 import { OrderDetail } from 'src/type/order/order.type';
-import { PickupList_ } from 'src/type/pickup/pickup.type';
+import { PickupList_, Profit, ProfitList } from 'src/type/pickup/pickup.type';
 import { PickupList } from 'src/type/store/store.type';
 import { getCurrentTime } from 'src/util/util';
 import { DataSource, QueryResult, Repository } from 'typeorm';
@@ -308,6 +308,66 @@ export class PickupService {
 
     } catch (err) {
       await queryRunner.rollbackTransaction()
+      throw new HttpException(err.message, err?.status || 500)
+    }
+  }
+
+  async profit(
+    startTime: string,
+    endTime: string,
+    pickerSequence: number
+  ): Promise<ProfitList> {
+    try {
+      const startTime_ = new Date(startTime)
+      const endTime_ = new Date(endTime)
+  
+      const orderInfoWithDelivered: Profit[] = await this.pickupRepository
+       .createQueryBuilder('pickedorder')
+       .select('orders.sequence AS orderSequence')
+       .addSelect('orders.address AS address')
+       .addSelect('orders.addressDetail AS addressDetail')
+       .addSelect('orders.deliveryFee AS deliveryFee')
+       .addSelect('pickedorder.completedAt AS deliveredAt')
+       .leftJoin('pickedorder.order', 'orders')
+       .leftJoin('pickedorder.picker', 'user')
+       .where('orders.orderStatus = :status', {status: 'delivered'})
+       .andWhere('user.sequence = :pickerSequence', {pickerSequence})
+       .andWhere('pickedorder.completedAt > :startTime', {startTime: startTime_})
+       .andWhere('pickedorder.completedAt < :endTime', {endTime: endTime_})
+       .getRawMany()
+      
+      
+      endTime_.setDate(endTime_.getDate() + 1)
+  
+      const orderInfoWithAccepted: Profit[] = await this.pickupRepository
+       .createQueryBuilder('pickedorder')
+       .select('orders.sequence AS orderSequence')
+       .addSelect('orders.address AS address')
+       .addSelect('orders.addressDetail AS addressDetail')
+       .addSelect('orders.deliveryFee AS deliveryFee')
+       .addSelect('pickedorder.completedAt AS deliveredAt')
+       .leftJoin('pickedorder.order', 'orders')
+       .leftJoin('pickedorder.picker', 'user')
+       .where('orders.orderStatus = :status', {status: 'accepted'})
+       .andWhere('user.sequence = :pickerSequence', {pickerSequence})
+       .andWhere('pickedorder.completedAt > :startTime', {startTime: startTime_})
+       .andWhere('pickedorder.completedAt < :endTime', {endTime: endTime_})
+       .getRawMany() 
+
+       const profitList: Profit[] = [...orderInfoWithDelivered, ...orderInfoWithAccepted]
+
+       let totalProfit = 0
+
+       profitList.forEach((list) => {
+        totalProfit += list.deliveryFee
+       })
+
+       return {
+        profitList,
+        totalProfit
+       }
+
+    } catch (err) {
       throw new HttpException(err.message, err?.status || 500)
     }
   }

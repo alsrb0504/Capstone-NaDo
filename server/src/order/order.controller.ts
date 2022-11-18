@@ -2,8 +2,8 @@ import { Body, Controller, Get, HttpCode, Post, Query, Request, UseGuards } from
 import { ApiTags } from '@nestjs/swagger';
 import { isLoggedInGuard } from 'src/auth/guard/cookieAuthentication.guard';
 import { ReqWithUser } from 'src/auth/type/request.type';
-import { OrderDetail, OrderPay, OrderSequence } from 'src/type/order/order.type';
-import { OrderCompleteDescription, orderdetailDescription, orderListDescription, orderPayDescription } from './order.decorator';
+import { OrderDetail, OrderPay, OrderSequence, SettleOrder } from 'src/type/order/order.type';
+import { OrderCompleteDescription, orderdetailDescription, orderListDescription, orderPayDescription, SettleOrderDescription } from './order.decorator';
 import { OrderService } from './order.service';
 
 @ApiTags('order')
@@ -56,5 +56,17 @@ export class OrderController {
   ) {
     const completeOrderResult = await this.orderService.completeOrder(body.orderSequence)
     return completeOrderResult
+  }
+
+  @Get('settle')
+  @SettleOrderDescription()
+  @HttpCode(200)
+  async settleOrder(
+    @Query('startTime') startTime: string,
+    @Query('endTime') endTime: string,
+    @Request() req: ReqWithUser
+  ): Promise<Array<SettleOrder>>{
+    const settleOrderResult = await this.orderService.settleOrder(startTime, endTime, req?.user?.sequence || 1)
+    return settleOrderResult
   }
 }

@@ -1,7 +1,7 @@
 import { applyDecorators } from "@nestjs/common";
-import { ApiBadRequestResponse, ApiBody, ApiForbiddenResponse, ApiInternalServerErrorResponse, ApiOkResponse, ApiOperation } from "@nestjs/swagger";
+import { ApiBadRequestResponse, ApiBody, ApiForbiddenResponse, ApiInternalServerErrorResponse, ApiOkResponse, ApiOperation, ApiQuery } from "@nestjs/swagger";
 import { exceptionResponseType } from "src/type/exception/exception.type";
-import { OrderDetail, OrderPay, OrderSequence, WaitOrder } from "src/type/order/order.type";
+import { OrderDetail, OrderPay, OrderSequence, SettleOrder, WaitOrder } from "src/type/order/order.type";
 
 export function orderPayDescription() {
   return applyDecorators(
@@ -47,6 +47,19 @@ export function OrderCompleteDescription() {
     ApiOperation({
       summary: '주문 완료 api',
       description: '배달 완료를 확인하기 위한 api'
+    })
+  )
+}
+
+export function SettleOrderDescription() {
+  return applyDecorators(
+    ApiOkResponse({description: '완료 된 주문내역을 성공적으로 반환했습니다.', type: SettleOrder, isArray: true}),
+    ApiInternalServerErrorResponse({description: 'query error', type: exceptionResponseType}),
+    ApiQuery({name: 'startTime', description: '반드시 2022-11-23 형식으로 보내주세요'}),
+    ApiQuery({name: 'endTime', description: '반드시 2022-11-23 형식으로 보내주세요'}),
+    ApiOperation({
+      summary: '주문 내역',
+      description: '성공된 주문 내역을 반환하는 api'
     })
   )
 }
