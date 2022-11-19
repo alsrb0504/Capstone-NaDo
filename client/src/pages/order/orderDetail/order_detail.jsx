@@ -10,12 +10,14 @@ import PaymentReceipt from '../../../components/atoms/paymentReceipt/payment_rec
 import StateBox from '../../../components/atoms/stateBox/state_box';
 import StoreMapSection from '../../../components/molecules/storeMapSection/store_map_section';
 import { CompleteOrder } from '../../../store/features/order';
+import { SwalSuccess } from '../../../utils/swal';
 import { ChangeTimeInfo } from '../../../utils/time';
 
 const OrderDetail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const MoveHome = () => navigate('/');
   const MoveBack = () => navigate('/order/waitings');
   const MoveReport = () => navigate('/order/report');
 
@@ -34,7 +36,13 @@ const OrderDetail = () => {
 
   const TestComplete = () => {
     dispatch(CompleteOrder(orderSequence));
-    alert('완료');
+
+    const popupTimer = 1200;
+    SwalSuccess('배달이 완료되었습니다.', popupTimer);
+
+    setTimeout(() => {
+      MoveHome();
+    }, popupTimer);
   };
 
   return (

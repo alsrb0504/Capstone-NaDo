@@ -6,6 +6,7 @@ import Header from '../../../components/atoms/headers/header/header';
 import PaymentForm from '../../../components/molecules/paymentForm/payment_form';
 import { CleanCart } from '../../../store/features/cart';
 import { RequestPayment } from '../../../store/features/order';
+import { SwalSuccess } from '../../../utils/swal';
 
 const OrderPayment = () => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const OrderPayment = () => {
     (state) => state.cart,
   );
 
+  const MoveHome = () => navigate('/');
   // 추후 장바구니로 갈지, 가게로 갈지 구분
   const MoveBack = () => navigate('/order/cart');
 
@@ -27,7 +29,17 @@ const OrderPayment = () => {
       }),
     );
 
-    dispatch(CleanCart());
+    const popupTimer = 1200;
+    SwalSuccess('결제 완료!', popupTimer);
+
+    // 홈으로 화면 이동
+    setTimeout(() => {
+      MoveHome();
+    }, popupTimer);
+
+    setTimeout(() => {
+      dispatch(CleanCart());
+    }, popupTimer);
   };
 
   return (

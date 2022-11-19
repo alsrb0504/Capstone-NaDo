@@ -328,10 +328,8 @@ export const orderSlice = createSlice({
     builder.addCase(GetOrderDetail.fulfilled, (state, { payload }) => {
       state.currentOrder = payload;
     });
-    builder.addCase(CompleteOrder.fulfilled, (state) => {
-      // state.currentOrder = payload;
-      // 이따가 주문 현황 변경.
-    });
+    // 완료되면 홈으로 이동
+    builder.addCase(CompleteOrder.fulfilled, () => {});
   },
 });
 

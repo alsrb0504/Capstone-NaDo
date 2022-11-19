@@ -320,6 +320,9 @@ export const pickupSlice = createSlice({
     InitCancel: (state) => {
       state.isCancel = false;
     },
+    InitCurrentPickup: (state) => {
+      state.currentPickup = initialState.currentPickup;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(GetPickupStoreList.fulfilled, (state, { payload }) => {
@@ -348,7 +351,9 @@ export const pickupSlice = createSlice({
     builder.addCase(CancelPickup.fulfilled, (state) => {
       state.isCatch = false;
       state.isCancel = true;
-      // state.currentPickup = [];
+    });
+    builder.addCase(CancelPickup.rejected, (state) => {
+      state.isCancel = true;
     });
     builder.addCase(CompletePickup.fulfilled, (state, payload) => {
       // 추후 따로 분리
@@ -362,5 +367,5 @@ function PrintError(e, src) {
   console.error(e);
 }
 
-export const { InitCancel } = pickupSlice.actions;
+export const { InitCancel, InitCurrentPickup } = pickupSlice.actions;
 export default pickupSlice.reducer;

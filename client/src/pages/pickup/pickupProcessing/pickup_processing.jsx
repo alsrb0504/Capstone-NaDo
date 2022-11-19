@@ -1,8 +1,6 @@
-/* eslint-disable no-unused-vars */
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
 import Btn from '../../../components/atoms/buttons/btn/btn';
 import Header from '../../../components/atoms/headers/header/header';
 import StateBox from '../../../components/atoms/stateBox/state_box';
@@ -11,7 +9,9 @@ import {
   CancelPickup,
   CompletePickup,
   InitCancel,
+  InitCurrentPickup,
 } from '../../../store/features/pickup';
+import { SwalError, SwalSuccess } from '../../../utils/swal';
 
 const PickupProcessing = () => {
   const dispatch = useDispatch();
@@ -26,17 +26,13 @@ const PickupProcessing = () => {
   );
   const { pickupSequence, orderStatus } = currentPickup;
 
-  console.log(currentPickup);
-  console.log(pickupSequence, orderStatus);
-
   const CancelOrder = () => {
     dispatch(CancelPickup(pickupSequence));
   };
 
   const CompleteOrder = () => {
     dispatch(CompletePickup(pickupSequence));
-
-    alert('픽업 완료');
+    SwalSuccess('배달 완료.');
   };
 
   useEffect(() => {
@@ -45,18 +41,13 @@ const PickupProcessing = () => {
     // 기본 상태 isCatch = true && isCancel = false
     // 취소 요청 성공
     if (!isCatch && isCancel) {
-      Swal.fire({
-        title: '취소되었습니다.',
-        text: '',
-        icon: 'success',
-        // confirmButtonColor: '#43a2ff',
-        showConfirmButton: false,
+      SwalSuccess('취소되었습니다.', popupTimer);
 
-        timer: popupTimer,
-      });
       // 홈으로 화면 이동
       setTimeout(() => {
         MoveHome();
+        // test
+        dispatch(InitCurrentPickup());
       }, popupTimer);
 
       dispatch(InitCancel());
@@ -68,16 +59,7 @@ const PickupProcessing = () => {
 
     // 취소 요청 실패
     if (isCatch && isCancel) {
-      Swal.fire({
-        title: '수락 후 5분이 경과했습니다. \n 취소할 수 없습니다.',
-        text: '',
-        icon: 'error',
-        // confirmButtonColor: '#43a2ff',
-        showConfirmButton: false,
-
-        timer: popupTimer,
-      });
-
+      SwalError('수락 후 5분이 경과했습니다.\n 취소할 수 없습니다.');
       dispatch(InitCancel());
     }
   }, [isCatch, isCancel, dispatch, MoveHome]);
