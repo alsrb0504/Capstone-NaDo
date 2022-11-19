@@ -248,13 +248,14 @@ export const userSlice = createSlice({
     // 로컬 로그아웃 thunk
     builder
       .addCase(LocalLogout.pending, (state) => StartLoading(state))
-      .addCase(LocalLogout.fulfilled, (state) => {
-        state.isFetching = false;
-        state.isLogin = false;
-        state.userNickname = '';
-        state.userEmail = '';
-        state.userProvider = '';
-        state.userProfile = '';
+      // .addCase(LocalLogout.fulfilled, (state) => {
+      .addCase(LocalLogout.fulfilled, () => {
+        // state.isFetching = false;
+        // state.isLogin = false;
+        // state.userNickname = '';
+        // state.userEmail = '';
+        // state.userProvider = '';
+        // state.userProfile = '';
       })
       .addCase(LocalLogout.rejected, (state) => ReceiveError(state));
     //

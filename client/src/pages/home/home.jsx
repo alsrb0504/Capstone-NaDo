@@ -24,15 +24,13 @@ const Home = () => {
 
   const Logout = () => {
     dispatch(LocalLogout());
-    ClearStore();
 
-    // 페이지 다 구현 후, 제거.
-    // 현재는 어쩔 수 없이 수동으로 한 번 더 이동해야 함.
-    // (useEffect가 없어서 isLogin의 변화를 감지 못 함..)
-    navigate('/login');
+    setTimeout(() => {
+      ClearStore();
+      window.location.reload();
+    }, 200);
   };
 
-  // 페이지 다 구현 후, 추가
   useEffect(() => {
     if (!isLogin) navigate('/login');
     dispatch(GetOrderList());
