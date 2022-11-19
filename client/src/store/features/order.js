@@ -18,7 +18,31 @@ const initialState = {
       ],
     },
   ],
-  selectedStore: {},
+  selectedStore: {
+    name: '',
+    telephone: '',
+    storeSequence: 0,
+    storeImage: '',
+    businessTimes: [
+      {
+        dayOfWeek: '매',
+        startTime: '10:00',
+        endTime: '20:00',
+      },
+    ],
+    menus: [
+      {
+        sequence: 0,
+        menuName: '',
+        menuPrice: 0,
+        menuImg: '',
+      },
+    ],
+    locationLating: {
+      lat: '37.3227651',
+      long: '127.125166',
+    },
+  },
   // 디폴트 메뉴 추후 다른 곳으로 옮길 것.
   defaultMenuList: defaultMenus,
   selectedMenu: {},
