@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { MakeDateFormat } from '../../utils/time';
 import defaultMenus from '../constants/default_menu';
 
 const initialState = {
@@ -339,19 +340,6 @@ export const orderSlice = createSlice({
 function PrintError(e, src) {
   console.log(`${src} 에러 : ${e.message}`);
   console.error(e);
-}
-
-function MakeDateFormat(orderTime) {
-  const dateInfo = new Date();
-
-  const yy = dateInfo.getFullYear();
-  let mm = dateInfo.getMonth() + 1; // +1 해줘야 함.
-  let dd = dateInfo.getDate();
-
-  if (mm < 10) mm = `0${mm}`;
-  if (dd < 10) dd = `0${dd}`;
-
-  return `${yy}-${mm}-${dd} ${orderTime}`;
 }
 
 export const { SelectStore, SelectCoffee } = orderSlice.actions;

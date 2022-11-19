@@ -58,6 +58,29 @@ export const MakeStoreOpenTime = (openTime) => {
   return `금일 ${startTime || '10:00'} ~ ${endTime || '20:00'}`;
 };
 
+export const GetCurrentTime = () => {
+  const date = new Date();
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+
+  return `${hour < 10 ? `0${hour}` : hour}:${
+    minute < 10 ? `0${minute}` : minute
+  }`;
+};
+
+export function MakeDateFormat(orderTime) {
+  const dateInfo = new Date();
+
+  const yy = dateInfo.getFullYear();
+  let mm = dateInfo.getMonth() + 1; // +1 해줘야 함.
+  let dd = dateInfo.getDate();
+
+  if (mm < 10) mm = `0${mm}`;
+  if (dd < 10) dd = `0${dd}`;
+
+  return `${yy}-${mm}-${dd} ${orderTime}`;
+}
+
 // *
 // 주문하기 시간 확인 함수.
 // *
