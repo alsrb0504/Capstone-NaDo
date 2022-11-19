@@ -1,7 +1,9 @@
 import React from 'react';
+import { CalcOpenTime } from '../../../../utils/time';
 
 const OrderStoreCard = ({ info, handleClick }) => {
   const { sequence, name, image, businesstimes } = info;
+  const { startTime, endTime } = businesstimes[0];
 
   const SelectCard = () => {
     handleClick(sequence);
@@ -22,7 +24,7 @@ const OrderStoreCard = ({ info, handleClick }) => {
 
       <i
         className={`fa-solid ${
-          businesstimes.length ? 'fa-store' : 'fa-store-slash'
+          CalcOpenTime(startTime, endTime) ? 'fa-store' : 'fa-store-slash'
         }`}
       />
     </div>

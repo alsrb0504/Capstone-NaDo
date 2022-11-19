@@ -8,6 +8,23 @@ export const ChangeTimeInfo = (timeInfo) => {
   }`;
 };
 
+export const CalcOpenTime = (open, close) => {
+  const date = new Date();
+  const hour = date.getHours();
+
+  // 예외 케이스 : 정보가 없는 경우.
+  if (open === null || close === null) {
+    if (hour < 10 || hour > 20) return false;
+    return true;
+  }
+
+  const openHour = open.split(':').map(Number)[0];
+  const closeHour = close.split(':').map(Number)[0];
+
+  if (hour < openHour || hour > closeHour) return false;
+  return true;
+};
+
 export const MakeFullTimeInfo = (timeInfo) => {
   const date = new Date(timeInfo);
 

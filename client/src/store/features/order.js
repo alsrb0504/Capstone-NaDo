@@ -4,7 +4,20 @@ import axios from 'axios';
 import defaultMenus from '../constants/default_menu';
 
 const initialState = {
-  storeList: [],
+  storeList: [
+    {
+      sequence: 0,
+      name: '',
+      image: '',
+      businessTimes: [
+        {
+          dayOfWeek: '매',
+          startTime: '10:00',
+          endTime: '20:00',
+        },
+      ],
+    },
+  ],
   selectedStore: {},
   // 디폴트 메뉴 추후 다른 곳으로 옮길 것.
   defaultMenuList: defaultMenus,
