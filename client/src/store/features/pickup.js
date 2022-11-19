@@ -4,9 +4,77 @@ import axios from 'axios';
 
 const initialState = {
   storeList: [],
-  selectedStore: {},
+  // 픽업 가게 상세 정보
+  selectedStore: {
+    businesstimes: [{ dayOfWeek: '매', startTime: '10:00', endTime: '22:00' }],
+    locationLating: { lat: '37.3227651', long: '127.125166' },
+    name: '',
+    pickupList: [
+      {
+        orderSequence: 0,
+        dest: '',
+        price: 0,
+        orderDate: '2022-11-19T16:55:00.000Z',
+      },
+    ],
+    storeImage: '',
+    storeSequence: 0,
+    telephone: '',
+  },
+  // 픽업 주문 수락 전, 픽업 주문
+  selectedOrder: {
+    address: '',
+    addressDetail: '',
+    message: '',
+    orderProducts: [
+      {
+        productQuantity: 0,
+        orderdetailsSequence: 0,
+        menuPrice: 0,
+        iceOrHot: 'ice',
+        shots: 0,
+        menu: {
+          sequence: 0,
+          menuName: '',
+          menuPrice: 0,
+        },
+      },
+    ],
+    orderSequence: 0,
+    orderStatus: 'ordered',
+    orderTimeout: '2022-11-19T19:01:00.000Z',
+    priceInfo: { deliveryFee: 0, menuPrice: 0, amountOfPayment: 0 },
+    store: { lat: '37.3229512', long: '127.1279079', storeSequence: 0 },
+  },
+  // 픽업 주문 수락 후, 현재 진행 중인 주문
+  currentPickup: {
+    address: '',
+    addressDetail: '',
+    message: '',
+    orderProducts: [
+      {
+        iceOrHot: 'ice',
+        menu: {
+          sequence: 0,
+          menuName: '',
+          menuPrice: 0,
+        },
+        menuPrice: 0,
+        orderdetailsSequence: 0,
+        productQuantity: 0,
+        shots: 0,
+      },
+    ],
+    orderSequence: 0,
+    orderStatus: 'pickuped',
+    orderTimeout: '2022-11-19T19:01:00.000Z',
+    pickupSequence: '0',
+    priceInfo: { deliveryFee: 0, menuPrice: 0, amountOfPayment: 0 },
+    store: { lat: '37.3229512', long: '127.1279079', storeSequence: 6 },
+  },
   myPickupList: [],
-
+  isCatch: false,
+  isCancel: false,
   pickup_history: [
     {
       pickup_id: 321,
@@ -29,15 +97,6 @@ const initialState = {
       pickupTime: '21.09.08 13 : 35',
     },
   ],
-
-  // 픽업 주문 수락 전, 픽업 주문
-  selectedOrder: {},
-
-  // 픽업 주문 수락 후, 현재 진행 중인 주문
-  currentPickup: {},
-
-  isCatch: false,
-  isCancel: false,
 };
 
 // *
@@ -264,11 +323,11 @@ export const pickupSlice = createSlice({
     });
     builder.addCase(CatchPickup.fulfilled, (state) => {
       state.isCatch = true;
-      // 추후 확인
       state.currentPickup = state.myPickupList;
     });
     builder.addCase(GetMyPickList.fulfilled, (state, { payload }) => {
       state.myPickupList = payload;
+      if (payload.length > 0) state.isCatch = true;
     });
     // current Pickup Detail
     builder.addCase(GetCurrentPickupDetail.fulfilled, (state, { payload }) => {

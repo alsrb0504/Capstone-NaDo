@@ -1,11 +1,34 @@
 export const ChangeTimeInfo = (timeInfo) => {
-  const date = new Date(timeInfo);
+  // console.log(`timeInfo = ${timeInfo}`);
+  // console.log(timeInfo.split('.000Z')[0]);
+  // const date = new Date(timeInfo);
+
+  const date = new Date(timeInfo.split('.000Z')[0]);
   const hour = date.getHours();
   const minute = date.getMinutes();
 
   return `${hour < 10 ? `0${hour}` : hour} : ${
     minute < 10 ? `0${minute}` : minute
   }`;
+};
+
+export const CalcOpenTime = (timeInfo) => {
+  const date = new Date();
+  const hour = date.getHours();
+
+  // 예외 케이스 : 정보가 없는 경우.
+  if (timeInfo === undefined || timeInfo.startTime === undefined) {
+    if (hour < 10 || hour > 20) return false;
+    return true;
+  }
+
+  const { startTime, endTime } = timeInfo;
+
+  const openHour = startTime.split(':').map(Number)[0];
+  const closeHour = endTime.split(':').map(Number)[0];
+
+  if (hour < openHour || hour > closeHour) return false;
+  return true;
 };
 
 export const MakeFullTimeInfo = (timeInfo) => {
@@ -34,6 +57,29 @@ export const MakeStoreOpenTime = (openTime) => {
 
   return `금일 ${startTime || '10:00'} ~ ${endTime || '20:00'}`;
 };
+
+export const GetCurrentTime = () => {
+  const date = new Date();
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+
+  return `${hour < 10 ? `0${hour}` : hour}:${
+    minute < 10 ? `0${minute}` : minute
+  }`;
+};
+
+export function MakeDateFormat(orderTime) {
+  const dateInfo = new Date();
+
+  const yy = dateInfo.getFullYear();
+  let mm = dateInfo.getMonth() + 1; // +1 해줘야 함.
+  let dd = dateInfo.getDate();
+
+  if (mm < 10) mm = `0${mm}`;
+  if (dd < 10) dd = `0${dd}`;
+
+  return `${yy}-${mm}-${dd} ${orderTime}`;
+}
 
 // *
 // 주문하기 시간 확인 함수.

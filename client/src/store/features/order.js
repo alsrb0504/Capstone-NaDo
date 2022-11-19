@@ -1,16 +1,87 @@
 /* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { MakeDateFormat } from '../../utils/time';
 import defaultMenus from '../constants/default_menu';
 
 const initialState = {
-  storeList: [],
-  selectedStore: {},
+  storeList: [
+    {
+      sequence: 0,
+      name: '',
+      image: '',
+      businesstimes: [
+        {
+          dayOfWeek: '매',
+          startTime: '10:00',
+          endTime: '20:00',
+        },
+      ],
+    },
+  ],
+  selectedStore: {
+    name: '',
+    telephone: '',
+    storeSequence: 0,
+    storeImage: '',
+    businesstimes: [
+      {
+        dayOfWeek: '매',
+        startTime: '10:00',
+        endTime: '20:00',
+      },
+    ],
+    menus: [
+      {
+        sequence: 0,
+        menuName: '',
+        menuPrice: 0,
+        menuImg: '',
+      },
+    ],
+    locationLating: {
+      lat: '37.3227651',
+      long: '127.125166',
+    },
+  },
   // 디폴트 메뉴 추후 다른 곳으로 옮길 것.
   defaultMenuList: defaultMenus,
   selectedMenu: {},
   myOrderList: [],
-  currentOrder: {},
+  currentOrder: {
+    address: '',
+    addressDetail: '',
+    orderTimeout: '2022-11-19T07:58:34.950Z',
+    //  orderStatus : ordered | pickuped| delivered | accepted
+    orderStatus: 'ordered',
+    orderSequence: -1,
+    message: '',
+    store: {
+      lat: '37.3227651',
+      long: '127.125166',
+      storeSequence: 0,
+    },
+    priceInfo: {
+      deliveryFee: 0,
+      menuPrice: 0,
+      amountOfPayment: 0,
+    },
+    orderProducts: [
+      {
+        productQuantity: 0,
+        menuPrice: 0,
+        // iceOrHot : 'ice' | 'hot'
+        iceOrHot: 'ice',
+        shots: 0,
+        orderdetailsSequence: 0,
+        menu: {
+          sequence: 0,
+          menuName: '',
+          menuPrice: 0,
+        },
+      },
+    ],
+  },
   order_history: [
     {
       order_id: 321,
@@ -269,19 +340,6 @@ export const orderSlice = createSlice({
 function PrintError(e, src) {
   console.log(`${src} 에러 : ${e.message}`);
   console.error(e);
-}
-
-function MakeDateFormat(orderTime) {
-  const dateInfo = new Date();
-
-  const yy = dateInfo.getFullYear();
-  let mm = dateInfo.getMonth() + 1; // +1 해줘야 함.
-  let dd = dateInfo.getDate();
-
-  if (mm < 10) mm = `0${mm}`;
-  if (dd < 10) dd = `0${dd}`;
-
-  return `${yy}-${mm}-${dd} ${orderTime}`;
 }
 
 export const { SelectStore, SelectCoffee } = orderSlice.actions;

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import Swal from 'sweetalert2';
@@ -10,7 +11,7 @@ import order_address from '../../../data/order_address';
 import LineInputContainer from '../lineInputContainer/line_input_container';
 import PaymentReceipt from '../../atoms/paymentReceipt/payment_receipt';
 import { PrintPrice } from '../../../utils/text';
-import { CheckOrderTime } from '../../../utils/time';
+import { GetCurrentTime } from '../../../utils/time';
 
 const PaymentForm = ({ SubmitPayment }) => {
   const { totalPrice } = useSelector((state) => state.cart);
@@ -22,16 +23,20 @@ const PaymentForm = ({ SubmitPayment }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      address: '도서관',
+      order_detail: '',
+      order_request: '조심히 와주세요.',
+      order_time: GetCurrentTime(),
+    },
+  });
 
   const OnSubmit = (data) => {
-    if (!CheckOrderTime(data.order_time)) {
-      alert('주문 시간은 최소 1시간 ~ 2시간 범위에서만 가능합니다.');
-      return;
-    }
-
     SubmitPayment(data);
-    
+
+    const popupTimer = 1200;
+
     // alert 추가
     Swal.fire({
       title: '결제 완료!',
@@ -39,10 +44,13 @@ const PaymentForm = ({ SubmitPayment }) => {
       icon: 'success',
       // confirmButtonColor: '#43a2ff',
       showConfirmButton: false,
-      timer: 1200,
+
+      timer: popupTimer,
     });
     // 홈으로 화면 이동
-    MoveHome();
+    setTimeout(() => {
+      MoveHome();
+    }, popupTimer);
   };
 
   const deliveryFee = 1200;
@@ -78,12 +86,13 @@ const PaymentForm = ({ SubmitPayment }) => {
         <FormTitle title="요청 사항" />
 
         <label id="order-time" className="payment-form-label">
-          배달 시간
+          주문 시간
         </label>
         <input
           className="order-time-input"
           {...register('order_time')}
           type="time"
+          disabled
         />
 
         <label id="order-request" className="payment-form-label">

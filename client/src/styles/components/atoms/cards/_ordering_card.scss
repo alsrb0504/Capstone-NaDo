@@ -1,4 +1,11 @@
 .ordering {
+  h3 {
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
   .order-count {
     button {
       width: 26px;
