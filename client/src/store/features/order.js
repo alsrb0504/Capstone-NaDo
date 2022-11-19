@@ -9,7 +9,7 @@ const initialState = {
       sequence: 0,
       name: '',
       image: '',
-      businessTimes: [
+      businesstimes: [
         {
           dayOfWeek: '매',
           startTime: '10:00',
@@ -23,7 +23,7 @@ const initialState = {
     telephone: '',
     storeSequence: 0,
     storeImage: '',
-    businessTimes: [
+    businesstimes: [
       {
         dayOfWeek: '매',
         startTime: '10:00',

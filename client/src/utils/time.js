@@ -1,4 +1,6 @@
 export const ChangeTimeInfo = (timeInfo) => {
+  console.log(`timeInfo = ${timeInfo}`);
+
   const date = new Date(timeInfo);
   const hour = date.getHours();
   const minute = date.getMinutes();

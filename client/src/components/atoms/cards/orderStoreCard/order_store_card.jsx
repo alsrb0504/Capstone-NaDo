@@ -2,7 +2,7 @@ import React from 'react';
 import { CalcOpenTime } from '../../../../utils/time';
 
 const OrderStoreCard = ({ info, handleClick }) => {
-  const { sequence, name, image, businessTimes } = info;
+  const { sequence, name, image, businesstimes } = info;
 
   const SelectCard = () => {
     handleClick(sequence);
@@ -23,7 +23,7 @@ const OrderStoreCard = ({ info, handleClick }) => {
 
       <i
         className={`fa-solid ${
-          CalcOpenTime(businessTimes) ? 'fa-store' : 'fa-store-slash'
+          CalcOpenTime(businesstimes) ? 'fa-store' : 'fa-store-slash'
         }`}
       />
     </div>
