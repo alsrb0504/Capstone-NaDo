@@ -90,7 +90,7 @@ export class PickupList {
   @ApiProperty({
     type: Date
   })
-  orderDate: Date
+  orderTimeout: Date
 }
 
 export class StoreDetailForPick extends OmitType(StoreDetail, ['menus']) {
