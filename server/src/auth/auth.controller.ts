@@ -34,8 +34,7 @@ export class AuthController {
       if(isRegistered) {
         throw new NotAcceptableException("this user already exist")
       }
-      const salt = await bcrypt.genSalt()
-      const hashedPassword = await bcrypt.hash(user.password, salt)
+      const hashedPassword = await bcrypt.hash(user.password, 10)
 
       await this.userService.insert({
         identifier: user.identifier,
