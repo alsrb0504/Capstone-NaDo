@@ -1,8 +1,6 @@
-.ordering-card {
+.picking-card {
   @include column-flexbox(start, start);
-
   height: 144px;
-
   padding: 20px 24px 12px 32px;
   cursor: pointer;
 
@@ -14,14 +12,14 @@
     }
   }
 
-  .order-info {
+  .picking-info {
     @include flexbox(between);
     position: relative;
     width: 100%;
     margin-bottom: 12px;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       left: -14px;
       top: 0;
@@ -32,8 +30,12 @@
     }
 
     h3 {
+      width: 95%;
       margin-bottom: 4px;
       font-size: 24px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
 
     p {

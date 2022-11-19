@@ -12,8 +12,8 @@ const PickingCard = ({ info, MoveDesc }) => {
   };
 
   return (
-    <div className="card-container ordering-card">
-      <div className="order-info" onClick={GoDesc}>
+    <div className="card-container picking-card">
+      <div className="picking-info" onClick={GoDesc}>
         <div className="info">
           <h3>
             {address} {detail}
