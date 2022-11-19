@@ -47,7 +47,40 @@ const initialState = {
   defaultMenuList: defaultMenus,
   selectedMenu: {},
   myOrderList: [],
-  currentOrder: {},
+  currentOrder: {
+    address: '',
+    addressDetail: '',
+    orderTimeout: '2022-11-19T07:58:34.950Z',
+    //  orderStatus : ordered | pickuped| delivered | accepted
+    orderStatus: 'ordered',
+    orderSequence: -1,
+    message: '',
+    store: {
+      lat: '37.3227651',
+      long: '127.125166',
+      storeSequence: 0,
+    },
+    priceInfo: {
+      deliveryFee: 0,
+      menuPrice: 0,
+      amountOfPayment: 0,
+    },
+    orderProducts: [
+      {
+        productQuantity: 0,
+        menuPrice: 0,
+        // iceOrHot : 'ice' | 'hot'
+        iceOrHot: 'ice',
+        shots: 0,
+        orderdetailsSequence: 0,
+        menu: {
+          sequence: 0,
+          menuName: '',
+          menuPrice: 0,
+        },
+      },
+    ],
+  },
   order_history: [
     {
       order_id: 321,
