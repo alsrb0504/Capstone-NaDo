@@ -204,8 +204,6 @@ export const RequestPayment = createAsyncThunk(
       );
 
       if (response.status === 200) {
-        alert('결제하기 요청 성공(추후 팝업으로 교체)');
-
         return {};
       }
 

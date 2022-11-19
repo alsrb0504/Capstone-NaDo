@@ -14,7 +14,8 @@ const initialState = {
         orderSequence: 0,
         dest: '',
         price: 0,
-        orderDate: '2022-11-19T16:55:00.000Z',
+        // orderDate: '2022-11-19T16:55:00.000Z',
+        orderTimeout: '2022-11-19T16:55:00.000Z',
       },
     ],
     storeImage: '',
@@ -72,7 +73,17 @@ const initialState = {
     priceInfo: { deliveryFee: 0, menuPrice: 0, amountOfPayment: 0 },
     store: { lat: '37.3229512', long: '127.1279079', storeSequence: 6 },
   },
-  myPickupList: [],
+  myPickupList: [
+    {
+      timeout: '2022-11-19T19:55:00.000Z',
+      price: 0,
+      sequence: -1,
+      location: {
+        address: '',
+        detail: '',
+      },
+    },
+  ],
   isCatch: false,
   isCancel: false,
   pickup_history: [
@@ -288,8 +299,7 @@ export const GetMyPickList = createAsyncThunk(
           timeout,
           price: totalPrice,
           sequence: pickupSequence,
-
-          location, // 이따 수정
+          location,
         };
 
         return [pickingCardFormat];
@@ -323,11 +333,13 @@ export const pickupSlice = createSlice({
     });
     builder.addCase(CatchPickup.fulfilled, (state) => {
       state.isCatch = true;
-      state.currentPickup = state.myPickupList;
     });
     builder.addCase(GetMyPickList.fulfilled, (state, { payload }) => {
+      // 주문 목록
       state.myPickupList = payload;
+
       if (payload.length > 0) state.isCatch = true;
+      else state.isCatch = false;
     });
     // current Pickup Detail
     builder.addCase(GetCurrentPickupDetail.fulfilled, (state, { payload }) => {
@@ -336,7 +348,7 @@ export const pickupSlice = createSlice({
     builder.addCase(CancelPickup.fulfilled, (state) => {
       state.isCatch = false;
       state.isCancel = true;
-      state.currentPickup = [];
+      // state.currentPickup = [];
     });
     builder.addCase(CompletePickup.fulfilled, (state, payload) => {
       // 추후 따로 분리

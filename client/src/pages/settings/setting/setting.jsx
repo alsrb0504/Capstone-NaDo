@@ -30,8 +30,12 @@ const Setting = () => {
 
   const Logout = () => {
     dispatch(LocalLogout());
-    ClearStore();
-    navigate('/login');
+
+    setTimeout(() => {
+      ClearStore();
+      navigate('/login');
+      // window.location.reload();
+    }, 200);
   };
 
   // 추후 회원탈퇴 구현

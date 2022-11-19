@@ -95,7 +95,6 @@ const SignupLocalForm = ({ SignupWithLocal }) => {
         errors={errors}
       />
 
-      <Btn text="PASS로 인증" />
       <div className="signup-local-form-btn-complete">
         <Btn type="submit" text="회원가입 완료" />
       </div>

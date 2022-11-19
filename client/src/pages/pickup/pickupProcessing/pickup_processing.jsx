@@ -2,6 +2,7 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import Btn from '../../../components/atoms/buttons/btn/btn';
 import Header from '../../../components/atoms/headers/header/header';
 import StateBox from '../../../components/atoms/stateBox/state_box';
@@ -17,7 +18,7 @@ const PickupProcessing = () => {
   const navigate = useNavigate();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const MoveHome = () => useCallback(() => navigate('/'), []);
+  const MoveHome = () => navigate('/');
   const MoveBack = () => navigate('/pickup/myPickup');
 
   const { isCatch, isCancel, currentPickup } = useSelector(
@@ -39,18 +40,44 @@ const PickupProcessing = () => {
   };
 
   useEffect(() => {
-    // 기본 상태 isCatch = true && isCancel = false
+    const popupTimer = 1200;
 
+    // 기본 상태 isCatch = true && isCancel = false
     // 취소 요청 성공
     if (!isCatch && isCancel) {
-      alert('취소되었습니다.');
+      Swal.fire({
+        title: '취소되었습니다.',
+        text: '',
+        icon: 'success',
+        // confirmButtonColor: '#43a2ff',
+        showConfirmButton: false,
+
+        timer: popupTimer,
+      });
+      // 홈으로 화면 이동
+      setTimeout(() => {
+        MoveHome();
+      }, popupTimer);
+
       dispatch(InitCancel());
-      MoveHome();
+
+      setTimeout(() => {
+        MoveHome();
+      }, popupTimer);
     }
 
     // 취소 요청 실패
     if (isCatch && isCancel) {
-      alert('수락 후 5분이 경과했습니다. \n 취소할 수 없습니다.');
+      Swal.fire({
+        title: '수락 후 5분이 경과했습니다. \n 취소할 수 없습니다.',
+        text: '',
+        icon: 'error',
+        // confirmButtonColor: '#43a2ff',
+        showConfirmButton: false,
+
+        timer: popupTimer,
+      });
+
       dispatch(InitCancel());
     }
   }, [isCatch, isCancel, dispatch, MoveHome]);

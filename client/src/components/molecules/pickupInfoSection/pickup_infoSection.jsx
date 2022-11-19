@@ -47,9 +47,8 @@ const PickupInfoSection = ({ selectedOrder }) => {
         ))}
       </section>
 
-      <PriceBox text="주문금액" price={PrintPrice(amountOfPayment)} />
-
       <PriceBox text="배달팁" color="배달" price={PrintPrice(deliveryFee)} />
+      <PriceBox text="주문금액" price={PrintPrice(amountOfPayment)} />
     </div>
   );
 };
