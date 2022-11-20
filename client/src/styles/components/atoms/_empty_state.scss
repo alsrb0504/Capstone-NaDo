@@ -1,0 +1,20 @@
+.empty-section {
+    flex-basis: 75%;
+
+    @include column-flexbox(center);
+    width: 100%;
+
+    .empty-container {
+        width: 50%;
+        max-width: 200px;
+        margin-bottom: 16px;
+
+        .coffee-img {
+        width: 100%;
+        height: auto;
+        }
+    }
+    .empty-text {
+        font-size: 20px;
+    }
+}

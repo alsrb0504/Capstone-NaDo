@@ -8,6 +8,7 @@ import FormTitle from '../../../components/atoms/formTitle/form_title';
 import Header from '../../../components/atoms/headers/header/header';
 import { GetOrderReport } from '../../../store/features/order';
 import { GetDefaultPeriod } from '../../../utils/time';
+import EmptyState from '../../../components/atoms/emptyState/empty_state';
 
 const OrderHistory = () => {
   const dispatch = useDispatch();
@@ -36,13 +37,19 @@ const OrderHistory = () => {
         <DatePickerContainer InquireReport={InquireReport} />
       </section>
 
-      <section className="order-history-list-section">
-        <ul>
-          {order_history.map((el) => (
-            <OrderRecordCard key={el.orderSequence} info={el} />
-          ))}
-        </ul>
-      </section>
+      {/* 주문내역이 없을 경우, 주문내역 없음 출력, 장바구니와 동일 */}
+      {order_history.length === 0 && <EmptyState text="주문내역이 없습니다." />}
+
+      {/* 주문내역이 있는 경우, 주문내역 출력 */}
+      {order_history.length !== 0 && (
+        <section className="order-history-list-section">
+          <ul>
+            {order_history.map((el) => (
+              <OrderRecordCard key={el.orderSequence} info={el} />
+            ))}
+          </ul>
+        </section>
+      )}
     </div>
   );
 };
