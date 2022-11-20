@@ -81,9 +81,14 @@ const OrderDetail = () => {
           <PaymentReceipt price_info={priceInfo} />
         </section>
       </div>
-      <Btn text="배달 완료 확인" color="blue" handleClick={TestComplete} />
-      <Btn text="피커와 채팅하기" />
-      <Btn text="신고하기" color="red" handleClick={MoveReport} />
+      {orderStatus === 'delivered' && (
+        <React.Fragment>
+          <Btn text="배달 완료 확인" color="blue" handleClick={TestComplete} />
+          <Btn text="신고하기" color="red" handleClick={MoveReport} />
+        </React.Fragment>
+      )}
+      <Btn text="확인" handleClick={MoveBack} />
+      {/* <Btn text="피커와 채팅하기" /> */}
     </div>
   );
 };

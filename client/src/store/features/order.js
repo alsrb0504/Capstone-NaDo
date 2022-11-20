@@ -5,6 +5,7 @@ import { MakeDateFormat } from '../../utils/time';
 import defaultMenus from '../constants/default_menu';
 
 const initialState = {
+  isPayment: 'none', // 'none' | 'success' | 'error'
   storeList: [
     {
       sequence: 0,
@@ -277,8 +278,6 @@ export const CompleteOrder = createAsyncThunk(
         },
       );
 
-      console.log(response);
-
       if (response.status === 200) {
         return response.data;
       }
@@ -324,6 +323,9 @@ export const orderSlice = createSlice({
     SelectStore: (state, actions) => {
       state.selectedStore = actions.payload;
     },
+    InitIsPayment: (state) => {
+      state.isPayment = 'none';
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(GetStoreList.fulfilled, (state, { payload }) => {
@@ -338,12 +340,11 @@ export const orderSlice = createSlice({
     builder.addCase(GetOrderDetail.fulfilled, (state, { payload }) => {
       state.currentOrder = payload;
     });
-    builder.addCase(RequestPayment.fulfilled, (state, { payload }) => {
-      state.currentOrder = payload;
+    builder.addCase(RequestPayment.fulfilled, (state) => {
+      state.isPayment = 'success';
     });
-    builder.addCase(RequestPayment.rejected, (state, { payload }) => {
-      // state.currentOrder = payload;
-      // 이따가
+    builder.addCase(RequestPayment.rejected, (state) => {
+      state.isPayment = 'error';
     });
     // 완료되면 홈으로 이동
     builder.addCase(CompleteOrder.fulfilled, () => {});
@@ -358,5 +359,5 @@ function PrintError(e, src) {
   console.error(e);
 }
 
-export const { SelectStore, SelectCoffee } = orderSlice.actions;
+export const { SelectStore, SelectCoffee, InitIsPayment } = orderSlice.actions;
 export default orderSlice.reducer;

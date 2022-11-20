@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../../components/atoms/headers/header/header';
 import PaymentForm from '../../../components/molecules/paymentForm/payment_form';
 import { CleanCart } from '../../../store/features/cart';
-import { RequestPayment } from '../../../store/features/order';
-import { SwalSuccess } from '../../../utils/swal';
+import { InitIsPayment, RequestPayment } from '../../../store/features/order';
+import { SwalError, SwalSuccess } from '../../../utils/swal';
 
 const OrderPayment = () => {
   const navigate = useNavigate();
@@ -14,6 +14,7 @@ const OrderPayment = () => {
   const { cartStoreSequence, cartList, totalPrice } = useSelector(
     (state) => state.cart,
   );
+  const { isPayment } = useSelector((state) => state.order);
 
   const MoveHome = () => navigate('/');
   // 추후 장바구니로 갈지, 가게로 갈지 구분
@@ -28,19 +29,32 @@ const OrderPayment = () => {
         cartTotalPrice: totalPrice,
       }),
     );
-
-    const popupTimer = 1200;
-    SwalSuccess('결제 완료!', popupTimer);
-
-    // 홈으로 화면 이동
-    setTimeout(() => {
-      MoveHome();
-    }, popupTimer);
-
-    setTimeout(() => {
-      dispatch(CleanCart());
-    }, popupTimer);
   };
+
+  useEffect(() => {
+    const popupTimer = 1200;
+
+    if (isPayment === 'success') {
+      SwalSuccess('결제 완료!', popupTimer);
+
+      // 홈으로 화면 이동
+      setTimeout(() => {
+        MoveHome();
+        dispatch(CleanCart());
+        dispatch(InitIsPayment());
+      }, popupTimer);
+    }
+
+    if (isPayment === 'error') {
+      SwalError('결제 실패!', popupTimer);
+
+      // 홈으로 화면 이동
+      setTimeout(() => {
+        MoveHome();
+        dispatch(InitIsPayment());
+      }, popupTimer);
+    }
+  }, [isPayment, dispatch, MoveHome]);
 
   return (
     <div className="col-sm-4 order-payment">

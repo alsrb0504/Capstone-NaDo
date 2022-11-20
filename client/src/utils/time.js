@@ -1,9 +1,15 @@
 export const ChangeTimeInfo = (timeInfo) => {
-  // console.log(`timeInfo = ${timeInfo}`);
-  // console.log(timeInfo.split('.000Z')[0]);
-  // const date = new Date(timeInfo);
+  // const date = new Date(timeInfo.split('.000Z')[0]);
 
-  const date = new Date(timeInfo.split('.000Z')[0]);
+  let date;
+
+  if (timeInfo.includes('.000Z')) {
+    date = new Date(timeInfo.split('.000Z')[0]);
+  } else {
+    // const date = new Date(timeInfo);
+    date = new Date(timeInfo);
+  }
+
   const hour = date.getHours();
   const minute = date.getMinutes();
 

@@ -3,8 +3,6 @@ import { PrintPrice } from '../../../../utils/text';
 import { ChangeTimeInfo } from '../../../../utils/time';
 
 const PickingCard = ({ info, MoveDesc }) => {
-  console.log(info);
-
   const { location, sequence, timeout, price } = info;
 
   const { address, detail } = location;
