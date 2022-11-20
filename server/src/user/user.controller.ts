@@ -70,7 +70,6 @@ export class UserController {
   @HttpCode(200)
   async changeImage(
     @Request() req: ReqWithUser,
-    @Response() res: Express.Response,
     @UploadedFile() profileFile: Express.Multer.File
   ): Promise<ImageChangeResponseUser>{
 
