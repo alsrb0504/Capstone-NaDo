@@ -12,7 +12,7 @@ import Orders from 'src/entity/orders/orders.entity';
 import Pickedorder from 'src/entity/pickedorder/pickedorder.entity';
 import { OrderDetail, OrderPay, SettleOrder, WaitOrder } from 'src/type/order/order.type';
 import { addHours } from 'src/util/util';
-import { DataSource, InsertResult, Repository } from 'typeorm';
+import { Brackets, DataSource, InsertResult, Repository } from 'typeorm';
 
 @Injectable()
 export class OrderService {
@@ -117,7 +117,12 @@ export class OrderService {
       const allOrderLists = await this.ordersRepository
         .createQueryBuilder('orders')
         .where('orders.userSequence = :sequence', { sequence: userSequence })
-        .andWhere('orders.orderStatus = :status', { status: 'ordered' })
+        .andWhere(new Brackets((qb) => {
+          qb
+            .where('orders.orderStatus = :status', { status: 'ordered' })
+            .orWhere('orders.orderStatus = :status', { status: 'pickuped' })
+            .orWhere('orders.orderStatus = :status', { status: 'delivered' })
+        }))
         .getMany();
 
       const orderLists = [];
