@@ -121,7 +121,7 @@ export class OrderService {
           qb
             .where('orders.orderStatus = :status', { status: 'ordered' })
             .orWhere('orders.orderStatus = :status1', { status1: 'pickuped' })
-            .orWhere('orders.orderStatus = :status2', { status1: 'delivered' })
+            .orWhere('orders.orderStatus = :status2', { status2: 'delivered' })
         }))
         .getMany();
 
