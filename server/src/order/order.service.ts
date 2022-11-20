@@ -120,8 +120,8 @@ export class OrderService {
         .andWhere(new Brackets((qb) => {
           qb
             .where('orders.orderStatus = :status', { status: 'ordered' })
-            .orWhere('orders.orderStatus = :status', { status: 'pickuped' })
-            .orWhere('orders.orderStatus = :status', { status: 'delivered' })
+            .orWhere('orders.orderStatus = :status1', { status1: 'pickuped' })
+            .orWhere('orders.orderStatus = :status2', { status1: 'delivered' })
         }))
         .getMany();
 
