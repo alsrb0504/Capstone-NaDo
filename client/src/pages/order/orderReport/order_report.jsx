@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
@@ -8,11 +9,12 @@ import FormTitle from '../../../components/atoms/formTitle/form_title';
 import Header from '../../../components/atoms/headers/header/header';
 import LineInputContainer from '../../../components/molecules/lineInputContainer/line_input_container';
 import OrderRecordCard from '../../../components/atoms/cards/orderRecordCard/order_record_card';
-import { MakeFullTimeInfo } from '../../../utils/time';
+import { SwalSuccess } from '../../../utils/swal';
 
 const OrderReport = () => {
   const { currentOrder } = useSelector((state) => state.order);
-  const { address, addressDetail, orderTimeout, priceInfo } = currentOrder;
+  const { address, addressDetail, orderTimeout, priceInfo, orderSequence } =
+    currentOrder;
 
   const {
     register,
@@ -43,15 +45,11 @@ const OrderReport = () => {
       confirmButtonText: '네, 신고하겠습니다.',
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire({
-          title: '신고 완료!',
-          text: '',
-          icon: 'success',
-          // confirmButtonColor: '#43a2ff',
-          showConfirmButton: false,
-          timer: 1200,
-        });
-        MoveHome();
+        SwalSuccess('신고 완료!', 1200);
+
+        setTimeout(() => {
+          MoveHome();
+        }, 1200);
       }
     });
   };
@@ -64,9 +62,11 @@ const OrderReport = () => {
           <FormTitle title="신고 주문" />
           <OrderRecordCard
             info={{
-              orderAddress: `${address} ${addressDetail}`,
-              orderTime: MakeFullTimeInfo(orderTimeout),
-              orderPrice: priceInfo.amountOfPayment,
+              address,
+              addressDetail,
+              orderSequence,
+              totalPrice: priceInfo.amountOfPayment,
+              deliveredAt: orderTimeout,
             }}
             handleClick={MoveOrder}
           />
