@@ -1,9 +1,15 @@
 export const ChangeTimeInfo = (timeInfo) => {
-  // console.log(`timeInfo = ${timeInfo}`);
-  // console.log(timeInfo.split('.000Z')[0]);
-  // const date = new Date(timeInfo);
+  // const date = new Date(timeInfo.split('.000Z')[0]);
 
-  const date = new Date(timeInfo.split('.000Z')[0]);
+  let date;
+
+  if (timeInfo.includes('.000Z')) {
+    date = new Date(timeInfo.split('.000Z')[0]);
+  } else {
+    // const date = new Date(timeInfo);
+    date = new Date(timeInfo);
+  }
+
   const hour = date.getHours();
   const minute = date.getMinutes();
 
@@ -32,7 +38,14 @@ export const CalcOpenTime = (timeInfo) => {
 };
 
 export const MakeFullTimeInfo = (timeInfo) => {
-  const date = new Date(timeInfo);
+  let date;
+
+  if (timeInfo.includes('.000Z')) {
+    date = new Date(timeInfo.split('.000Z')[0]);
+  } else {
+    // const date = new Date(timeInfo);
+    date = new Date(timeInfo);
+  }
 
   const yy = date.getFullYear().toString().slice(2);
   let mm = date.getMonth() + 1; // +1 해줘야 함.
@@ -81,31 +94,26 @@ export function MakeDateFormat(orderTime) {
   return `${yy}-${mm}-${dd} ${orderTime}`;
 }
 
-// *
-// 주문하기 시간 확인 함수.
-// *
-export const CheckOrderTime = (orderTime) => {
-  console.log(`orderTime = ${orderTime}`);
-  // const curTime = new Date();
-  // const yy = curTime.getFullYear();
-  // const mm = curTime.getMonth();
-  // const dd = curTime.getDate();
-  // const curH = curTime.getHours();
+export const GetDefaultPeriod = () => {
+  const date = new Date();
+  const yy = date.getFullYear();
+  let mm = date.getMonth() + 1;
+  let dd = date.getDate();
 
-  // const [reqH, reqM] = orderTime.split(':').map(Number);
+  if (mm < 10) mm = `0${mm}`;
+  if (dd < 10) dd = `0${dd}`;
 
-  // 서비스 영업 시간이 아님.
-  // 추후 다시 살릴 것.!
-  // if (curH < 8 || curH > 22 || reqH < 9 || reqH > 22) return false;
+  return [`${yy}-${mm}-01`, `${yy}-${mm}-${dd}`];
+};
 
-  // const reqTimeObj = new Date(yy, mm, dd, reqH, reqM);
-  // const curTimeObj = new Date();
+export const MakeReportFormat = (timeInfo) => {
+  const date = new Date(timeInfo);
+  const yy = date.getFullYear();
+  let mm = date.getMonth() + 1;
+  let dd = date.getDate();
 
-  // 시간차(분 단위) 계산.
-  // const diff = (reqTimeObj.getTime() - curTimeObj.getTime()) / (1000 * 60);
+  if (mm < 10) mm = `0${mm}`;
+  if (dd < 10) dd = `0${dd}`;
 
-  // 최소 60분 이상 최대 120분 이하 범위에서만 주문 가능.
-  // if (diff < 60 || diff > 120) return false;
-
-  return true;
+  return `${yy}-${mm}-${dd}`;
 };

@@ -7,6 +7,7 @@ import Header from '../../../components/atoms/headers/header/header';
 import ProfileCard from '../../../components/atoms/cards/profileCard/profile_card';
 import { LocalLogout } from '../../../store/features/user';
 import { ClearStore } from '../../../utils/store';
+import { SwalError } from '../../../utils/swal';
 
 const Setting = () => {
   const navigate = useNavigate();
@@ -23,7 +24,10 @@ const Setting = () => {
   const MoveProfit = () => navigate('/setting/income_calculate');
 
   const MoveEditPassword = () => {
-    if (userProvider !== 'local') return;
+    if (userProvider !== 'local') {
+      SwalError('로컬 계정만 이용 가능합니다.', 1200);
+      return;
+    }
 
     navigate('/setting/passwd');
   };

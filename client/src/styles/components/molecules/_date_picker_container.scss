@@ -1,9 +1,16 @@
 @import '~react-datepicker/dist/react-datepicker.css';
 
+.date-picker-section {
+  .btn {
+    min-height: 40px;
+  }
+}
+
 .date-picker-container {
   @include flexbox(between);
 
   width: 100%;
+  margin-bottom: 16px;
 
   .date-picker-split {
     margin: 0 4px;

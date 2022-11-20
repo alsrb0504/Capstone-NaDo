@@ -1,19 +1,25 @@
 import React from 'react';
 import { PrintPrice } from '../../../../utils/text';
+import { MakeFullTimeInfo } from '../../../../utils/time';
 
 const OrderRecordCard = ({ info, handleClick }) => {
-  const { orderAddress, orderTime, orderPrice } = info;
+  const { address, addressDetail, deliveredAt, orderSequence, totalPrice } =
+    info;
 
   const OnClick = () => {
-    handleClick();
+    alert('미구현');
+
+    handleClick(orderSequence);
   };
 
   return (
     <div className="card-container order-record-card" onClick={OnClick}>
       <div className="info">
-        <h3>{orderAddress}</h3>
-        <p className="date">배달 일시 : {orderTime}</p>
-        <p>주문 금액 : {PrintPrice(orderPrice)} 원</p>
+        <h3>
+          {address} {addressDetail}
+        </h3>
+        <p className="date">배달 일시 : {MakeFullTimeInfo(deliveredAt)}</p>
+        <p>주문 금액 : {PrintPrice(totalPrice)} 원</p>
       </div>
 
       <i className="fa-solid fa-chevron-right" />

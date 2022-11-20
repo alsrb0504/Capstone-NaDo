@@ -5,6 +5,7 @@ import { MakeDateFormat } from '../../utils/time';
 import defaultMenus from '../constants/default_menu';
 
 const initialState = {
+  isPayment: 'none', // 'none' | 'success' | 'error'
   storeList: [
     {
       sequence: 0,
@@ -84,24 +85,11 @@ const initialState = {
   },
   order_history: [
     {
-      order_id: 321,
-      orderAddress: '소프트웨어관 313호',
-      orderPrice: 8900,
-      orderTime: '13:35',
-    },
-
-    {
-      order_id: 322,
-      orderAddress: '소프트웨어관 313호',
-      orderPrice: 8900,
-      orderTime: '13:35',
-    },
-
-    {
-      id: 323,
-      orderAddress: '소프트웨어관 313호',
-      orderPrice: 8900,
-      orderTime: '13:35',
+      totalPrice: 0,
+      orderSequence: '',
+      address: '',
+      addressDetail: '',
+      deliveredAt: '2022-11-20T04:57:41.466Z',
     },
   ],
 };
@@ -290,8 +278,6 @@ export const CompleteOrder = createAsyncThunk(
         },
       );
 
-      console.log(response);
-
       if (response.status === 200) {
         return response.data;
       }
@@ -299,6 +285,29 @@ export const CompleteOrder = createAsyncThunk(
       return thunkAPI.rejectWithValue();
     } catch (e) {
       PrintError(e, '픽업 취소');
+      return thunkAPI.rejectWithValue();
+    }
+  },
+);
+
+// *
+// 진행 중인 주문 정보 요청 함수
+// *
+export const GetOrderReport = createAsyncThunk(
+  'order/getOrderReport',
+  async ({ start, end }, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/order/settle?startTime=${start}&endTime=${end}`,
+      );
+
+      if (response.status === 200) {
+        return response.data;
+      }
+
+      return thunkAPI.rejectWithValue();
+    } catch (e) {
+      PrintError(e, '프로필 업데이트');
       return thunkAPI.rejectWithValue();
     }
   },
@@ -314,6 +323,9 @@ export const orderSlice = createSlice({
     SelectStore: (state, actions) => {
       state.selectedStore = actions.payload;
     },
+    InitIsPayment: (state) => {
+      state.isPayment = 'none';
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(GetStoreList.fulfilled, (state, { payload }) => {
@@ -328,8 +340,17 @@ export const orderSlice = createSlice({
     builder.addCase(GetOrderDetail.fulfilled, (state, { payload }) => {
       state.currentOrder = payload;
     });
+    builder.addCase(RequestPayment.fulfilled, (state) => {
+      state.isPayment = 'success';
+    });
+    builder.addCase(RequestPayment.rejected, (state) => {
+      state.isPayment = 'error';
+    });
     // 완료되면 홈으로 이동
     builder.addCase(CompleteOrder.fulfilled, () => {});
+    builder.addCase(GetOrderReport.fulfilled, (state, { payload }) => {
+      state.order_history = payload;
+    });
   },
 });
 
@@ -338,5 +359,5 @@ function PrintError(e, src) {
   console.error(e);
 }
 
-export const { SelectStore, SelectCoffee } = orderSlice.actions;
+export const { SelectStore, SelectCoffee, InitIsPayment } = orderSlice.actions;
 export default orderSlice.reducer;

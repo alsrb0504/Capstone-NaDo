@@ -46,7 +46,6 @@ const PickupProcessing = () => {
       // 홈으로 화면 이동
       setTimeout(() => {
         MoveHome();
-        // test
         dispatch(InitCurrentPickup());
       }, popupTimer);
 
@@ -71,10 +70,14 @@ const PickupProcessing = () => {
 
       <PickupInfoSection selectedOrder={currentPickup} />
 
-      {/* {isCatch && ( */}
-      <Btn text="취소하기" color="red" handleClick={CancelOrder} />
-      <Btn text="배달 완료" handleClick={CompleteOrder} />
-      {/* )} */}
+      {orderStatus === 'pickuped' && (
+        <React.Fragment>
+          <Btn text="취소하기" color="red" handleClick={CancelOrder} />
+          <Btn text="배달 완료" handleClick={CompleteOrder} />
+        </React.Fragment>
+      )}
+
+      {orderStatus !== 'pickuped' && <Btn text="확인" handleClick={MoveHome} />}
     </div>
   );
 };

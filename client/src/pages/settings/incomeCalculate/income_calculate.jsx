@@ -1,21 +1,32 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import PickupRecordCard from '../../../components/atoms/cards/pickuprecordCard/pickup_record_card';
 import EmptyState from '../../../components/atoms/emptyState/empty_state';
 import FormTitle from '../../../components/atoms/formTitle/form_title';
 import Header from '../../../components/atoms/headers/header/header';
 import DatePickerContainer from '../../../components/molecules/datePickercContainer/date_picker_container';
+import { GetPickupReport } from '../../../store/features/pickup';
+import { PrintPrice } from '../../../utils/text';
+import { GetDefaultPeriod } from '../../../utils/time';
 
 const IncomeCalculate = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { pickup_history } = useSelector((state) => state.pickup);
-
-  // 추후 계산하는 함수 만들 것.
-  const totalIncome = 36000;
+  const { pickupHistory } = useSelector((state) => state.pickup);
+  const { profitList, totalProfit } = pickupHistory;
 
   const MoveBack = () => navigate('/setting');
+
+  const InquireReport = (start, end) => {
+    dispatch(GetPickupReport({ start, end }));
+  };
+
+  useEffect(() => {
+    const [start, end] = GetDefaultPeriod();
+    dispatch(GetPickupReport({ start, end }));
+  }, [dispatch]);
 
   return (
     <div className="col-sm-4 income-calculate">
@@ -23,40 +34,28 @@ const IncomeCalculate = () => {
 
       <section className="date-picker-section">
         <FormTitle title="조회 기간" />
-        <DatePickerContainer />
+        <DatePickerContainer InquireReport={InquireReport} />
       </section>
 
       <div className="income-calculate-total">
         <p>총 수익</p>
 
-        {/* 픽업내역이 없을 경우, 수익 0원 */}
-        {pickup_history.length === 0 && (
-          <p>0원</p>
-        )}
-
-        {/* 픽업내역이 있을 경우, 수익 계산 */}
-        {pickup_history.length !== 0 && (
-          <p>{totalIncome}원</p>
-        )}
-
+        <p>{PrintPrice(totalProfit)}원</p>
       </div>
 
       {/* 픽업내역이 없을 경우, 픽업내역 없음 출력, 장바구니와 동일 */}
-      {pickup_history.length === 0 && (
-        <EmptyState text='픽업내역이 없습니다.'/>
-      )}
+      {profitList.length === 0 && <EmptyState text="픽업내역이 없습니다." />}
 
       {/* 픽업내역이 있는 경우, 픽업내역 출력 */}
-      {pickup_history.length !== 0 && (
-      <section className="income-history-list-section">
-        <ul>
-          {pickup_history.map((el) => (
-            <PickupRecordCard key={el.pickupId} info={el} />
-          ))}
-        </ul>
-      </section>
+      {profitList.length !== 0 && (
+        <section className="income-history-list-section">
+          <ul>
+            {profitList.map((el) => (
+              <PickupRecordCard key={el.orderSequence} info={el} />
+            ))}
+          </ul>
+        </section>
       )}
-
     </div>
   );
 };
