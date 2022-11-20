@@ -14,7 +14,6 @@ const initialState = {
         orderSequence: 0,
         dest: '',
         price: 0,
-        // orderDate: '2022-11-19T16:55:00.000Z',
         orderTimeout: '2022-11-19T16:55:00.000Z',
       },
     ],
@@ -86,28 +85,18 @@ const initialState = {
   ],
   isCatch: false,
   isCancel: false,
-  pickup_history: [
-    {
-      pickup_id: 321,
-      pickupAddress: '소프트웨어관 313호',
-      pickupFee: 1200,
-      pickupTime: '21.09.08 13 : 35',
-    },
-
-    {
-      pickup_id: 322,
-      pickupAddress: '소프트웨어관 313호',
-      pickupFee: 1200,
-      pickupTime: '21.09.08 13 : 35',
-    },
-
-    {
-      pickup_id: 323,
-      pickupAddress: '소프트웨어관 313호',
-      pickupFee: 1200,
-      pickupTime: '21.09.08 13 : 35',
-    },
-  ],
+  pickupHistory: {
+    profitList: [
+      {
+        orderSequence: 'string',
+        address: 'string',
+        addressDetail: 'string',
+        deliveredAt: '2022-11-20T05:54:33.450Z',
+        deliveryFee: 0,
+      },
+    ],
+    totalProfit: 0,
+  },
 };
 
 // *
@@ -313,6 +302,31 @@ export const GetMyPickList = createAsyncThunk(
   },
 );
 
+// *
+// GET : 픽업 기록 요청 함수
+// *
+export const GetPickupReport = createAsyncThunk(
+  'pickup/getPickupReport',
+  async ({ start, end }, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/pickup/profit?startTime=${start}&endTime=${end}`,
+      );
+
+      console.log(response);
+
+      if (response.status === 200) {
+        return response.data;
+      }
+
+      return thunkAPI.rejectWithValue();
+    } catch (e) {
+      PrintError(e, '픽업 기록 요청');
+      return thunkAPI.rejectWithValue();
+    }
+  },
+);
+
 export const pickupSlice = createSlice({
   name: 'pickup',
   initialState,
@@ -355,9 +369,13 @@ export const pickupSlice = createSlice({
     builder.addCase(CancelPickup.rejected, (state) => {
       state.isCancel = true;
     });
-    builder.addCase(CompletePickup.fulfilled, (state, payload) => {
+    builder.addCase(CompletePickup.fulfilled, (state) => {
       // 추후 따로 분리
       state.currentPickup.orderStatus = 'delivered';
+    });
+    builder.addCase(GetPickupReport.fulfilled, (state, { payload }) => {
+      // 추후 따로 분리
+      state.pickupHistory = payload;
     });
   },
 });

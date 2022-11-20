@@ -84,24 +84,11 @@ const initialState = {
   },
   order_history: [
     {
-      order_id: 321,
-      orderAddress: '소프트웨어관 313호',
-      orderPrice: 8900,
-      orderTime: '13:35',
-    },
-
-    {
-      order_id: 322,
-      orderAddress: '소프트웨어관 313호',
-      orderPrice: 8900,
-      orderTime: '13:35',
-    },
-
-    {
-      id: 323,
-      orderAddress: '소프트웨어관 313호',
-      orderPrice: 8900,
-      orderTime: '13:35',
+      totalPrice: 0,
+      orderSequence: '',
+      address: '',
+      addressDetail: '',
+      deliveredAt: '2022-11-20T04:57:41.466Z',
     },
   ],
 };
@@ -304,6 +291,29 @@ export const CompleteOrder = createAsyncThunk(
   },
 );
 
+// *
+// 진행 중인 주문 정보 요청 함수
+// *
+export const GetOrderReport = createAsyncThunk(
+  'order/getOrderReport',
+  async ({ start, end }, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/order/settle?startTime=${start}&endTime=${end}`,
+      );
+
+      if (response.status === 200) {
+        return response.data;
+      }
+
+      return thunkAPI.rejectWithValue();
+    } catch (e) {
+      PrintError(e, '프로필 업데이트');
+      return thunkAPI.rejectWithValue();
+    }
+  },
+);
+
 export const orderSlice = createSlice({
   name: 'order',
   initialState,
@@ -328,8 +338,18 @@ export const orderSlice = createSlice({
     builder.addCase(GetOrderDetail.fulfilled, (state, { payload }) => {
       state.currentOrder = payload;
     });
+    builder.addCase(RequestPayment.fulfilled, (state, { payload }) => {
+      state.currentOrder = payload;
+    });
+    builder.addCase(RequestPayment.rejected, (state, { payload }) => {
+      // state.currentOrder = payload;
+      // 이따가
+    });
     // 완료되면 홈으로 이동
     builder.addCase(CompleteOrder.fulfilled, () => {});
+    builder.addCase(GetOrderReport.fulfilled, (state, { payload }) => {
+      state.order_history = payload;
+    });
   },
 });
 
