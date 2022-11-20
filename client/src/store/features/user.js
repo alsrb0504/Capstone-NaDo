@@ -49,6 +49,9 @@ export const UpdateProfile = createAsyncThunk(
 
       if (NicknameResponse.status === 200) {
         console.log(NicknameResponse);
+        console.log(
+          `NicknameResponse.data.body.nickname = ${NicknameResponse.data.body.nickname}`,
+        );
 
         return {
           nickname: NicknameResponse.data.body.nickname,
@@ -255,6 +258,9 @@ export const userSlice = createSlice({
     builder
       .addCase(UpdateProfile.fulfilled, (state, { payload }) => {
         const { nickname, imagePath } = payload;
+
+        console.log(`nickname = ${nickname}, imagePath = ${imagePath}`);
+
         state.userNickname = nickname;
         state.userProfile = imagePath || state.userProfile;
       })

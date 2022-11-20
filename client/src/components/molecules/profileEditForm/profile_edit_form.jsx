@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { NicknameCond } from '../../../utils/formCondition';
-import { UpdateProfile } from '../../../store/features/user';
 import Btn from '../../atoms/buttons/btn/btn';
 import LineInput from '../../atoms/inputs/lineInput/line_input';
 
-const ProfileEditForm = () => {
-  const dispatch = useDispatch();
-
+const ProfileEditForm = ({ ChangeProfile }) => {
   // 추후 이미지도 가져올 수 있도록 수정
-  const { userNickname, userId } = useSelector((state) => state.user);
+  const { userId, userNickname, userProfile } = useSelector(
+    (state) => state.user,
+  );
 
   // default Value
   const {
@@ -21,28 +20,36 @@ const ProfileEditForm = () => {
   } = useForm({
     defaultValues: {
       nickname: userNickname,
-      // image: userProfile,
-      image: '',
+      image: userProfile || '',
+      // image: '',
       identifier: userId,
     },
   });
 
   const NicknameCondition = NicknameCond;
 
-  const [avatarPreview, setAvatarPreview] = useState('');
+  const [avatarPreview, setAvatarPreview] = useState(userProfile);
   const avatar = watch('image');
 
   useEffect(() => {
-    if (avatar && avatar.length > 0) {
+    if (avatar && avatar !== userProfile && avatar.length > 0) {
       const file = avatar[0];
       setAvatarPreview(URL.createObjectURL(file));
     }
-  }, [avatar]);
+  }, [avatar, userProfile]);
 
   const OnSubmit = (data) => {
     console.log('form info', data);
 
-    dispatch(UpdateProfile(data));
+    const filteredData = {
+      nickname: data.nickname,
+      image: data.image !== userProfile ? data.image : '',
+    };
+
+    console.log(`filteredData = ${filteredData}`);
+
+    // ChangeProfile(data);
+    ChangeProfile(filteredData);
   };
 
   return (
