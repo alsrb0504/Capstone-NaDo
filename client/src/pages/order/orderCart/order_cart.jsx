@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Btn from '../../../components/atoms/buttons/btn/btn';
 import OrderingCard from '../../../components/atoms/cards/orderingCard/ordering_card';
+import EmptyState from '../../../components/atoms/emptyState/empty_state';
 import Header from '../../../components/atoms/headers/header/header';
 import { UpdateCart } from '../../../store/features/cart';
 import { PrintPrice } from '../../../utils/text';
@@ -46,12 +47,7 @@ const OrderCart = () => {
     <div className="col-sm-4 order-cart">
       <Header title="장바구니" handleClick={MoveBack} />
       {cartList.length === 0 && (
-        <section className="order-cart-empty-section">
-          <div className="cart-empty-container">
-            <img className="coffee-img" src="/images/coffee.svg" alt="" />
-          </div>
-          <p className="empty-text">장바구니가 비었습니다.</p>
-        </section>
+        <EmptyState text='장바구니가 비었습니다.'/>
       )}
 
       {/* 장바구니 차 있을 경우, 컴포넌트 구현해야 함. */}

@@ -6,6 +6,7 @@ import OrderRecordCard from '../../../components/atoms/cards/orderRecordCard/ord
 import DatePickerContainer from '../../../components/molecules/datePickercContainer/date_picker_container';
 import FormTitle from '../../../components/atoms/formTitle/form_title';
 import Header from '../../../components/atoms/headers/header/header';
+import EmptyState from '../../../components/atoms/emptyState/empty_state';
 
 const OrderHistory = () => {
   const navigate = useNavigate();
@@ -26,12 +27,7 @@ const OrderHistory = () => {
 
       {/* 주문내역이 없을 경우, 주문내역 없음 출력, 장바구니와 동일 */}
       {order_history.length === 0 && (
-        <section className="order-cart-empty-section">
-          <div className="cart-empty-container">
-            <img className="coffee-img" src="/images/coffee.svg" alt="" />
-          </div>
-          <p className="empty-text">주문내역이 없습니다.</p>
-        </section>
+        <EmptyState text='주문내역이 없습니다.'/>
       )}
 
       {/* 주문내역이 있는 경우, 주문내역 출력 */}
