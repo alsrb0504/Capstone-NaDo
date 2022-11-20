@@ -97,6 +97,8 @@ export class UserService {
       })
       .where("identifier = :identifier", {identifier})
       .execute() 
+
+      return imagePath
     } catch (err) {
       throw new InternalServerErrorException(err.message)
     }
