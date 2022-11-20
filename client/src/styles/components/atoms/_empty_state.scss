@@ -18,3 +18,7 @@
         font-size: 20px;
     }
 }
+
+.empty-section-store{
+    @include flexbox();
+}
