@@ -24,6 +24,18 @@ const OrderHistory = () => {
         <DatePickerContainer />
       </section>
 
+      {/* 주문내역이 없을 경우, 주문내역 없음 출력, 장바구니와 동일 */}
+      {order_history.length === 0 && (
+        <section className="order-cart-empty-section">
+          <div className="cart-empty-container">
+            <img className="coffee-img" src="/images/coffee.svg" alt="" />
+          </div>
+          <p className="empty-text">주문내역이 없습니다.</p>
+        </section>
+      )}
+
+      {/* 주문내역이 있는 경우, 주문내역 출력 */}
+      {order_history.length !== 0 && (
       <section className="order-history-list-section">
         <ul>
           {order_history.map((el) => (
@@ -31,6 +43,8 @@ const OrderHistory = () => {
           ))}
         </ul>
       </section>
+      )}
+
     </div>
   );
 };
