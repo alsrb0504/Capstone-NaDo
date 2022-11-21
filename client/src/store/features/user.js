@@ -251,7 +251,9 @@ export const userSlice = createSlice({
     // 로컬 로그아웃 thunk
     builder
       .addCase(LocalLogout.pending, (state) => StartLoading(state))
-      .addCase(LocalLogout.fulfilled, () => {})
+      .addCase(LocalLogout.fulfilled, (state) => {
+        state.isLogin = false;
+      })
       .addCase(LocalLogout.rejected, (state) => ReceiveError(state));
     //
     // 프로필 업데이트

@@ -38,7 +38,7 @@ const Setting = () => {
     setTimeout(() => {
       ClearStore();
       navigate('/login');
-      // window.location.reload();
+      window.location.reload();
     }, 200);
   };
 
