@@ -63,4 +63,27 @@
     margin-bottom: 8px;
     text-align: center;
   }
+
+  .card-box {
+    @include flexbox();
+    width: 100%;
+    background-color: $placeholder;
+    border-radius: 20px;
+    margin-bottom: 8px;
+  }
+
+  .image-box {
+    width: 100px;
+    height: 100px;
+    margin-right: 10%;
+  }
+
+  .card-info {
+    @include column-flexbox(center,first);
+    
+    .number {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+  }
 }
