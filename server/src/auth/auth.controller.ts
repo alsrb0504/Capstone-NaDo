@@ -72,6 +72,7 @@ export class AuthController {
 
     @UseGuards(isLoggedInGuard)
     @Get('local')
+    @HttpCode(200)
     @GetUserInformationDescription()
     loginPersist(
       @Request() req: ReqWithUser
@@ -81,10 +82,12 @@ export class AuthController {
 
     @UseGuards(AuthGuard('naver'))
     @UserNaverLoginDescription()
+    @HttpCode(302)
     @Get('social/login')
     naverLogin() {}
 
     @UseGuards(NaverLoginWithCredentialsGuard)
+    @HttpCode(302)
     @Get('social/login/callback')
     async naverLoginCallback(
       @Request() req: ReqWithUser,

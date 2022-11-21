@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, Post, Query, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Logger, Post, Query, Request, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { isLoggedInGuard } from 'src/auth/guard/cookieAuthentication.guard';
 import { ReqWithUser } from 'src/auth/type/request.type';
@@ -13,6 +13,8 @@ export class OrderController {
     private orderService: OrderService
   ) {}
 
+  private readonly logger = new Logger(OrderController.name)
+
   // @UseGuards(isLoggedInGuard)
   @Post('pay')
   @orderPayDescription()
@@ -21,6 +23,7 @@ export class OrderController {
     @Body() body: OrderPay,
     @Request() req: ReqWithUser
   ) {
+    this.logger.log('/order/pay')
     const orderPayResult = await this.orderService.orderPay(body, req?.user?.sequence || 1)
 
     return orderPayResult
@@ -33,6 +36,7 @@ export class OrderController {
   async getOrderByUser(
     @Request() req: ReqWithUser,
   ) {
+    this.logger.log('/order/user')
    const orderLists = await this.orderService.getOrderByUser(req?.user?.sequence || 1)
    
    return orderLists
@@ -40,9 +44,11 @@ export class OrderController {
 
   @Get('detail')
   @orderdetailDescription()
+  @HttpCode(200)
   async orderDetail(
     @Query('orderSequence') orderSequence: string
   ): Promise<OrderDetail> {
+    this.logger.log('/order/detail')
     const orderDetail = await this.orderService.getOrderDetail(orderSequence)
 
     return orderDetail
@@ -54,6 +60,7 @@ export class OrderController {
   async completeOrder(
     @Body() body: OrderSequence
   ) {
+    this.logger.log('/order/complete')
     const completeOrderResult = await this.orderService.completeOrder(body.orderSequence)
     return completeOrderResult
   }
