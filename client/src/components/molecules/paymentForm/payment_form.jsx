@@ -101,7 +101,7 @@ const PaymentForm = ({ SubmitPayment }) => {
           Swal.fire({
             title: '카드 등록하기 4/4',
             text: '비밀번호 앞 2자리를 입력해주세요.',
-            input:'text',
+            input:'password',
             inputPlaceholder: '비밀번호 앞 2자리를 입력해주세요.',
             inputAttributes: {
               maxlength: 2,
