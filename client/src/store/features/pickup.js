@@ -340,7 +340,7 @@ export const pickupSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(GetPickupStoreList.fulfilled, (state, { payload }) => {
-      state.storeList = payload;
+      state.storeList = payload.sort((a, b) => b.pickupCnt - a.pickupCnt);
     });
     builder.addCase(GetPickupStoreDetail.fulfilled, (state, { payload }) => {
       state.selectedStore = payload;

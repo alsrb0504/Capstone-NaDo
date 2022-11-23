@@ -329,7 +329,17 @@ export const orderSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(GetStoreList.fulfilled, (state, { payload }) => {
-      state.storeList = payload;
+      const starbucks = payload.filter(
+        (el) => el.name === '스타벅스 죽전단국대점',
+      );
+
+      state.storeList = [
+        starbucks.pop(),
+        ...payload.sort(
+          (a, b) => a.name[0].charCodeAt(0) - b.name[0].charCodeAt(0),
+        ),
+      ];
+      // state.storeList = payload.sort((a, b) => b.sequence - a.sequence);
     });
     builder.addCase(GetStoreDetail.fulfilled, (state, { payload }) => {
       state.selectedStore = payload;
