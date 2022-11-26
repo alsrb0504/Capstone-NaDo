@@ -177,8 +177,6 @@ export const GetCurrentPickupDetail = createAsyncThunk(
         `/pickup/detail?pickupSequence=${pickupId}`,
       );
 
-      console.log(response);
-
       if (response.status === 200) {
         return response.data;
       }
@@ -201,8 +199,6 @@ export const CatchPickup = createAsyncThunk(
       const response = await axios.post(`/pickup`, {
         orderSequence: sequence,
       });
-
-      console.log(response);
 
       if (response.status === 200) {
         return response.data;
@@ -227,8 +223,6 @@ export const CancelPickup = createAsyncThunk(
         pickupSequence: pickupId,
       });
 
-      console.log(response);
-
       if (response.status === 200) {
         return response.data;
       }
@@ -252,15 +246,13 @@ export const CompletePickup = createAsyncThunk(
         pickupSequence: pickupId,
       });
 
-      console.log(response);
-
       if (response.status === 200) {
         return response.data;
       }
 
       return thunkAPI.rejectWithValue();
     } catch (e) {
-      PrintError(e, '픽업 취소');
+      PrintError(e, '픽업 완료 요청');
       return thunkAPI.rejectWithValue();
     }
   },
@@ -309,8 +301,6 @@ export const GetPickupReport = createAsyncThunk(
       const response = await axios.get(
         `/pickup/profit?startTime=${start}&endTime=${end}`,
       );
-
-      console.log(response);
 
       if (response.status === 200) {
         return response.data;

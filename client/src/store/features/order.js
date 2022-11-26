@@ -321,12 +321,7 @@ export const orderSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(GetStoreList.fulfilled, (state, { payload }) => {
-      const starbucks = payload.filter(
-        (el) => el.name === '스타벅스 죽전단국대점',
-      );
-
       state.storeList = [
-        starbucks.pop(),
         ...payload.sort(
           (a, b) => a.name[0].charCodeAt(0) - b.name[0].charCodeAt(0),
         ),

@@ -24,7 +24,6 @@ const OrderReport = () => {
 
   const OnSubmit = (info) => {
     handleAlert();
-    console.log(info);
   };
 
   const navigate = useNavigate();
