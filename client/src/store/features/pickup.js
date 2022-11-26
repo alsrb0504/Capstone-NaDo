@@ -106,7 +106,7 @@ export const GetPickupStoreList = createAsyncThunk(
   'pickup/getPickupStoreList',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('http://localhost:3001/store/picker');
+      const response = await axios.get('/store/picker');
 
       if (response.status === 200) {
         return response.data;
@@ -128,7 +128,7 @@ export const GetPickupStoreDetail = createAsyncThunk(
   async (sequence, thunkAPI) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/store/picker/detail?sequence=${sequence}`,
+        `/store/picker/detail?sequence=${sequence}`,
       );
 
       if (response.status === 200) {
@@ -151,7 +151,7 @@ export const GetPickupDetail = createAsyncThunk(
   async (sequence, thunkAPI) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/order/detail?orderSequence=${sequence}`,
+        `/order/detail?orderSequence=${sequence}`,
       );
 
       if (response.status === 200) {
@@ -174,7 +174,7 @@ export const GetCurrentPickupDetail = createAsyncThunk(
   async (pickupId, thunkAPI) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/pickup/detail?pickupSequence=${pickupId}`,
+        `/pickup/detail?pickupSequence=${pickupId}`,
       );
 
       console.log(response);
@@ -198,7 +198,7 @@ export const CatchPickup = createAsyncThunk(
   'pickup/catchPickup',
   async (sequence, thunkAPI) => {
     try {
-      const response = await axios.post(`http://localhost:3001/pickup`, {
+      const response = await axios.post(`/pickup`, {
         orderSequence: sequence,
       });
 
@@ -223,7 +223,7 @@ export const CancelPickup = createAsyncThunk(
   'pickup/cancelPickup',
   async (pickupId, thunkAPI) => {
     try {
-      const response = await axios.post(`http://localhost:3001/pickup/cancel`, {
+      const response = await axios.post(`/pickup/cancel`, {
         pickupSequence: pickupId,
       });
 
@@ -248,12 +248,9 @@ export const CompletePickup = createAsyncThunk(
   'pickup/CompletePickup',
   async (pickupId, thunkAPI) => {
     try {
-      const response = await axios.post(
-        `http://localhost:3001/pickup/complete`,
-        {
-          pickupSequence: pickupId,
-        },
-      );
+      const response = await axios.post(`/pickup/complete`, {
+        pickupSequence: pickupId,
+      });
 
       console.log(response);
 
@@ -276,7 +273,7 @@ export const GetMyPickList = createAsyncThunk(
   'pickup/GetMyPickList',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get(`http://localhost:3001/pickup/list`);
+      const response = await axios.get(`/pickup/list`);
 
       if (response.status === 200) {
         if (response.data.length === 0) return [];
@@ -310,7 +307,7 @@ export const GetPickupReport = createAsyncThunk(
   async ({ start, end }, thunkAPI) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/pickup/profit?startTime=${start}&endTime=${end}`,
+        `/pickup/profit?startTime=${start}&endTime=${end}`,
       );
 
       console.log(response);

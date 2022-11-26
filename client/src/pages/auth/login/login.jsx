@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { LocalLogin } from '../../../store/features/user';
 import LoginForm from '../../../components/molecules/loginForm/login_form';
 import BtnBox from '../../../components/atoms/buttons/btnBox/btn_box';
+import { baseURL } from '../../../utils/axios';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const Login = () => {
   };
 
   const MoveSocial = () => {
-    window.location.href = 'http://localhost:3001/auth/social/login';
+    window.location.href = `${baseURL}/auth/social/login`;
   };
 
   useEffect(() => {

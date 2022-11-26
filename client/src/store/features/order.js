@@ -101,7 +101,7 @@ export const GetStoreList = createAsyncThunk(
   'order/getStore',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('http://localhost:3001/store');
+      const response = await axios.get('/store');
 
       if (response.status === 200) {
         return response.data;
@@ -122,9 +122,7 @@ export const GetStoreDetail = createAsyncThunk(
   'order/getStoreDetail',
   async (sequence, thunkAPI) => {
     try {
-      const response = await axios.get(
-        `http://localhost:3001/store/detail?sequence=${sequence}`,
-      );
+      const response = await axios.get(`/store/detail?sequence=${sequence}`);
 
       if (response.status === 200) {
         return response.data;
@@ -186,10 +184,7 @@ export const RequestPayment = createAsyncThunk(
     };
 
     try {
-      const response = await axios.post(
-        'http://localhost:3001/order/pay',
-        requestInfo,
-      );
+      const response = await axios.post('/order/pay', requestInfo);
 
       if (response.status === 200) {
         return {};
@@ -212,7 +207,7 @@ export const GetOrderList = createAsyncThunk(
   'order/getOrderList',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get(`http://localhost:3001/order/user`);
+      const response = await axios.get(`/order/user`);
 
       const orderList = [];
 
@@ -249,7 +244,7 @@ export const GetOrderDetail = createAsyncThunk(
   async (orderId, thunkAPI) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/order/detail?orderSequence=${orderId}`,
+        `/order/detail?orderSequence=${orderId}`,
       );
 
       if (response.status === 200) {
@@ -271,12 +266,9 @@ export const CompleteOrder = createAsyncThunk(
   'pickup/CompleteOrder',
   async (orderId, thunkAPI) => {
     try {
-      const response = await axios.post(
-        `http://localhost:3001/order/complete`,
-        {
-          orderSequence: orderId,
-        },
-      );
+      const response = await axios.post(`/order/complete`, {
+        orderSequence: orderId,
+      });
 
       if (response.status === 200) {
         return response.data;
@@ -298,7 +290,7 @@ export const GetOrderReport = createAsyncThunk(
   async ({ start, end }, thunkAPI) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/order/settle?startTime=${start}&endTime=${end}`,
+        `/order/settle?startTime=${start}&endTime=${end}`,
       );
 
       if (response.status === 200) {

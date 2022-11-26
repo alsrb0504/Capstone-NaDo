@@ -26,26 +26,21 @@ export const UpdateProfile = createAsyncThunk(
 
         const ImgResponse = await axios({
           method: 'post',
-          url: 'http://localhost:3001/user/change_image',
+          url: '/user/change_image',
           data: formData,
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         });
 
-        console.log('이미지 전송 요청');
-
         if (ImgResponse.status === 200) {
-          console.log('이미지 받기 성공');
-
           updatedImagePath = ImgResponse.data.data.imagePath;
         } else return thunkAPI.rejectWithValue();
       }
 
-      const NicknameResponse = await axios.post(
-        'http://localhost:3001/user/change_nickname',
-        { nickname },
-      );
+      const NicknameResponse = await axios.post('/user/change_nickname', {
+        nickname,
+      });
 
       if (NicknameResponse.status === 200) {
         console.log(NicknameResponse);
@@ -71,14 +66,11 @@ export const ChangePasswd = createAsyncThunk(
   'user/ChangePasswd',
   async ({ identifider, prevPasswd, newPasswd }, thunkAPI) => {
     try {
-      const response = await axios.post(
-        'http://localhost:3001/user/change_password',
-        {
-          identifider,
-          prevPasswd,
-          newPasswd,
-        },
-      );
+      const response = await axios.post('/user/change_password', {
+        identifider,
+        prevPasswd,
+        newPasswd,
+      });
 
       // 비밀번호 변경 성공
       if (response.status === 200) {
@@ -100,7 +92,7 @@ export const GetUserWithSession = createAsyncThunk(
   'user/getUserWithSession',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('http://localhost:3001/auth/local/');
+      const response = await axios.get('/auth/local/');
 
       if (response.status === 200) {
         return response.data;
@@ -121,15 +113,12 @@ export const LocalSignup = createAsyncThunk(
   'user/localSignup',
   async ({ identifier, password, nickname, email }, thunkAPI) => {
     try {
-      const response = await axios.post(
-        'http://localhost:3001/auth/local/register',
-        {
-          identifier,
-          password,
-          nickname,
-          email,
-        },
-      );
+      const response = await axios.post('/auth/local/register', {
+        identifier,
+        password,
+        nickname,
+        email,
+      });
 
       const { data } = response;
 
@@ -154,13 +143,10 @@ export const LocalLogin = createAsyncThunk(
   'user/localLogin',
   async ({ identifier, password }, thunkAPI) => {
     try {
-      const response = await axios.post(
-        'http://localhost:3001/auth/local/login',
-        {
-          identifier,
-          password,
-        },
-      );
+      const response = await axios.post('/auth/local/login', {
+        identifier,
+        password,
+      });
 
       const { data } = response;
 
@@ -182,7 +168,7 @@ export const LocalLogout = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.post(
-        'http://localhost:3001/auth/local/logout',
+        '/auth/local/logout',
         {},
         { withCredentials: true },
       );
