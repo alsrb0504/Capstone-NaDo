@@ -71,5 +71,5 @@ https://github.com/alsrb0504/Capstone-NaDo/blob/main/docs/NaDo%20WBS.xlsx
 주차별 발표 ppt
 
 <img src="https://user-images.githubusercontent.com/115008048/204180289-8d4ff1fb-878d-4345-9d39-ceb759b39540.PNG" width="400" />
-[https://github.com/alsrb0504/Capstone-NaDo/upload/main/docs]
+(https://github.com/alsrb0504/Capstone-NaDo/tree/main/docs
 
