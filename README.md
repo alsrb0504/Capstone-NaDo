@@ -64,7 +64,7 @@ TBD
 
 ## __WorkFlow__
 
-<img src="https://user-images.githubusercontent.com/115008048/204175623-af4c93eb-3e1a-4898-8203-d2c5169dfaca.PNG" width="600" height="400"/>
+<img src="https://user-images.githubusercontent.com/115008048/204175623-af4c93eb-3e1a-4898-8203-d2c5169dfaca.PNG" width="1000" height=auto/>
 TBD(Using WBS)
 ## __Timetable__
 TBD
