@@ -18,8 +18,6 @@
 
 [7. Timetable](#timetable)
 
-[8. Test Document](#test-document)
-
 ## __1. 단국대학교 캡스톤디자인2 프로젝트__
 
 #### [1번] 단국대학교 커피배달 서비스 'NaDo'
@@ -64,10 +62,13 @@ TBD
 https://github.com/alsrb0504/Capstone-NaDo/blob/main/docs/%EC%BA%A1%EC%8A%A4%ED%86%A4%20%EB%94%94%EC%9E%90%EC%9D%B8%201%EC%A1%B0_Nado_%EC%B5%9C%EC%A2%85%EB%B3%B4%EA%B3%A0%EC%84%9C.hwp
 
 ## __WorkFlow__
-
 <img src="https://user-images.githubusercontent.com/115008048/204175623-af4c93eb-3e1a-4898-8203-d2c5169dfaca.PNG" width="1000" height=auto/>
 TBD(Using WBS)
+https://github.com/alsrb0504/Capstone-NaDo/blob/main/docs/NaDo%20WBS.xlsx
+
 ## __Timetable__
-TBD
-## __Test document__
-TBD
+주차별 발표 ppt
+
+<img src="https://user-images.githubusercontent.com/115008048/204180289-8d4ff1fb-878d-4345-9d39-ceb759b39540.PNG" width="400" />
+https://github.com/alsrb0504/Capstone-NaDo/upload/main/docs
+
