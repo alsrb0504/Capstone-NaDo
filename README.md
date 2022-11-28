@@ -38,13 +38,6 @@
   - 학교에 올라와야되는 '피커'는 어짜피 올라와야 되는 학교에 중간 리워드를 얻을 수 있는 기회가 되겠죠.
   - 학교 밑에까지 내려가기엔 여력이 안돼는 소비자들 또한 합리적인 수수료 지불을 통해서 원하는 가게의 커피를 맛볼 수 있는 기회가 되는 것 입니다.
 
-#### [2번] 단국대학교 커피배달 서비스 'NaDo'
-'나도(NADO)'는 근처 카페 상품을 캠퍼스내로 주문, 배달하는 서비스입니다.
-사용자는 앱을 통해 주문자로서 상품 주문을 할 수 있으며, 
-동시에 '피커'로서 배달수수료를 받고 직접 배달할 수 있습니다. 
-
-'나도(NADO)'는 사용자가 배달을 받을 수 있는 동시에, 학우들의 커피를 책임지는 '피커'의 역할 또한 수행할 수 있는 양방향 서비스 입니다.
-
 ## __Team__
 |Name|Department|Contact|Role|
 |:---:|:---:|:---:|:---:|
@@ -63,12 +56,15 @@ https://www.figma.com/file/9Kz1G5sZ9QJny0eph4y56j/%EC%BA%A1%EC%8A%A4%ED%86%A4-Na
 
 
 ## __Demonstration__
+<img src="https://user-images.githubusercontent.com/115008048/204175129-ce248e2d-11b1-4682-9bed-435e307b2785.png" width="300" height="300"/>
 TBD
 
 ## __Result__
 TBD
 
 ## __WorkFlow__
+
+<img src="https://user-images.githubusercontent.com/115008048/204175623-af4c93eb-3e1a-4898-8203-d2c5169dfaca.PNG" width="600" height="400"/>
 TBD(Using WBS)
 ## __Timetable__
 TBD
