@@ -64,7 +64,7 @@ https://github.com/alsrb0504/Capstone-NaDo/blob/main/docs/%EC%BA%A1%EC%8A%A4%ED%
 
 ## __WorkFlow__
 <img src="https://user-images.githubusercontent.com/115008048/204175623-af4c93eb-3e1a-4898-8203-d2c5169dfaca.PNG" width="1000" height=auto/>
-TBD(Using WBS)
+
 https://github.com/alsrb0504/Capstone-NaDo/blob/main/docs/NaDo%20WBS.xlsx
 
 ## __Timetable__
