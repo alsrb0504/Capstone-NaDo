@@ -60,7 +60,8 @@ https://www.figma.com/file/9Kz1G5sZ9QJny0eph4y56j/%EC%BA%A1%EC%8A%A4%ED%86%A4-Na
 TBD
 
 ## __Result__
-TBD
+#### 결과보고서
+https://github.com/alsrb0504/Capstone-NaDo/blob/main/docs/%EC%BA%A1%EC%8A%A4%ED%86%A4%20%EB%94%94%EC%9E%90%EC%9D%B8%201%EC%A1%B0_Nado_%EC%B5%9C%EC%A2%85%EB%B3%B4%EA%B3%A0%EC%84%9C.hwp
 
 ## __WorkFlow__
 
