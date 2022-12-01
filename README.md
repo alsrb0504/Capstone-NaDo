@@ -54,7 +54,8 @@
 #### 3-2. 고려한 사항
 1. 피커는 주문자가 결제한 총 금액에서 배달료(1,200 ~ 1,600원)의 금액을 건 당 수령할 수 있습니다. 이를 통해 학생들은 학교를 오를 때마다 수익을 얻을 수 있습니다.
 2. 실제 PG 대행사를 등록하기 위해서는 사업자 등록증과 높은 수수료(건당 3~4%)를 지불해야 합니다. 그래서 저희는 이 부분에 대해서는 카드 등록을 할 수 있는 팝업을 구현하여 실제 카드 정보를 입력받는 것까지만 구현하고 추후 서비스가 실제로 사용된다면 쉽게 교체할 수 있도록 했습니다.
-
+<br/>
+<br/>
 
 
 
@@ -63,31 +64,55 @@
 |:---:|:---:|:---:|:---:|
 |태민규|Major of Software|alsrb8442@naver.com|조장, 프론트엔드|
 |한윤호|Major of Software|hanyounho@gmail.com|프론트엔드|
-|김민준|Major of Software|alswnssl0528@naver.com|백엔드|
+|김민준|Major of Software|alswnssl0528@naver.com|백엔드, API 설계|
 |이성재|Major of Software|32173057@gmail.com|디자인, 문서 작성|
+<br/>
+<br/>
 
 ## __Technology Stack__
-<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=NestJS&logoColor=white"> <img src="https://img.shields.io/badge/NGINX-009639?style=for-the-badge&logo=NGINX&logoColor=white"> <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=Amazon AWS&logoColor=white"> <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white"> <img src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=Jest&logoColor=white">
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> ![SASS-cc6699](https://user-images.githubusercontent.com/65377787/204995860-8c5cbc61-ccaa-4c0d-9d06-bbc395463322.svg)
+ <img src="https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=NestJS&logoColor=white"> <img src="https://img.shields.io/badge/NGINX-009639?style=for-the-badge&logo=NGINX&logoColor=white"> <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=Amazon AWS&logoColor=white"> <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white"> <img src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=Jest&logoColor=white"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+
+<br/>
+<br/>
 
 ## __Design__
-https://www.figma.com/file/9Kz1G5sZ9QJny0eph4y56j/%EC%BA%A1%EC%8A%A4%ED%86%A4-Nado-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8?node-id=0%3A1
+#### 1. 전체 와이어프레임
+![와이어프레임_0927](https://user-images.githubusercontent.com/65377787/204996622-1b86cd58-2b32-4bb5-8bf3-dfe634ebe4fa.png)
 
+<br/>
+
+#### 2. 피그마 파일
+https://www.figma.com/file/9Kz1G5sZ9QJny0eph4y56j/%EC%BA%A1%EC%8A%A4%ED%86%A4-Nado-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8?node-id=0%3A1
 <img src="https://user-images.githubusercontent.com/115008048/194719914-c44727e1-6858-42db-b250-49833995aeaf.PNG" width="800" height="400"/>
+<br/>
+<br/>
 
 
 ## __Demonstration__
+#### 1. <a href="https://www.youtube.com/watch?v=K7Z8fX1YOMI">시연영상 - 유튜브 링크</a>
+
+<br/>
+
+#### 2. 시연영상 QR 주소
 <img src="https://user-images.githubusercontent.com/115008048/204175129-ce248e2d-11b1-4682-9bed-435e307b2785.png" width="300" height="300"/>
 
-<a href="https://www.youtube.com/watch?v=K7Z8fX1YOMI">시연영상</a>
+
+<br/>
+<br/>
 
 ## __Result__
 #### 결과보고서
 https://github.com/alsrb0504/Capstone-NaDo/blob/main/docs/%EC%BA%A1%EC%8A%A4%ED%86%A4%20%EB%94%94%EC%9E%90%EC%9D%B8%201%EC%A1%B0_Nado_%EC%B5%9C%EC%A2%85%EB%B3%B4%EA%B3%A0%EC%84%9C.hwp
+<br/>
+<br/>
 
 ## __WorkFlow__
 <img src="https://user-images.githubusercontent.com/115008048/204175623-af4c93eb-3e1a-4898-8203-d2c5169dfaca.PNG" width="1000" height=auto/>
 
 https://github.com/alsrb0504/Capstone-NaDo/blob/main/docs/NaDo%20WBS.xlsx
+<br/>
+<br/>
 
 ## __Timetable__
 주차별 발표 ppt
