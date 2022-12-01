@@ -61,10 +61,10 @@
 ## __Team__
 |Name|Department|Contact|Role|
 |:---:|:---:|:---:|:---:|
-|태민규|Major of Software|alsrb8442@naver.com|Front_End|
-|한윤호|Major of Software|hanyounho@gmail.com|Front_End|
-|김민준|Major of Software|alswnssl0528@naver.com|Back_End|
-|이성재|Major of Software|32173057@gmail.com|Design|
+|태민규|Major of Software|alsrb8442@naver.com|조장, 프론트엔드|
+|한윤호|Major of Software|hanyounho@gmail.com|프론트엔드|
+|김민준|Major of Software|alswnssl0528@naver.com|백엔드|
+|이성재|Major of Software|32173057@gmail.com|디자인, 문서 작성|
 
 ## __Technology Stack__
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=NestJS&logoColor=white"> <img src="https://img.shields.io/badge/NGINX-009639?style=for-the-badge&logo=NGINX&logoColor=white"> <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=Amazon AWS&logoColor=white"> <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white"> <img src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=Jest&logoColor=white">
