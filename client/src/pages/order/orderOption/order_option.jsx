@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
-import Swal from 'sweetalert2';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../../components/atoms/headers/header/header';
@@ -8,8 +6,9 @@ import OptionUnderline from '../../../components/atoms/optionUnderline/option_un
 import TextUnderline from '../../../components/atoms/textUnderline/text_underline';
 import Btn from '../../../components/atoms/buttons/btn/btn';
 import { AddCart } from '../../../store/features/cart';
+import { SwalSuccess } from '../../../utils/swal';
 
-const OrderOption = () => {
+const OrderOption = React.memo(() => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -28,25 +27,27 @@ const OrderOption = () => {
   // 총 가격
   const [totalPrice, setTotalPrice] = useState(menuPrice);
 
-  // ice/hot 옵션 확인용, 추후 삭제
-  const icehotChange = (e) => {
+  // ice/hot 옵션 변경 함수
+  const icehotChange = useCallback((e) => {
     setIcehot(e.target.value);
-  };
-  // shots 옵션 확인용, 추후 삭제
-  const shotsChange = (e) => {
-    setShots(Number(e.target.value));
-  };
+  }, []);
 
-  // count 수량 옵션 증가
-  const IncreaseCnt = () => {
-    if (count < 8) setCount(count + 1);
-  };
-  // count 수량 옵션 감소
-  const DecreaseCnt = () => {
-    if (count > 1) setCount(count - 1);
-  };
+  // shots 옵션 변경 함수
+  // 0: 미선택, 1: 한 샷 추가, 2: 두 샷 ...
+  const shotsChange = useCallback((e) => {
+    const shotCnt = Number(e.target.value);
+    setShots((curShotCnt) => (curShotCnt === shotCnt ? 0 : shotCnt));
+  }, []);
 
-  const MoveBack = () => navigate('/order/store');
+  // count 수량 변경 함수
+  const IncreaseCnt = useCallback(() => {
+    setCount((curCnt) => (curCnt + 1 < 9 ? curCnt + 1 : curCnt));
+  }, []);
+  const DecreaseCnt = useCallback(() => {
+    setCount((curCnt) => (curCnt > 1 ? curCnt - 1 : curCnt));
+  }, []);
+
+  const MoveBack = useCallback(() => navigate('/order/store'), [navigate]);
 
   const handleSubmit = () => {
     if (cartStoreName !== '' && cartStoreName !== name) {
@@ -57,7 +58,7 @@ const OrderOption = () => {
     const menuInfo = {
       menuName,
       menuOptions: {
-        icehot: 'ice',
+        icehot,
         shots,
       },
       cnt: count,
@@ -67,17 +68,11 @@ const OrderOption = () => {
     };
 
     dispatch(AddCart({ storeSequence, storeName: name, menuInfo }));
+    SwalSuccess('장바구니에 담겼습니다!');
 
-    // alert('장바구니에 담겼습니다! 추후 팝업으로 교체');
-    Swal.fire({
-      title: '장바구니에 담겼습니다!',
-      text: '',
-      icon: 'success',
-      // confirmButtonColor: '#43a2ff',
-      showConfirmButton: false,
-      timer: 1200,
-    });
-    MoveBack();
+    setTimeout(() => {
+      MoveBack();
+    }, 1200);
   };
 
   useEffect(() => {
@@ -133,8 +128,9 @@ const OrderOption = () => {
               name="shots"
               id="shot1"
               value={1}
-              onChange={shotsChange}
+              readOnly
               checked={shots === 1}
+              onClick={(e) => shotsChange(e)}
               className={shots === 1 ? 'checked' : 'none'}
             />
           </label>
@@ -148,8 +144,9 @@ const OrderOption = () => {
               name="shots"
               id="shot2"
               value={2}
-              onChange={shotsChange}
+              readOnly
               checked={shots === 2}
+              onClick={(e) => shotsChange(e)}
               className={shots === 2 ? 'checked' : 'none'}
             />
           </label>
@@ -177,6 +174,6 @@ const OrderOption = () => {
       </div>
     </div>
   );
-};
+});
 
 export default OrderOption;

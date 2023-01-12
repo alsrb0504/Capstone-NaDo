@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
-const Header = ({ title, handleClick }) => {
-  const OnClick = () => {
+const Header = React.memo(({ title, handleClick }) => {
+  const OnClick = useCallback(() => {
     handleClick();
-  };
+  }, [handleClick]);
 
-  //   헤더 디자인하기 !!
   return (
     <header className="header-box">
       <button type="button" className="arrow-box" onClick={OnClick}>
@@ -15,6 +14,6 @@ const Header = ({ title, handleClick }) => {
       <div className="title">{title}</div>
     </header>
   );
-};
+});
 
 export default Header;
