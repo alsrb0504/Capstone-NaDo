@@ -15,9 +15,7 @@ import { SwalError, SwalSuccess } from '../../../utils/swal';
 
 const PickupProcessing = () => {
   const dispatch = useDispatch();
-  const { MoveHome, HandleMove } = useMove();
-
-  const MoveBack = () => HandleMove('/pickup/myPickup');
+  const { MoveHome, MoveBack } = useMove();
 
   const { isCatch, isCancel, currentPickup } = useSelector(
     (state) => state.pickup,

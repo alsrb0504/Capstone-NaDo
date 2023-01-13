@@ -6,12 +6,11 @@ import useMove from '../../../hooks/useMove';
 import { GetOrderDetail } from '../../../store/features/order';
 
 const OrderWaitings = () => {
-  const { HandleMove } = useMove();
+  const { HandleMove, MoveBack } = useMove();
   const dispatch = useDispatch();
 
   const { myOrderList } = useSelector((state) => state.order);
 
-  const MoveBack = () => HandleMove('/');
   const MoveDesc = (id) => {
     dispatch(GetOrderDetail(id));
 

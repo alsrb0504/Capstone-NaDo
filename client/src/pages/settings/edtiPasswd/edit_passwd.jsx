@@ -4,9 +4,7 @@ import PasswdEditForm from '../../../components/molecules/passwdEditForm/passwd_
 import useMove from '../../../hooks/useMove';
 
 const ChangePassword = () => {
-  const { HandleMove } = useMove();
-
-  const MoveBack = () => HandleMove('/setting');
+  const { MoveBack } = useMove();
 
   return (
     <div className="col-sm-4 change-passwd">

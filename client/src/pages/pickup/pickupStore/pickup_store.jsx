@@ -11,9 +11,8 @@ import { GetPickupDetail } from '../../../store/features/pickup';
 
 const PickupStore = () => {
   const dispatch = useDispatch();
-  const { HandleMove } = useMove();
+  const { HandleMove, MoveBack } = useMove();
 
-  const MoveBack = () => HandleMove('/pickup');
   const MoveCart = () => HandleMove('/order/cart');
 
   const { selectedStore } = useSelector((state) => state.pickup);

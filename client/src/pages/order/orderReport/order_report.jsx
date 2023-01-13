@@ -11,9 +11,8 @@ import { SwalSuccess } from '../../../utils/swal';
 import useMove from '../../../hooks/useMove';
 
 const OrderReport = () => {
-  const { MoveHome, HandleMove } = useMove();
+  const { MoveHome, HandleMove, MoveBack } = useMove();
 
-  const MoveBack = () => HandleMove('/order/detail');
   const MoveOrder = () => HandleMove('/order/detail');
 
   const { currentOrder } = useSelector((state) => state.order);

@@ -8,9 +8,7 @@ import { SwalSuccess } from '../../../utils/swal';
 
 const EditProfile = () => {
   const dispatch = useDispatch();
-  const { HandleMove } = useMove();
-
-  const MoveBack = () => HandleMove('/setting');
+  const { MoveBack } = useMove();
 
   const ChangeProfile = (data) => {
     dispatch(UpdateProfile(data));

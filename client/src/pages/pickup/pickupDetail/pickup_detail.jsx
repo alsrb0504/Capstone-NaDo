@@ -11,9 +11,7 @@ import { CancelPickup, CatchPickup } from '../../../store/features/pickup';
 
 const PickupDetail = () => {
   const dispatch = useDispatch();
-  const { MoveHome, HandleMove } = useMove();
-
-  const MoveBack = () => HandleMove('/pickup/store');
+  const { MoveHome, MoveBack } = useMove();
 
   const { isCatch, selectedOrder } = useSelector((state) => state.pickup);
   const { orderSequence, orderStatus } = selectedOrder;
@@ -53,8 +51,6 @@ const PickupDetail = () => {
   return (
     <div className="col-sm-4 pickup-detail">
       <Header title="픽업 주문 상세" handleClick={MoveBack} />
-      {/* <StateBox state={isCatch ? 'ordered' : 'catched'} /> */}
-
       <PickupInfoSection selectedOrder={selectedOrder} />
 
       {isCatch && <Btn text="확인" handleClick={MoveBack} />}

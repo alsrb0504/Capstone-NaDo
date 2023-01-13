@@ -11,10 +11,9 @@ import useMove from '../../../hooks/useMove';
 
 const OrderHistory = () => {
   const dispatch = useDispatch();
-  const { HandleMove } = useMove();
+  const { MoveBack } = useMove();
 
   const { order_history } = useSelector((state) => state.order);
-  const MoveBack = () => HandleMove('/setting');
 
   const InquireReport = (start, end) => {
     dispatch(GetOrderReport({ start, end }));

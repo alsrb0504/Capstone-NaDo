@@ -9,7 +9,7 @@ import { SwalSuccess } from '../../../utils/swal';
 import useMove from '../../../hooks/useMove';
 
 const OrderOption = React.memo(() => {
-  const { HandleMove } = useMove();
+  const { MoveBack } = useMove();
   const dispatch = useDispatch();
 
   const { cartStoreName } = useSelector((state) => state.cart);
@@ -46,8 +46,6 @@ const OrderOption = React.memo(() => {
   const DecreaseCnt = useCallback(() => {
     setCount((curCnt) => (curCnt > 1 ? curCnt - 1 : curCnt));
   }, []);
-
-  const MoveBack = useCallback(() => HandleMove('/order/store'), [HandleMove]);
 
   const handleSubmit = () => {
     if (cartStoreName !== '' && cartStoreName !== name) {

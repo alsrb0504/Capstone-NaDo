@@ -7,11 +7,9 @@ import { GetCurrentPickupDetail } from '../../../store/features/pickup';
 
 const PickupMyPickup = () => {
   const dispatch = useDispatch();
-  const { HandleMove } = useMove();
+  const { HandleMove, MoveBack } = useMove();
 
   const { myPickupList } = useSelector((state) => state.pickup);
-
-  const MoveBack = () => HandleMove('/');
 
   const MoveDesc = (orderId) => {
     dispatch(GetCurrentPickupDetail(orderId));

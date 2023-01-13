@@ -11,16 +11,15 @@ import { PrintPrice } from '../../../utils/text';
 
 const OrderCart = () => {
   const dispatch = useDispatch();
-  const { HandleMove } = useMove();
+  const { HandleMove, MoveBack } = useMove();
 
-  const MoveBack = useCallback(() => HandleMove('/order'), [HandleMove]);
   const MovePay = useCallback(() => HandleMove('/order/payment'), [HandleMove]);
 
   const { cartStoreName, cartList, totalPrice } = useSelector(
     (state) => state.cart,
   );
 
-  // 어차피 새로 만들어짐...
+  // 새로 만들어짐 => useCallback X.
   const UpdateMenu = (cartSequence, cartCnt) => {
     const updatedCartList = cartList.map((el) => {
       if (el.menuSequence === cartSequence)

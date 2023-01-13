@@ -5,9 +5,7 @@ import PaymentConfirm from '../../../components/molecules/paymentConfirm/payment
 import useMove from '../../../hooks/useMove';
 
 const OrderConfirm = () => {
-  const { HandleMove } = useMove();
-
-  const MoveBack = () => HandleMove('/order/store');
+  const { MoveBack } = useMove();
 
   return (
     <div className="col-sm-4 order-confirm">

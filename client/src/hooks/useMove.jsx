@@ -13,12 +13,15 @@ const useMove = () => {
     [navigate],
   );
 
-  // 홈으로 이동하는 함수.
   const MoveHome = useCallback(() => {
     navigate('/');
   }, [navigate]);
 
-  return { HandleMove, MoveHome };
+  const MoveBack = useCallback(() => {
+    navigate(-1);
+  }, [navigate]);
+
+  return { HandleMove, MoveHome, MoveBack };
 };
 
 export default useMove;

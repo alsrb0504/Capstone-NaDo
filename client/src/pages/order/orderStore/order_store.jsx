@@ -9,24 +9,16 @@ import StoreMenuSection from '../../../components/molecules/storeMenuSection/sto
 import useMove from '../../../hooks/useMove';
 
 const OrderStore = () => {
-  const { HandleMove } = useMove();
+  const { HandleMove, MoveBack } = useMove();
+
+  const MoveCart = () => HandleMove('/order/cart');
 
   const { selectedStore, defaultMenuList } = useSelector(
     (state) => state.order,
   );
 
-  const {
-    // sequence,
-    name,
-    storeImage,
-    locationLating,
-    telephone,
-    businesstimes,
-    menus,
-  } = selectedStore;
-
-  const MoveBack = () => HandleMove('/order');
-  const MoveCart = () => HandleMove('/order/cart');
+  const { name, storeImage, locationLating, telephone, businesstimes, menus } =
+    selectedStore;
 
   const CheckMenuList = () => {
     if (menus && menus.length !== 0) return menus;

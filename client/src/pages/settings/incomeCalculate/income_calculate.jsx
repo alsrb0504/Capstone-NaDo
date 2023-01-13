@@ -12,12 +12,10 @@ import { GetDefaultPeriod } from '../../../utils/time';
 
 const IncomeCalculate = () => {
   const dispatch = useDispatch();
-  const { HandleMove } = useMove();
+  const { MoveBack } = useMove();
 
   const { pickupHistory } = useSelector((state) => state.pickup);
   const { profitList, totalProfit } = pickupHistory;
-
-  const MoveBack = () => HandleMove('/setting');
 
   const InquireReport = (start, end) => {
     dispatch(GetPickupReport({ start, end }));

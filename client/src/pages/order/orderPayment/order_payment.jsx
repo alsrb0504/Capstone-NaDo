@@ -9,15 +9,12 @@ import { InitIsPayment, RequestPayment } from '../../../store/features/order';
 import { SwalError, SwalSuccess } from '../../../utils/swal';
 
 const OrderPayment = () => {
-  const { HandleMove, MoveHome } = useMove();
+  const { MoveBack, MoveHome } = useMove();
   const dispatch = useDispatch();
   const { cartStoreSequence, cartList, totalPrice } = useSelector(
     (state) => state.cart,
   );
   const { isPayment } = useSelector((state) => state.order);
-
-  // 추후 장바구니로 갈지, 가게로 갈지 구분
-  const MoveBack = () => HandleMove('/order/cart');
 
   const SubmitPayment = (data) => {
     dispatch(

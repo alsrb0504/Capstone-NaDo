@@ -15,9 +15,8 @@ import { ChangeTimeInfo } from '../../../utils/time';
 
 const OrderDetail = () => {
   const dispatch = useDispatch();
-  const { HandleMove, MoveHome } = useMove();
+  const { HandleMove, MoveHome, MoveBack } = useMove();
 
-  const MoveBack = () => HandleMove('/order/waitings');
   const MoveReport = () => HandleMove('/order/report');
 
   const { currentOrder } = useSelector((state) => state.order);
