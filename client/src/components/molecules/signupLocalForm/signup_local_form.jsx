@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { IdCond, PasswdCond, NicknameCond } from '../../../utils/formCondition';
 import { CleanUpSuccess } from '../../../store/features/user';
 import Btn from '../../atoms/buttons/btn/btn';
 import LineInputContainer from '../lineInputContainer/line_input_container';
+import useMove from '../../../hooks/useMove';
 
 const SignupLocalForm = ({ SignupWithLocal }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const { HandleMove } = useMove();
 
   const {
     register,
@@ -29,11 +29,11 @@ const SignupLocalForm = ({ SignupWithLocal }) => {
 
   useEffect(() => {
     if (isSuccess) {
-      navigate('/login');
+      HandleMove('/login');
       dispatch(CleanUpSuccess());
     }
     if (isError) reset();
-  }, [isSuccess, isError, reset, dispatch, navigate]);
+  }, [isSuccess, isError, reset, dispatch, HandleMove]);
 
   const OnSubmit = (data) => {
     const { password, password2 } = data;

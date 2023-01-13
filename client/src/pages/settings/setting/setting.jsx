@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import BtnProfile from '../../../components/atoms/buttons/btnProfile/btn_profile';
 import Footer from '../../../components/atoms/footer/footer';
 import Header from '../../../components/atoms/headers/header/header';
@@ -8,20 +7,19 @@ import ProfileCard from '../../../components/atoms/cards/profileCard/profile_car
 import { LocalLogout } from '../../../store/features/user';
 import { ClearStore } from '../../../utils/store';
 import { SwalError } from '../../../utils/swal';
+import useMove from '../../../hooks/useMove';
 
 const Setting = () => {
-  const navigate = useNavigate();
+  const { HandleMove, MoveHome } = useMove();
   const dispatch = useDispatch();
 
-  // 추후 프로필도 가져와서 업데이트
   const { userNickname, userProvider, userProfile } = useSelector(
     (state) => state.user,
   );
 
-  const MoveHome = () => navigate('/');
-  const MoveEditProfile = () => navigate('/setting/profile');
-  const MoveRecord = () => navigate('/setting/order_history');
-  const MoveProfit = () => navigate('/setting/income_calculate');
+  const MoveEditProfile = () => HandleMove('/setting/profile');
+  const MoveRecord = () => HandleMove('/setting/order_history');
+  const MoveProfit = () => HandleMove('/setting/income_calculate');
 
   const MoveEditPassword = () => {
     if (userProvider !== 'local') {
@@ -29,7 +27,7 @@ const Setting = () => {
       return;
     }
 
-    navigate('/setting/passwd');
+    HandleMove('/setting/passwd');
   };
 
   const Logout = () => {
@@ -37,21 +35,19 @@ const Setting = () => {
 
     setTimeout(() => {
       ClearStore();
-      navigate('/login');
+      HandleMove('/login');
       window.location.reload();
     }, 200);
   };
 
-  // 추후 회원탈퇴 구현
   const UnRegister = () => {
-    alert('회원 탈퇴 미구현');
+    alert('회원 탈퇴');
   };
 
   return (
     <div className="setting col-sm-4">
       <Header title="설정" handleClick={MoveHome} />
 
-      {/* url 나중에 프로필 정보 받아오는 걸로 교체 */}
       <ProfileCard
         url={
           userProfile ||

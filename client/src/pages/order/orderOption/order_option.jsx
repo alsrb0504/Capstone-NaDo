@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../../components/atoms/headers/header/header';
 import OptionUnderline from '../../../components/atoms/optionUnderline/option_underline';
@@ -7,9 +6,10 @@ import TextUnderline from '../../../components/atoms/textUnderline/text_underlin
 import Btn from '../../../components/atoms/buttons/btn/btn';
 import { AddCart } from '../../../store/features/cart';
 import { SwalSuccess } from '../../../utils/swal';
+import useMove from '../../../hooks/useMove';
 
 const OrderOption = React.memo(() => {
-  const navigate = useNavigate();
+  const { HandleMove } = useMove();
   const dispatch = useDispatch();
 
   const { cartStoreName } = useSelector((state) => state.cart);
@@ -47,7 +47,7 @@ const OrderOption = React.memo(() => {
     setCount((curCnt) => (curCnt > 1 ? curCnt - 1 : curCnt));
   }, []);
 
-  const MoveBack = useCallback(() => navigate('/order/store'), [navigate]);
+  const MoveBack = useCallback(() => HandleMove('/order/store'), [HandleMove]);
 
   const handleSubmit = () => {
     if (cartStoreName !== '' && cartStoreName !== name) {

@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { LocalLogin } from '../../../store/features/user';
 import LoginForm from '../../../components/molecules/loginForm/login_form';
 import BtnBox from '../../../components/atoms/buttons/btnBox/btn_box';
 import { baseURL } from '../../../utils/axios';
+import useMove from '../../../hooks/useMove';
 
 const Login = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const { HandleMove, MoveHome } = useMove();
 
   const { isLogin } = useSelector((state) => state.user);
 
@@ -17,7 +17,7 @@ const Login = () => {
   };
 
   const MoveSignup = () => {
-    navigate('/register/local');
+    HandleMove('/register/local');
   };
 
   const MoveSocial = () => {
@@ -25,8 +25,8 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (isLogin) navigate('/');
-  }, [navigate, isLogin]);
+    if (isLogin) MoveHome();
+  }, [MoveHome, isLogin]);
 
   return (
     <div className="col-sm-4 login">

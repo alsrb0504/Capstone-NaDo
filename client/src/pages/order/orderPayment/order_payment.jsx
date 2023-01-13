@@ -1,24 +1,23 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import Header from '../../../components/atoms/headers/header/header';
 import PaymentForm from '../../../components/molecules/paymentForm/payment_form';
+import useMove from '../../../hooks/useMove';
 import { CleanCart } from '../../../store/features/cart';
 import { InitIsPayment, RequestPayment } from '../../../store/features/order';
 import { SwalError, SwalSuccess } from '../../../utils/swal';
 
 const OrderPayment = () => {
-  const navigate = useNavigate();
+  const { HandleMove, MoveHome } = useMove();
   const dispatch = useDispatch();
   const { cartStoreSequence, cartList, totalPrice } = useSelector(
     (state) => state.cart,
   );
   const { isPayment } = useSelector((state) => state.order);
 
-  const MoveHome = () => navigate('/');
   // 추후 장바구니로 갈지, 가게로 갈지 구분
-  const MoveBack = () => navigate('/order/cart');
+  const MoveBack = () => HandleMove('/order/cart');
 
   const SubmitPayment = (data) => {
     dispatch(

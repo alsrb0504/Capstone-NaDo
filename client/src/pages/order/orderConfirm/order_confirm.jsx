@@ -1,14 +1,13 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import Btn from '../../../components/atoms/buttons/btn/btn';
 import Header from '../../../components/atoms/headers/header/header';
 import PaymentConfirm from '../../../components/molecules/paymentConfirm/payment_confirm';
+import useMove from '../../../hooks/useMove';
 
-// eslint-disable-next-line arrow-body-style
 const OrderConfirm = () => {
-  const navigate = useNavigate();
+  const { HandleMove } = useMove();
 
-  const MoveBack = () => navigate('/order/store');
+  const MoveBack = () => HandleMove('/order/store');
 
   return (
     <div className="col-sm-4 order-confirm">

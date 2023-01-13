@@ -1,8 +1,6 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Btn from '../../../components/atoms/buttons/btn/btn';
 import FormTitle from '../../../components/atoms/formTitle/form_title';
@@ -10,8 +8,14 @@ import Header from '../../../components/atoms/headers/header/header';
 import LineInputContainer from '../../../components/molecules/lineInputContainer/line_input_container';
 import OrderRecordCard from '../../../components/atoms/cards/orderRecordCard/order_record_card';
 import { SwalSuccess } from '../../../utils/swal';
+import useMove from '../../../hooks/useMove';
 
 const OrderReport = () => {
+  const { MoveHome, HandleMove } = useMove();
+
+  const MoveBack = () => HandleMove('/order/detail');
+  const MoveOrder = () => HandleMove('/order/detail');
+
   const { currentOrder } = useSelector((state) => state.order);
   const { address, addressDetail, orderTimeout, priceInfo, orderSequence } =
     currentOrder;
@@ -22,15 +26,9 @@ const OrderReport = () => {
     formState: { errors },
   } = useForm();
 
-  const OnSubmit = (info) => {
+  const OnSubmit = () => {
     handleAlert();
   };
-
-  const navigate = useNavigate();
-
-  const MoveBack = () => navigate('/order/detail');
-  const MoveOrder = () => navigate('/order/detail');
-  const MoveHome = () => navigate('/');
 
   const handleAlert = () => {
     Swal.fire({

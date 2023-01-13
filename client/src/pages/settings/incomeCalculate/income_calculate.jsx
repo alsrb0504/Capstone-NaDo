@@ -1,23 +1,23 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import PickupRecordCard from '../../../components/atoms/cards/pickuprecordCard/pickup_record_card';
 import EmptyState from '../../../components/atoms/emptyState/empty_state';
 import FormTitle from '../../../components/atoms/formTitle/form_title';
 import Header from '../../../components/atoms/headers/header/header';
 import DatePickerContainer from '../../../components/molecules/datePickercContainer/date_picker_container';
+import useMove from '../../../hooks/useMove';
 import { GetPickupReport } from '../../../store/features/pickup';
 import { PrintPrice } from '../../../utils/text';
 import { GetDefaultPeriod } from '../../../utils/time';
 
 const IncomeCalculate = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const { HandleMove } = useMove();
 
   const { pickupHistory } = useSelector((state) => state.pickup);
   const { profitList, totalProfit } = pickupHistory;
 
-  const MoveBack = () => navigate('/setting');
+  const MoveBack = () => HandleMove('/setting');
 
   const InquireReport = (start, end) => {
     dispatch(GetPickupReport({ start, end }));

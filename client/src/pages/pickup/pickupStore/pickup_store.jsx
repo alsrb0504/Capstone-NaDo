@@ -2,19 +2,19 @@
 /* eslint-disable react/jsx-boolean-value */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import HeaderWithImg from '../../../components/atoms/headers/headerWithImg/header_with_img';
 import StoreInfoSection from '../../../components/atoms/storeInfoSection/store_info_section';
 import StoreMapSection from '../../../components/molecules/storeMapSection/store_map_section';
 import StorePickupList from '../../../components/molecules/storePickupList/store_pickup_list';
+import useMove from '../../../hooks/useMove';
 import { GetPickupDetail } from '../../../store/features/pickup';
 
 const PickupStore = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const { HandleMove } = useMove();
 
-  const MoveBack = () => navigate('/pickup');
-  const MoveCart = () => navigate('/order/cart');
+  const MoveBack = () => HandleMove('/pickup');
+  const MoveCart = () => HandleMove('/order/cart');
 
   const { selectedStore } = useSelector((state) => state.pickup);
   const {
@@ -28,7 +28,7 @@ const PickupStore = () => {
 
   const SelectPickup = (orderId) => {
     dispatch(GetPickupDetail(orderId));
-    navigate(`/pickup/detail?sequence=${orderId}`);
+    HandleMove(`/pickup/detail?sequence=${orderId}`);
   };
 
   return (

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import Btn from '../../../components/atoms/buttons/btn/btn';
 import Header from '../../../components/atoms/headers/header/header';
 import StateBox from '../../../components/atoms/stateBox/state_box';
 import PickupInfoSection from '../../../components/molecules/pickupInfoSection/pickup_infoSection';
+import useMove from '../../../hooks/useMove';
 import {
   CancelPickup,
   CompletePickup,
@@ -15,11 +15,9 @@ import { SwalError, SwalSuccess } from '../../../utils/swal';
 
 const PickupProcessing = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const { MoveHome, HandleMove } = useMove();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const MoveHome = () => navigate('/');
-  const MoveBack = () => navigate('/pickup/myPickup');
+  const MoveBack = () => HandleMove('/pickup/myPickup');
 
   const { isCatch, isCancel, currentPickup } = useSelector(
     (state) => state.pickup,

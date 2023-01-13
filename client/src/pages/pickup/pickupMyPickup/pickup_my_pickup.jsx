@@ -1,21 +1,21 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import Header from '../../../components/atoms/headers/header/header';
 import PickingOrderList from '../../../components/molecules/pickingOrderList/picking_order_list';
+import useMove from '../../../hooks/useMove';
 import { GetCurrentPickupDetail } from '../../../store/features/pickup';
 
 const PickupMyPickup = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const { HandleMove } = useMove();
 
   const { myPickupList } = useSelector((state) => state.pickup);
 
-  const MoveBack = () => navigate('/');
+  const MoveBack = () => HandleMove('/');
 
   const MoveDesc = (orderId) => {
     dispatch(GetCurrentPickupDetail(orderId));
-    navigate(`/pickup/processing?sequence=${orderId}`);
+    HandleMove(`/pickup/processing?sequence=${orderId}`);
   };
 
   return (

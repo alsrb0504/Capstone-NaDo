@@ -1,21 +1,21 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import Header from '../../../components/atoms/headers/header/header';
 import WaitingOrderList from '../../../components/molecules/WaitingOrderList/waiting_order_list';
+import useMove from '../../../hooks/useMove';
 import { GetOrderDetail } from '../../../store/features/order';
 
 const OrderWaitings = () => {
-  const navigate = useNavigate();
+  const { HandleMove } = useMove();
   const dispatch = useDispatch();
 
   const { myOrderList } = useSelector((state) => state.order);
 
-  const MoveBack = () => navigate('/');
+  const MoveBack = () => HandleMove('/');
   const MoveDesc = (id) => {
     dispatch(GetOrderDetail(id));
 
-    navigate(`/order/detail?id=${id}`);
+    HandleMove(`/order/detail?id=${id}`);
   };
 
   return (

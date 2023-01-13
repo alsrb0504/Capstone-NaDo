@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { MakeOptionText, PrintPrice } from '../../../../utils/text';
 
-const OrderingCard = ({ info, UpdateMenu, DeleteMenu }) => {
+const OrderingCard = React.memo(({ info, UpdateMenu, DeleteMenu }) => {
   const { menuSequence, menuName, menuOptions, menuPrice, cnt } = info;
   const { icehot, shots } = menuOptions;
 
@@ -52,6 +52,6 @@ const OrderingCard = ({ info, UpdateMenu, DeleteMenu }) => {
       </div>
     </div>
   );
-};
+});
 
 export default OrderingCard;

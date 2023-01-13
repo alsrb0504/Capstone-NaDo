@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import Footer from '../../../components/atoms/footer/footer';
 import HeaderWithLogo from '../../../components/atoms/headers/headerWithLogo/header_with_logo';
 import PickupStoreList from '../../../components/molecules/pickupStoreList/pickup_store_list';
+import useMove from '../../../hooks/useMove';
 import {
   GetPickupStoreDetail,
   GetPickupStoreList,
@@ -11,17 +11,16 @@ import {
 
 const PickupHome = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const { HandleMove, MoveHome } = useMove();
+
+  const MoveCart = () => HandleMove('/order/cart');
 
   const { userNickname } = useSelector((state) => state.user);
   const { storeList } = useSelector((state) => state.pickup);
 
-  const MoveHome = () => navigate('/');
-  const MoveCart = () => navigate('/order/cart');
-
   const SelectStore = (storeId) => {
     dispatch(GetPickupStoreDetail(storeId));
-    navigate('/pickup/store');
+    HandleMove('/pickup/store');
   };
 
   useEffect(() => {

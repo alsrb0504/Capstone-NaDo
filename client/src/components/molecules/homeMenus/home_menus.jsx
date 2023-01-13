@@ -1,15 +1,14 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import useMove from '../../../hooks/useMove';
 import BtnBox from '../../atoms/buttons/btnBox/btn_box';
 
 const HomeMenus = () => {
-  const navigate = useNavigate();
+  const { HandleMove } = useMove();
 
-  const MoveOrderHistory = () => navigate('/setting/order_history');
-  const MovePickupHistory = () => navigate('/setting/income_calculate');
-  const MoveSetting = () => navigate('/setting');
-  const MoveCart = () => navigate('/order/cart');
-
+  const MoveOrderHistory = () => HandleMove('/setting/order_history');
+  const MovePickupHistory = () => HandleMove('/setting/income_calculate');
+  const MoveSetting = () => HandleMove('/setting');
+  const MoveCart = () => HandleMove('/order/cart');
 
   return (
     <div className="home-menus col-sm-4">

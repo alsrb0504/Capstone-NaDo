@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import Btn from '../../../components/atoms/buttons/btn/btn';
 import OrderCompleteCard from '../../../components/atoms/cards/orderCompleteCard/order_complete_card';
 import FormTitle from '../../../components/atoms/formTitle/form_title';
@@ -9,17 +8,17 @@ import FillLineInput from '../../../components/atoms/inputs/fillLineInput/fill_l
 import PaymentReceipt from '../../../components/atoms/paymentReceipt/payment_receipt';
 import StateBox from '../../../components/atoms/stateBox/state_box';
 import StoreMapSection from '../../../components/molecules/storeMapSection/store_map_section';
+import useMove from '../../../hooks/useMove';
 import { CompleteOrder } from '../../../store/features/order';
 import { SwalSuccess } from '../../../utils/swal';
 import { ChangeTimeInfo } from '../../../utils/time';
 
 const OrderDetail = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const { HandleMove, MoveHome } = useMove();
 
-  const MoveHome = () => navigate('/');
-  const MoveBack = () => navigate('/order/waitings');
-  const MoveReport = () => navigate('/order/report');
+  const MoveBack = () => HandleMove('/order/waitings');
+  const MoveReport = () => HandleMove('/order/report');
 
   const { currentOrder } = useSelector((state) => state.order);
   const {

@@ -1,14 +1,14 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import useMove from '../../../hooks/useMove';
 import { SelectCoffee } from '../../../store/features/order';
 import MenuCard from '../../atoms/cards/menuCard/menu_card';
 
 const StoreMenuSection = ({ menuList }) => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { HandleMove } = useMove();
 
-  const MoveOption = () => navigate('/order/option');
+  const MoveOption = () => HandleMove('/order/option');
 
   const ClickMenu = (menu) => {
     dispatch(SelectCoffee(menu));

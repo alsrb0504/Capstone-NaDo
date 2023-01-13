@@ -1,20 +1,19 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Btn from '../../../components/atoms/buttons/btn/btn';
 import Header from '../../../components/atoms/headers/header/header';
 import StateBox from '../../../components/atoms/stateBox/state_box';
 import PickupInfoSection from '../../../components/molecules/pickupInfoSection/pickup_infoSection';
+import useMove from '../../../hooks/useMove';
 import { CancelPickup, CatchPickup } from '../../../store/features/pickup';
 
 const PickupDetail = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const { MoveHome, HandleMove } = useMove();
 
-  const MoveHome = () => navigate('/');
-  const MoveBack = () => navigate('/pickup/store');
+  const MoveBack = () => HandleMove('/pickup/store');
 
   const { isCatch, selectedOrder } = useSelector((state) => state.pickup);
   const { orderSequence, orderStatus } = selectedOrder;
