@@ -1,7 +1,7 @@
 import React from 'react';
 import { CalcOpenTime } from '../../../../utils/time';
 
-const OrderStoreCard = ({ info, HandleClick }) => {
+const OrderStoreCard = React.memo(({ info, HandleClick }) => {
   const { sequence, name, image, businesstimes } = info;
 
   const SelectCard = () => {
@@ -28,6 +28,6 @@ const OrderStoreCard = ({ info, HandleClick }) => {
       />
     </div>
   );
-};
+});
 
 export default OrderStoreCard;

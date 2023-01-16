@@ -326,7 +326,6 @@ export const orderSlice = createSlice({
           (a, b) => a.name[0].charCodeAt(0) - b.name[0].charCodeAt(0),
         ),
       ];
-      // state.storeList = payload.sort((a, b) => b.sequence - a.sequence);
     });
     builder.addCase(GetStoreDetail.fulfilled, (state, { payload }) => {
       state.selectedStore = payload;
