@@ -4,10 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import Btn from '../../../components/atoms/buttons/btn/btn';
 import Header from '../../../components/atoms/headers/header/header';
-import StateBox from '../../../components/atoms/stateBox/state_box';
 import PickupInfoSection from '../../../components/molecules/pickupInfoSection/pickup_infoSection';
 import useMove from '../../../hooks/useMove';
-import { CancelPickup, CatchPickup } from '../../../store/features/pickup';
+import { CatchPickup } from '../../../store/features/pickup';
 
 const PickupDetail = () => {
   const dispatch = useDispatch();

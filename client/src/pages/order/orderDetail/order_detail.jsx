@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Btn from '../../../components/atoms/buttons/btn/btn';
 import OrderCompleteCard from '../../../components/atoms/cards/orderCompleteCard/order_complete_card';
@@ -17,7 +17,10 @@ const OrderDetail = () => {
   const dispatch = useDispatch();
   const { HandleMove, MoveHome, MoveBack } = useMove();
 
-  const MoveReport = () => HandleMove('/order/report');
+  const MoveReport = useCallback(
+    () => HandleMove('/order/report'),
+    [HandleMove],
+  );
 
   const { currentOrder } = useSelector((state) => state.order);
   const {

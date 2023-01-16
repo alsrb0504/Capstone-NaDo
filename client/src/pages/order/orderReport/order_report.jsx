@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
@@ -13,7 +13,10 @@ import useMove from '../../../hooks/useMove';
 const OrderReport = () => {
   const { MoveHome, HandleMove, MoveBack } = useMove();
 
-  const MoveOrder = () => HandleMove('/order/detail');
+  const MoveOrder = useCallback(
+    () => HandleMove('/order/detail'),
+    [HandleMove],
+  );
 
   const { currentOrder } = useSelector((state) => state.order);
   const { address, addressDetail, orderTimeout, priceInfo, orderSequence } =

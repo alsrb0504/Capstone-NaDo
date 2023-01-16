@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { LocalSignup } from '../../../store/features/user';
 import Header from '../../../components/atoms/headers/header/header';
@@ -13,9 +13,9 @@ const LocalRegister = () => {
     dispatch(LocalSignup(info));
   };
 
-  const MoveLogin = () => {
+  const MoveLogin = useCallback(() => {
     HandleMove('/login');
-  };
+  }, [HandleMove]);
 
   return (
     <div className="register col-sm-4">

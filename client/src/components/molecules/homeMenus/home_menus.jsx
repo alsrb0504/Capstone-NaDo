@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import useMove from '../../../hooks/useMove';
 import BtnBox from '../../atoms/buttons/btnBox/btn_box';
 
 const HomeMenus = () => {
   const { HandleMove } = useMove();
 
-  const MoveOrderHistory = () => HandleMove('/setting/order_history');
-  const MovePickupHistory = () => HandleMove('/setting/income_calculate');
-  const MoveSetting = () => HandleMove('/setting');
-  const MoveCart = () => HandleMove('/order/cart');
+  const MoveOrderHistory = useCallback(
+    () => HandleMove('/setting/order_history'),
+    [HandleMove],
+  );
+  const MovePickupHistory = useCallback(
+    () => HandleMove('/setting/income_calculate'),
+    [HandleMove],
+  );
+  const MoveSetting = useCallback(() => HandleMove('/setting'), [HandleMove]);
+  const MoveCart = useCallback(() => HandleMove('/order/cart'), [HandleMove]);
 
   return (
     <div className="home-menus col-sm-4">

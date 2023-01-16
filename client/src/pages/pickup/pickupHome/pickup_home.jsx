@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../../../components/atoms/footer/footer';
 import HeaderWithLogo from '../../../components/atoms/headers/headerWithLogo/header_with_logo';
@@ -13,7 +13,7 @@ const PickupHome = () => {
   const dispatch = useDispatch();
   const { HandleMove, MoveHome } = useMove();
 
-  const MoveCart = () => HandleMove('/order/cart');
+  const MoveCart = useCallback(() => HandleMove('/order/cart'), [HandleMove]);
 
   const { userNickname } = useSelector((state) => state.user);
   const { storeList } = useSelector((state) => state.pickup);

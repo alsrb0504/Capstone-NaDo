@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Btn from '../../components/atoms/buttons/btn/btn';
 import HomeHeader from '../../components/atoms/headers/homeHeader/home_header';
@@ -13,11 +13,17 @@ const Home = () => {
   const { HandleMove } = useMove();
   const dispatch = useDispatch();
 
-  const MoveOrderWaiting = () => HandleMove('/order/waitings');
-  const MovePickupList = () => HandleMove('/pickup/mypickup');
-  const MoveOrder = () => HandleMove('/order');
-  const MovePickup = () => HandleMove('/pickup');
-  const MoveSetting = () => HandleMove('/setting');
+  const MoveOrderWaiting = useCallback(
+    () => HandleMove('/order/waitings'),
+    [HandleMove],
+  );
+  const MovePickupList = useCallback(
+    () => HandleMove('/pickup/mypickup'),
+    [HandleMove],
+  );
+  const MoveOrder = useCallback(() => HandleMove('/order'), [HandleMove]);
+  const MovePickup = useCallback(() => HandleMove('/pickup'), [HandleMove]);
+  const MoveSetting = useCallback(() => HandleMove('/setting'), [HandleMove]);
 
   const { isLogin } = useSelector((state) => state.user);
   const { myOrderList } = useSelector((state) => state.order);

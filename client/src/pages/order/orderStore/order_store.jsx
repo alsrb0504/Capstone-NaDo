@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-boolean-value */
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import Footer from '../../../components/atoms/footer/footer';
 import HeaderWithImg from '../../../components/atoms/headers/headerWithImg/header_with_img';
@@ -11,7 +11,7 @@ import useMove from '../../../hooks/useMove';
 const OrderStore = () => {
   const { HandleMove, MoveBack } = useMove();
 
-  const MoveCart = () => HandleMove('/order/cart');
+  const MoveCart = useCallback(() => HandleMove('/order/cart'), [HandleMove]);
 
   const { selectedStore, defaultMenuList } = useSelector(
     (state) => state.order,

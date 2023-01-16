@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../../components/atoms/headers/header/header';
 import WaitingOrderList from '../../../components/molecules/WaitingOrderList/waiting_order_list';
@@ -11,11 +11,14 @@ const OrderWaitings = () => {
 
   const { myOrderList } = useSelector((state) => state.order);
 
-  const MoveDesc = (id) => {
-    dispatch(GetOrderDetail(id));
+  const MoveDesc = useCallback(
+    (id) => {
+      dispatch(GetOrderDetail(id));
 
-    HandleMove(`/order/detail?id=${id}`);
-  };
+      HandleMove(`/order/detail?id=${id}`);
+    },
+    [dispatch, HandleMove],
+  );
 
   return (
     <div className="col-sm-4 order-waitings">

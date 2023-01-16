@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import useMove from '../../../hooks/useMove';
 import { SelectCoffee } from '../../../store/features/order';
@@ -8,7 +8,10 @@ const StoreMenuSection = ({ menuList }) => {
   const dispatch = useDispatch();
   const { HandleMove } = useMove();
 
-  const MoveOption = () => HandleMove('/order/option');
+  const MoveOption = useCallback(
+    () => HandleMove('/order/option'),
+    [HandleMove],
+  );
 
   const ClickMenu = (menu) => {
     dispatch(SelectCoffee(menu));

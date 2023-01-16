@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../../components/atoms/headers/header/header';
 import PickingOrderList from '../../../components/molecules/pickingOrderList/picking_order_list';
@@ -11,10 +11,13 @@ const PickupMyPickup = () => {
 
   const { myPickupList } = useSelector((state) => state.pickup);
 
-  const MoveDesc = (orderId) => {
-    dispatch(GetCurrentPickupDetail(orderId));
-    HandleMove(`/pickup/processing?sequence=${orderId}`);
-  };
+  const MoveDesc = useCallback(
+    (orderId) => {
+      dispatch(GetCurrentPickupDetail(orderId));
+      HandleMove(`/pickup/processing?sequence=${orderId}`);
+    },
+    [dispatch, HandleMove],
+  );
 
   return (
     <div className="col-sm-4 pickup-my-pickup">

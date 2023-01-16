@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { LocalLogin } from '../../../store/features/user';
 import LoginForm from '../../../components/molecules/loginForm/login_form';
@@ -16,9 +16,9 @@ const Login = () => {
     dispatch(LocalLogin(info));
   };
 
-  const MoveSignup = () => {
+  const MoveSignup = useCallback(() => {
     HandleMove('/register/local');
-  };
+  }, [HandleMove]);
 
   const MoveSocial = () => {
     window.location.href = `${baseURL}/auth/social/login`;

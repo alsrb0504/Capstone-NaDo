@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BtnProfile from '../../../components/atoms/buttons/btnProfile/btn_profile';
 import Footer from '../../../components/atoms/footer/footer';
@@ -17,9 +17,18 @@ const Setting = () => {
     (state) => state.user,
   );
 
-  const MoveEditProfile = () => HandleMove('/setting/profile');
-  const MoveRecord = () => HandleMove('/setting/order_history');
-  const MoveProfit = () => HandleMove('/setting/income_calculate');
+  const MoveEditProfile = useCallback(
+    () => HandleMove('/setting/profile'),
+    [HandleMove],
+  );
+  const MoveRecord = useCallback(
+    () => HandleMove('/setting/order_history'),
+    [HandleMove],
+  );
+  const MoveProfit = useCallback(
+    () => HandleMove('/setting/income_calculate'),
+    [HandleMove],
+  );
 
   const MoveEditPassword = () => {
     if (userProvider !== 'local') {

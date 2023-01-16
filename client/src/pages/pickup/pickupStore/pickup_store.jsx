@@ -1,6 +1,5 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-boolean-value */
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import HeaderWithImg from '../../../components/atoms/headers/headerWithImg/header_with_img';
 import StoreInfoSection from '../../../components/atoms/storeInfoSection/store_info_section';
@@ -13,7 +12,7 @@ const PickupStore = () => {
   const dispatch = useDispatch();
   const { HandleMove, MoveBack } = useMove();
 
-  const MoveCart = () => HandleMove('/order/cart');
+  const MoveCart = useCallback(() => HandleMove('/order/cart'), [HandleMove]);
 
   const { selectedStore } = useSelector((state) => state.pickup);
   const {
