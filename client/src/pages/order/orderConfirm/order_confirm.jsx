@@ -12,7 +12,7 @@ const OrderConfirm = () => {
 
   return (
     <div className="col-sm-4 order-confirm">
-      <Header title="결제 확인" handleClick={MoveBack} />
+      <Header title="결제 확인" HandleClick={MoveBack} />
       <PaymentConfirm orderInfo={orderInfo} />
       <Btn text="확인" />
     </div>

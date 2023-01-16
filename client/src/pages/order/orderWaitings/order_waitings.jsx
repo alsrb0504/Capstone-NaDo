@@ -22,7 +22,7 @@ const OrderWaitings = () => {
 
   return (
     <div className="col-sm-4 order-waitings">
-      <Header title="내가 기다리는 주문" handleClick={MoveBack} />
+      <Header title="내가 기다리는 주문" HandleClick={MoveBack} />
       <WaitingOrderList myOrderList={myOrderList} MoveDesc={MoveDesc} />
     </div>
   );

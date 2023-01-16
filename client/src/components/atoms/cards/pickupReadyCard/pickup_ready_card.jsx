@@ -2,12 +2,12 @@ import React, { useCallback } from 'react';
 import { PrintPrice } from '../../../../utils/text';
 import { ChangeTimeInfo } from '../../../../utils/time';
 
-const PickupReadyCard = ({ info, handleClick }) => {
+const PickupReadyCard = ({ info, HandleClick }) => {
   const { orderSequence, dest, orderTimeout, price } = info;
 
   const OnClick = useCallback(() => {
-    handleClick(orderSequence);
-  }, [orderSequence, handleClick]);
+    HandleClick(orderSequence);
+  }, [orderSequence, HandleClick]);
 
   return (
     <div className="card-container pickup-ready-card" onClick={OnClick}>

@@ -8,7 +8,7 @@ const PickupStoreList = ({ stores, SelectStore }) => (
         <PickupStoreCard
           key={store.sequence}
           info={store}
-          handleClick={SelectStore}
+          HandleClick={SelectStore}
         />
       ))}
     </ul>

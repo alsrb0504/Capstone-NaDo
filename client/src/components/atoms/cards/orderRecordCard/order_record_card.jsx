@@ -2,12 +2,12 @@ import React from 'react';
 import { PrintPrice } from '../../../../utils/text';
 import { MakeFullTimeInfo } from '../../../../utils/time';
 
-const OrderRecordCard = ({ info, handleClick }) => {
+const OrderRecordCard = ({ info, HandleClick }) => {
   const { address, addressDetail, deliveredAt, orderSequence, totalPrice } =
     info;
 
   const OnClick = () => {
-    handleClick(orderSequence);
+    HandleClick(orderSequence);
   };
 
   return (

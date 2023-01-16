@@ -48,7 +48,7 @@ const OrderDetail = () => {
 
   return (
     <div className="col-sm-4 order-detail">
-      <Header title="주문 상세" handleClick={MoveBack} />
+      <Header title="주문 상세" HandleClick={MoveBack} />
       <StateBox state={orderStatus} />
       <div className="info">
         <section className="info-map-section">
@@ -84,11 +84,11 @@ const OrderDetail = () => {
       </div>
       {orderStatus === 'delivered' && (
         <React.Fragment>
-          <Btn text="배달 완료 확인" color="blue" handleClick={TestComplete} />
-          <Btn text="신고하기" color="red" handleClick={MoveReport} />
+          <Btn text="배달 완료 확인" color="blue" HandleClick={TestComplete} />
+          <Btn text="신고하기" color="red" HandleClick={MoveReport} />
         </React.Fragment>
       )}
-      <Btn text="확인" handleClick={MoveBack} />
+      <Btn text="확인" HandleClick={MoveBack} />
       {/* <Btn text="피커와 채팅하기" /> */}
     </div>
   );

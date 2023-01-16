@@ -1,11 +1,11 @@
 import React from 'react';
 import { PrintPrice } from '../../../../utils/text';
 
-const MenuCard = ({ menuInfo, handleClick }) => {
+const MenuCard = ({ menuInfo, HandleClick }) => {
   const { menuName, menuPrice, menuImg } = menuInfo;
 
   const OnClick = () => {
-    handleClick(menuInfo);
+    HandleClick(menuInfo);
   };
 
   return (

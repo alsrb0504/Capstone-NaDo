@@ -1,11 +1,11 @@
 import React from 'react';
 import { CalcOpenTime } from '../../../../utils/time';
 
-const OrderStoreCard = ({ info, handleClick }) => {
+const OrderStoreCard = ({ info, HandleClick }) => {
   const { sequence, name, image, businesstimes } = info;
 
   const SelectCard = () => {
-    handleClick(sequence);
+    HandleClick(sequence);
   };
 
   return (

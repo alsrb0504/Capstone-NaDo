@@ -36,7 +36,7 @@ const OrderCart = () => {
 
   return (
     <div className="col-sm-4 order-cart">
-      <Header title="장바구니" handleClick={MoveBack} />
+      <Header title="장바구니" HandleClick={MoveBack} />
       {cartList.length === 0 && <EmptyState text="장바구니가 비었습니다." />}
 
       {cartList.length !== 0 && (
@@ -53,7 +53,7 @@ const OrderCart = () => {
 
           <Btn
             text={`${PrintPrice(totalPrice)}원 결제하기`}
-            handleClick={MovePay}
+            HandleClick={MovePay}
           />
         </div>
       )}

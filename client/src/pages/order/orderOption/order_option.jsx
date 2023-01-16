@@ -80,7 +80,7 @@ const OrderOption = () => {
 
   return (
     <div className="option col-sm-4">
-      <Header title={name} handleClick={MoveBack} />
+      <Header title={name} HandleClick={MoveBack} />
       <div className="item-option-form">
         <TextUnderline text={menuName} />
 
@@ -166,7 +166,7 @@ const OrderOption = () => {
         <div className="item-option-form-btn-complete">
           <Btn
             text={`${totalPrice}원 장바구니 담기`}
-            handleClick={handleSubmit}
+            HandleClick={handleSubmit}
           />
         </div>
       </div>

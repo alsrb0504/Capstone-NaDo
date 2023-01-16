@@ -35,11 +35,11 @@ const PickupDetail = () => {
 
   return (
     <div className="col-sm-4 pickup-detail">
-      <Header title="픽업 주문 상세" handleClick={MoveBack} />
+      <Header title="픽업 주문 상세" HandleClick={MoveBack} />
       <PickupInfoSection selectedOrder={selectedOrder} />
 
-      {isCatch && <Btn text="확인" handleClick={MoveBack} />}
-      {!isCatch && <Btn text="픽업하기" handleClick={AccessOrder} />}
+      {isCatch && <Btn text="확인" HandleClick={MoveBack} />}
+      {!isCatch && <Btn text="픽업하기" HandleClick={AccessOrder} />}
     </div>
   );
 };

@@ -10,15 +10,12 @@ const StorePickupList = ({ pickupList, SelectPickup }) => (
         <PickupReadyCard
           key={item.orderSequence}
           info={item}
-          handleClick={SelectPickup}
+          HandleClick={SelectPickup}
         />
       ))}
       {/* 여기 컴포넌트 필요. */}
       {pickupList.length === 0 && (
-        <EmptyState 
-          text='현재 접수된 주문이 없습니다.'
-          type='store'
-          />
+        <EmptyState text="현재 접수된 주문이 없습니다." type="store" />
       )}
     </ul>
   </section>

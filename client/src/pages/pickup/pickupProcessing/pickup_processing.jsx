@@ -61,19 +61,19 @@ const PickupProcessing = () => {
 
   return (
     <div className="col-sm-4 pickup-detail">
-      <Header title="픽업 주문 상세" handleClick={MoveBack} />
+      <Header title="픽업 주문 상세" HandleClick={MoveBack} />
       {isCatch && <StateBox state={orderStatus} />}
 
       <PickupInfoSection selectedOrder={currentPickup} />
 
       {orderStatus === 'pickuped' && (
         <React.Fragment>
-          <Btn text="취소하기" color="red" handleClick={CancelOrder} />
-          <Btn text="배달 완료" handleClick={CompleteOrder} />
+          <Btn text="취소하기" color="red" HandleClick={CancelOrder} />
+          <Btn text="배달 완료" HandleClick={CompleteOrder} />
         </React.Fragment>
       )}
 
-      {orderStatus !== 'pickuped' && <Btn text="확인" handleClick={MoveHome} />}
+      {orderStatus !== 'pickuped' && <Btn text="확인" HandleClick={MoveHome} />}
     </div>
   );
 };

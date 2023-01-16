@@ -8,7 +8,7 @@ const OrderStoreList = ({ storeList, SelectStore }) => (
         <OrderStoreCard
           key={store.sequence}
           info={store}
-          handleClick={SelectStore}
+          HandleClick={SelectStore}
         />
       ))}
   </ul>

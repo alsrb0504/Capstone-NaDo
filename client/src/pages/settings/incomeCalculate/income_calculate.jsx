@@ -31,7 +31,7 @@ const IncomeCalculate = () => {
 
   return (
     <div className="col-sm-4 income-calculate">
-      <Header title="픽업 내역" handleClick={MoveBack} />
+      <Header title="픽업 내역" HandleClick={MoveBack} />
 
       <section className="date-picker-section">
         <FormTitle title="조회 기간" />

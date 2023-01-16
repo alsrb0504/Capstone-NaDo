@@ -48,7 +48,7 @@ const Home = () => {
             tupe="buton"
             color="gradation"
             text="내가 기다리는 주문"
-            handleClick={MoveOrderWaiting}
+            HandleClick={MoveOrderWaiting}
           />
         </div>
       )}
@@ -58,7 +58,7 @@ const Home = () => {
             tupe="buton"
             color="gradation"
             text="내가 픽업한 주문"
-            handleClick={MovePickupList}
+            HandleClick={MovePickupList}
           />
         </div>
       )}

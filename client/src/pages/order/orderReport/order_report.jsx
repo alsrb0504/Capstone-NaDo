@@ -55,7 +55,7 @@ const OrderReport = () => {
 
   return (
     <div className="col-sm-4 order-report">
-      <Header title="신고하기" handleClick={MoveBack} />
+      <Header title="신고하기" HandleClick={MoveBack} />
       <div className="order-report-body">
         <section className="order-section">
           <FormTitle title="신고 주문" />
@@ -67,7 +67,7 @@ const OrderReport = () => {
               totalPrice: priceInfo.amountOfPayment,
               deliveredAt: orderTimeout,
             }}
-            handleClick={MoveOrder}
+            HandleClick={MoveOrder}
           />
         </section>
 
@@ -84,7 +84,7 @@ const OrderReport = () => {
               type="submit"
               text="신고하기"
               color="red"
-              handleClick={MoveBack}
+              HandleClick={MoveBack}
             />
           </div>
         </form>

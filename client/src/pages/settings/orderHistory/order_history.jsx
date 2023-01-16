@@ -29,7 +29,7 @@ const OrderHistory = () => {
 
   return (
     <div className="col-sm-4 order-history">
-      <Header title="주문 내역" handleClick={MoveBack} />
+      <Header title="주문 내역" HandleClick={MoveBack} />
 
       <section className="date-picker-section">
         <FormTitle title="조회 기간" />

@@ -8,7 +8,7 @@ const ChangePassword = () => {
 
   return (
     <div className="col-sm-4 change-passwd">
-      <Header title="비밀번호 변경" handleClick={MoveBack} />
+      <Header title="비밀번호 변경" HandleClick={MoveBack} />
 
       <PasswdEditForm MoveBack={MoveBack} />
     </div>

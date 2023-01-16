@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 
-const Header = React.memo(({ title, handleClick }) => {
+const Header = React.memo(({ title, HandleClick }) => {
   const OnClick = useCallback(() => {
-    handleClick();
-  }, [handleClick]);
+    HandleClick();
+  }, [HandleClick]);
 
   return (
     <header className="header-box">

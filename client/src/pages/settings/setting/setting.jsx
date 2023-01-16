@@ -56,7 +56,7 @@ const Setting = () => {
 
   return (
     <div className="setting col-sm-4">
-      <Header title="설정" handleClick={MoveHome} />
+      <Header title="설정" HandleClick={MoveHome} />
 
       <ProfileCard
         url={
@@ -68,16 +68,16 @@ const Setting = () => {
 
       <section className="setting-menu">
         <div className="setting-menu-title">개인정보</div>
-        <BtnProfile text="프로필 수정" handleClick={MoveEditProfile} />
-        <BtnProfile text="비밀번호 변경" handleClick={MoveEditPassword} />
-        <BtnProfile text="로그아웃" handleClick={Logout} />
-        <BtnProfile text="회원 탈퇴" handleClick={UnRegister} />
+        <BtnProfile text="프로필 수정" HandleClick={MoveEditProfile} />
+        <BtnProfile text="비밀번호 변경" HandleClick={MoveEditPassword} />
+        <BtnProfile text="로그아웃" HandleClick={Logout} />
+        <BtnProfile text="회원 탈퇴" HandleClick={UnRegister} />
       </section>
 
       <section className="setting-menu setting-menu-last">
         <div className="setting-menu-title">사용 내역</div>
-        <BtnProfile text="주문 내역" handleClick={MoveRecord} />
-        <BtnProfile text="픽업 내역" handleClick={MoveProfit} />
+        <BtnProfile text="주문 내역" HandleClick={MoveRecord} />
+        <BtnProfile text="픽업 내역" HandleClick={MoveProfit} />
       </section>
 
       <Footer />

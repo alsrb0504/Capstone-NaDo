@@ -26,7 +26,7 @@ const EditProfile = () => {
 
   return (
     <div className="col-sm-4 edit-profile">
-      <Header title="프로필 수정" handleClick={MoveBack} />
+      <Header title="프로필 수정" HandleClick={MoveBack} />
 
       <ProfileEditForm ChangeProfile={ChangeProfile} />
     </div>

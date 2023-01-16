@@ -31,7 +31,7 @@ const StoreMenuSection = ({ menuList }) => {
             <MenuCard
               key={menu.sequence}
               menuInfo={menu}
-              handleClick={ClickMenu}
+              HandleClick={ClickMenu}
             />
           ))}
       </ul>

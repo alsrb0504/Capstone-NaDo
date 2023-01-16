@@ -21,7 +21,7 @@ const PickupMyPickup = () => {
 
   return (
     <div className="col-sm-4 pickup-my-pickup">
-      <Header title="내가 픽업한 주문" handleClick={MoveBack} />
+      <Header title="내가 픽업한 주문" HandleClick={MoveBack} />
       <PickingOrderList pickups={myPickupList} MoveDesc={MoveDesc} />
     </div>
   );

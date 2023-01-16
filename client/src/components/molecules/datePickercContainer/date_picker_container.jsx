@@ -36,7 +36,7 @@ const DatePickerContainer = ({ InquireReport }) => {
           onChange={(selectedDate) => setEndDate(selectedDate)}
         />
       </div>
-      <Btn text="조회" handleClick={OnSubmit} />
+      <Btn text="조회" HandleClick={OnSubmit} />
     </div>
   );
 };

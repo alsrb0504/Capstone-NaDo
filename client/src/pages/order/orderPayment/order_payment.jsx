@@ -54,7 +54,7 @@ const OrderPayment = () => {
 
   return (
     <div className="col-sm-4 order-payment">
-      <Header title="결제" handleClick={MoveBack} />
+      <Header title="결제" HandleClick={MoveBack} />
       <PaymentForm SubmitPayment={SubmitPayment} />
     </div>
   );

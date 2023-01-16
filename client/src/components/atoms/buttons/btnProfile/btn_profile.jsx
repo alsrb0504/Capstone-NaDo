@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 
-const BtnProfile = React.memo(({ text, handleClick }) => {
+const BtnProfile = React.memo(({ text, HandleClick }) => {
   const OnClick = useCallback(() => {
-    handleClick();
-  }, [handleClick]);
+    HandleClick();
+  }, [HandleClick]);
 
   return (
     <button type="button" className="btn-profile" onClick={OnClick}>

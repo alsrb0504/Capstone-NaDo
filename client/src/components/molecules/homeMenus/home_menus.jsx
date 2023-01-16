@@ -23,22 +23,22 @@ const HomeMenus = React.memo(() => {
         <BtnBox
           text="주문 내역"
           url="icon/order_list_icon.svg"
-          handleClick={MoveOrderHistory}
+          HandleClick={MoveOrderHistory}
         />
         <BtnBox
           text="픽업 내역"
           url="icon/pickup_list_icon.svg"
-          handleClick={MovePickupHistory}
+          HandleClick={MovePickupHistory}
         />
         <BtnBox
           text="설정"
           url="icon/setting_icon.svg"
-          handleClick={MoveSetting}
+          HandleClick={MoveSetting}
         />
         <BtnBox
           text="장바구니"
           url="icon/cart_icon.svg"
-          handleClick={MoveCart}
+          HandleClick={MoveCart}
         />
       </div>
     </div>

@@ -40,13 +40,13 @@ const Login = () => {
         <BtnBox
           text="네이버"
           url="icon/naver_icon.svg"
-          handleClick={MoveSocial}
+          HandleClick={MoveSocial}
         />
 
         <BtnBox
           text="회원가입"
           url="icon/signup_icon.svg"
-          handleClick={MoveSignup}
+          HandleClick={MoveSignup}
         />
       </div>
     </div>
