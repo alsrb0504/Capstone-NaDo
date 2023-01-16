@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HeaderWithImg = ({ shopImg, MoveBack, MoveCart }) => (
+const HeaderWithImg = React.memo(({ shopImg, MoveBack, MoveCart }) => (
   <div className="header-with-img">
     <img className="header-with-img-bg" src={shopImg} alt="카페 이미지" />
 
@@ -12,6 +12,6 @@ const HeaderWithImg = ({ shopImg, MoveBack, MoveCart }) => (
       <i className="fa-solid fa-cart-shopping" />
     </button>
   </div>
-);
+));
 
 export default HeaderWithImg;

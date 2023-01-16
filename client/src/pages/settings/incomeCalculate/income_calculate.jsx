@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PickupRecordCard from '../../../components/atoms/cards/pickuprecordCard/pickup_record_card';
 import EmptyState from '../../../components/atoms/emptyState/empty_state';
@@ -17,9 +17,12 @@ const IncomeCalculate = () => {
   const { pickupHistory } = useSelector((state) => state.pickup);
   const { profitList, totalProfit } = pickupHistory;
 
-  const InquireReport = (start, end) => {
-    dispatch(GetPickupReport({ start, end }));
-  };
+  const InquireReport = useCallback(
+    (start, end) => {
+      dispatch(GetPickupReport({ start, end }));
+    },
+    [dispatch],
+  );
 
   useEffect(() => {
     const [start, end] = GetDefaultPeriod();

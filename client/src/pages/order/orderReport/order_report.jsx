@@ -28,11 +28,11 @@ const OrderReport = () => {
     formState: { errors },
   } = useForm();
 
-  const OnSubmit = () => {
+  const OnSubmit = useCallback(() => {
     handleAlert();
-  };
+  }, [handleAlert]);
 
-  const handleAlert = () => {
+  const handleAlert = useCallback(() => {
     Swal.fire({
       title: '정말 신고 하시겠습니까?',
       text: '접수된 신고는 취소할 수 없습니다.',
@@ -51,7 +51,7 @@ const OrderReport = () => {
         }, 1200);
       }
     });
-  };
+  }, [MoveHome]);
 
   return (
     <div className="col-sm-4 order-report">

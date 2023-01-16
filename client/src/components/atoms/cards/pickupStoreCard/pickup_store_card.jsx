@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 const PickupStoreCard = ({ info, handleClick }) => {
   const { sequence, name, image, pickupCnt } = info;
 
-  const MovePage = () => {
+  const MovePage = useCallback(() => {
     handleClick(sequence);
-  };
+  }, [sequence, handleClick]);
 
   return (
     <div className="card-container pickup-store-card" onClick={MovePage}>

@@ -9,9 +9,8 @@ import { GetStoreDetail, GetStoreList } from '../../../store/features/order';
 const OrderHome = () => {
   const dispatch = useDispatch();
 
-  const { HandleMove, MoveHome } = useMove(); // 커스텀 훅 : 확인용 콘솔 찍음.
-
-  const MoveCart = () => HandleMove('/order/cart');
+  const { HandleMove, MoveHome } = useMove();
+  const MoveCart = useCallback(() => HandleMove('/order/cart'), [HandleMove]);
 
   // 가게 선택 함수.
   const SelectStore = useCallback(

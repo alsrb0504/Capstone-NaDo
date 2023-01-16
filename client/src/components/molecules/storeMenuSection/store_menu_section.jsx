@@ -13,11 +13,14 @@ const StoreMenuSection = ({ menuList }) => {
     [HandleMove],
   );
 
-  const ClickMenu = (menu) => {
-    dispatch(SelectCoffee(menu));
+  const ClickMenu = useCallback(
+    (menu) => {
+      dispatch(SelectCoffee(menu));
 
-    MoveOption();
-  };
+      MoveOption();
+    },
+    [dispatch, MoveOption],
+  );
 
   return (
     <section className="store-menu-section">

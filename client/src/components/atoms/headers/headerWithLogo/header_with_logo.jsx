@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HeaderWithLogo = ({ MoveBack, MoveCart }) => (
+const HeaderWithLogo = React.memo(({ MoveBack, MoveCart }) => (
   <div className="header-with-logo">
     <button type="button" onClick={MoveBack}>
       <i className="fa-solid fa-arrow-left" />
@@ -14,6 +14,6 @@ const HeaderWithLogo = ({ MoveBack, MoveCart }) => (
       <i className="fa-solid fa-cart-shopping" />
     </button>
   </div>
-);
+));
 
 export default HeaderWithLogo;

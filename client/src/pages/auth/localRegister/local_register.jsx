@@ -9,9 +9,12 @@ const LocalRegister = () => {
   const dispatch = useDispatch();
   const { HandleMove } = useMove();
 
-  const SignupWithLocal = (info) => {
-    dispatch(LocalSignup(info));
-  };
+  const SignupWithLocal = useCallback(
+    (info) => {
+      dispatch(LocalSignup(info));
+    },
+    [dispatch],
+  );
 
   const MoveLogin = useCallback(() => {
     HandleMove('/login');
@@ -24,4 +27,5 @@ const LocalRegister = () => {
     </div>
   );
 };
+
 export default LocalRegister;

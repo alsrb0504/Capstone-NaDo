@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { PrintPrice } from '../../../../utils/text';
 import { MakeFullTimeInfo } from '../../../../utils/time';
 
@@ -6,9 +6,9 @@ const PickupRecordCard = ({ info, handleClick }) => {
   const { address, addressDetail, deliveredAt, orderSequence, deliveryFee } =
     info;
 
-  const OnClick = () => {
+  const OnClick = useCallback(() => {
     handleClick(orderSequence);
-  };
+  }, [handleClick, orderSequence]);
 
   return (
     <div className="card-container pickup-record-card" onClick={OnClick}>

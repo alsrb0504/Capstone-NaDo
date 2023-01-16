@@ -16,8 +16,6 @@ const PickupInfoSection = ({ selectedOrder }) => {
     priceInfo,
     orderTimeout,
     orderProducts,
-    // orderSequence,
-    // orderStatus,
   } = selectedOrder;
   const { deliveryFee, amountOfPayment } = priceInfo;
 

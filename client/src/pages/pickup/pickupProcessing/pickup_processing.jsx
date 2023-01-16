@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Btn from '../../../components/atoms/buttons/btn/btn';
 import Header from '../../../components/atoms/headers/header/header';
@@ -22,14 +22,14 @@ const PickupProcessing = () => {
   );
   const { pickupSequence, orderStatus } = currentPickup;
 
-  const CancelOrder = () => {
+  const CancelOrder = useCallback(() => {
     dispatch(CancelPickup(pickupSequence));
-  };
+  }, [pickupSequence, dispatch]);
 
-  const CompleteOrder = () => {
+  const CompleteOrder = useCallback(() => {
     dispatch(CompletePickup(pickupSequence));
     SwalSuccess('배달 완료.');
-  };
+  }, [pickupSequence, dispatch]);
 
   useEffect(() => {
     const popupTimer = 1200;

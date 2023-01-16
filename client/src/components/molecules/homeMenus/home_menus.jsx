@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import useMove from '../../../hooks/useMove';
 import BtnBox from '../../atoms/buttons/btnBox/btn_box';
 
-const HomeMenus = () => {
+const HomeMenus = React.memo(() => {
   const { HandleMove } = useMove();
 
   const MoveOrderHistory = useCallback(
@@ -43,6 +43,6 @@ const HomeMenus = () => {
       </div>
     </div>
   );
-};
+});
 
 export default HomeMenus;

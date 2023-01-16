@@ -35,7 +35,7 @@ const OrderDetail = () => {
     orderSequence,
   } = currentOrder;
 
-  const TestComplete = () => {
+  const TestComplete = useCallback(() => {
     dispatch(CompleteOrder(orderSequence));
 
     const popupTimer = 1200;
@@ -44,7 +44,7 @@ const OrderDetail = () => {
     setTimeout(() => {
       MoveHome();
     }, popupTimer);
-  };
+  }, [orderSequence, dispatch, MoveHome]);
 
   return (
     <div className="col-sm-4 order-detail">

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProfileCard = ({ url, nickname }) => {
+const ProfileCard = React.memo(({ url, nickname }) => {
   const defaultProfile = 'images/default_profile.svg';
 
   const profileUrl = url || defaultProfile;
@@ -13,6 +13,6 @@ const ProfileCard = ({ url, nickname }) => {
       <p className="profile-card-nickname">{nickname}</p>
     </div>
   );
-};
+});
 
 export default ProfileCard;

@@ -30,16 +30,16 @@ const Setting = () => {
     [HandleMove],
   );
 
-  const MoveEditPassword = () => {
+  const MoveEditPassword = useCallback(() => {
     if (userProvider !== 'local') {
       SwalError('로컬 계정만 이용 가능합니다.', 1200);
       return;
     }
 
     HandleMove('/setting/passwd');
-  };
+  }, [userProvider, HandleMove]);
 
-  const Logout = () => {
+  const Logout = useCallback(() => {
     dispatch(LocalLogout());
 
     setTimeout(() => {
@@ -47,11 +47,12 @@ const Setting = () => {
       HandleMove('/login');
       window.location.reload();
     }, 200);
-  };
+  }, [dispatch, HandleMove]);
 
-  const UnRegister = () => {
+  const UnRegister = useCallback(() => {
     alert('회원 탈퇴');
-  };
+    // 미구현...
+  }, []);
 
   return (
     <div className="setting col-sm-4">

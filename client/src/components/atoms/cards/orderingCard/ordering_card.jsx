@@ -2,13 +2,24 @@
 import React, { useState } from 'react';
 import { MakeOptionText, PrintPrice } from '../../../../utils/text';
 
-const OrderingCard = React.memo(({ info, UpdateMenu, DeleteMenu }) => {
+function isSame(prev, next) {
+  // if (prev.UpdateMenu !== next.UpdateMenu) return false;
+
+  console.log(prev);
+  console.log(next);
+
+  if (prev.DeleteMenu !== next.DeleteMenu) return false;
+
+  // if (prev.UpdateMenu !== next.UpdateMenu) return false;
+
+  return true;
+}
+
+const OrderingCardComponent = ({ info, UpdateMenu, DeleteMenu }) => {
   const { menuSequence, menuName, menuOptions, menuPrice, cnt } = info;
   const { icehot, shots } = menuOptions;
 
-  // 추후 hook 으로 교체.
   const [curCnt, setCurCnt] = useState(cnt);
-  const [curPrice, setCurPrice] = useState(menuPrice);
 
   const ChangeCount = (e) => {
     const target = e.target.className.split(' ')[1];
@@ -37,7 +48,7 @@ const OrderingCard = React.memo(({ info, UpdateMenu, DeleteMenu }) => {
         <h3 className="menu-name">{menuName}</h3>
         <p className="options">옵션 : {MakeOptionText(icehot, shots)}</p>
 
-        <p>{PrintPrice(curPrice)} 원</p>
+        <p>{PrintPrice(menuPrice)} 원</p>
       </div>
 
       <div className="order-count">
@@ -52,6 +63,8 @@ const OrderingCard = React.memo(({ info, UpdateMenu, DeleteMenu }) => {
       </div>
     </div>
   );
-});
+};
+
+const OrderingCard = React.memo(OrderingCardComponent, isSame);
 
 export default OrderingCard;

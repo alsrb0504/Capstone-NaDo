@@ -35,12 +35,15 @@ const OrderCart = () => {
     dispatch(UpdateCart({ updatedCartList }));
   };
 
-  const DeleteMenu = (cartSequence) => {
-    const updatedCartList = cartList.filter(
-      (el) => el.menuSequence !== cartSequence,
-    );
-    dispatch(UpdateCart({ updatedCartList }));
-  };
+  const DeleteMenu = useCallback(
+    (cartSequence) => {
+      const updatedCartList = cartList.filter(
+        (el) => el.menuSequence !== cartSequence,
+      );
+      dispatch(UpdateCart({ updatedCartList }));
+    },
+    [dispatch, cartList],
+  );
 
   return (
     <div className="col-sm-4 order-cart">

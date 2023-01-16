@@ -24,10 +24,13 @@ const PickupStore = () => {
     pickupList,
   } = selectedStore;
 
-  const SelectPickup = (orderId) => {
-    dispatch(GetPickupDetail(orderId));
-    HandleMove(`/pickup/detail?sequence=${orderId}`);
-  };
+  const SelectPickup = useCallback(
+    (orderId) => {
+      dispatch(GetPickupDetail(orderId));
+      HandleMove(`/pickup/detail?sequence=${orderId}`);
+    },
+    [dispatch, HandleMove],
+  );
 
   return (
     <div className="col-sm-4 pickup-store">

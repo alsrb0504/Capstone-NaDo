@@ -5,36 +5,17 @@ import OrderCompleteCard from '../../atoms/cards/orderCompleteCard/order_complet
 import PaymentReceipt from '../../atoms/paymentReceipt/payment_receipt';
 import StoreMapSection from '../storeMapSection/store_map_section';
 
-const PaymentConfirm = () => {
-  const location = {
-    lat: 37.3227651,
-    long: 127.125166,
-  };
-
-  const data = {
-    address: '경기 용인시 수지구 죽전로144번길 15-14',
-    request_time: '14:30 까지',
-    request_content: '조심히 배달해주세요',
-    list: [
-      {
-        name: '아메리카노',
-        options: ['샷 추가(+500원)'],
-        cnt: 1,
-        price: '3500',
-      },
-      {
-        name: '녹차라떼',
-        options: ['샷 추가(+500원)'],
-        cnt: 1,
-        price: '4900',
-      },
-    ],
-    price_info: {
-      order_price: 16000,
-      delivery_fee: 1000,
-      total_price: 17000,
-    },
-  };
+const PaymentConfirm = ({ orderInfo }) => {
+  const location = orderInfo.store;
+  const {
+    address,
+    addressDetail,
+    orderTimeout,
+    message,
+    priceInfo,
+    orderProducts,
+  } = orderInfo;
+  const { deliveryFee, menuPrice, amountOfPayment } = priceInfo;
 
   return (
     <div className="payment-confirm">
@@ -46,19 +27,19 @@ const PaymentConfirm = () => {
 
       <section>
         <FormTitle title="주소" />
-        <FillLineInput val={data.address} />
+        <FillLineInput val={`${address} ${addressDetail}`} />
       </section>
 
       <section>
         <FormTitle title="요청 사항" />
-        <FillLineInput val={data.request_time} />
+        <FillLineInput val={orderTimeout} />
 
-        <FillLineInput val={data.request_content} />
+        <FillLineInput val={message} />
       </section>
 
       <section className="payment-confirm-list-section">
         <FormTitle title="주문 목록" />
-        {data.list.map((coffee) => (
+        {orderProducts.map((coffee) => (
           <OrderCompleteCard info={coffee} />
         ))}
       </section>
@@ -66,9 +47,9 @@ const PaymentConfirm = () => {
       <section>
         <PaymentReceipt
           price_info={{
-            order_price: 16000,
-            delivery_fee: 1000,
-            total_price: 17000,
+            order_price: menuPrice,
+            delivery_fee: deliveryFee,
+            total_price: amountOfPayment,
           }}
         />
       </section>

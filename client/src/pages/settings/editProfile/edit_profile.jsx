@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import Header from '../../../components/atoms/headers/header/header';
 import ProfileEditForm from '../../../components/molecules/profileEditForm/profile_edit_form';
@@ -10,17 +10,19 @@ const EditProfile = () => {
   const dispatch = useDispatch();
   const { MoveBack } = useMove();
 
-  const ChangeProfile = (data) => {
-    dispatch(UpdateProfile(data));
+  const ChangeProfile = useCallback(
+    (data) => {
+      const popupTimer = 1200;
 
-    const popupTimer = 1200;
+      dispatch(UpdateProfile(data));
+      SwalSuccess('프로필 업데이트 성공!', popupTimer);
 
-    SwalSuccess('프로필 업데이트 성공!', popupTimer);
-
-    setTimeout(() => {
-      MoveBack();
-    }, popupTimer);
-  };
+      setTimeout(() => {
+        MoveBack();
+      }, popupTimer);
+    },
+    [dispatch, MoveBack],
+  );
 
   return (
     <div className="col-sm-4 edit-profile">

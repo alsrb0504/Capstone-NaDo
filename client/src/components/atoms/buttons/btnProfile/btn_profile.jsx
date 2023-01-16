@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
-const BtnProfile = ({ text, handleClick }) => {
-  const OnClick = () => {
+const BtnProfile = React.memo(({ text, handleClick }) => {
+  const OnClick = useCallback(() => {
     handleClick();
-  };
+  }, [handleClick]);
 
   return (
     <button type="button" className="btn-profile" onClick={OnClick}>
@@ -11,6 +11,6 @@ const BtnProfile = ({ text, handleClick }) => {
       <i className="fa-solid fa-chevron-right" />
     </button>
   );
-};
+});
 
 export default BtnProfile;

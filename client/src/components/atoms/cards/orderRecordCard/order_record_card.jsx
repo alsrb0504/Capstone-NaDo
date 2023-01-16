@@ -7,8 +7,6 @@ const OrderRecordCard = ({ info, handleClick }) => {
     info;
 
   const OnClick = () => {
-    alert('미구현');
-
     handleClick(orderSequence);
   };
 

@@ -3,7 +3,7 @@ import React from 'react';
 
 const SUBMIT = 'submit';
 
-const Btn = ({ text, type, color, handleClick }) => {
+const Btn = React.memo(({ text, type, color, handleClick }) => {
   function AssignEvent() {
     if (type !== SUBMIT) handleClick();
   }
@@ -13,6 +13,6 @@ const Btn = ({ text, type, color, handleClick }) => {
       {text}
     </button>
   );
-};
+});
 
 export default Btn;

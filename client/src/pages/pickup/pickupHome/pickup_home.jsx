@@ -18,10 +18,13 @@ const PickupHome = () => {
   const { userNickname } = useSelector((state) => state.user);
   const { storeList } = useSelector((state) => state.pickup);
 
-  const SelectStore = (storeId) => {
-    dispatch(GetPickupStoreDetail(storeId));
-    HandleMove('/pickup/store');
-  };
+  const SelectStore = useCallback(
+    (storeId) => {
+      dispatch(GetPickupStoreDetail(storeId));
+      HandleMove('/pickup/store');
+    },
+    [dispatch, HandleMove],
+  );
 
   useEffect(() => {
     dispatch(GetPickupStoreList());

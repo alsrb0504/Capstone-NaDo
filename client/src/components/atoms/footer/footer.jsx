@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Footer = () => (
+const Footer = React.memo(() => (
   <div className="footer">
     <div className="box1">
       <p className="firstline">Project NaDo</p>
@@ -22,6 +22,6 @@ const Footer = () => (
       <p className="name">한윤호 32154952</p>
     </div>
   </div>
-);
+));
 
 export default Footer;

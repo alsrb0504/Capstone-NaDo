@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import OrderRecordCard from '../../../components/atoms/cards/orderRecordCard/order_record_card';
 import DatePickerContainer from '../../../components/molecules/datePickercContainer/date_picker_container';
@@ -15,9 +15,12 @@ const OrderHistory = () => {
 
   const { order_history } = useSelector((state) => state.order);
 
-  const InquireReport = (start, end) => {
-    dispatch(GetOrderReport({ start, end }));
-  };
+  const InquireReport = useCallback(
+    (start, end) => {
+      dispatch(GetOrderReport({ start, end }));
+    },
+    [dispatch],
+  );
 
   useEffect(() => {
     const [start, end] = GetDefaultPeriod();

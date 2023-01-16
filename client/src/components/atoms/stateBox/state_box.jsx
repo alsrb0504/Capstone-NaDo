@@ -1,6 +1,6 @@
 import React from 'react';
 
-const StateBox = ({ state }) => {
+const StateBox = React.memo(({ state }) => {
   const stateInfo = {
     ordered: {
       text: '수락 대기 중...',
@@ -25,6 +25,6 @@ const StateBox = ({ state }) => {
       <q>{stateInfo[state].text}</q>
     </div>
   );
-};
+});
 
 export default StateBox;

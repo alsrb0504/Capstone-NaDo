@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Swal from 'sweetalert2';
 import Btn from '../../../components/atoms/buttons/btn/btn';
 import Header from '../../../components/atoms/headers/header/header';
 import PickupInfoSection from '../../../components/molecules/pickupInfoSection/pickup_infoSection';
 import useMove from '../../../hooks/useMove';
 import { CatchPickup } from '../../../store/features/pickup';
+import { SwalSuccess, SwalError } from '../../../utils/swal';
 
 const PickupDetail = () => {
   const dispatch = useDispatch();
@@ -20,27 +20,13 @@ const PickupDetail = () => {
 
     // 아래 버튼에서 컷해서 아마 뜰 일이 없을 거 같긴 함.
     if (isCatch) {
-      Swal.fire({
-        title: '이미 진행중인 주문이 있습니다.',
-        text: '',
-        icon: 'error',
-        showConfirmButton: false,
-
-        timer: popupTimer,
-      });
+      SwalError('이미 진행중인 주문이 있습니다.', popupTimer);
       return;
     }
 
     dispatch(CatchPickup(orderSequence));
+    SwalSuccess('주문 수락', popupTimer);
 
-    Swal.fire({
-      title: '주문 수락!',
-      text: '',
-      icon: 'success',
-      showConfirmButton: false,
-
-      timer: popupTimer,
-    });
     // 홈으로 화면 이동
     setTimeout(() => {
       MoveHome();

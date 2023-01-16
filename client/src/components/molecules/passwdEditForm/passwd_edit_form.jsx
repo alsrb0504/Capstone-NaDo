@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { PasswdCond } from '../../../utils/formCondition';
@@ -6,7 +6,7 @@ import { ChangePasswd, CleanUpSuccess } from '../../../store/features/user';
 import Btn from '../../atoms/buttons/btn/btn';
 import LineInputContainer from '../lineInputContainer/line_input_container';
 
-const PasswdEditForm = ({ MoveBack }) => {
+const PasswdEditForm = React.memo(({ MoveBack }) => {
   const dispatch = useDispatch();
   const { userId, isSuccess, isError } = useSelector((state) => state.user);
 
@@ -28,16 +28,19 @@ const PasswdEditForm = ({ MoveBack }) => {
     if (isError) reset();
   }, [isSuccess, isError, reset, dispatch, MoveBack]);
 
-  const OnSubmit = (data) => {
-    const { prevPasswd, newPasswd, newPasswd2 } = data;
+  const OnSubmit = useCallback(
+    (data) => {
+      const { prevPasswd, newPasswd, newPasswd2 } = data;
 
-    if (newPasswd !== newPasswd2) {
-      alert('비밀번호가 일치하지 않습니다');
-      reset();
-    }
+      if (newPasswd !== newPasswd2) {
+        alert('비밀번호가 일치하지 않습니다');
+        reset();
+      }
 
-    dispatch(ChangePasswd({ userId, prevPasswd, newPasswd }));
-  };
+      dispatch(ChangePasswd({ userId, prevPasswd, newPasswd }));
+    },
+    [userId, dispatch, reset],
+  );
 
   return (
     <form className="passwd-edit-form" onSubmit={handleSubmit(OnSubmit)}>
@@ -73,6 +76,6 @@ const PasswdEditForm = ({ MoveBack }) => {
       </div>
     </form>
   );
-};
+});
 
 export default PasswdEditForm;

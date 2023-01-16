@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { PrintPrice } from '../../../../utils/text';
 import { ChangeTimeInfo } from '../../../../utils/time';
 
 const PickingCard = ({ info, MoveDesc }) => {
   const { location, sequence, timeout, price } = info;
-
   const { address, detail } = location;
 
   // 주문 상세 정보로 이동
-  const GoDesc = () => {
+  const GoDesc = useCallback(() => {
     MoveDesc(sequence);
-  };
+  }, [sequence, MoveDesc]);
 
   return (
     <div className="card-container picking-card">
