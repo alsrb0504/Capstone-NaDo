@@ -11,6 +11,29 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
+    UpdateCart: (state, { payload }) => {
+      const { coffeeId, cnt } = payload;
+
+      const updated = state.cartList.map((el) => {
+        if (el.menuSequence === coffeeId)
+          return {
+            ...el,
+            cnt,
+            totalPrice: el.menuPrice * cnt,
+          };
+        return el;
+      });
+
+      let sumPrice = 0;
+
+      updated.forEach((el) => {
+        sumPrice += el.totalPrice;
+      });
+
+      state.cartList = updated;
+      state.totalPrice = sumPrice;
+    },
+
     AddCart: (state, { payload }) => {
       const { storeSequence, storeName, menuInfo } = payload;
       const sumPrice = state.totalPrice + menuInfo.totalPrice;
@@ -20,18 +43,23 @@ export const cartSlice = createSlice({
       state.cartList = [...state.cartList, menuInfo];
       state.totalPrice = sumPrice;
     },
-    UpdateCart: (state, { payload }) => {
-      const { updatedCartList } = payload;
-      let sumPrice = 0;
+    RemoveItem: (state, { payload }) => {
+      const { coffeeId } = payload;
 
-      updatedCartList.forEach((el) => {
+      const filtered = state.cartList.filter(
+        (el) => el.menuSequence !== coffeeId,
+      );
+
+      let sumPrice = 0;
+      filtered.forEach((el) => {
         sumPrice += el.totalPrice;
       });
 
-      state.cartList = [...updatedCartList];
       state.totalPrice = sumPrice;
 
-      if (updatedCartList.length === 0) {
+      state.cartList = filtered;
+
+      if (state.cartList.length === 0) {
         state.cartStoreName = '';
         state.cartStoreSequence = 0;
       }
@@ -45,5 +73,5 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { AddCart, UpdateCart, CleanCart } = cartSlice.actions;
+export const { AddCart, UpdateCart, RemoveItem, CleanCart } = cartSlice.actions;
 export default cartSlice.reducer;

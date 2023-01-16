@@ -1,16 +1,13 @@
+/* eslint-disable no-lonely-if */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useCallback } from 'react';
 import { MakeOptionText, PrintPrice } from '../../../../utils/text';
 
 function isSame(prev, next) {
-  // if (prev.UpdateMenu !== next.UpdateMenu) return false;
-
-  console.log(prev);
-  console.log(next);
-
   if (prev.DeleteMenu !== next.DeleteMenu) return false;
-
-  // if (prev.UpdateMenu !== next.UpdateMenu) return false;
+  if (prev.UpdateMenu !== next.UpdateMenu) return false;
+  // 업데이트 된 커피(object)만 새로 만들기 떄문에 info만 검사해도 문제 없음.
+  if (prev.info !== next.info) return false;
 
   return true;
 }
@@ -19,24 +16,24 @@ const OrderingCardComponent = ({ info, UpdateMenu, DeleteMenu }) => {
   const { menuSequence, menuName, menuOptions, menuPrice, cnt } = info;
   const { icehot, shots } = menuOptions;
 
-  const [curCnt, setCurCnt] = useState(cnt);
+  const ChangeCount = useCallback(
+    (e) => {
+      const target = e.target.className.split(' ')[1];
+      // 카운트 증가
+      if (target === 'fa-plus') {
+        if (cnt + 1 < 9) UpdateMenu(menuSequence, cnt + 1);
+      }
+      // 카운트 감소
+      else {
+        if (cnt - 1 > 0) UpdateMenu(menuSequence, cnt - 1);
+      }
+    },
+    [cnt, menuSequence, UpdateMenu],
+  );
 
-  const ChangeCount = (e) => {
-    const target = e.target.className.split(' ')[1];
-    if (target === 'fa-plus') {
-      const increaseCnt = curCnt + 1;
-      setCurCnt(increaseCnt);
-      UpdateMenu(menuSequence, increaseCnt);
-    } else {
-      const decreaseCnt = curCnt > 1 ? curCnt - 1 : curCnt;
-      setCurCnt(decreaseCnt);
-      UpdateMenu(menuSequence, decreaseCnt);
-    }
-  };
-
-  const DeleteCard = () => {
+  const DeleteCard = useCallback(() => {
     DeleteMenu(menuSequence);
-  };
+  }, [menuSequence, DeleteMenu]);
 
   return (
     <div className="card-container order-card ordering cart-card">
@@ -56,7 +53,8 @@ const OrderingCardComponent = ({ info, UpdateMenu, DeleteMenu }) => {
         <button type="button" onClick={ChangeCount}>
           <i className="fa-solid fa-plus" />
         </button>
-        <span className="cnt">{curCnt}</span>
+        <span className="cnt">{cnt}</span>
+
         <button type="button" onClick={ChangeCount}>
           <i className="fa-solid fa-minus" />
         </button>

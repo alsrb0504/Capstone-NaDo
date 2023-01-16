@@ -6,7 +6,7 @@ import OrderingCard from '../../../components/atoms/cards/orderingCard/ordering_
 import EmptyState from '../../../components/atoms/emptyState/empty_state';
 import Header from '../../../components/atoms/headers/header/header';
 import useMove from '../../../hooks/useMove';
-import { UpdateCart } from '../../../store/features/cart';
+import { RemoveItem, UpdateCart } from '../../../store/features/cart';
 import { PrintPrice } from '../../../utils/text';
 
 const OrderCart = () => {
@@ -19,30 +19,19 @@ const OrderCart = () => {
     (state) => state.cart,
   );
 
-  // 새로 만들어짐 => useCallback X.
-  const UpdateMenu = (cartSequence, cartCnt) => {
-    const updatedCartList = cartList.map((el) => {
-      if (el.menuSequence === cartSequence)
-        return {
-          ...el,
-          cnt: cartCnt,
-          totalPrice: el.menuPrice * cartCnt,
-        };
-
-      return el;
-    });
-
-    dispatch(UpdateCart({ updatedCartList }));
-  };
+  // 장바구니 업데이트 직접 구현 => 장바구니 업데이트 액션 함수 호출로 변경.
+  const UpdateMenu = useCallback(
+    (coffeeId, cnt) => {
+      dispatch(UpdateCart({ coffeeId, cnt }));
+    },
+    [dispatch],
+  );
 
   const DeleteMenu = useCallback(
-    (cartSequence) => {
-      const updatedCartList = cartList.filter(
-        (el) => el.menuSequence !== cartSequence,
-      );
-      dispatch(UpdateCart({ updatedCartList }));
+    (coffeeId) => {
+      dispatch(RemoveItem({ coffeeId }));
     },
-    [dispatch, cartList],
+    [dispatch],
   );
 
   return (
