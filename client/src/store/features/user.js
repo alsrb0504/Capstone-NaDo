@@ -73,7 +73,6 @@ export const ChangePasswd = createAsyncThunk(
       }
       if (response.statusCode === 403) {
         alert('비밀번호 정보가 일치하지 않습니다');
-        console.log(response.data.message);
       }
       return thunkAPI.rejectWithValue(response.data);
     } catch (e) {
@@ -96,8 +95,7 @@ export const GetUserWithSession = createAsyncThunk(
       // return
       return thunkAPI.rejectWithValue(response.data);
     } catch (e) {
-      // PrintError(e, '로그인 유지');
-      console.log('세션 로그인 실패.');
+      PrintError(e, '세션 로그인');
       return thunkAPI.rejectWithValue(e.response.data);
     }
   },

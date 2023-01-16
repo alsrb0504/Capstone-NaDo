@@ -39,14 +39,10 @@ const ProfileEditForm = ({ ChangeProfile }) => {
   }, [avatar, userProfile]);
 
   const OnSubmit = (data) => {
-    console.log('form info', data);
-
     const filteredData = {
       nickname: data.nickname,
       image: data.image !== userProfile ? data.image : '',
     };
-
-    console.log(`filteredData = ${filteredData}`);
 
     // ChangeProfile(data);
     ChangeProfile(filteredData);
