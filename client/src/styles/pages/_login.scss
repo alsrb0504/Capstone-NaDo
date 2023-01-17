@@ -1,12 +1,14 @@
 .login {
   @include column-flexbox(start);
   height: 100vh;
+  max-height: $default-height;
 
   &-logo-container {
-    width: 100vw;
+    @include flexbox();
+    width: 120%;
     max-width: $md-breakpoint;
 
-    padding-top: 20px;
+    padding-top: 40px;
     margin-bottom: 24px;
 
     .login-logo {
@@ -20,8 +22,5 @@
     // 로그인 페이지 설계 시, 해당 버튼 최소 크기 72px;
     width: calc(72px * 2 + 16px);
     gap: 16px;
-
-    // height: 92px;
-    // width: 200px;
   }
 }

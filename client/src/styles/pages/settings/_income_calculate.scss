@@ -1,6 +1,7 @@
 .income-calculate {
   @include column-flexbox(start, center);
-  min-height: 100vh;
+  height: 100vh;
+  max-height: $default-height;
 
   .header-box {
     width: 100vw;
@@ -9,9 +10,14 @@
 
   .date-picker-section {
     margin-bottom: 8px;
+    width: 100%;
 
     .form-title {
       margin-bottom: 8px;
+    }
+
+    button {
+      padding: 12px;
     }
   }
 

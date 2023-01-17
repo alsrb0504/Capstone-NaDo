@@ -1,7 +1,6 @@
 .home {
   @include column-flexbox(start, start);
   position: relative;
-  min-height: 100vh;
   z-index: 100;
 
   &-order-btn {

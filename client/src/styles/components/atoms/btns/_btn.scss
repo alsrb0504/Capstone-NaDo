@@ -1,53 +1,57 @@
 .btn {
-    cursor: pointer;
-    &:hover,
-    &:active {
-      i {
-        transition: all 150ms ease-in;
-        transform: scale(1.05);
-      }
-    }
-    background-color: $primary;
-    color: $white;
-    font-size: 20px;
-    border-radius: 6px;
-    min-height: 60px;
+  width: 100%;
+  min-height: 60px;
+  color: $white;
+  font-size: 20px;
+  border-radius: 6px;
+  background-color: $primary;
 
-    width: 100%;
+  transition: all 50ms ease-in-out;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    opacity: 0.8;
+
+    i {
+      transition: all 150ms ease-in;
+      transform: scale(1.05);
+    }
+  }
 }
 
 .btn-red {
-    cursor: pointer;
-    &:hover,
-    &:active {
-      i {
-        transition: all 150ms ease-in;
-        transform: scale(1.05);
-      }
+  cursor: pointer;
+  &:hover,
+  &:active {
+    i {
+      transition: all 150ms ease-in;
+      transform: scale(1.05);
     }
-    background-color: $red;
-    color: $white;
-    font-family: Jua;
-    font-size: 20px;
-    border-radius: 6px;
-    min-height: 60px;
+  }
+  background-color: $red;
+  color: $white;
+  font-family: Jua;
+  font-size: 20px;
+  border-radius: 6px;
+  min-height: 60px;
 }
 
 .btn-blue {
-    cursor: pointer;
-    &:hover,
-    &:active {
-      i {
-        transition: all 150ms ease-in;
-        transform: scale(1.05);
-      }
+  cursor: pointer;
+  &:hover,
+  &:active {
+    i {
+      transition: all 150ms ease-in;
+      transform: scale(1.05);
     }
-    background-color: $blue;
-    color: $white;
-    font-family: Jua;
-    font-size: 20px;
-    border-radius: 6px;
-    min-height: 60px;
+  }
+  background-color: $blue;
+  color: $white;
+  font-family: Jua;
+  font-size: 20px;
+  border-radius: 6px;
+  min-height: 60px;
 }
 
 .btn-pink {
@@ -59,7 +63,7 @@
       transform: scale(1.05);
     }
   }
-  background-color: #EDCDBB;
+  background-color: #edcdbb;
   color: $white;
   font-family: Jua;
   font-size: 24px;

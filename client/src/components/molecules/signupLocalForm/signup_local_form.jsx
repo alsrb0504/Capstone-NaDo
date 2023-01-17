@@ -52,48 +52,50 @@ const SignupLocalForm = ({ SignupWithLocal }) => {
 
   return (
     <form className="signup-local-form" onSubmit={handleSubmit(OnSubmit)}>
-      <LineInputContainer
-        desc="아이디"
-        condition={IdCondition}
-        id="identifier"
-        register={register}
-        errors={errors}
-      />
+      <section className="signup-local-form-inputs">
+        <LineInputContainer
+          desc="아이디"
+          condition={IdCondition}
+          id="identifier"
+          register={register}
+          errors={errors}
+        />
 
-      <LineInputContainer
-        desc="비밀번호"
-        condition={PasswordCondition}
-        id="password"
-        type="password"
-        register={register}
-        errors={errors}
-      />
+        <LineInputContainer
+          desc="비밀번호"
+          condition={PasswordCondition}
+          id="password"
+          type="password"
+          register={register}
+          errors={errors}
+        />
 
-      <LineInputContainer
-        desc="비밀번호 확인"
-        condition={PasswordCondition}
-        id="password2"
-        type="password"
-        register={register}
-        errors={errors}
-      />
+        <LineInputContainer
+          desc="비밀번호 확인"
+          condition={PasswordCondition}
+          id="password2"
+          type="password"
+          register={register}
+          errors={errors}
+        />
 
-      <LineInputContainer
-        desc="닉네임"
-        condition={NicknameCondition}
-        id="nickname"
-        register={register}
-        errors={errors}
-      />
+        <LineInputContainer
+          desc="닉네임"
+          condition={NicknameCondition}
+          id="nickname"
+          register={register}
+          errors={errors}
+        />
 
-      <LineInputContainer
-        desc="이메일"
-        //   condition={NicknameCondition}
-        // 이메일 조건 아직 없음
-        id="email"
-        register={register}
-        errors={errors}
-      />
+        <LineInputContainer
+          desc="이메일"
+          //   condition={NicknameCondition}
+          // 이메일 조건 아직 없음
+          id="email"
+          register={register}
+          errors={errors}
+        />
+      </section>
 
       <div className="signup-local-form-btn-complete">
         <Btn type="submit" text="회원가입 완료" />

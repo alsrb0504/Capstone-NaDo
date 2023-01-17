@@ -1,6 +1,12 @@
 .btn-box {
   @include column-flexbox();
   width: 100%;
+  transition: opacity 100ms ease-in-out;
+
+  &:hover,
+  &:active {
+    opacity: 0.7;
+  }
 
   &-icon-container {
     @include flexbox(center, center);
@@ -13,6 +19,7 @@
     background-color: $white;
     border: 1px solid $box-border;
     border-radius: 12px;
+    cursor: pointer;
 
     .btn-box-icon {
       width: 50%;

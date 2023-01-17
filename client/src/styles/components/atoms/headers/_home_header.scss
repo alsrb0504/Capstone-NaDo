@@ -38,6 +38,16 @@
     @include flexbox(between);
     height: 100px;
 
+    .setting-btn {
+      cursor: pointer;
+      transition: transform 100ms ease-in-out;
+
+      &:active,
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+
     i {
       font-size: 28px;
     }

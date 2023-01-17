@@ -1,9 +1,7 @@
 .setting {
   @include column-flexbox(start);
-  min-height: 100vh;
 
   .header-box {
-    width: 100vw;
     margin-bottom: 16px;
   }
 

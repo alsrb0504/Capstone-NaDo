@@ -1,28 +1,31 @@
-.btn-profile{
-    width: 100%;
-    background-color: $white;
-    min-height: 60px;
-    position: relative;
+.btn-profile {
+  @include flexbox(between);
 
-    padding: 0 20px 0 30px;
+  position: relative;
+  width: 100%;
+  min-height: 60px;
+  padding: 0 20px 0 30px;
+  border-radius: 6px;
+  background-color: $white;
 
-    @include flexbox(between);
+  cursor: pointer;
 
-    cursor: pointer;
-    &:hover,
-    &:active {
-      i {
-        transition: all 150ms ease-in;
-        transform: scale(1.05);
-      }
+  &:hover,
+  &:active {
+    background-color: $quaternary;
+
+    i {
+      transition: all 150ms ease-in;
+      transform: scale(1.05);
     }
-    
-    .name {
-        font-size: 24px;
-        color: $dark-gray;
-    }
-    i{
-        font-size: 24px;
-        color: $dark-gray;
-    }
+  }
+
+  .name {
+    font-size: 24px;
+    color: $dark-gray;
+  }
+  i {
+    font-size: 24px;
+    color: $dark-gray;
+  }
 }

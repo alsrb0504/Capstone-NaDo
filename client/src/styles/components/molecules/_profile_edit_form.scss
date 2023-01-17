@@ -24,6 +24,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover; // or contain
+        cursor: pointer;
       }
 
       .file-input {
@@ -34,6 +35,7 @@
         width: 100%;
         height: 100%;
         opacity: 0;
+        cursor: pointer;
       }
     }
 

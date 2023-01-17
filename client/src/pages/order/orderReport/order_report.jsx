@@ -28,10 +28,6 @@ const OrderReport = () => {
     formState: { errors },
   } = useForm();
 
-  const OnSubmit = useCallback(() => {
-    handleAlert();
-  }, [handleAlert]);
-
   const handleAlert = useCallback(() => {
     Swal.fire({
       title: '정말 신고 하시겠습니까?',
@@ -53,6 +49,10 @@ const OrderReport = () => {
     });
   }, [MoveHome]);
 
+  const OnSubmit = useCallback(() => {
+    handleAlert();
+  }, [handleAlert]);
+
   return (
     <div className="col-sm-4 order-report">
       <Header title="신고하기" HandleClick={MoveBack} />
@@ -72,13 +72,16 @@ const OrderReport = () => {
         </section>
 
         <form className="report-form" onSubmit={handleSubmit(OnSubmit)}>
-          <FormTitle title="신고내용" />
-          <LineInputContainer
-            desc="신고내용을 작성해주세요"
-            id="report-info"
-            register={register}
-            errors={errors}
-          />
+          <div className="report-form-input">
+            <FormTitle title="신고내용" />
+            <LineInputContainer
+              desc="신고내용을 작성해주세요"
+              id="report-info"
+              register={register}
+              errors={errors}
+            />
+          </div>
+
           <div className="btn-complete">
             <Btn
               type="submit"

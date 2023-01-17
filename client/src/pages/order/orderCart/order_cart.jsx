@@ -42,14 +42,16 @@ const OrderCart = () => {
       {cartList.length !== 0 && (
         <div className="order-cart-fill-section">
           <h4 className="order-cart-fill-name">{cartStoreName}</h4>
-          {cartList.map((item) => (
-            <OrderingCard
-              key={item.menuSequence}
-              info={item}
-              UpdateMenu={UpdateMenu}
-              DeleteMenu={DeleteMenu}
-            />
-          ))}
+          <ul className="order-cart-list">
+            {cartList.map((item) => (
+              <OrderingCard
+                key={item.menuSequence}
+                info={item}
+                UpdateMenu={UpdateMenu}
+                DeleteMenu={DeleteMenu}
+              />
+            ))}
+          </ul>
 
           <Btn
             text={`${PrintPrice(totalPrice)}원 결제하기`}

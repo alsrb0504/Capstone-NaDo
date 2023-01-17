@@ -3,22 +3,31 @@
   position: relative;
   padding: 0 $sm-margin;
   width: 100vw;
-  // height: 164px;       // 높이 추후 상의.
-  height: 200px;
+  max-width: 480px;
+  padding: 0;
+  height: 180px;
 
   &-bg {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .header-nav-bar {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    z-index: -1;
-    object-fit: cover;
-  }
+    padding: 0 20px;
+    @include flexbox(between);
 
-  i {
-    margin-top: 16px;
-    font-size: 26px;
-    color: $primary;
+    i {
+      position: relative;
+      z-index: 1;
+      margin-top: 16px;
+      font-size: 26px;
+      color: $primary;
+    }
   }
 }

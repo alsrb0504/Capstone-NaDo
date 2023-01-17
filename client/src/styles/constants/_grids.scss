@@ -22,21 +22,29 @@ $gutter: 16px; // sm, md 공동으로 사용.
 $sm-columns: 4;
 $sm-margin: 20px;
 
-// $md-columns: 8;
-// $md-margin: 16px;
-// $md-max-container-size: $lg-breakpoint - ($md-margin * 2);
+$default-height: 780px;
 
 .container {
-  width: 100%;
   padding: 0 $sm-margin; // 양옆 20px
   margin: 0 auto;
+  max-width: 480px;
+  max-height: $default-height;
+  overflow: hidden;
+  overflow-y: scroll;
+  background-color: white;
+
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
 
   .row {
     display: flex;
     flex-wrap: wrap;
   }
 
-  [class^="col-"] {
+  [class^='col-'] {
     padding: 0 $gutter / 2;
   }
 
@@ -46,14 +54,10 @@ $sm-margin: 20px;
     }
   }
 
-  // @media screen and (min-width: $md-breakpoint) {
-  //   max-width: $md-max-container-size;
-  //   padding: 0 $md-margin;
-
-  //   @for $i from 1 through $md-columns {
-  //     .col-md-#{$i} {
-  //       width: percentage($i / $md-columns);
-  //     }
-  //   }
-  // }
+  @media screen and (min-width: 480px) {
+    border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+      rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+      rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
 }

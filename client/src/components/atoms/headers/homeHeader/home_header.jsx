@@ -6,7 +6,7 @@ const HomeHeader = React.memo(({ MoveSetting }) => (
       <div className="home-header-logo-container">
         <img src="/images/logo.svg" alt="logo_img" />
       </div>
-      <button type="button" onClick={MoveSetting}>
+      <button className="setting-btn" type="button" onClick={MoveSetting}>
         <i className="fa-solid fa-gear" />
       </button>
     </div>

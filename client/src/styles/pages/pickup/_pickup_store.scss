@@ -1,7 +1,8 @@
 .pickup-store {
   @include column-flexbox(start, center);
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
+  max-height: $default-height;
 
   .store-map-section {
     margin-bottom: 20px;

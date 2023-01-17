@@ -1,6 +1,7 @@
 .option {
   @include column-flexbox(start);
-  min-height: 100vh;
+  height: 100vh;
+  max-height: $default-height;
 
   .header-box {
     width: 100vw;
@@ -8,8 +9,16 @@
   }
 
   .item-option-form {
+    @include column-flexbox(start, start);
     width: 100%;
     margin-bottom: 24px;
+    flex: 1;
+
+    &-inputs {
+      @include column-flexbox(start, start);
+      width: 100%;
+      flex: 1;
+    }
 
     &:nth-child(3) {
       background-color: pink;
@@ -76,6 +85,7 @@
 
   .count {
     @include flexbox(end);
+    width: 100%;
     margin-top: 16px;
 
     .title {
@@ -120,8 +130,5 @@
 
   .item-option-form-btn-complete {
     width: 100%;
-    padding-right: 40px; //fixed했을 때, 크기가 이상해져서 패딩으로 하드코딩함
-    position: fixed;
-    bottom: 5%;
   }
 }

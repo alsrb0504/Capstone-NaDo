@@ -1,8 +1,9 @@
-.register{
-    @include column-flexbox(start);
-    min-height: 100vh;
+.register {
+  @include column-flexbox(start);
+  height: 100vh;
+  max-height: $default-height;
 
-    .header-box {
+  .header-box {
     width: 100vw;
     margin-bottom: 16px;
   }

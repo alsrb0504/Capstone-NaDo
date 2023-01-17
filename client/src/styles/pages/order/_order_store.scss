@@ -1,7 +1,8 @@
 .order-store {
   @include column-flexbox(start, center);
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
+  max-height: $default-height;
 
   .store-map-section {
     margin-bottom: 20px;
@@ -11,8 +12,7 @@
     margin-bottom: 32px;
   }
 
-  // 푸터 마진 수정 하드코딩
-  .footer{
-    margin-left: 0px;
+  .footer {
+    margin-left: 0;
   }
 }

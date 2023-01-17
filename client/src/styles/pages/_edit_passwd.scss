@@ -1,6 +1,7 @@
 .change-passwd {
   @include column-flexbox(start, center);
-  min-height: 100vh;
+  height: 100vh;
+  max-height: $default-height;
 
   .header-box {
     width: 100vw;

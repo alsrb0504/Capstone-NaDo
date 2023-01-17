@@ -1,6 +1,8 @@
 .header-with-logo {
   @include flexbox(between, start);
   width: 100vw;
+  max-width: 480px;
+
   min-height: 108px;
   padding: 0 $sm-margin;
 

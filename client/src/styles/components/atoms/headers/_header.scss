@@ -1,7 +1,9 @@
 .header-box {
   @include flexbox();
   position: relative;
-  width: 100%;
+  width: 100vw;
+  max-width: 480px;
+
   height: 62px;
   border-bottom: 2px solid $primary;
 
@@ -14,6 +16,13 @@
     right: 87.73%;
     top: 32.26%;
     bottom: 32.26%;
+    cursor: pointer;
+    transition: transform 100ms ease-in-out;
+
+    &:hover,
+    &:active {
+      transform: scale(1.05);
+    }
 
     i {
       font-size: 26px;

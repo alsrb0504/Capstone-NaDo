@@ -82,86 +82,88 @@ const OrderOption = () => {
     <div className="option col-sm-4">
       <Header title={name} HandleClick={MoveBack} />
       <div className="item-option-form">
-        <TextUnderline text={menuName} />
+        <section className="item-option-form-inputs">
+          <TextUnderline text={menuName} />
 
-        <OptionUnderline text="ICE / HOT" />
+          <OptionUnderline text="ICE / HOT" />
 
-        <div className="option-radiobox">
-          <h3>ICE</h3>
-          <label className="icon-box" htmlFor="ice">
-            <input
-              type="radio"
-              name="icehot"
-              id="ice"
-              value="ice"
-              onChange={icehotChange}
-              checked={icehot === 'ice'}
-              className={icehot === 'ice' ? 'checked' : 'none'}
-            />
-          </label>
-        </div>
-
-        <div className="option-radiobox">
-          <h3>HOT</h3>
-          <label className="icon-box" htmlFor="hot">
-            <input
-              type="radio"
-              name="icehot"
-              id="hot"
-              value="hot"
-              onChange={icehotChange}
-              checked={icehot === 'hot'}
-              className={icehot === 'hot' ? 'checked' : 'none'}
-            />
-          </label>
-        </div>
-
-        <OptionUnderline text="에스프레소 샷 추가 (최대 1개)" />
-
-        <div className="option-radiobox">
-          <h3>1 샷 추가 (+500원)</h3>
-          <label className="icon-box" htmlFor="shot1">
-            <input
-              type="radio"
-              name="shots"
-              id="shot1"
-              value={1}
-              readOnly
-              checked={shots === 1}
-              onClick={(e) => shotsChange(e)}
-              className={shots === 1 ? 'checked' : 'none'}
-            />
-          </label>
-        </div>
-
-        <div className="option-radiobox">
-          <h3>2 샷 추가 (+1000원)</h3>
-          <label className="icon-box" htmlFor="shot2">
-            <input
-              type="radio"
-              name="shots"
-              id="shot2"
-              value={2}
-              readOnly
-              checked={shots === 2}
-              onClick={(e) => shotsChange(e)}
-              className={shots === 2 ? 'checked' : 'none'}
-            />
-          </label>
-        </div>
-
-        <div className="count">
-          <span className="title">수량 : </span>
-          <button type="button" onClick={DecreaseCnt} className="button">
-            <i className="fa-solid fa-minus" />
-          </button>
-          <div className="cnt-box">
-            <span className="cnt">{count}</span>
+          <div className="option-radiobox">
+            <h3>ICE</h3>
+            <label className="icon-box" htmlFor="ice">
+              <input
+                type="radio"
+                name="icehot"
+                id="ice"
+                value="ice"
+                onChange={icehotChange}
+                checked={icehot === 'ice'}
+                className={icehot === 'ice' ? 'checked' : 'none'}
+              />
+            </label>
           </div>
-          <button type="button" onClick={IncreaseCnt} className="button">
-            <i className="fa-solid fa-plus" />
-          </button>
-        </div>
+
+          <div className="option-radiobox">
+            <h3>HOT</h3>
+            <label className="icon-box" htmlFor="hot">
+              <input
+                type="radio"
+                name="icehot"
+                id="hot"
+                value="hot"
+                onChange={icehotChange}
+                checked={icehot === 'hot'}
+                className={icehot === 'hot' ? 'checked' : 'none'}
+              />
+            </label>
+          </div>
+
+          <OptionUnderline text="에스프레소 샷 추가 (최대 1개)" />
+
+          <div className="option-radiobox">
+            <h3>1 샷 추가 (+500원)</h3>
+            <label className="icon-box" htmlFor="shot1">
+              <input
+                type="radio"
+                name="shots"
+                id="shot1"
+                value={1}
+                readOnly
+                checked={shots === 1}
+                onClick={(e) => shotsChange(e)}
+                className={shots === 1 ? 'checked' : 'none'}
+              />
+            </label>
+          </div>
+
+          <div className="option-radiobox">
+            <h3>2 샷 추가 (+1000원)</h3>
+            <label className="icon-box" htmlFor="shot2">
+              <input
+                type="radio"
+                name="shots"
+                id="shot2"
+                value={2}
+                readOnly
+                checked={shots === 2}
+                onClick={(e) => shotsChange(e)}
+                className={shots === 2 ? 'checked' : 'none'}
+              />
+            </label>
+          </div>
+
+          <div className="count">
+            <span className="title">수량 : </span>
+            <button type="button" onClick={DecreaseCnt} className="button">
+              <i className="fa-solid fa-minus" />
+            </button>
+            <div className="cnt-box">
+              <span className="cnt">{count}</span>
+            </div>
+            <button type="button" onClick={IncreaseCnt} className="button">
+              <i className="fa-solid fa-plus" />
+            </button>
+          </div>
+        </section>
 
         <div className="item-option-form-btn-complete">
           <Btn

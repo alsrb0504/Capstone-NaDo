@@ -22,7 +22,7 @@ const LocalRegister = () => {
 
   return (
     <div className="register col-sm-4">
-      <Header HandleClick={MoveLogin} />
+      <Header title="회원가입" HandleClick={MoveLogin} />
       <SignupLocalForm SignupWithLocal={SignupWithLocal} />
     </div>
   );

@@ -1,9 +1,12 @@
 .signup-local-form {
+  @include column-flexbox(start, start);
   width: 100%;
   margin-bottom: 24px;
+  flex: 1;
 
-  &:nth-child(3) {
-    background-color: pink;
+  &-inputs {
+    width: 100%;
+    flex: 1;
   }
 
   .line-input {
@@ -15,9 +18,6 @@
   }
 }
 
-.signup-local-form-btn-complete{
+.signup-local-form-btn-complete {
   width: 100%;
-  padding-right: 40px; //fixed했을 때, 크기가 이상해져서 패딩으로 하드코딩함
-  position: fixed;
-  bottom: 5%;
 }

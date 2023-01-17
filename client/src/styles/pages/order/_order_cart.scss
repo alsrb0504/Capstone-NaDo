@@ -1,7 +1,8 @@
 .order-cart {
   @include column-flexbox(start, center);
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
+  max-height: $default-height;
 
   .header-box {
     width: 100vw;
@@ -14,6 +15,11 @@
     width: 100%;
     flex: 1;
 
+    .order-cart-list {
+      width: 100%;
+      flex: 1;
+    }
+
     .order-cart-fill-name {
       font-size: 20px;
       margin-bottom: 20px;
@@ -24,11 +30,7 @@
     }
 
     .btn {
-      position: fixed;
-      left: 50%;
-      bottom: 24px;
-      width: calc(100% - 40px);
-      transform: translateX(-50%);
+      margin-bottom: 24px;
     }
   }
 }

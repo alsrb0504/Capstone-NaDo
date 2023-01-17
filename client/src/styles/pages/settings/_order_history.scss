@@ -1,6 +1,7 @@
 .order-history {
   @include column-flexbox(start, center);
-  min-height: 100vh;
+  height: 100vh;
+  max-height: $default-height;
 
   .header-box {
     width: 100vw;
@@ -9,7 +10,7 @@
 
   .date-picker-section {
     @include column-flexbox(start, start);
-
+    width: 100%;
     margin-bottom: 16px;
 
     .form-title {
