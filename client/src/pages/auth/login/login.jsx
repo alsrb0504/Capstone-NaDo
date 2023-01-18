@@ -10,7 +10,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const { HandleMove, MoveHome } = useMove();
 
-  const { isLogin } = useSelector((state) => state.user);
+  const isLogin = useSelector((state) => state.user.isLogin);
 
   const LoginWithLocal = (info) => {
     dispatch(LocalLogin(info));

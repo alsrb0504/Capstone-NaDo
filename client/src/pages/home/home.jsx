@@ -25,9 +25,9 @@ const Home = () => {
   const MovePickup = useCallback(() => HandleMove('/pickup'), [HandleMove]);
   const MoveSetting = useCallback(() => HandleMove('/setting'), [HandleMove]);
 
-  const { isLogin } = useSelector((state) => state.user);
-  const { myOrderList } = useSelector((state) => state.order);
-  const { isCatch } = useSelector((state) => state.pickup);
+  const isLogin = useSelector((state) => state.user.isLogin);
+  const isCatch = useSelector((state) => state.pickup.isCatch);
+  const myOrderList = useSelector((state) => state.order.myOrderList);
 
   useEffect(() => {
     if (!isLogin) HandleMove('/login');

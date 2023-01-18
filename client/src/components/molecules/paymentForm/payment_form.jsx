@@ -13,7 +13,7 @@ import { GetCurrentTime } from '../../../utils/time';
 import { SwalSuccess } from '../../../utils/swal';
 
 const PaymentForm = ({ SubmitPayment }) => {
-  const { totalPrice } = useSelector((state) => state.cart);
+  const totalPrice = useSelector((state) => state.cart.totalPrice);
 
   const [cardNumber, setCardNumber] = useState('');
   const [, setCardVali] = useState('');

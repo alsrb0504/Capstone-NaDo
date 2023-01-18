@@ -21,8 +21,8 @@ const OrderHome = () => {
     [dispatch, HandleMove],
   );
 
-  const { userNickname } = useSelector((state) => state.user);
-  const { storeList } = useSelector((state) => state.order);
+  const userNickname = useSelector((state) => state.user.userNickname);
+  const storeList = useSelector((state) => state.order.storeList);
 
   useEffect(() => {
     dispatch(GetStoreList());
