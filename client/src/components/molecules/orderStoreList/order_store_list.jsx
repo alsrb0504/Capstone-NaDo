@@ -4,9 +4,6 @@ import OrderStoreCard from '../../atoms/cards/orderStoreCard/order_store_card';
 function IsSame(prev, next) {
   // eslint-disable-next-line consistent-return
   Object.keys(prev).forEach((el) => {
-    console.log(prev[el]);
-    console.log(next[el]);
-
     if (prev[el] !== next[el]) return false;
   });
 
