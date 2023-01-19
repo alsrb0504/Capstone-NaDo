@@ -89,7 +89,8 @@
 ![픽업하기_gif](https://user-images.githubusercontent.com/65377787/213368339-67523f13-1cd3-4875-abbc-880c0fedea9c.gif)
 
 ## 4. 배달주문완료
-![배달주문완료_gif](https://user-images.githubusercontent.com/65377787/213368361-2e603478-849c-4618-ad95-6e80b3934710.gif)
+![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/65377787/213374720-3bd404cd-33b9-440a-8822-8993e4ad7263.gif)
+
 
 ## 5. 프로필 수정
 ![프로필 수정_gif](https://user-images.githubusercontent.com/65377787/213368371-398e67c1-46ec-4afa-9165-0ef8a777dabb.gif)
