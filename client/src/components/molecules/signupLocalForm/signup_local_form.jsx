@@ -41,50 +41,47 @@ const SignupLocalForm = ({ SignupWithLocal }) => {
     if (password !== password2) {
       alert('비밀번호가 일치하지 않습니다');
       reset();
+      return;
     }
 
     SignupWithLocal(data);
   };
-
-  const IdCondition = IdCond;
-  const PasswordCondition = PasswdCond;
-  const NicknameCondition = NicknameCond;
 
   return (
     <form className="signup-local-form" onSubmit={handleSubmit(OnSubmit)}>
       <section className="signup-local-form-inputs">
         <LineInputContainer
           desc="아이디"
-          condition={IdCondition}
+          condition={IdCond}
           id="identifier"
           register={register}
-          errors={errors}
+          errors={errors.identifier && errors}
         />
 
         <LineInputContainer
           desc="비밀번호"
-          condition={PasswordCondition}
+          condition={PasswdCond}
           id="password"
           type="password"
           register={register}
-          errors={errors}
+          errors={errors.password && errors}
         />
 
         <LineInputContainer
           desc="비밀번호 확인"
-          condition={PasswordCondition}
+          condition={PasswdCond}
           id="password2"
           type="password"
           register={register}
-          errors={errors}
+          errors={errors.password2 && errors}
         />
 
         <LineInputContainer
           desc="닉네임"
-          condition={NicknameCondition}
+          condition={NicknameCond}
           id="nickname"
           register={register}
-          errors={errors}
+          errors={errors.nickname && errors}
         />
 
         <LineInputContainer
@@ -93,7 +90,7 @@ const SignupLocalForm = ({ SignupWithLocal }) => {
           // 이메일 조건 아직 없음
           id="email"
           register={register}
-          errors={errors}
+          errors={errors.email && errors}
         />
       </section>
 

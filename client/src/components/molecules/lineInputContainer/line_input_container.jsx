@@ -18,12 +18,14 @@ const LineInputContainer = ({
       type={type}
       register={register}
     />
-    <ErrorMessage
-      errors={errors}
-      name="nickname"
-      as="p"
-      className="line-input-error is-margin-bottom"
-    />
+    {errors && (
+      <ErrorMessage
+        errors={errors}
+        name={id}
+        as="p"
+        className="line-input-error is-margin-bottom"
+      />
+    )}
   </div>
 );
 
